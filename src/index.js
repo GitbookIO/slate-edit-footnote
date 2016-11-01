@@ -1,7 +1,6 @@
 /**
- * @param {String} opts.typeTable The type of table blocks
- * @param {String} opts.typeRow The type of row blocks
- * @param {String} opts.typeCell The type of cell blocks
+ * @param {String} opts.typeFootnote type for the footnote block
+ * @param {String} opts.typeRef type for the footnote ref
  */
 function EditFootnote(opts) {
 
