@@ -4,7 +4,7 @@ const path = require('path');
 const Slate = require('slate');
 const readMetadata = require('read-metadata');
 
-const EditList = require('../lib');
+const EditList = require('../src');
 
 describe('slate-edit-footnote', function() {
     const tests = fs.readdirSync(__dirname);
