@@ -12,10 +12,10 @@ nodes:
       - kind: text
         text: ""
   - kind: block
-    type: paragraph
+    type: blockquote
     nodes:
       - kind: text
-        text: Last paragraph
+        text: ""
   - kind: block
     type: footnote
     data:

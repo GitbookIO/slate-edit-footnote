@@ -9,17 +9,13 @@ nodes:
         type: footnote_ref
         data:
           id: "1"
-      - kind: text
-        text: ""
   - kind: block
-    type: paragraph
+    type: blockquote
     nodes:
-      - kind: text
-        text: Last paragraph
-  - kind: block
-    type: footnote
-    data:
-      id: "1"
-    nodes:
-      - kind: text
-        text: The footnote
+      - kind: block
+        type: footnote
+        data:
+          id: "1"
+        nodes:
+          - kind: text
+            text: The footnote
