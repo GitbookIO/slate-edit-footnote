@@ -1,12 +1,5 @@
 nodes:
   - kind: block
-    type: footnote
-    data:
-      id: "1"
-    nodes:
-      - kind: text
-        text: The footnote
-  - kind: block
     type: paragraph
     nodes:
       - kind: text
@@ -16,6 +9,13 @@ nodes:
         type: footnote_ref
         data:
           id: "1"
+  - kind: block
+    type: footnote
+    data:
+      id: "1"
+    nodes:
+      - kind: text
+        text: The footnote
   - kind: block
     type: paragraph
     nodes:
