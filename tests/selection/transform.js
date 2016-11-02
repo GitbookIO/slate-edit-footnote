@@ -12,7 +12,6 @@ module.exports = function(plugin, state) {
     const selection = state.selection;
     expect(selection.startOffset).toEqual(0);
     expect(selection.endOffset).toEqual(20);
-    expect(selection.isFocused).toEqual(true);
 
     return state;
 };
