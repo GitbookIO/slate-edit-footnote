@@ -20,7 +20,7 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
 
     const { document } = state;
     const lastIndex = document.nodes.count();
-    let footnote = Slate.Block.create({
+    const footnote = Slate.Block.create({
         type: opts.typeFootnote,
         data: { id: footnodeRef },
         nodes: [Slate.Text.create()]

@@ -24,7 +24,7 @@ var schema = {
         footnote: function footnote(props) {
             return React.createElement(
                 'div',
-                null,
+                { className: 'footnote' },
                 props.node.data.get('id'),
                 ': ',
                 props.children
@@ -52,7 +52,7 @@ schema.nodes.paragraph.propTypes = schema.nodes.heading.propTypes = {
     children: React.PropTypes.node.isRequired
 };
 
-schema.nodes.footnote_ref.propTypes = schema.nodes.footnote.propTypes = {
+schema.nodes.footnote_ref.propTypes = {
     node: React.PropTypes.object.isRequired
 };
 
@@ -73934,6 +73934,7 @@ function EditFootnote() {
         transforms: {
             insertFootnote: insertFootnote.bind(null, opts)
         }
+
     };
 }
 
@@ -73973,8 +73974,6 @@ function insertFootnote(opts, transform) {
         data: { id: footnodeRef },
         nodes: [Slate.Text.create()]
     });
-
-    console.log('footnote ref', opts.typeRef);
 
     transform = transform
     // Collapse selection

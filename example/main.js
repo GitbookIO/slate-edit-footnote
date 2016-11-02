@@ -14,7 +14,7 @@ const schema = {
     nodes: {
         // footnote_ref: FootnoteRef,
         footnote_ref: props => <sup>{props.node.data.get('id')}</sup>,
-        footnote:     props => <div>{props.node.data.get('id')}: {props.children}</div>,
+        footnote:     props => <div className="footnote">{props.node.data.get('id')}: {props.children}</div>,
         paragraph:    props => <p {...props.attributes}>{props.children}</p>,
         heading:      props => <h1 {...props.attributes}>{props.children}</h1>
     }
