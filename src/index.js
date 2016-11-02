@@ -16,18 +16,7 @@ function EditFootnote(opts = {}) {
 
         transforms: {
             insertFootnote: insertFootnote.bind(null, opts)
-        },
-
-        // Prevent enter from doing anything in footnotes
-        // onKeyDown(event, data) {
-        //     console.log('event', event, data);
-        //
-        //     if (data.key === 'enter') {
-        //         console.log('prevent default');
-        //         event.stopPropagation();
-        //         event.preventDefault();
-        //     }
-        // }
+        }
     };
 }
 

@@ -73934,7 +73934,6 @@ function EditFootnote() {
         transforms: {
             insertFootnote: insertFootnote.bind(null, opts)
         }
-
     };
 }
 
