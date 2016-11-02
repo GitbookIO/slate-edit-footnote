@@ -27,23 +27,24 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
     });
 
     transform = transform
+        // Collapse selection
         .collapseToEnd()
+
+        // Insert ref
         .insertInline({
             type: opts.typeRef,
             isVoid: true,
             data: {
                 id: footnodeRef
             }
-        })
+        }, { normalize: false })
+
+        // Insert block at the end
         .insertNodeByKey(document.key, lastIndex, footnote)
+
+        // Insert text
         .moveToRangeOf(footnote)
         .insertText(defaultText);
-
-    // Updated footnote
-    footnote = transform.state.document.getDescendant(footnote.key);
-    // Focus the text
-    transform = transform
-        .moveToRangeOf(footnote);
 
     return transform;
 }
