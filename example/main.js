@@ -25,7 +25,7 @@ schema.nodes.paragraph.propTypes = schema.nodes.heading.propTypes = {
     children:   React.PropTypes.node.isRequired
 };
 
-schema.nodes.footnote_ref.propTypes = schema.nodes.footnote.propTypes = {
+schema.nodes.footnote_ref.propTypes = {
     node: React.PropTypes.object.isRequired
 };
 
