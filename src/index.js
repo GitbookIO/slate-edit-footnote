@@ -1,5 +1,6 @@
 const makeSchema = require('./makeSchema');
 const insertFootnote = require('./insertFootnote');
+const isSelectionInFootnote = require('./utils/isSelectionInFootnote');
 
 /**
  * @param {String} opts.typeFootnote type for the footnote block
@@ -11,16 +12,6 @@ function EditFootnote(opts = {}) {
 
     const schema = makeSchema(opts);
 
-    /**
-     * Is the selection in a footnote
-     */
-    function isSelectionInFootnote(state) {
-        const { startBlock } = state;
-
-        // Only handle events in cells
-        return (startBlock.type === opts.typeFootnote);
-    }
-
     return {
         schema,
 
@@ -31,7 +22,7 @@ function EditFootnote(opts = {}) {
         // Prevent enter from doing anything in footnotes
         onKeyDown(event, data, state) {
             // Only handle key enter and events in footnotes
-            if (data.key === 'enter' && isSelectionInFootnote(state)) {
+            if (data.key === 'enter' && isSelectionInFootnote(opts, state)) {
                 event.stopPropagation();
                 event.preventDefault();
                 return state;
@@ -39,5 +30,8 @@ function EditFootnote(opts = {}) {
         }
     };
 }
+
+// Expose isSelectionInFootnote utility
+EditFootnote.isSelectionInFootnote = isSelectionInFootnote;
 
 module.exports = EditFootnote;

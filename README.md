@@ -40,3 +40,9 @@ const plugins = [
 `plugin.transforms.insertFootnote(transform: Transform) => Transform`
 
 Insert a new empty footnote, with a reference at the current position.
+
+### `EditFootnote.isSelectionInFootnote(options, state)`
+
+Utilities to determine if the current selection in the provided `state` is
+within a footnote. `options` is an object with a property `typeFootnote` which
+defaults to `footnote`.
