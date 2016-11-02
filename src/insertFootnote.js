@@ -45,7 +45,7 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
     transform = transform
         .moveToRangeOf(footnote);
 
-    return transform.apply();
+    return transform;
 }
 
 module.exports = insertFootnote;
