@@ -5,8 +5,6 @@
  * @param {State} state
  */
 module.exports = function isSelectionInFootnote(opts, state) {
-    opts.typeFootnote = opts.typeFootnote || 'footnote';
-
     const { startBlock } = state;
 
     // Only handle events in cells

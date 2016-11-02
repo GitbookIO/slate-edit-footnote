@@ -15,6 +15,8 @@ function EditFootnote(opts = {}) {
     return {
         schema,
 
+        isSelectionInFootnote: isSelectionInFootnote.bind(null, opts),
+
         transforms: {
             insertFootnote: insertFootnote.bind(null, opts)
         },
@@ -30,8 +32,5 @@ function EditFootnote(opts = {}) {
         }
     };
 }
-
-// Expose isSelectionInFootnote utility
-EditFootnote.isSelectionInFootnote = isSelectionInFootnote;
 
 module.exports = EditFootnote;
