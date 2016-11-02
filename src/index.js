@@ -11,11 +11,31 @@ function EditFootnote(opts = {}) {
 
     const schema = makeSchema(opts);
 
+    /**
+     * Is the selection in a footnote
+     */
+    function isSelectionInFootnote(state) {
+        const { startBlock } = state;
+
+        // Only handle events in cells
+        return (startBlock.type === opts.typeFootnote);
+    }
+
     return {
         schema,
 
         transforms: {
             insertFootnote: insertFootnote.bind(null, opts)
+        },
+
+        // Prevent enter from doing anything in footnotes
+        onKeyDown(event, data, state) {
+            // Only handle key enter and events in footnotes
+            if (data.key === 'enter' && isSelectionInFootnote(state)) {
+                event.stopPropagation();
+                event.preventDefault();
+                return state;
+            }
         }
     };
 }
