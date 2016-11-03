@@ -3,12 +3,19 @@ nodes:
     type: paragraph
     nodes:
       - kind: text
-        text: "Hello World"
+        text: "Hello "
       - kind: inline
         isVoid: true
         type: footnote_ref
         data:
           id: "1"
+      - kind: text
+        text: "World"
+      - kind: inline
+        isVoid: true
+        type: footnote_ref
+        data:
+          id: "2"
       - kind: text
         text: ""
   - kind: block
@@ -20,6 +27,13 @@ nodes:
     type: footnote
     data:
       id: "1"
+    nodes:
+      - kind: text
+        text: Enter footnote here.
+  - kind: block
+    type: footnote
+    data:
+      id: "2"
     nodes:
       - kind: text
         text: Enter footnote here.

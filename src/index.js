@@ -1,3 +1,4 @@
+const Slate = require('slate');
 const makeSchema = require('./makeSchema');
 const insertFootnote = require('./insertFootnote');
 const isSelectionInFootnote = require('./utils/isSelectionInFootnote');
@@ -29,17 +30,22 @@ function EditFootnote(opts = {}) {
                 event.stopPropagation();
                 event.preventDefault();
 
-                const transform = state.transform();
+                const { document } = state;
 
-                return transform
-                    .collapseToEndOf(state.startBlock)
-                    .splitBlock()
-                    .setBlock({ type: opts.defaultBlock, data: {} })
-                    .moveNodeByKey(
-                        transform.state.document.getPreviousBlock(transform.state.startBlock.key),
-                        transform.state.document.key,
-                        transform.state.document.nodes.size
-                    )
+                // Find first footnote index for a footnote in the document
+                const firstFootnoteIndex = document.nodes.findKey((node) => {
+                    return node.type === opts.typeFootnote;
+                });
+
+                // Create an empty block of type defaultBlock
+                const block = Slate.Block.create({
+                    type: opts.defaultBlock,
+                    data: {}
+                });
+
+                return state.transform()
+                    .insertNodeByKey(document.key, firstFootnoteIndex, block)
+                    .moveToRangeOf(block)
                     .apply();
             }
         }
