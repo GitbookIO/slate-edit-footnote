@@ -65,7 +65,7 @@ const Example = React.createClass({
         const { state } = this.state;
 
         this.onChange(
-            footnotePlugin.transforms.insertFootnote(state.transform()).apply()
+            footnotePlugin.transforms.insertFootnote(state.transform()).focus().apply()
         );
     },
 
