@@ -6,7 +6,9 @@
   "repository": "git://github.com/GitbookIO/slate-edit-footnote.git",
   "main": "./dist/index.js",
   "dependencies": {
-    "immutable": "^3.8.1",
+    "immutable": "^3.8.1"
+  },
+  "peerDependencies": {
     "slate": "^0.14.6"
   },
   "devDependencies": {
