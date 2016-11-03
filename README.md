@@ -41,7 +41,7 @@ const plugins = [
 
 Insert a new empty footnote, with a reference at the current position.
 
-### `plugin.isSelectionInFootnote(options, state)`
+#### `plugin.isSelectionInFootnote(options, state)`
 
 Utilities to determine if the current selection in the provided `state` is
 within a footnote. `options` is an object with a property `typeFootnote` which
