@@ -9,6 +9,7 @@ const isSelectionInFootnote = require('./utils/isSelectionInFootnote');
 function EditFootnote(opts = {}) {
     opts.typeFootnote = opts.typeFootnote || 'footnote';
     opts.typeRef = opts.typeRef || 'footnote_ref';
+    opts.defaultBlock = opts.defaultBlock || 'paragraph';
 
     const schema = makeSchema(opts);
 
@@ -27,7 +28,19 @@ function EditFootnote(opts = {}) {
             if (data.key === 'enter' && isSelectionInFootnote(opts, state)) {
                 event.stopPropagation();
                 event.preventDefault();
-                return state;
+
+                const transform = state.transform();
+
+                return transform
+                    .collapseToEndOf(state.startBlock)
+                    .splitBlock()
+                    .setBlock({ type: opts.defaultBlock, data: {} })
+                    .moveNodeByKey(
+                        transform.state.document.getPreviousBlock(transform.state.startBlock.key),
+                        transform.state.document.key,
+                        transform.state.document.nodes.size
+                    )
+                    .apply();
             }
         }
     };
