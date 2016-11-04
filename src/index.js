@@ -1,4 +1,4 @@
-const Slate = require('slate');
+const onKeyDown = require('./onKeyDown');
 const makeSchema = require('./makeSchema');
 const insertFootnote = require('./insertFootnote');
 const isSelectionInFootnote = require('./utils/isSelectionInFootnote');
@@ -17,37 +17,12 @@ function EditFootnote(opts = {}) {
     return {
         schema,
 
+        onKeyDown: onKeyDown.bind(null, opts),
+
         isSelectionInFootnote: isSelectionInFootnote.bind(null, opts),
 
         transforms: {
             insertFootnote: insertFootnote.bind(null, opts)
-        },
-
-        // Prevent enter from doing anything in footnotes
-        onKeyDown(event, data, state) {
-            // Only handle key enter and events in footnotes
-            if (data.key === 'enter' && isSelectionInFootnote(opts, state)) {
-                event.stopPropagation();
-                event.preventDefault();
-
-                const { document } = state;
-
-                // Find first footnote index for a footnote in the document
-                const firstFootnoteIndex = document.nodes.findKey((node) => {
-                    return node.type === opts.typeFootnote;
-                });
-
-                // Create an empty block of type defaultBlock
-                const block = Slate.Block.create({
-                    type: opts.defaultBlock,
-                    data: {}
-                });
-
-                return state.transform()
-                    .insertNodeByKey(document.key, firstFootnoteIndex, block)
-                    .moveToRangeOf(block)
-                    .apply();
-            }
         }
     };
 }
