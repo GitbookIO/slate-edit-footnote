@@ -1,6 +1,16 @@
 const Slate = require('slate');
 const isSelectionInFootnote = require('./utils/isSelectionInFootnote');
 
+/**
+ * Prevent enter from splitting footnotes block and apply a transform to add a
+ * paragraph at the end of the document, right before the first foonote.
+ *
+ * @param {Object} opts  - options
+ * @param {Object} event - event object
+ * @param {Object} data  - slate data
+ * @param {Object} state - slate state
+ *
+ */
 module.exports = function onKeyDown(opts, event, data, state) {
     if (!(data.key === 'enter' && isSelectionInFootnote(opts, state))) {
         return;
