@@ -122,7 +122,7 @@ var Example = React.createClass({
 
 ReactDOM.render(React.createElement(Example, null), document.getElementById('example'));
 
-},{"../src":373,"./state":2,"react":306,"react-dom":159,"slate":326}],2:[function(require,module,exports){
+},{"../src":431,"./state":2,"react":359,"react-dom":212,"slate":380}],2:[function(require,module,exports){
 module.exports={
     "nodes": [
         {
@@ -2188,7 +2188,7 @@ function isnan (val) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"base64-js":3,"ieee754":92,"isarray":97}],8:[function(require,module,exports){
+},{"base64-js":3,"ieee754":143,"isarray":148}],8:[function(require,module,exports){
 /**
  * Export cheerio (with )
  */
@@ -2698,7 +2698,7 @@ exports.is = function (selector) {
 };
 
 
-},{"../static":16,"../utils":17,"lodash.assignin":99,"lodash.foreach":104,"lodash.some":110}],10:[function(require,module,exports){
+},{"../static":16,"../utils":17,"lodash.assignin":150,"lodash.foreach":155,"lodash.some":161}],10:[function(require,module,exports){
 var domEach = require('../utils').domEach,
     _ = {
       pick: require('lodash.pick'),
@@ -2821,7 +2821,7 @@ function parse(styles) {
     }, {});
 }
 
-},{"../utils":17,"lodash.pick":107}],11:[function(require,module,exports){
+},{"../utils":17,"lodash.pick":158}],11:[function(require,module,exports){
 // https://github.com/jquery/jquery/blob/2.1.3/src/manipulation/var/rcheckableType.js
 // https://github.com/jquery/jquery/blob/2.1.3/src/serialize.js
 var submittableSelector = 'input,select,textarea,keygen',
@@ -2888,7 +2888,7 @@ exports.serializeArray = function() {
     }).get();
 };
 
-},{"lodash.map":105}],12:[function(require,module,exports){
+},{"lodash.map":156}],12:[function(require,module,exports){
 var parse = require('../parse'),
     $ = require('../static'),
     updateDOM = parse.update,
@@ -3315,7 +3315,7 @@ exports.clone = function() {
   return this._make(cloneDom(this.get(), this.options));
 };
 
-},{"../parse":15,"../static":16,"../utils":17,"lodash.bind":100,"lodash.flatten":103,"lodash.foreach":104}],13:[function(require,module,exports){
+},{"../parse":15,"../static":16,"../utils":17,"lodash.bind":151,"lodash.flatten":154,"lodash.foreach":155}],13:[function(require,module,exports){
 var select = require('css-select'),
     utils = require('../utils'),
     domEach = utils.domEach,
@@ -3746,7 +3746,7 @@ exports.addBack = function(selector) {
   );
 };
 
-},{"../utils":17,"css-select":20,"htmlparser2":91,"lodash.bind":100,"lodash.filter":102,"lodash.foreach":104,"lodash.reduce":108,"lodash.reject":109}],14:[function(require,module,exports){
+},{"../utils":17,"css-select":20,"htmlparser2":142,"lodash.bind":151,"lodash.filter":153,"lodash.foreach":155,"lodash.reduce":159,"lodash.reject":160}],14:[function(require,module,exports){
 /*
   Module dependencies
 */
@@ -3896,7 +3896,7 @@ var isNode = function(obj) {
   return obj.name || obj.type === 'text' || obj.type === 'comment';
 };
 
-},{"./api/attributes":9,"./api/css":10,"./api/forms":11,"./api/manipulation":12,"./api/traversing":13,"./parse":15,"./static":16,"./utils":17,"lodash.assignin":99,"lodash.bind":100,"lodash.defaults":101,"lodash.foreach":104}],15:[function(require,module,exports){
+},{"./api/attributes":9,"./api/css":10,"./api/forms":11,"./api/manipulation":12,"./api/traversing":13,"./parse":15,"./static":16,"./utils":17,"lodash.assignin":150,"lodash.bind":151,"lodash.defaults":152,"lodash.foreach":155}],15:[function(require,module,exports){
 (function (Buffer){
 /*
   Module Dependencies
@@ -3986,7 +3986,7 @@ exports.update = function(arr, parent) {
 // module.exports = $.extend(exports);
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":95,"htmlparser2":91}],16:[function(require,module,exports){
+},{"../../is-buffer/index.js":146,"htmlparser2":142}],16:[function(require,module,exports){
 /**
  * Module dependencies
  */
@@ -4175,7 +4175,7 @@ exports.contains = function(container, contained) {
   return false;
 };
 
-},{"./cheerio":14,"./parse":15,"css-select":20,"dom-serializer":33,"lodash.defaults":101,"lodash.merge":106}],17:[function(require,module,exports){
+},{"./cheerio":14,"./parse":15,"css-select":20,"dom-serializer":33,"lodash.defaults":152,"lodash.merge":157}],17:[function(require,module,exports){
 var parse = require('./parse'),
     render = require('dom-serializer');
 
@@ -4432,7 +4432,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":95}],20:[function(require,module,exports){
+},{"../../is-buffer/index.js":146}],20:[function(require,module,exports){
 "use strict";
 
 module.exports = CSSselect;
@@ -5368,7 +5368,7 @@ module.exports = {
 	pseudos: pseudos
 };
 
-},{"./attributes.js":21,"boolbase":4,"domutils":39,"nth-check":154}],26:[function(require,module,exports){
+},{"./attributes.js":21,"boolbase":4,"domutils":39,"nth-check":207}],26:[function(require,module,exports){
 module.exports = sortByProcedure;
 
 /*
@@ -5720,375 +5720,104 @@ function addToken(subselects, tokens){
 }
 
 },{}],28:[function(require,module,exports){
+'use strict';
 
-/**
- * This is the web browser implementation of `debug()`.
- *
- * Expose `debug()` as the module.
- */
+var copy       = require('es5-ext/object/copy')
+  , map        = require('es5-ext/object/map')
+  , callable   = require('es5-ext/object/valid-callable')
+  , validValue = require('es5-ext/object/valid-value')
 
-exports = module.exports = require('./debug');
-exports.log = log;
-exports.formatArgs = formatArgs;
-exports.save = save;
-exports.load = load;
-exports.useColors = useColors;
-exports.storage = 'undefined' != typeof chrome
-               && 'undefined' != typeof chrome.storage
-                  ? chrome.storage.local
-                  : localstorage();
+  , bind = Function.prototype.bind, defineProperty = Object.defineProperty
+  , hasOwnProperty = Object.prototype.hasOwnProperty
+  , define;
 
-/**
- * Colors.
- */
-
-exports.colors = [
-  'lightseagreen',
-  'forestgreen',
-  'goldenrod',
-  'dodgerblue',
-  'darkorchid',
-  'crimson'
-];
-
-/**
- * Currently only WebKit-based Web Inspectors, Firefox >= v31,
- * and the Firebug extension (any Firefox version) are known
- * to support "%c" CSS customizations.
- *
- * TODO: add a `localStorage` variable to explicitly enable/disable colors
- */
-
-function useColors() {
-  // is webkit? http://stackoverflow.com/a/16459606/376773
-  return ('WebkitAppearance' in document.documentElement.style) ||
-    // is firebug? http://stackoverflow.com/a/398120/376773
-    (window.console && (console.firebug || (console.exception && console.table))) ||
-    // is firefox >= v31?
-    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
-}
-
-/**
- * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
- */
-
-exports.formatters.j = function(v) {
-  return JSON.stringify(v);
+define = function (name, desc, bindTo) {
+	var value = validValue(desc) && callable(desc.value), dgs;
+	dgs = copy(desc);
+	delete dgs.writable;
+	delete dgs.value;
+	dgs.get = function () {
+		if (hasOwnProperty.call(this, name)) return value;
+		desc.value = bind.call(value, (bindTo == null) ? this : this[bindTo]);
+		defineProperty(this, name, desc);
+		return this[name];
+	};
+	return dgs;
 };
 
+module.exports = function (props/*, bindTo*/) {
+	var bindTo = arguments[1];
+	return map(props, function (desc, name) {
+		return define(name, desc, bindTo);
+	});
+};
 
-/**
- * Colorize log arguments if enabled.
- *
- * @api public
- */
+},{"es5-ext/object/copy":66,"es5-ext/object/map":74,"es5-ext/object/valid-callable":80,"es5-ext/object/valid-value":81}],29:[function(require,module,exports){
+'use strict';
 
-function formatArgs() {
-  var args = arguments;
-  var useColors = this.useColors;
+var assign        = require('es5-ext/object/assign')
+  , normalizeOpts = require('es5-ext/object/normalize-options')
+  , isCallable    = require('es5-ext/object/is-callable')
+  , contains      = require('es5-ext/string/#/contains')
 
-  args[0] = (useColors ? '%c' : '')
-    + this.namespace
-    + (useColors ? ' %c' : ' ')
-    + args[0]
-    + (useColors ? '%c ' : ' ')
-    + '+' + exports.humanize(this.diff);
+  , d;
 
-  if (!useColors) return args;
+d = module.exports = function (dscr, value/*, options*/) {
+	var c, e, w, options, desc;
+	if ((arguments.length < 2) || (typeof dscr !== 'string')) {
+		options = value;
+		value = dscr;
+		dscr = null;
+	} else {
+		options = arguments[2];
+	}
+	if (dscr == null) {
+		c = w = true;
+		e = false;
+	} else {
+		c = contains.call(dscr, 'c');
+		e = contains.call(dscr, 'e');
+		w = contains.call(dscr, 'w');
+	}
 
-  var c = 'color: ' + this.color;
-  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+	desc = { value: value, configurable: c, enumerable: e, writable: w };
+	return !options ? desc : assign(normalizeOpts(options), desc);
+};
 
-  // the final "%c" is somewhat tricky, because there could be other
-  // arguments passed either before or after the %c, so we need to
-  // figure out the correct index to insert the CSS into
-  var index = 0;
-  var lastC = 0;
-  args[0].replace(/%[a-z%]/g, function(match) {
-    if ('%%' === match) return;
-    index++;
-    if ('%c' === match) {
-      // we only are interested in the *last* %c
-      // (the user may have provided their own)
-      lastC = index;
-    }
-  });
+d.gs = function (dscr, get, set/*, options*/) {
+	var c, e, options, desc;
+	if (typeof dscr !== 'string') {
+		options = set;
+		set = get;
+		get = dscr;
+		dscr = null;
+	} else {
+		options = arguments[3];
+	}
+	if (get == null) {
+		get = undefined;
+	} else if (!isCallable(get)) {
+		options = get;
+		get = set = undefined;
+	} else if (set == null) {
+		set = undefined;
+	} else if (!isCallable(set)) {
+		options = set;
+		set = undefined;
+	}
+	if (dscr == null) {
+		c = true;
+		e = false;
+	} else {
+		c = contains.call(dscr, 'c');
+		e = contains.call(dscr, 'e');
+	}
 
-  args.splice(lastC, 0, c);
-  return args;
-}
+	desc = { get: get, set: set, configurable: c, enumerable: e };
+	return !options ? desc : assign(normalizeOpts(options), desc);
+};
 
-/**
- * Invokes `console.log()` when available.
- * No-op when `console.log` is not a "function".
- *
- * @api public
- */
-
-function log() {
-  // this hackery is required for IE8/9, where
-  // the `console.log` function doesn't have 'apply'
-  return 'object' === typeof console
-    && console.log
-    && Function.prototype.apply.call(console.log, console, arguments);
-}
-
-/**
- * Save `namespaces`.
- *
- * @param {String} namespaces
- * @api private
- */
-
-function save(namespaces) {
-  try {
-    if (null == namespaces) {
-      exports.storage.removeItem('debug');
-    } else {
-      exports.storage.debug = namespaces;
-    }
-  } catch(e) {}
-}
-
-/**
- * Load `namespaces`.
- *
- * @return {String} returns the previously persisted debug modes
- * @api private
- */
-
-function load() {
-  var r;
-  try {
-    r = exports.storage.debug;
-  } catch(e) {}
-  return r;
-}
-
-/**
- * Enable namespaces listed in `localStorage.debug` initially.
- */
-
-exports.enable(load());
-
-/**
- * Localstorage attempts to return the localstorage.
- *
- * This is necessary because safari throws
- * when a user disables cookies/localstorage
- * and you attempt to access it.
- *
- * @return {LocalStorage}
- * @api private
- */
-
-function localstorage(){
-  try {
-    return window.localStorage;
-  } catch (e) {}
-}
-
-},{"./debug":29}],29:[function(require,module,exports){
-
-/**
- * This is the common logic for both the Node.js and web browser
- * implementations of `debug()`.
- *
- * Expose `debug()` as the module.
- */
-
-exports = module.exports = debug;
-exports.coerce = coerce;
-exports.disable = disable;
-exports.enable = enable;
-exports.enabled = enabled;
-exports.humanize = require('ms');
-
-/**
- * The currently active debug mode names, and names to skip.
- */
-
-exports.names = [];
-exports.skips = [];
-
-/**
- * Map of special "%n" handling functions, for the debug "format" argument.
- *
- * Valid key names are a single, lowercased letter, i.e. "n".
- */
-
-exports.formatters = {};
-
-/**
- * Previously assigned color.
- */
-
-var prevColor = 0;
-
-/**
- * Previous log timestamp.
- */
-
-var prevTime;
-
-/**
- * Select a color.
- *
- * @return {Number}
- * @api private
- */
-
-function selectColor() {
-  return exports.colors[prevColor++ % exports.colors.length];
-}
-
-/**
- * Create a debugger with the given `namespace`.
- *
- * @param {String} namespace
- * @return {Function}
- * @api public
- */
-
-function debug(namespace) {
-
-  // define the `disabled` version
-  function disabled() {
-  }
-  disabled.enabled = false;
-
-  // define the `enabled` version
-  function enabled() {
-
-    var self = enabled;
-
-    // set `diff` timestamp
-    var curr = +new Date();
-    var ms = curr - (prevTime || curr);
-    self.diff = ms;
-    self.prev = prevTime;
-    self.curr = curr;
-    prevTime = curr;
-
-    // add the `color` if not set
-    if (null == self.useColors) self.useColors = exports.useColors();
-    if (null == self.color && self.useColors) self.color = selectColor();
-
-    var args = Array.prototype.slice.call(arguments);
-
-    args[0] = exports.coerce(args[0]);
-
-    if ('string' !== typeof args[0]) {
-      // anything else let's inspect with %o
-      args = ['%o'].concat(args);
-    }
-
-    // apply any `formatters` transformations
-    var index = 0;
-    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
-      // if we encounter an escaped % then don't increase the array index
-      if (match === '%%') return match;
-      index++;
-      var formatter = exports.formatters[format];
-      if ('function' === typeof formatter) {
-        var val = args[index];
-        match = formatter.call(self, val);
-
-        // now we need to remove `args[index]` since it's inlined in the `format`
-        args.splice(index, 1);
-        index--;
-      }
-      return match;
-    });
-
-    if ('function' === typeof exports.formatArgs) {
-      args = exports.formatArgs.apply(self, args);
-    }
-    var logFn = enabled.log || exports.log || console.log.bind(console);
-    logFn.apply(self, args);
-  }
-  enabled.enabled = true;
-
-  var fn = exports.enabled(namespace) ? enabled : disabled;
-
-  fn.namespace = namespace;
-
-  return fn;
-}
-
-/**
- * Enables a debug mode by namespaces. This can include modes
- * separated by a colon and wildcards.
- *
- * @param {String} namespaces
- * @api public
- */
-
-function enable(namespaces) {
-  exports.save(namespaces);
-
-  var split = (namespaces || '').split(/[\s,]+/);
-  var len = split.length;
-
-  for (var i = 0; i < len; i++) {
-    if (!split[i]) continue; // ignore empty strings
-    namespaces = split[i].replace(/\*/g, '.*?');
-    if (namespaces[0] === '-') {
-      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
-    } else {
-      exports.names.push(new RegExp('^' + namespaces + '$'));
-    }
-  }
-}
-
-/**
- * Disable debug output.
- *
- * @api public
- */
-
-function disable() {
-  exports.enable('');
-}
-
-/**
- * Returns true if the given mode name is enabled, false otherwise.
- *
- * @param {String} name
- * @return {Boolean}
- * @api public
- */
-
-function enabled(name) {
-  var i, len;
-  for (i = 0, len = exports.skips.length; i < len; i++) {
-    if (exports.skips[i].test(name)) {
-      return false;
-    }
-  }
-  for (i = 0, len = exports.names.length; i < len; i++) {
-    if (exports.names[i].test(name)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * Coerce `val`.
- *
- * @param {Mixed} val
- * @return {Mixed}
- * @api private
- */
-
-function coerce(val) {
-  if (val instanceof Error) return val.stack || val.message;
-  return val;
-}
-
-},{"ms":152}],30:[function(require,module,exports){
+},{"es5-ext/object/assign":63,"es5-ext/object/is-callable":69,"es5-ext/object/normalize-options":75,"es5-ext/string/#/contains":82}],30:[function(require,module,exports){
 var detectBrowser = require('./lib/detectBrowser');
 
 module.exports = detectBrowser(navigator.userAgent);
@@ -7373,6 +7102,1096 @@ module.exports={"Aacute":"\u00C1","aacute":"\u00E1","Acirc":"\u00C2","acirc":"\u
 module.exports={"amp":"&","apos":"'","gt":">","lt":"<","quot":"\""}
 
 },{}],54:[function(require,module,exports){
+// Inspired by Google Closure:
+// http://closure-library.googlecode.com/svn/docs/
+// closure_goog_array_array.js.html#goog.array.clear
+
+'use strict';
+
+var value = require('../../object/valid-value');
+
+module.exports = function () {
+	value(this).length = 0;
+	return this;
+};
+
+},{"../../object/valid-value":81}],55:[function(require,module,exports){
+'use strict';
+
+var toPosInt = require('../../number/to-pos-integer')
+  , value    = require('../../object/valid-value')
+
+  , indexOf = Array.prototype.indexOf
+  , hasOwnProperty = Object.prototype.hasOwnProperty
+  , abs = Math.abs, floor = Math.floor;
+
+module.exports = function (searchElement/*, fromIndex*/) {
+	var i, l, fromIndex, val;
+	if (searchElement === searchElement) { //jslint: ignore
+		return indexOf.apply(this, arguments);
+	}
+
+	l = toPosInt(value(this).length);
+	fromIndex = arguments[1];
+	if (isNaN(fromIndex)) fromIndex = 0;
+	else if (fromIndex >= 0) fromIndex = floor(fromIndex);
+	else fromIndex = toPosInt(this.length) - floor(abs(fromIndex));
+
+	for (i = fromIndex; i < l; ++i) {
+		if (hasOwnProperty.call(this, i)) {
+			val = this[i];
+			if (val !== val) return i; //jslint: ignore
+		}
+	}
+	return -1;
+};
+
+},{"../../number/to-pos-integer":61,"../../object/valid-value":81}],56:[function(require,module,exports){
+'use strict';
+
+var toString = Object.prototype.toString
+
+  , id = toString.call((function () { return arguments; }()));
+
+module.exports = function (x) { return (toString.call(x) === id); };
+
+},{}],57:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./is-implemented')()
+	? Math.sign
+	: require('./shim');
+
+},{"./is-implemented":58,"./shim":59}],58:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+	var sign = Math.sign;
+	if (typeof sign !== 'function') return false;
+	return ((sign(10) === 1) && (sign(-20) === -1));
+};
+
+},{}],59:[function(require,module,exports){
+'use strict';
+
+module.exports = function (value) {
+	value = Number(value);
+	if (isNaN(value) || (value === 0)) return value;
+	return (value > 0) ? 1 : -1;
+};
+
+},{}],60:[function(require,module,exports){
+'use strict';
+
+var sign = require('../math/sign')
+
+  , abs = Math.abs, floor = Math.floor;
+
+module.exports = function (value) {
+	if (isNaN(value)) return 0;
+	value = Number(value);
+	if ((value === 0) || !isFinite(value)) return value;
+	return sign(value) * floor(abs(value));
+};
+
+},{"../math/sign":57}],61:[function(require,module,exports){
+'use strict';
+
+var toInteger = require('./to-integer')
+
+  , max = Math.max;
+
+module.exports = function (value) { return max(0, toInteger(value)); };
+
+},{"./to-integer":60}],62:[function(require,module,exports){
+// Internal method, used by iteration functions.
+// Calls a function for each key-value pair found in object
+// Optionally takes compareFn to iterate object in specific order
+
+'use strict';
+
+var callable = require('./valid-callable')
+  , value    = require('./valid-value')
+
+  , bind = Function.prototype.bind, call = Function.prototype.call, keys = Object.keys
+  , propertyIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+module.exports = function (method, defVal) {
+	return function (obj, cb/*, thisArg, compareFn*/) {
+		var list, thisArg = arguments[2], compareFn = arguments[3];
+		obj = Object(value(obj));
+		callable(cb);
+
+		list = keys(obj);
+		if (compareFn) {
+			list.sort((typeof compareFn === 'function') ? bind.call(compareFn, obj) : undefined);
+		}
+		if (typeof method !== 'function') method = list[method];
+		return call.call(method, list, function (key, index) {
+			if (!propertyIsEnumerable.call(obj, key)) return defVal;
+			return call.call(cb, thisArg, obj[key], key, obj, index);
+		});
+	};
+};
+
+},{"./valid-callable":80,"./valid-value":81}],63:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./is-implemented')()
+	? Object.assign
+	: require('./shim');
+
+},{"./is-implemented":64,"./shim":65}],64:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+	var assign = Object.assign, obj;
+	if (typeof assign !== 'function') return false;
+	obj = { foo: 'raz' };
+	assign(obj, { bar: 'dwa' }, { trzy: 'trzy' });
+	return (obj.foo + obj.bar + obj.trzy) === 'razdwatrzy';
+};
+
+},{}],65:[function(require,module,exports){
+'use strict';
+
+var keys  = require('../keys')
+  , value = require('../valid-value')
+
+  , max = Math.max;
+
+module.exports = function (dest, src/*, …srcn*/) {
+	var error, i, l = max(arguments.length, 2), assign;
+	dest = Object(value(dest));
+	assign = function (key) {
+		try { dest[key] = src[key]; } catch (e) {
+			if (!error) error = e;
+		}
+	};
+	for (i = 1; i < l; ++i) {
+		src = arguments[i];
+		keys(src).forEach(assign);
+	}
+	if (error !== undefined) throw error;
+	return dest;
+};
+
+},{"../keys":71,"../valid-value":81}],66:[function(require,module,exports){
+'use strict';
+
+var assign = require('./assign')
+  , value  = require('./valid-value');
+
+module.exports = function (obj) {
+	var copy = Object(value(obj));
+	if (copy !== obj) return copy;
+	return assign({}, obj);
+};
+
+},{"./assign":63,"./valid-value":81}],67:[function(require,module,exports){
+// Workaround for http://code.google.com/p/v8/issues/detail?id=2804
+
+'use strict';
+
+var create = Object.create, shim;
+
+if (!require('./set-prototype-of/is-implemented')()) {
+	shim = require('./set-prototype-of/shim');
+}
+
+module.exports = (function () {
+	var nullObject, props, desc;
+	if (!shim) return create;
+	if (shim.level !== 1) return create;
+
+	nullObject = {};
+	props = {};
+	desc = { configurable: false, enumerable: false, writable: true,
+		value: undefined };
+	Object.getOwnPropertyNames(Object.prototype).forEach(function (name) {
+		if (name === '__proto__') {
+			props[name] = { configurable: true, enumerable: false, writable: true,
+				value: undefined };
+			return;
+		}
+		props[name] = desc;
+	});
+	Object.defineProperties(nullObject, props);
+
+	Object.defineProperty(shim, 'nullPolyfill', { configurable: false,
+		enumerable: false, writable: false, value: nullObject });
+
+	return function (prototype, props) {
+		return create((prototype === null) ? nullObject : prototype, props);
+	};
+}());
+
+},{"./set-prototype-of/is-implemented":78,"./set-prototype-of/shim":79}],68:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./_iterate')('forEach');
+
+},{"./_iterate":62}],69:[function(require,module,exports){
+// Deprecated
+
+'use strict';
+
+module.exports = function (obj) { return typeof obj === 'function'; };
+
+},{}],70:[function(require,module,exports){
+'use strict';
+
+var map = { function: true, object: true };
+
+module.exports = function (x) {
+	return ((x != null) && map[typeof x]) || false;
+};
+
+},{}],71:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./is-implemented')()
+	? Object.keys
+	: require('./shim');
+
+},{"./is-implemented":72,"./shim":73}],72:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+	try {
+		Object.keys('primitive');
+		return true;
+	} catch (e) { return false; }
+};
+
+},{}],73:[function(require,module,exports){
+'use strict';
+
+var keys = Object.keys;
+
+module.exports = function (object) {
+	return keys(object == null ? object : Object(object));
+};
+
+},{}],74:[function(require,module,exports){
+'use strict';
+
+var callable = require('./valid-callable')
+  , forEach  = require('./for-each')
+
+  , call = Function.prototype.call;
+
+module.exports = function (obj, cb/*, thisArg*/) {
+	var o = {}, thisArg = arguments[2];
+	callable(cb);
+	forEach(obj, function (value, key, obj, index) {
+		o[key] = call.call(cb, thisArg, value, key, obj, index);
+	});
+	return o;
+};
+
+},{"./for-each":68,"./valid-callable":80}],75:[function(require,module,exports){
+'use strict';
+
+var forEach = Array.prototype.forEach, create = Object.create;
+
+var process = function (src, obj) {
+	var key;
+	for (key in src) obj[key] = src[key];
+};
+
+module.exports = function (options/*, …options*/) {
+	var result = create(null);
+	forEach.call(arguments, function (options) {
+		if (options == null) return;
+		process(Object(options), result);
+	});
+	return result;
+};
+
+},{}],76:[function(require,module,exports){
+'use strict';
+
+var forEach = Array.prototype.forEach, create = Object.create;
+
+module.exports = function (arg/*, …args*/) {
+	var set = create(null);
+	forEach.call(arguments, function (name) { set[name] = true; });
+	return set;
+};
+
+},{}],77:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./is-implemented')()
+	? Object.setPrototypeOf
+	: require('./shim');
+
+},{"./is-implemented":78,"./shim":79}],78:[function(require,module,exports){
+'use strict';
+
+var create = Object.create, getPrototypeOf = Object.getPrototypeOf
+  , x = {};
+
+module.exports = function (/*customCreate*/) {
+	var setPrototypeOf = Object.setPrototypeOf
+	  , customCreate = arguments[0] || create;
+	if (typeof setPrototypeOf !== 'function') return false;
+	return getPrototypeOf(setPrototypeOf(customCreate(null), x)) === x;
+};
+
+},{}],79:[function(require,module,exports){
+// Big thanks to @WebReflection for sorting this out
+// https://gist.github.com/WebReflection/5593554
+
+'use strict';
+
+var isObject      = require('../is-object')
+  , value         = require('../valid-value')
+
+  , isPrototypeOf = Object.prototype.isPrototypeOf
+  , defineProperty = Object.defineProperty
+  , nullDesc = { configurable: true, enumerable: false, writable: true,
+		value: undefined }
+  , validate;
+
+validate = function (obj, prototype) {
+	value(obj);
+	if ((prototype === null) || isObject(prototype)) return obj;
+	throw new TypeError('Prototype must be null or an object');
+};
+
+module.exports = (function (status) {
+	var fn, set;
+	if (!status) return null;
+	if (status.level === 2) {
+		if (status.set) {
+			set = status.set;
+			fn = function (obj, prototype) {
+				set.call(validate(obj, prototype), prototype);
+				return obj;
+			};
+		} else {
+			fn = function (obj, prototype) {
+				validate(obj, prototype).__proto__ = prototype;
+				return obj;
+			};
+		}
+	} else {
+		fn = function self(obj, prototype) {
+			var isNullBase;
+			validate(obj, prototype);
+			isNullBase = isPrototypeOf.call(self.nullPolyfill, obj);
+			if (isNullBase) delete self.nullPolyfill.__proto__;
+			if (prototype === null) prototype = self.nullPolyfill;
+			obj.__proto__ = prototype;
+			if (isNullBase) defineProperty(self.nullPolyfill, '__proto__', nullDesc);
+			return obj;
+		};
+	}
+	return Object.defineProperty(fn, 'level', { configurable: false,
+		enumerable: false, writable: false, value: status.level });
+}((function () {
+	var x = Object.create(null), y = {}, set
+	  , desc = Object.getOwnPropertyDescriptor(Object.prototype, '__proto__');
+
+	if (desc) {
+		try {
+			set = desc.set; // Opera crashes at this point
+			set.call(x, y);
+		} catch (ignore) { }
+		if (Object.getPrototypeOf(x) === y) return { set: set, level: 2 };
+	}
+
+	x.__proto__ = y;
+	if (Object.getPrototypeOf(x) === y) return { level: 2 };
+
+	x = {};
+	x.__proto__ = y;
+	if (Object.getPrototypeOf(x) === y) return { level: 1 };
+
+	return false;
+}())));
+
+require('../create');
+
+},{"../create":67,"../is-object":70,"../valid-value":81}],80:[function(require,module,exports){
+'use strict';
+
+module.exports = function (fn) {
+	if (typeof fn !== 'function') throw new TypeError(fn + " is not a function");
+	return fn;
+};
+
+},{}],81:[function(require,module,exports){
+'use strict';
+
+module.exports = function (value) {
+	if (value == null) throw new TypeError("Cannot use null or undefined");
+	return value;
+};
+
+},{}],82:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./is-implemented')()
+	? String.prototype.contains
+	: require('./shim');
+
+},{"./is-implemented":83,"./shim":84}],83:[function(require,module,exports){
+'use strict';
+
+var str = 'razdwatrzy';
+
+module.exports = function () {
+	if (typeof str.contains !== 'function') return false;
+	return ((str.contains('dwa') === true) && (str.contains('foo') === false));
+};
+
+},{}],84:[function(require,module,exports){
+'use strict';
+
+var indexOf = String.prototype.indexOf;
+
+module.exports = function (searchString/*, position*/) {
+	return indexOf.call(this, searchString, arguments[1]) > -1;
+};
+
+},{}],85:[function(require,module,exports){
+'use strict';
+
+var toString = Object.prototype.toString
+
+  , id = toString.call('');
+
+module.exports = function (x) {
+	return (typeof x === 'string') || (x && (typeof x === 'object') &&
+		((x instanceof String) || (toString.call(x) === id))) || false;
+};
+
+},{}],86:[function(require,module,exports){
+'use strict';
+
+var setPrototypeOf = require('es5-ext/object/set-prototype-of')
+  , contains       = require('es5-ext/string/#/contains')
+  , d              = require('d')
+  , Iterator       = require('./')
+
+  , defineProperty = Object.defineProperty
+  , ArrayIterator;
+
+ArrayIterator = module.exports = function (arr, kind) {
+	if (!(this instanceof ArrayIterator)) return new ArrayIterator(arr, kind);
+	Iterator.call(this, arr);
+	if (!kind) kind = 'value';
+	else if (contains.call(kind, 'key+value')) kind = 'key+value';
+	else if (contains.call(kind, 'key')) kind = 'key';
+	else kind = 'value';
+	defineProperty(this, '__kind__', d('', kind));
+};
+if (setPrototypeOf) setPrototypeOf(ArrayIterator, Iterator);
+
+ArrayIterator.prototype = Object.create(Iterator.prototype, {
+	constructor: d(ArrayIterator),
+	_resolve: d(function (i) {
+		if (this.__kind__ === 'value') return this.__list__[i];
+		if (this.__kind__ === 'key+value') return [i, this.__list__[i]];
+		return i;
+	}),
+	toString: d(function () { return '[object Array Iterator]'; })
+});
+
+},{"./":89,"d":29,"es5-ext/object/set-prototype-of":77,"es5-ext/string/#/contains":82}],87:[function(require,module,exports){
+'use strict';
+
+var isArguments = require('es5-ext/function/is-arguments')
+  , callable    = require('es5-ext/object/valid-callable')
+  , isString    = require('es5-ext/string/is-string')
+  , get         = require('./get')
+
+  , isArray = Array.isArray, call = Function.prototype.call
+  , some = Array.prototype.some;
+
+module.exports = function (iterable, cb/*, thisArg*/) {
+	var mode, thisArg = arguments[2], result, doBreak, broken, i, l, char, code;
+	if (isArray(iterable) || isArguments(iterable)) mode = 'array';
+	else if (isString(iterable)) mode = 'string';
+	else iterable = get(iterable);
+
+	callable(cb);
+	doBreak = function () { broken = true; };
+	if (mode === 'array') {
+		some.call(iterable, function (value) {
+			call.call(cb, thisArg, value, doBreak);
+			if (broken) return true;
+		});
+		return;
+	}
+	if (mode === 'string') {
+		l = iterable.length;
+		for (i = 0; i < l; ++i) {
+			char = iterable[i];
+			if ((i + 1) < l) {
+				code = char.charCodeAt(0);
+				if ((code >= 0xD800) && (code <= 0xDBFF)) char += iterable[++i];
+			}
+			call.call(cb, thisArg, char, doBreak);
+			if (broken) break;
+		}
+		return;
+	}
+	result = iterable.next();
+
+	while (!result.done) {
+		call.call(cb, thisArg, result.value, doBreak);
+		if (broken) return;
+		result = iterable.next();
+	}
+};
+
+},{"./get":88,"es5-ext/function/is-arguments":56,"es5-ext/object/valid-callable":80,"es5-ext/string/is-string":85}],88:[function(require,module,exports){
+'use strict';
+
+var isArguments    = require('es5-ext/function/is-arguments')
+  , isString       = require('es5-ext/string/is-string')
+  , ArrayIterator  = require('./array')
+  , StringIterator = require('./string')
+  , iterable       = require('./valid-iterable')
+  , iteratorSymbol = require('es6-symbol').iterator;
+
+module.exports = function (obj) {
+	if (typeof iterable(obj)[iteratorSymbol] === 'function') return obj[iteratorSymbol]();
+	if (isArguments(obj)) return new ArrayIterator(obj);
+	if (isString(obj)) return new StringIterator(obj);
+	return new ArrayIterator(obj);
+};
+
+},{"./array":86,"./string":91,"./valid-iterable":92,"es5-ext/function/is-arguments":56,"es5-ext/string/is-string":85,"es6-symbol":99}],89:[function(require,module,exports){
+'use strict';
+
+var clear    = require('es5-ext/array/#/clear')
+  , assign   = require('es5-ext/object/assign')
+  , callable = require('es5-ext/object/valid-callable')
+  , value    = require('es5-ext/object/valid-value')
+  , d        = require('d')
+  , autoBind = require('d/auto-bind')
+  , Symbol   = require('es6-symbol')
+
+  , defineProperty = Object.defineProperty
+  , defineProperties = Object.defineProperties
+  , Iterator;
+
+module.exports = Iterator = function (list, context) {
+	if (!(this instanceof Iterator)) return new Iterator(list, context);
+	defineProperties(this, {
+		__list__: d('w', value(list)),
+		__context__: d('w', context),
+		__nextIndex__: d('w', 0)
+	});
+	if (!context) return;
+	callable(context.on);
+	context.on('_add', this._onAdd);
+	context.on('_delete', this._onDelete);
+	context.on('_clear', this._onClear);
+};
+
+defineProperties(Iterator.prototype, assign({
+	constructor: d(Iterator),
+	_next: d(function () {
+		var i;
+		if (!this.__list__) return;
+		if (this.__redo__) {
+			i = this.__redo__.shift();
+			if (i !== undefined) return i;
+		}
+		if (this.__nextIndex__ < this.__list__.length) return this.__nextIndex__++;
+		this._unBind();
+	}),
+	next: d(function () { return this._createResult(this._next()); }),
+	_createResult: d(function (i) {
+		if (i === undefined) return { done: true, value: undefined };
+		return { done: false, value: this._resolve(i) };
+	}),
+	_resolve: d(function (i) { return this.__list__[i]; }),
+	_unBind: d(function () {
+		this.__list__ = null;
+		delete this.__redo__;
+		if (!this.__context__) return;
+		this.__context__.off('_add', this._onAdd);
+		this.__context__.off('_delete', this._onDelete);
+		this.__context__.off('_clear', this._onClear);
+		this.__context__ = null;
+	}),
+	toString: d(function () { return '[object Iterator]'; })
+}, autoBind({
+	_onAdd: d(function (index) {
+		if (index >= this.__nextIndex__) return;
+		++this.__nextIndex__;
+		if (!this.__redo__) {
+			defineProperty(this, '__redo__', d('c', [index]));
+			return;
+		}
+		this.__redo__.forEach(function (redo, i) {
+			if (redo >= index) this.__redo__[i] = ++redo;
+		}, this);
+		this.__redo__.push(index);
+	}),
+	_onDelete: d(function (index) {
+		var i;
+		if (index >= this.__nextIndex__) return;
+		--this.__nextIndex__;
+		if (!this.__redo__) return;
+		i = this.__redo__.indexOf(index);
+		if (i !== -1) this.__redo__.splice(i, 1);
+		this.__redo__.forEach(function (redo, i) {
+			if (redo > index) this.__redo__[i] = --redo;
+		}, this);
+	}),
+	_onClear: d(function () {
+		if (this.__redo__) clear.call(this.__redo__);
+		this.__nextIndex__ = 0;
+	})
+})));
+
+defineProperty(Iterator.prototype, Symbol.iterator, d(function () {
+	return this;
+}));
+defineProperty(Iterator.prototype, Symbol.toStringTag, d('', 'Iterator'));
+
+},{"d":29,"d/auto-bind":28,"es5-ext/array/#/clear":54,"es5-ext/object/assign":63,"es5-ext/object/valid-callable":80,"es5-ext/object/valid-value":81,"es6-symbol":99}],90:[function(require,module,exports){
+'use strict';
+
+var isArguments    = require('es5-ext/function/is-arguments')
+  , isString       = require('es5-ext/string/is-string')
+  , iteratorSymbol = require('es6-symbol').iterator
+
+  , isArray = Array.isArray;
+
+module.exports = function (value) {
+	if (value == null) return false;
+	if (isArray(value)) return true;
+	if (isString(value)) return true;
+	if (isArguments(value)) return true;
+	return (typeof value[iteratorSymbol] === 'function');
+};
+
+},{"es5-ext/function/is-arguments":56,"es5-ext/string/is-string":85,"es6-symbol":99}],91:[function(require,module,exports){
+// Thanks @mathiasbynens
+// http://mathiasbynens.be/notes/javascript-unicode#iterating-over-symbols
+
+'use strict';
+
+var setPrototypeOf = require('es5-ext/object/set-prototype-of')
+  , d              = require('d')
+  , Iterator       = require('./')
+
+  , defineProperty = Object.defineProperty
+  , StringIterator;
+
+StringIterator = module.exports = function (str) {
+	if (!(this instanceof StringIterator)) return new StringIterator(str);
+	str = String(str);
+	Iterator.call(this, str);
+	defineProperty(this, '__length__', d('', str.length));
+
+};
+if (setPrototypeOf) setPrototypeOf(StringIterator, Iterator);
+
+StringIterator.prototype = Object.create(Iterator.prototype, {
+	constructor: d(StringIterator),
+	_next: d(function () {
+		if (!this.__list__) return;
+		if (this.__nextIndex__ < this.__length__) return this.__nextIndex__++;
+		this._unBind();
+	}),
+	_resolve: d(function (i) {
+		var char = this.__list__[i], code;
+		if (this.__nextIndex__ === this.__length__) return char;
+		code = char.charCodeAt(0);
+		if ((code >= 0xD800) && (code <= 0xDBFF)) return char + this.__list__[this.__nextIndex__++];
+		return char;
+	}),
+	toString: d(function () { return '[object String Iterator]'; })
+});
+
+},{"./":89,"d":29,"es5-ext/object/set-prototype-of":77}],92:[function(require,module,exports){
+'use strict';
+
+var isIterable = require('./is-iterable');
+
+module.exports = function (value) {
+	if (!isIterable(value)) throw new TypeError(value + " is not iterable");
+	return value;
+};
+
+},{"./is-iterable":90}],93:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./is-implemented')() ? Map : require('./polyfill');
+
+},{"./is-implemented":94,"./polyfill":98}],94:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+	var map, iterator, result;
+	if (typeof Map !== 'function') return false;
+	try {
+		// WebKit doesn't support arguments and crashes
+		map = new Map([['raz', 'one'], ['dwa', 'two'], ['trzy', 'three']]);
+	} catch (e) {
+		return false;
+	}
+	if (String(map) !== '[object Map]') return false;
+	if (map.size !== 3) return false;
+	if (typeof map.clear !== 'function') return false;
+	if (typeof map.delete !== 'function') return false;
+	if (typeof map.entries !== 'function') return false;
+	if (typeof map.forEach !== 'function') return false;
+	if (typeof map.get !== 'function') return false;
+	if (typeof map.has !== 'function') return false;
+	if (typeof map.keys !== 'function') return false;
+	if (typeof map.set !== 'function') return false;
+	if (typeof map.values !== 'function') return false;
+
+	iterator = map.entries();
+	result = iterator.next();
+	if (result.done !== false) return false;
+	if (!result.value) return false;
+	if (result.value[0] !== 'raz') return false;
+	if (result.value[1] !== 'one') return false;
+
+	return true;
+};
+
+},{}],95:[function(require,module,exports){
+// Exports true if environment provides native `Map` implementation,
+// whatever that is.
+
+'use strict';
+
+module.exports = (function () {
+	if (typeof Map === 'undefined') return false;
+	return (Object.prototype.toString.call(new Map()) === '[object Map]');
+}());
+
+},{}],96:[function(require,module,exports){
+'use strict';
+
+module.exports = require('es5-ext/object/primitive-set')('key',
+	'value', 'key+value');
+
+},{"es5-ext/object/primitive-set":76}],97:[function(require,module,exports){
+'use strict';
+
+var setPrototypeOf    = require('es5-ext/object/set-prototype-of')
+  , d                 = require('d')
+  , Iterator          = require('es6-iterator')
+  , toStringTagSymbol = require('es6-symbol').toStringTag
+  , kinds             = require('./iterator-kinds')
+
+  , defineProperties = Object.defineProperties
+  , unBind = Iterator.prototype._unBind
+  , MapIterator;
+
+MapIterator = module.exports = function (map, kind) {
+	if (!(this instanceof MapIterator)) return new MapIterator(map, kind);
+	Iterator.call(this, map.__mapKeysData__, map);
+	if (!kind || !kinds[kind]) kind = 'key+value';
+	defineProperties(this, {
+		__kind__: d('', kind),
+		__values__: d('w', map.__mapValuesData__)
+	});
+};
+if (setPrototypeOf) setPrototypeOf(MapIterator, Iterator);
+
+MapIterator.prototype = Object.create(Iterator.prototype, {
+	constructor: d(MapIterator),
+	_resolve: d(function (i) {
+		if (this.__kind__ === 'value') return this.__values__[i];
+		if (this.__kind__ === 'key') return this.__list__[i];
+		return [this.__list__[i], this.__values__[i]];
+	}),
+	_unBind: d(function () {
+		this.__values__ = null;
+		unBind.call(this);
+	}),
+	toString: d(function () { return '[object Map Iterator]'; })
+});
+Object.defineProperty(MapIterator.prototype, toStringTagSymbol,
+	d('c', 'Map Iterator'));
+
+},{"./iterator-kinds":96,"d":29,"es5-ext/object/set-prototype-of":77,"es6-iterator":89,"es6-symbol":99}],98:[function(require,module,exports){
+'use strict';
+
+var clear          = require('es5-ext/array/#/clear')
+  , eIndexOf       = require('es5-ext/array/#/e-index-of')
+  , setPrototypeOf = require('es5-ext/object/set-prototype-of')
+  , callable       = require('es5-ext/object/valid-callable')
+  , validValue     = require('es5-ext/object/valid-value')
+  , d              = require('d')
+  , ee             = require('event-emitter')
+  , Symbol         = require('es6-symbol')
+  , iterator       = require('es6-iterator/valid-iterable')
+  , forOf          = require('es6-iterator/for-of')
+  , Iterator       = require('./lib/iterator')
+  , isNative       = require('./is-native-implemented')
+
+  , call = Function.prototype.call
+  , defineProperties = Object.defineProperties, getPrototypeOf = Object.getPrototypeOf
+  , MapPoly;
+
+module.exports = MapPoly = function (/*iterable*/) {
+	var iterable = arguments[0], keys, values, self;
+	if (!(this instanceof MapPoly)) throw new TypeError('Constructor requires \'new\'');
+	if (isNative && setPrototypeOf && (Map !== MapPoly)) {
+		self = setPrototypeOf(new Map(), getPrototypeOf(this));
+	} else {
+		self = this;
+	}
+	if (iterable != null) iterator(iterable);
+	defineProperties(self, {
+		__mapKeysData__: d('c', keys = []),
+		__mapValuesData__: d('c', values = [])
+	});
+	if (!iterable) return self;
+	forOf(iterable, function (value) {
+		var key = validValue(value)[0];
+		value = value[1];
+		if (eIndexOf.call(keys, key) !== -1) return;
+		keys.push(key);
+		values.push(value);
+	}, self);
+	return self;
+};
+
+if (isNative) {
+	if (setPrototypeOf) setPrototypeOf(MapPoly, Map);
+	MapPoly.prototype = Object.create(Map.prototype, {
+		constructor: d(MapPoly)
+	});
+}
+
+ee(defineProperties(MapPoly.prototype, {
+	clear: d(function () {
+		if (!this.__mapKeysData__.length) return;
+		clear.call(this.__mapKeysData__);
+		clear.call(this.__mapValuesData__);
+		this.emit('_clear');
+	}),
+	delete: d(function (key) {
+		var index = eIndexOf.call(this.__mapKeysData__, key);
+		if (index === -1) return false;
+		this.__mapKeysData__.splice(index, 1);
+		this.__mapValuesData__.splice(index, 1);
+		this.emit('_delete', index, key);
+		return true;
+	}),
+	entries: d(function () { return new Iterator(this, 'key+value'); }),
+	forEach: d(function (cb/*, thisArg*/) {
+		var thisArg = arguments[1], iterator, result;
+		callable(cb);
+		iterator = this.entries();
+		result = iterator._next();
+		while (result !== undefined) {
+			call.call(cb, thisArg, this.__mapValuesData__[result],
+				this.__mapKeysData__[result], this);
+			result = iterator._next();
+		}
+	}),
+	get: d(function (key) {
+		var index = eIndexOf.call(this.__mapKeysData__, key);
+		if (index === -1) return;
+		return this.__mapValuesData__[index];
+	}),
+	has: d(function (key) {
+		return (eIndexOf.call(this.__mapKeysData__, key) !== -1);
+	}),
+	keys: d(function () { return new Iterator(this, 'key'); }),
+	set: d(function (key, value) {
+		var index = eIndexOf.call(this.__mapKeysData__, key), emit;
+		if (index === -1) {
+			index = this.__mapKeysData__.push(key) - 1;
+			emit = true;
+		}
+		this.__mapValuesData__[index] = value;
+		if (emit) this.emit('_add', index, key);
+		return this;
+	}),
+	size: d.gs(function () { return this.__mapKeysData__.length; }),
+	values: d(function () { return new Iterator(this, 'value'); }),
+	toString: d(function () { return '[object Map]'; })
+}));
+Object.defineProperty(MapPoly.prototype, Symbol.iterator, d(function () {
+	return this.entries();
+}));
+Object.defineProperty(MapPoly.prototype, Symbol.toStringTag, d('c', 'Map'));
+
+},{"./is-native-implemented":95,"./lib/iterator":97,"d":29,"es5-ext/array/#/clear":54,"es5-ext/array/#/e-index-of":55,"es5-ext/object/set-prototype-of":77,"es5-ext/object/valid-callable":80,"es5-ext/object/valid-value":81,"es6-iterator/for-of":87,"es6-iterator/valid-iterable":92,"es6-symbol":99,"event-emitter":105}],99:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./is-implemented')() ? Symbol : require('./polyfill');
+
+},{"./is-implemented":100,"./polyfill":102}],100:[function(require,module,exports){
+'use strict';
+
+var validTypes = { object: true, symbol: true };
+
+module.exports = function () {
+	var symbol;
+	if (typeof Symbol !== 'function') return false;
+	symbol = Symbol('test symbol');
+	try { String(symbol); } catch (e) { return false; }
+
+	// Return 'true' also for polyfills
+	if (!validTypes[typeof Symbol.iterator]) return false;
+	if (!validTypes[typeof Symbol.toPrimitive]) return false;
+	if (!validTypes[typeof Symbol.toStringTag]) return false;
+
+	return true;
+};
+
+},{}],101:[function(require,module,exports){
+'use strict';
+
+module.exports = function (x) {
+	if (!x) return false;
+	if (typeof x === 'symbol') return true;
+	if (!x.constructor) return false;
+	if (x.constructor.name !== 'Symbol') return false;
+	return (x[x.constructor.toStringTag] === 'Symbol');
+};
+
+},{}],102:[function(require,module,exports){
+// ES2015 Symbol polyfill for environments that do not support it (or partially support it)
+
+'use strict';
+
+var d              = require('d')
+  , validateSymbol = require('./validate-symbol')
+
+  , create = Object.create, defineProperties = Object.defineProperties
+  , defineProperty = Object.defineProperty, objPrototype = Object.prototype
+  , NativeSymbol, SymbolPolyfill, HiddenSymbol, globalSymbols = create(null)
+  , isNativeSafe;
+
+if (typeof Symbol === 'function') {
+	NativeSymbol = Symbol;
+	try {
+		String(NativeSymbol());
+		isNativeSafe = true;
+	} catch (ignore) {}
+}
+
+var generateName = (function () {
+	var created = create(null);
+	return function (desc) {
+		var postfix = 0, name, ie11BugWorkaround;
+		while (created[desc + (postfix || '')]) ++postfix;
+		desc += (postfix || '');
+		created[desc] = true;
+		name = '@@' + desc;
+		defineProperty(objPrototype, name, d.gs(null, function (value) {
+			// For IE11 issue see:
+			// https://connect.microsoft.com/IE/feedbackdetail/view/1928508/
+			//    ie11-broken-getters-on-dom-objects
+			// https://github.com/medikoo/es6-symbol/issues/12
+			if (ie11BugWorkaround) return;
+			ie11BugWorkaround = true;
+			defineProperty(this, name, d(value));
+			ie11BugWorkaround = false;
+		}));
+		return name;
+	};
+}());
+
+// Internal constructor (not one exposed) for creating Symbol instances.
+// This one is used to ensure that `someSymbol instanceof Symbol` always return false
+HiddenSymbol = function Symbol(description) {
+	if (this instanceof HiddenSymbol) throw new TypeError('TypeError: Symbol is not a constructor');
+	return SymbolPolyfill(description);
+};
+
+// Exposed `Symbol` constructor
+// (returns instances of HiddenSymbol)
+module.exports = SymbolPolyfill = function Symbol(description) {
+	var symbol;
+	if (this instanceof Symbol) throw new TypeError('TypeError: Symbol is not a constructor');
+	if (isNativeSafe) return NativeSymbol(description);
+	symbol = create(HiddenSymbol.prototype);
+	description = (description === undefined ? '' : String(description));
+	return defineProperties(symbol, {
+		__description__: d('', description),
+		__name__: d('', generateName(description))
+	});
+};
+defineProperties(SymbolPolyfill, {
+	for: d(function (key) {
+		if (globalSymbols[key]) return globalSymbols[key];
+		return (globalSymbols[key] = SymbolPolyfill(String(key)));
+	}),
+	keyFor: d(function (s) {
+		var key;
+		validateSymbol(s);
+		for (key in globalSymbols) if (globalSymbols[key] === s) return key;
+	}),
+
+	// If there's native implementation of given symbol, let's fallback to it
+	// to ensure proper interoperability with other native functions e.g. Array.from
+	hasInstance: d('', (NativeSymbol && NativeSymbol.hasInstance) || SymbolPolyfill('hasInstance')),
+	isConcatSpreadable: d('', (NativeSymbol && NativeSymbol.isConcatSpreadable) ||
+		SymbolPolyfill('isConcatSpreadable')),
+	iterator: d('', (NativeSymbol && NativeSymbol.iterator) || SymbolPolyfill('iterator')),
+	match: d('', (NativeSymbol && NativeSymbol.match) || SymbolPolyfill('match')),
+	replace: d('', (NativeSymbol && NativeSymbol.replace) || SymbolPolyfill('replace')),
+	search: d('', (NativeSymbol && NativeSymbol.search) || SymbolPolyfill('search')),
+	species: d('', (NativeSymbol && NativeSymbol.species) || SymbolPolyfill('species')),
+	split: d('', (NativeSymbol && NativeSymbol.split) || SymbolPolyfill('split')),
+	toPrimitive: d('', (NativeSymbol && NativeSymbol.toPrimitive) || SymbolPolyfill('toPrimitive')),
+	toStringTag: d('', (NativeSymbol && NativeSymbol.toStringTag) || SymbolPolyfill('toStringTag')),
+	unscopables: d('', (NativeSymbol && NativeSymbol.unscopables) || SymbolPolyfill('unscopables'))
+});
+
+// Internal tweaks for real symbol producer
+defineProperties(HiddenSymbol.prototype, {
+	constructor: d(SymbolPolyfill),
+	toString: d('', function () { return this.__name__; })
+});
+
+// Proper implementation of methods exposed on Symbol.prototype
+// They won't be accessible on produced symbol instances as they derive from HiddenSymbol.prototype
+defineProperties(SymbolPolyfill.prototype, {
+	toString: d(function () { return 'Symbol (' + validateSymbol(this).__description__ + ')'; }),
+	valueOf: d(function () { return validateSymbol(this); })
+});
+defineProperty(SymbolPolyfill.prototype, SymbolPolyfill.toPrimitive, d('', function () {
+	var symbol = validateSymbol(this);
+	if (typeof symbol === 'symbol') return symbol;
+	return symbol.toString();
+}));
+defineProperty(SymbolPolyfill.prototype, SymbolPolyfill.toStringTag, d('c', 'Symbol'));
+
+// Proper implementaton of toPrimitive and toStringTag for returned symbol instances
+defineProperty(HiddenSymbol.prototype, SymbolPolyfill.toStringTag,
+	d('c', SymbolPolyfill.prototype[SymbolPolyfill.toStringTag]));
+
+// Note: It's important to define `toPrimitive` as last one, as some implementations
+// implement `toPrimitive` natively without implementing `toStringTag` (or other specified symbols)
+// And that may invoke error in definition flow:
+// See: https://github.com/medikoo/es6-symbol/issues/13#issuecomment-164146149
+defineProperty(HiddenSymbol.prototype, SymbolPolyfill.toPrimitive,
+	d('c', SymbolPolyfill.prototype[SymbolPolyfill.toPrimitive]));
+
+},{"./validate-symbol":103,"d":29}],103:[function(require,module,exports){
+'use strict';
+
+var isSymbol = require('./is-symbol');
+
+module.exports = function (value) {
+	if (!isSymbol(value)) throw new TypeError(value + " is not a symbol");
+	return value;
+};
+
+},{"./is-symbol":101}],104:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/esrever v0.2.0 by @mathias */
 ;(function(root) {
@@ -7448,7 +8267,141 @@ module.exports={"amp":"&","apos":"'","gt":">","lt":"<","quot":"\""}
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],55:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
+'use strict';
+
+var d        = require('d')
+  , callable = require('es5-ext/object/valid-callable')
+
+  , apply = Function.prototype.apply, call = Function.prototype.call
+  , create = Object.create, defineProperty = Object.defineProperty
+  , defineProperties = Object.defineProperties
+  , hasOwnProperty = Object.prototype.hasOwnProperty
+  , descriptor = { configurable: true, enumerable: false, writable: true }
+
+  , on, once, off, emit, methods, descriptors, base;
+
+on = function (type, listener) {
+	var data;
+
+	callable(listener);
+
+	if (!hasOwnProperty.call(this, '__ee__')) {
+		data = descriptor.value = create(null);
+		defineProperty(this, '__ee__', descriptor);
+		descriptor.value = null;
+	} else {
+		data = this.__ee__;
+	}
+	if (!data[type]) data[type] = listener;
+	else if (typeof data[type] === 'object') data[type].push(listener);
+	else data[type] = [data[type], listener];
+
+	return this;
+};
+
+once = function (type, listener) {
+	var once, self;
+
+	callable(listener);
+	self = this;
+	on.call(this, type, once = function () {
+		off.call(self, type, once);
+		apply.call(listener, this, arguments);
+	});
+
+	once.__eeOnceListener__ = listener;
+	return this;
+};
+
+off = function (type, listener) {
+	var data, listeners, candidate, i;
+
+	callable(listener);
+
+	if (!hasOwnProperty.call(this, '__ee__')) return this;
+	data = this.__ee__;
+	if (!data[type]) return this;
+	listeners = data[type];
+
+	if (typeof listeners === 'object') {
+		for (i = 0; (candidate = listeners[i]); ++i) {
+			if ((candidate === listener) ||
+					(candidate.__eeOnceListener__ === listener)) {
+				if (listeners.length === 2) data[type] = listeners[i ? 0 : 1];
+				else listeners.splice(i, 1);
+			}
+		}
+	} else {
+		if ((listeners === listener) ||
+				(listeners.__eeOnceListener__ === listener)) {
+			delete data[type];
+		}
+	}
+
+	return this;
+};
+
+emit = function (type) {
+	var i, l, listener, listeners, args;
+
+	if (!hasOwnProperty.call(this, '__ee__')) return;
+	listeners = this.__ee__[type];
+	if (!listeners) return;
+
+	if (typeof listeners === 'object') {
+		l = arguments.length;
+		args = new Array(l - 1);
+		for (i = 1; i < l; ++i) args[i - 1] = arguments[i];
+
+		listeners = listeners.slice();
+		for (i = 0; (listener = listeners[i]); ++i) {
+			apply.call(listener, this, args);
+		}
+	} else {
+		switch (arguments.length) {
+		case 1:
+			call.call(listeners, this);
+			break;
+		case 2:
+			call.call(listeners, this, arguments[1]);
+			break;
+		case 3:
+			call.call(listeners, this, arguments[1], arguments[2]);
+			break;
+		default:
+			l = arguments.length;
+			args = new Array(l - 1);
+			for (i = 1; i < l; ++i) {
+				args[i - 1] = arguments[i];
+			}
+			apply.call(listeners, this, args);
+		}
+	}
+};
+
+methods = {
+	on: on,
+	once: once,
+	off: off,
+	emit: emit
+};
+
+descriptors = {
+	on: d(on),
+	once: d(once),
+	off: d(off),
+	emit: d(emit)
+};
+
+base = defineProperties({}, descriptors);
+
+module.exports = exports = function (o) {
+	return (o == null) ? create(base) : defineProperties(Object(o), descriptors);
+};
+exports.methods = methods;
+
+},{"d":29,"es5-ext/object/valid-callable":80}],106:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7752,7 +8705,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],56:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -7838,7 +8791,7 @@ var EventListener = {
 
 module.exports = EventListener;
 }).call(this,require('_process'))
-},{"./emptyFunction":63,"_process":158}],57:[function(require,module,exports){
+},{"./emptyFunction":114,"_process":211}],108:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -7874,7 +8827,7 @@ var ExecutionEnvironment = {
 };
 
 module.exports = ExecutionEnvironment;
-},{}],58:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 "use strict";
 
 /**
@@ -7906,7 +8859,7 @@ function camelize(string) {
 }
 
 module.exports = camelize;
-},{}],59:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -7946,7 +8899,7 @@ function camelizeStyleName(string) {
 }
 
 module.exports = camelizeStyleName;
-},{"./camelize":58}],60:[function(require,module,exports){
+},{"./camelize":109}],111:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7986,7 +8939,7 @@ function containsNode(outerNode, innerNode) {
 }
 
 module.exports = containsNode;
-},{"./isTextNode":73}],61:[function(require,module,exports){
+},{"./isTextNode":124}],112:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8115,7 +9068,7 @@ function createArrayFromMixed(obj) {
 
 module.exports = createArrayFromMixed;
 }).call(this,require('_process'))
-},{"./invariant":71,"_process":158}],62:[function(require,module,exports){
+},{"./invariant":122,"_process":211}],113:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8201,7 +9154,7 @@ function createNodesFromMarkup(markup, handleScript) {
 
 module.exports = createNodesFromMarkup;
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":57,"./createArrayFromMixed":61,"./getMarkupWrap":67,"./invariant":71,"_process":158}],63:[function(require,module,exports){
+},{"./ExecutionEnvironment":108,"./createArrayFromMixed":112,"./getMarkupWrap":118,"./invariant":122,"_process":211}],114:[function(require,module,exports){
 "use strict";
 
 /**
@@ -8240,7 +9193,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-},{}],64:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -8262,7 +9215,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = emptyObject;
 }).call(this,require('_process'))
-},{"_process":158}],65:[function(require,module,exports){
+},{"_process":211}],116:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8289,7 +9242,7 @@ function focusNode(node) {
 }
 
 module.exports = focusNode;
-},{}],66:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8324,7 +9277,7 @@ function getActiveElement() /*?DOMElement*/{
 }
 
 module.exports = getActiveElement;
-},{}],67:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8421,7 +9374,7 @@ function getMarkupWrap(nodeName) {
 
 module.exports = getMarkupWrap;
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":57,"./invariant":71,"_process":158}],68:[function(require,module,exports){
+},{"./ExecutionEnvironment":108,"./invariant":122,"_process":211}],119:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8460,7 +9413,7 @@ function getUnboundedScrollPosition(scrollable) {
 }
 
 module.exports = getUnboundedScrollPosition;
-},{}],69:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8493,7 +9446,7 @@ function hyphenate(string) {
 }
 
 module.exports = hyphenate;
-},{}],70:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8532,7 +9485,7 @@ function hyphenateStyleName(string) {
 }
 
 module.exports = hyphenateStyleName;
-},{"./hyphenate":69}],71:[function(require,module,exports){
+},{"./hyphenate":120}],122:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -8584,7 +9537,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 }).call(this,require('_process'))
-},{"_process":158}],72:[function(require,module,exports){
+},{"_process":211}],123:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8607,7 +9560,7 @@ function isNode(object) {
 }
 
 module.exports = isNode;
-},{}],73:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8632,7 +9585,7 @@ function isTextNode(object) {
 }
 
 module.exports = isTextNode;
-},{"./isNode":72}],74:[function(require,module,exports){
+},{"./isNode":123}],125:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -8682,7 +9635,7 @@ var keyMirror = function keyMirror(obj) {
 
 module.exports = keyMirror;
 }).call(this,require('_process'))
-},{"./invariant":71,"_process":158}],75:[function(require,module,exports){
+},{"./invariant":122,"_process":211}],126:[function(require,module,exports){
 "use strict";
 
 /**
@@ -8717,7 +9670,7 @@ var keyOf = function keyOf(oneKeyObj) {
 };
 
 module.exports = keyOf;
-},{}],76:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8747,7 +9700,7 @@ function memoizeStringOnly(callback) {
 }
 
 module.exports = memoizeStringOnly;
-},{}],77:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8770,7 +9723,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = performance || {};
-},{"./ExecutionEnvironment":57}],78:[function(require,module,exports){
+},{"./ExecutionEnvironment":108}],129:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8804,7 +9757,7 @@ if (performance.now) {
 }
 
 module.exports = performanceNow;
-},{"./performance":77}],79:[function(require,module,exports){
+},{"./performance":128}],130:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8872,7 +9825,7 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
-},{}],80:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -8941,7 +9894,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = warning;
 }).call(this,require('_process'))
-},{"./emptyFunction":63,"_process":158}],81:[function(require,module,exports){
+},{"./emptyFunction":114,"_process":211}],132:[function(require,module,exports){
 
 /**
  * Module exports.
@@ -9000,7 +9953,7 @@ function getDocument(node) {
   }
 }
 
-},{}],82:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -9061,13 +10014,13 @@ function getWindow(node) {
   }
 }
 
-},{"./needs-ie-fallback":83,"get-document":81}],83:[function(require,module,exports){
+},{"./needs-ie-fallback":134,"get-document":132}],134:[function(require,module,exports){
 // this is a browser-only module. There is a non-browser equivalent in the same
 // directory. This is done using a `package.json` browser field.
 // old-IE fallback logic: http://stackoverflow.com/a/10260692
 module.exports =  !!document.attachEvent && window !== document.parentWindow;
 
-},{}],84:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports = CollectingHandler;
 
 function CollectingHandler(cbs){
@@ -9124,7 +10077,7 @@ CollectingHandler.prototype.restart = function(){
 	}
 };
 
-},{"./":91}],85:[function(require,module,exports){
+},{"./":142}],136:[function(require,module,exports){
 var index = require("./index.js"),
     DomHandler = index.DomHandler,
     DomUtils = index.DomUtils;
@@ -9221,7 +10174,7 @@ FeedHandler.prototype.onend = function(){
 
 module.exports = FeedHandler;
 
-},{"./index.js":91,"inherits":94}],86:[function(require,module,exports){
+},{"./index.js":142,"inherits":145}],137:[function(require,module,exports){
 var Tokenizer = require("./Tokenizer.js");
 
 /*
@@ -9576,7 +10529,7 @@ Parser.prototype.done = Parser.prototype.end;
 
 module.exports = Parser;
 
-},{"./Tokenizer.js":89,"events":55,"inherits":94}],87:[function(require,module,exports){
+},{"./Tokenizer.js":140,"events":106,"inherits":145}],138:[function(require,module,exports){
 module.exports = ProxyHandler;
 
 function ProxyHandler(cbs){
@@ -9604,7 +10557,7 @@ Object.keys(EVENTS).forEach(function(name){
 		throw Error("wrong number of arguments");
 	}
 });
-},{"./":91}],88:[function(require,module,exports){
+},{"./":142}],139:[function(require,module,exports){
 module.exports = Stream;
 
 var Parser = require("./WritableStream.js");
@@ -9640,7 +10593,7 @@ Object.keys(EVENTS).forEach(function(name){
 		throw Error("wrong number of arguments!");
 	}
 });
-},{"../":91,"./WritableStream.js":90,"inherits":94}],89:[function(require,module,exports){
+},{"../":142,"./WritableStream.js":141,"inherits":145}],140:[function(require,module,exports){
 module.exports = Tokenizer;
 
 var decodeCodePoint = require("entities/lib/decode_codepoint.js"),
@@ -10548,7 +11501,7 @@ Tokenizer.prototype._emitPartial = function(value){
 	}
 };
 
-},{"entities/lib/decode_codepoint.js":48,"entities/maps/entities.json":51,"entities/maps/legacy.json":52,"entities/maps/xml.json":53}],90:[function(require,module,exports){
+},{"entities/lib/decode_codepoint.js":48,"entities/maps/entities.json":51,"entities/maps/legacy.json":52,"entities/maps/xml.json":53}],141:[function(require,module,exports){
 module.exports = Stream;
 
 var Parser = require("./Parser.js"),
@@ -10574,7 +11527,7 @@ WritableStream.prototype._write = function(chunk, encoding, cb){
 	this._parser.write(chunk);
 	cb();
 };
-},{"./Parser.js":86,"buffer":7,"inherits":94,"readable-stream":5,"stream":366,"string_decoder":367}],91:[function(require,module,exports){
+},{"./Parser.js":137,"buffer":7,"inherits":145,"readable-stream":5,"stream":425,"string_decoder":426}],142:[function(require,module,exports){
 var Parser = require("./Parser.js"),
     DomHandler = require("domhandler");
 
@@ -10644,7 +11597,7 @@ module.exports = {
 	}
 };
 
-},{"./CollectingHandler.js":84,"./FeedHandler.js":85,"./Parser.js":86,"./ProxyHandler.js":87,"./Stream.js":88,"./Tokenizer.js":89,"./WritableStream.js":90,"domelementtype":35,"domhandler":36,"domutils":39}],92:[function(require,module,exports){
+},{"./CollectingHandler.js":135,"./FeedHandler.js":136,"./Parser.js":137,"./ProxyHandler.js":138,"./Stream.js":139,"./Tokenizer.js":140,"./WritableStream.js":141,"domelementtype":35,"domhandler":36,"domutils":39}],143:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -10730,7 +11683,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],93:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 /**
  *  Copyright (c) 2014-2015, Facebook, Inc.
  *  All rights reserved.
@@ -15710,7 +16663,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   return Immutable;
 
 }));
-},{}],94:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -15735,7 +16688,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],95:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -15758,7 +16711,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],96:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 
 /**
  * Expose `isEmpty`.
@@ -15790,14 +16743,14 @@ function isEmpty (val) {
   return true;
 }
 
-},{}],97:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],98:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 // Source: http://jsfiddle.net/vWx8V/
 // http://stackoverflow.com/questions/5603195/full-list-of-javascript-keycodes
 
@@ -15945,7 +16898,7 @@ for (var alias in aliases) {
   codes[alias] = aliases[alias]
 }
 
-},{}],99:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 /**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -16573,7 +17526,7 @@ function keysIn(object) {
 
 module.exports = assignIn;
 
-},{}],100:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -17831,7 +18784,7 @@ bind.placeholder = {};
 module.exports = bind;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],101:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 /**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -18501,7 +19454,7 @@ function keysIn(object) {
 
 module.exports = defaults;
 
-},{}],102:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -20871,7 +21824,7 @@ function property(path) {
 module.exports = filter;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],103:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -21224,7 +22177,7 @@ function isObjectLike(value) {
 module.exports = flatten;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],104:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 /**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -21791,7 +22744,7 @@ function identity(value) {
 
 module.exports = forEach;
 
-},{}],105:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -24161,7 +25114,7 @@ function property(path) {
 module.exports = map;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],106:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -26372,7 +27325,7 @@ function stubFalse() {
 module.exports = merge;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],107:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -26879,7 +27832,7 @@ var pick = baseRest(function(object, props) {
 module.exports = pick;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],108:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -29255,7 +30208,7 @@ function property(path) {
 module.exports = reduce;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],109:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -31657,7 +32610,7 @@ function property(path) {
 module.exports = reject;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],110:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -34029,7 +34982,7 @@ function property(path) {
 module.exports = some;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],111:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 var root = require('./_root');
 
 /** Built-in value references. */
@@ -34037,7 +34990,7 @@ var Symbol = root.Symbol;
 
 module.exports = Symbol;
 
-},{"./_root":132}],112:[function(require,module,exports){
+},{"./_root":184}],163:[function(require,module,exports){
 var baseTimes = require('./_baseTimes'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
@@ -34088,7 +35041,7 @@ function arrayLikeKeys(value, inherited) {
 
 module.exports = arrayLikeKeys;
 
-},{"./_baseTimes":121,"./_isIndex":126,"./isArguments":135,"./isArray":136,"./isBuffer":138,"./isTypedArray":145}],113:[function(require,module,exports){
+},{"./_baseTimes":172,"./_isIndex":178,"./isArguments":187,"./isArray":188,"./isBuffer":190,"./isTypedArray":197}],164:[function(require,module,exports){
 /**
  * A specialized version of `_.map` for arrays without support for iteratee
  * shorthands.
@@ -34111,7 +35064,7 @@ function arrayMap(array, iteratee) {
 
 module.exports = arrayMap;
 
-},{}],114:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
  * The base implementation of `_.findIndex` and `_.findLastIndex` without
  * support for iteratee shorthands.
@@ -34137,7 +35090,7 @@ function baseFindIndex(array, predicate, fromIndex, fromRight) {
 
 module.exports = baseFindIndex;
 
-},{}],115:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 var Symbol = require('./_Symbol'),
     getRawTag = require('./_getRawTag'),
     objectToString = require('./_objectToString');
@@ -34168,7 +35121,7 @@ function baseGetTag(value) {
 
 module.exports = baseGetTag;
 
-},{"./_Symbol":111,"./_getRawTag":125,"./_objectToString":130}],116:[function(require,module,exports){
+},{"./_Symbol":162,"./_getRawTag":177,"./_objectToString":182}],167:[function(require,module,exports){
 var baseFindIndex = require('./_baseFindIndex'),
     baseIsNaN = require('./_baseIsNaN'),
     strictIndexOf = require('./_strictIndexOf');
@@ -34190,7 +35143,7 @@ function baseIndexOf(array, value, fromIndex) {
 
 module.exports = baseIndexOf;
 
-},{"./_baseFindIndex":114,"./_baseIsNaN":118,"./_strictIndexOf":133}],117:[function(require,module,exports){
+},{"./_baseFindIndex":165,"./_baseIsNaN":169,"./_strictIndexOf":185}],168:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -34210,7 +35163,7 @@ function baseIsArguments(value) {
 
 module.exports = baseIsArguments;
 
-},{"./_baseGetTag":115,"./isObjectLike":142}],118:[function(require,module,exports){
+},{"./_baseGetTag":166,"./isObjectLike":194}],169:[function(require,module,exports){
 /**
  * The base implementation of `_.isNaN` without support for number objects.
  *
@@ -34224,7 +35177,7 @@ function baseIsNaN(value) {
 
 module.exports = baseIsNaN;
 
-},{}],119:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isLength = require('./isLength'),
     isObjectLike = require('./isObjectLike');
@@ -34286,7 +35239,7 @@ function baseIsTypedArray(value) {
 
 module.exports = baseIsTypedArray;
 
-},{"./_baseGetTag":115,"./isLength":140,"./isObjectLike":142}],120:[function(require,module,exports){
+},{"./_baseGetTag":166,"./isLength":192,"./isObjectLike":194}],171:[function(require,module,exports){
 var isPrototype = require('./_isPrototype'),
     nativeKeys = require('./_nativeKeys');
 
@@ -34318,7 +35271,7 @@ function baseKeys(object) {
 
 module.exports = baseKeys;
 
-},{"./_isPrototype":127,"./_nativeKeys":128}],121:[function(require,module,exports){
+},{"./_isPrototype":179,"./_nativeKeys":180}],172:[function(require,module,exports){
 /**
  * The base implementation of `_.times` without support for iteratee shorthands
  * or max array length checks.
@@ -34340,7 +35293,46 @@ function baseTimes(n, iteratee) {
 
 module.exports = baseTimes;
 
-},{}],122:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
+var Symbol = require('./_Symbol'),
+    arrayMap = require('./_arrayMap'),
+    isArray = require('./isArray'),
+    isSymbol = require('./isSymbol');
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isArray(value)) {
+    // Recursively convert values (susceptible to call stack limits).
+    return arrayMap(value, baseToString) + '';
+  }
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+module.exports = baseToString;
+
+},{"./_Symbol":162,"./_arrayMap":164,"./isArray":188,"./isSymbol":196}],174:[function(require,module,exports){
 /**
  * The base implementation of `_.unary` without support for storing metadata.
  *
@@ -34356,7 +35348,7 @@ function baseUnary(func) {
 
 module.exports = baseUnary;
 
-},{}],123:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 var arrayMap = require('./_arrayMap');
 
 /**
@@ -34377,7 +35369,7 @@ function baseValues(object, props) {
 
 module.exports = baseValues;
 
-},{"./_arrayMap":113}],124:[function(require,module,exports){
+},{"./_arrayMap":164}],176:[function(require,module,exports){
 (function (global){
 /** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
@@ -34385,7 +35377,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 module.exports = freeGlobal;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],125:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 var Symbol = require('./_Symbol');
 
 /** Used for built-in method references. */
@@ -34433,7 +35425,7 @@ function getRawTag(value) {
 
 module.exports = getRawTag;
 
-},{"./_Symbol":111}],126:[function(require,module,exports){
+},{"./_Symbol":162}],178:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -34457,7 +35449,7 @@ function isIndex(value, length) {
 
 module.exports = isIndex;
 
-},{}],127:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -34477,7 +35469,7 @@ function isPrototype(value) {
 
 module.exports = isPrototype;
 
-},{}],128:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 var overArg = require('./_overArg');
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -34485,7 +35477,7 @@ var nativeKeys = overArg(Object.keys, Object);
 
 module.exports = nativeKeys;
 
-},{"./_overArg":131}],129:[function(require,module,exports){
+},{"./_overArg":183}],181:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `exports`. */
@@ -34509,7 +35501,7 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-},{"./_freeGlobal":124}],130:[function(require,module,exports){
+},{"./_freeGlobal":176}],182:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -34533,7 +35525,7 @@ function objectToString(value) {
 
 module.exports = objectToString;
 
-},{}],131:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /**
  * Creates a unary function that invokes `func` with its argument transformed.
  *
@@ -34550,7 +35542,7 @@ function overArg(func, transform) {
 
 module.exports = overArg;
 
-},{}],132:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `self`. */
@@ -34561,7 +35553,7 @@ var root = freeGlobal || freeSelf || Function('return this')();
 
 module.exports = root;
 
-},{"./_freeGlobal":124}],133:[function(require,module,exports){
+},{"./_freeGlobal":176}],185:[function(require,module,exports){
 /**
  * A specialized version of `_.indexOf` which performs strict equality
  * comparisons of values, i.e. `===`.
@@ -34586,7 +35578,7 @@ function strictIndexOf(array, value, fromIndex) {
 
 module.exports = strictIndexOf;
 
-},{}],134:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 var baseIndexOf = require('./_baseIndexOf'),
     isArrayLike = require('./isArrayLike'),
     isString = require('./isString'),
@@ -34641,7 +35633,7 @@ function includes(collection, value, fromIndex, guard) {
 
 module.exports = includes;
 
-},{"./_baseIndexOf":116,"./isArrayLike":137,"./isString":143,"./toInteger":149,"./values":151}],135:[function(require,module,exports){
+},{"./_baseIndexOf":167,"./isArrayLike":189,"./isString":195,"./toInteger":201,"./values":205}],187:[function(require,module,exports){
 var baseIsArguments = require('./_baseIsArguments'),
     isObjectLike = require('./isObjectLike');
 
@@ -34679,7 +35671,7 @@ var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsAr
 
 module.exports = isArguments;
 
-},{"./_baseIsArguments":117,"./isObjectLike":142}],136:[function(require,module,exports){
+},{"./_baseIsArguments":168,"./isObjectLike":194}],188:[function(require,module,exports){
 /**
  * Checks if `value` is classified as an `Array` object.
  *
@@ -34707,7 +35699,7 @@ var isArray = Array.isArray;
 
 module.exports = isArray;
 
-},{}],137:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 var isFunction = require('./isFunction'),
     isLength = require('./isLength');
 
@@ -34742,7 +35734,7 @@ function isArrayLike(value) {
 
 module.exports = isArrayLike;
 
-},{"./isFunction":139,"./isLength":140}],138:[function(require,module,exports){
+},{"./isFunction":191,"./isLength":192}],190:[function(require,module,exports){
 var root = require('./_root'),
     stubFalse = require('./stubFalse');
 
@@ -34782,7 +35774,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-},{"./_root":132,"./stubFalse":147}],139:[function(require,module,exports){
+},{"./_root":184,"./stubFalse":199}],191:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObject = require('./isObject');
 
@@ -34821,7 +35813,7 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
-},{"./_baseGetTag":115,"./isObject":141}],140:[function(require,module,exports){
+},{"./_baseGetTag":166,"./isObject":193}],192:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -34858,7 +35850,7 @@ function isLength(value) {
 
 module.exports = isLength;
 
-},{}],141:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 /**
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
@@ -34891,7 +35883,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],142:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
@@ -34922,7 +35914,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],143:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isArray = require('./isArray'),
     isObjectLike = require('./isObjectLike');
@@ -34954,7 +35946,7 @@ function isString(value) {
 
 module.exports = isString;
 
-},{"./_baseGetTag":115,"./isArray":136,"./isObjectLike":142}],144:[function(require,module,exports){
+},{"./_baseGetTag":166,"./isArray":188,"./isObjectLike":194}],196:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -34985,7 +35977,7 @@ function isSymbol(value) {
 
 module.exports = isSymbol;
 
-},{"./_baseGetTag":115,"./isObjectLike":142}],145:[function(require,module,exports){
+},{"./_baseGetTag":166,"./isObjectLike":194}],197:[function(require,module,exports){
 var baseIsTypedArray = require('./_baseIsTypedArray'),
     baseUnary = require('./_baseUnary'),
     nodeUtil = require('./_nodeUtil');
@@ -35014,7 +36006,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
 
 module.exports = isTypedArray;
 
-},{"./_baseIsTypedArray":119,"./_baseUnary":122,"./_nodeUtil":129}],146:[function(require,module,exports){
+},{"./_baseIsTypedArray":170,"./_baseUnary":174,"./_nodeUtil":181}],198:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeys = require('./_baseKeys'),
     isArrayLike = require('./isArrayLike');
@@ -35053,7 +36045,7 @@ function keys(object) {
 
 module.exports = keys;
 
-},{"./_arrayLikeKeys":112,"./_baseKeys":120,"./isArrayLike":137}],147:[function(require,module,exports){
+},{"./_arrayLikeKeys":163,"./_baseKeys":171,"./isArrayLike":189}],199:[function(require,module,exports){
 /**
  * This method returns `false`.
  *
@@ -35073,7 +36065,7 @@ function stubFalse() {
 
 module.exports = stubFalse;
 
-},{}],148:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 var toNumber = require('./toNumber');
 
 /** Used as references for various `Number` constants. */
@@ -35117,7 +36109,7 @@ function toFinite(value) {
 
 module.exports = toFinite;
 
-},{"./toNumber":150}],149:[function(require,module,exports){
+},{"./toNumber":202}],201:[function(require,module,exports){
 var toFinite = require('./toFinite');
 
 /**
@@ -35155,7 +36147,7 @@ function toInteger(value) {
 
 module.exports = toInteger;
 
-},{"./toFinite":148}],150:[function(require,module,exports){
+},{"./toFinite":200}],202:[function(require,module,exports){
 var isObject = require('./isObject'),
     isSymbol = require('./isSymbol');
 
@@ -35223,7 +36215,67 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
-},{"./isObject":141,"./isSymbol":144}],151:[function(require,module,exports){
+},{"./isObject":193,"./isSymbol":196}],203:[function(require,module,exports){
+var baseToString = require('./_baseToString');
+
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+
+module.exports = toString;
+
+},{"./_baseToString":173}],204:[function(require,module,exports){
+var toString = require('./toString');
+
+/** Used to generate unique IDs. */
+var idCounter = 0;
+
+/**
+ * Generates a unique ID. If `prefix` is given, the ID is appended to it.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {string} [prefix=''] The value to prefix the ID with.
+ * @returns {string} Returns the unique ID.
+ * @example
+ *
+ * _.uniqueId('contact_');
+ * // => 'contact_104'
+ *
+ * _.uniqueId();
+ * // => '105'
+ */
+function uniqueId(prefix) {
+  var id = ++idCounter;
+  return toString(prefix) + id;
+}
+
+module.exports = uniqueId;
+
+},{"./toString":203}],205:[function(require,module,exports){
 var baseValues = require('./_baseValues'),
     keys = require('./keys');
 
@@ -35259,134 +36311,7 @@ function values(object) {
 
 module.exports = values;
 
-},{"./_baseValues":123,"./keys":146}],152:[function(require,module,exports){
-/**
- * Helpers.
- */
-
-var s = 1000;
-var m = s * 60;
-var h = m * 60;
-var d = h * 24;
-var y = d * 365.25;
-
-/**
- * Parse or format the given `val`.
- *
- * Options:
- *
- *  - `long` verbose formatting [false]
- *
- * @param {String|Number} val
- * @param {Object} options
- * @return {String|Number}
- * @api public
- */
-
-module.exports = function(val, options){
-  options = options || {};
-  if ('string' == typeof val) return parse(val);
-  return options.long
-    ? long(val)
-    : short(val);
-};
-
-/**
- * Parse the given `str` and return milliseconds.
- *
- * @param {String} str
- * @return {Number}
- * @api private
- */
-
-function parse(str) {
-  str = '' + str;
-  if (str.length > 10000) return;
-  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
-  if (!match) return;
-  var n = parseFloat(match[1]);
-  var type = (match[2] || 'ms').toLowerCase();
-  switch (type) {
-    case 'years':
-    case 'year':
-    case 'yrs':
-    case 'yr':
-    case 'y':
-      return n * y;
-    case 'days':
-    case 'day':
-    case 'd':
-      return n * d;
-    case 'hours':
-    case 'hour':
-    case 'hrs':
-    case 'hr':
-    case 'h':
-      return n * h;
-    case 'minutes':
-    case 'minute':
-    case 'mins':
-    case 'min':
-    case 'm':
-      return n * m;
-    case 'seconds':
-    case 'second':
-    case 'secs':
-    case 'sec':
-    case 's':
-      return n * s;
-    case 'milliseconds':
-    case 'millisecond':
-    case 'msecs':
-    case 'msec':
-    case 'ms':
-      return n;
-  }
-}
-
-/**
- * Short format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function short(ms) {
-  if (ms >= d) return Math.round(ms / d) + 'd';
-  if (ms >= h) return Math.round(ms / h) + 'h';
-  if (ms >= m) return Math.round(ms / m) + 'm';
-  if (ms >= s) return Math.round(ms / s) + 's';
-  return ms + 'ms';
-}
-
-/**
- * Long format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function long(ms) {
-  return plural(ms, d, 'day')
-    || plural(ms, h, 'hour')
-    || plural(ms, m, 'minute')
-    || plural(ms, s, 'second')
-    || ms + ' ms';
-}
-
-/**
- * Pluralization helper.
- */
-
-function plural(ms, n, name) {
-  if (ms < n) return;
-  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
-  return Math.ceil(ms / n) + ' ' + name + 's';
-}
-
-},{}],153:[function(require,module,exports){
+},{"./_baseValues":175,"./keys":198}],206:[function(require,module,exports){
 module.exports = compile;
 
 var BaseFuncs = require("boolbase"),
@@ -35427,7 +36352,7 @@ function compile(parsed){
 		return pos <= b && pos % a === bMod;
 	};
 }
-},{"boolbase":4}],154:[function(require,module,exports){
+},{"boolbase":4}],207:[function(require,module,exports){
 var parse = require("./parse.js"),
     compile = require("./compile.js");
 
@@ -35437,7 +36362,7 @@ module.exports = function nthCheck(formula){
 
 module.exports.parse = parse;
 module.exports.compile = compile;
-},{"./compile.js":153,"./parse.js":155}],155:[function(require,module,exports){
+},{"./compile.js":206,"./parse.js":208}],208:[function(require,module,exports){
 module.exports = parse;
 
 //following http://www.w3.org/TR/css3-selectors/#nth-child-pseudo
@@ -35479,7 +36404,7 @@ function parse(formula){
 	}
 }
 
-},{}],156:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 'use strict';
 /* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -35564,7 +36489,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],157:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -35611,7 +36536,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":158}],158:[function(require,module,exports){
+},{"_process":211}],211:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -35793,17 +36718,17 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],159:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 'use strict';
 
 module.exports = require('react/lib/ReactDOM');
 
-},{"react/lib/ReactDOM":198}],160:[function(require,module,exports){
+},{"react/lib/ReactDOM":251}],213:[function(require,module,exports){
 'use strict';
 
 module.exports = require('react/lib/ReactDOMServer');
 
-},{"react/lib/ReactDOMServer":213}],161:[function(require,module,exports){
+},{"react/lib/ReactDOMServer":266}],214:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -35828,7 +36753,7 @@ var AutoFocusUtils = {
 };
 
 module.exports = AutoFocusUtils;
-},{"./ReactDOMComponentTree":202,"fbjs/lib/focusNode":65}],162:[function(require,module,exports){
+},{"./ReactDOMComponentTree":255,"fbjs/lib/focusNode":116}],215:[function(require,module,exports){
 /**
  * Copyright 2013-present Facebook, Inc.
  * All rights reserved.
@@ -36219,7 +37144,7 @@ var BeforeInputEventPlugin = {
 };
 
 module.exports = BeforeInputEventPlugin;
-},{"./EventConstants":176,"./EventPropagators":180,"./FallbackCompositionState":181,"./SyntheticCompositionEvent":262,"./SyntheticInputEvent":266,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/keyOf":75}],163:[function(require,module,exports){
+},{"./EventConstants":229,"./EventPropagators":233,"./FallbackCompositionState":234,"./SyntheticCompositionEvent":315,"./SyntheticInputEvent":319,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/keyOf":126}],216:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -36368,7 +37293,7 @@ var CSSProperty = {
 };
 
 module.exports = CSSProperty;
-},{}],164:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -36576,7 +37501,7 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 }).call(this,require('_process'))
-},{"./CSSProperty":163,"./ReactInstrumentation":233,"./dangerousStyleValue":280,"_process":158,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/camelizeStyleName":59,"fbjs/lib/hyphenateStyleName":70,"fbjs/lib/memoizeStringOnly":76,"fbjs/lib/warning":80}],165:[function(require,module,exports){
+},{"./CSSProperty":216,"./ReactInstrumentation":286,"./dangerousStyleValue":333,"_process":211,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/camelizeStyleName":110,"fbjs/lib/hyphenateStyleName":121,"fbjs/lib/memoizeStringOnly":127,"fbjs/lib/warning":131}],218:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -36685,7 +37610,7 @@ PooledClass.addPoolingTo(CallbackQueue);
 
 module.exports = CallbackQueue;
 }).call(this,require('_process'))
-},{"./PooledClass":185,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"object-assign":156}],166:[function(require,module,exports){
+},{"./PooledClass":238,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"object-assign":209}],219:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37011,7 +37936,7 @@ var ChangeEventPlugin = {
 };
 
 module.exports = ChangeEventPlugin;
-},{"./EventConstants":176,"./EventPluginHub":177,"./EventPropagators":180,"./ReactDOMComponentTree":202,"./ReactUpdates":255,"./SyntheticEvent":264,"./getEventTarget":288,"./isEventSupported":295,"./isTextInputElement":296,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/keyOf":75}],167:[function(require,module,exports){
+},{"./EventConstants":229,"./EventPluginHub":230,"./EventPropagators":233,"./ReactDOMComponentTree":255,"./ReactUpdates":308,"./SyntheticEvent":317,"./getEventTarget":341,"./isEventSupported":348,"./isTextInputElement":349,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/keyOf":126}],220:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37208,7 +38133,7 @@ var DOMChildrenOperations = {
 
 module.exports = DOMChildrenOperations;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":168,"./Danger":172,"./ReactDOMComponentTree":202,"./ReactInstrumentation":233,"./ReactMultiChildUpdateTypes":238,"./createMicrosoftUnsafeLocalFunction":279,"./setInnerHTML":301,"./setTextContent":302,"_process":158}],168:[function(require,module,exports){
+},{"./DOMLazyTree":221,"./Danger":225,"./ReactDOMComponentTree":255,"./ReactInstrumentation":286,"./ReactMultiChildUpdateTypes":291,"./createMicrosoftUnsafeLocalFunction":332,"./setInnerHTML":354,"./setTextContent":355,"_process":211}],221:[function(require,module,exports){
 /**
  * Copyright 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -37327,7 +38252,7 @@ DOMLazyTree.queueHTML = queueHTML;
 DOMLazyTree.queueText = queueText;
 
 module.exports = DOMLazyTree;
-},{"./DOMNamespaces":169,"./createMicrosoftUnsafeLocalFunction":279,"./setInnerHTML":301,"./setTextContent":302}],169:[function(require,module,exports){
+},{"./DOMNamespaces":222,"./createMicrosoftUnsafeLocalFunction":332,"./setInnerHTML":354,"./setTextContent":355}],222:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37348,7 +38273,7 @@ var DOMNamespaces = {
 };
 
 module.exports = DOMNamespaces;
-},{}],170:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37557,7 +38482,7 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],171:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],224:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37781,7 +38706,7 @@ var DOMPropertyOperations = {
 
 module.exports = DOMPropertyOperations;
 }).call(this,require('_process'))
-},{"./DOMProperty":170,"./ReactDOMComponentTree":202,"./ReactInstrumentation":233,"./quoteAttributeValueForBrowser":298,"_process":158,"fbjs/lib/warning":80}],172:[function(require,module,exports){
+},{"./DOMProperty":223,"./ReactDOMComponentTree":255,"./ReactInstrumentation":286,"./quoteAttributeValueForBrowser":351,"_process":211,"fbjs/lib/warning":131}],225:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -37832,7 +38757,7 @@ var Danger = {
 
 module.exports = Danger;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":168,"./reactProdInvariant":299,"_process":158,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/createNodesFromMarkup":62,"fbjs/lib/emptyFunction":63,"fbjs/lib/invariant":71}],173:[function(require,module,exports){
+},{"./DOMLazyTree":221,"./reactProdInvariant":352,"_process":211,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/createNodesFromMarkup":113,"fbjs/lib/emptyFunction":114,"fbjs/lib/invariant":122}],226:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37860,7 +38785,7 @@ var keyOf = require('fbjs/lib/keyOf');
 var DefaultEventPluginOrder = [keyOf({ ResponderEventPlugin: null }), keyOf({ SimpleEventPlugin: null }), keyOf({ TapEventPlugin: null }), keyOf({ EnterLeaveEventPlugin: null }), keyOf({ ChangeEventPlugin: null }), keyOf({ SelectEventPlugin: null }), keyOf({ BeforeInputEventPlugin: null })];
 
 module.exports = DefaultEventPluginOrder;
-},{"fbjs/lib/keyOf":75}],174:[function(require,module,exports){
+},{"fbjs/lib/keyOf":126}],227:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -37911,7 +38836,7 @@ var DisabledInputUtils = {
 };
 
 module.exports = DisabledInputUtils;
-},{}],175:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38017,7 +38942,7 @@ var EnterLeaveEventPlugin = {
 };
 
 module.exports = EnterLeaveEventPlugin;
-},{"./EventConstants":176,"./EventPropagators":180,"./ReactDOMComponentTree":202,"./SyntheticMouseEvent":268,"fbjs/lib/keyOf":75}],176:[function(require,module,exports){
+},{"./EventConstants":229,"./EventPropagators":233,"./ReactDOMComponentTree":255,"./SyntheticMouseEvent":321,"fbjs/lib/keyOf":126}],229:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -38115,7 +39040,7 @@ var EventConstants = {
 };
 
 module.exports = EventConstants;
-},{"fbjs/lib/keyMirror":74}],177:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":125}],230:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -38369,7 +39294,7 @@ var EventPluginHub = {
 
 module.exports = EventPluginHub;
 }).call(this,require('_process'))
-},{"./EventPluginRegistry":178,"./EventPluginUtils":179,"./ReactErrorUtils":224,"./accumulateInto":275,"./forEachAccumulated":284,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],178:[function(require,module,exports){
+},{"./EventPluginRegistry":231,"./EventPluginUtils":232,"./ReactErrorUtils":277,"./accumulateInto":328,"./forEachAccumulated":337,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],231:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -38619,7 +39544,7 @@ var EventPluginRegistry = {
 
 module.exports = EventPluginRegistry;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],179:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],232:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -38851,7 +39776,7 @@ var EventPluginUtils = {
 
 module.exports = EventPluginUtils;
 }).call(this,require('_process'))
-},{"./EventConstants":176,"./ReactErrorUtils":224,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],180:[function(require,module,exports){
+},{"./EventConstants":229,"./ReactErrorUtils":277,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],233:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -38991,7 +39916,7 @@ var EventPropagators = {
 
 module.exports = EventPropagators;
 }).call(this,require('_process'))
-},{"./EventConstants":176,"./EventPluginHub":177,"./EventPluginUtils":179,"./accumulateInto":275,"./forEachAccumulated":284,"_process":158,"fbjs/lib/warning":80}],181:[function(require,module,exports){
+},{"./EventConstants":229,"./EventPluginHub":230,"./EventPluginUtils":232,"./accumulateInto":328,"./forEachAccumulated":337,"_process":211,"fbjs/lib/warning":131}],234:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -39087,7 +40012,7 @@ _assign(FallbackCompositionState.prototype, {
 PooledClass.addPoolingTo(FallbackCompositionState);
 
 module.exports = FallbackCompositionState;
-},{"./PooledClass":185,"./getTextContentAccessor":292,"object-assign":156}],182:[function(require,module,exports){
+},{"./PooledClass":238,"./getTextContentAccessor":345,"object-assign":209}],235:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -39300,7 +40225,7 @@ var HTMLDOMPropertyConfig = {
 };
 
 module.exports = HTMLDOMPropertyConfig;
-},{"./DOMProperty":170}],183:[function(require,module,exports){
+},{"./DOMProperty":223}],236:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -39360,7 +40285,7 @@ var KeyEscapeUtils = {
 };
 
 module.exports = KeyEscapeUtils;
-},{}],184:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -39499,7 +40424,7 @@ var LinkedValueUtils = {
 
 module.exports = LinkedValueUtils;
 }).call(this,require('_process'))
-},{"./ReactPropTypeLocations":243,"./ReactPropTypes":244,"./ReactPropTypesSecret":245,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],185:[function(require,module,exports){
+},{"./ReactPropTypeLocations":296,"./ReactPropTypes":297,"./ReactPropTypesSecret":298,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],238:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -39623,7 +40548,7 @@ var PooledClass = {
 
 module.exports = PooledClass;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],186:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],239:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -39715,7 +40640,7 @@ var React = {
 
 module.exports = React;
 }).call(this,require('_process'))
-},{"./ReactChildren":189,"./ReactClass":191,"./ReactComponent":192,"./ReactDOMFactories":205,"./ReactElement":221,"./ReactElementValidator":222,"./ReactPropTypes":244,"./ReactPureComponent":246,"./ReactVersion":256,"./onlyChild":297,"_process":158,"fbjs/lib/warning":80,"object-assign":156}],187:[function(require,module,exports){
+},{"./ReactChildren":242,"./ReactClass":244,"./ReactComponent":245,"./ReactDOMFactories":258,"./ReactElement":274,"./ReactElementValidator":275,"./ReactPropTypes":297,"./ReactPureComponent":299,"./ReactVersion":309,"./onlyChild":350,"_process":211,"fbjs/lib/warning":131,"object-assign":209}],240:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -40046,7 +40971,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 });
 
 module.exports = ReactBrowserEventEmitter;
-},{"./EventConstants":176,"./EventPluginRegistry":178,"./ReactEventEmitterMixin":225,"./ViewportMetrics":274,"./getVendorPrefixedEventName":293,"./isEventSupported":295,"object-assign":156}],188:[function(require,module,exports){
+},{"./EventConstants":229,"./EventPluginRegistry":231,"./ReactEventEmitterMixin":278,"./ViewportMetrics":327,"./getVendorPrefixedEventName":346,"./isEventSupported":348,"object-assign":209}],241:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -40203,7 +41128,7 @@ var ReactChildReconciler = {
 
 module.exports = ReactChildReconciler;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":183,"./ReactComponentTreeHook":195,"./ReactReconciler":248,"./instantiateReactComponent":294,"./shouldUpdateReactComponent":303,"./traverseAllChildren":304,"_process":158,"fbjs/lib/warning":80}],189:[function(require,module,exports){
+},{"./KeyEscapeUtils":236,"./ReactComponentTreeHook":248,"./ReactReconciler":301,"./instantiateReactComponent":347,"./shouldUpdateReactComponent":356,"./traverseAllChildren":357,"_process":211,"fbjs/lib/warning":131}],242:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -40395,7 +41320,7 @@ var ReactChildren = {
 };
 
 module.exports = ReactChildren;
-},{"./PooledClass":185,"./ReactElement":221,"./traverseAllChildren":304,"fbjs/lib/emptyFunction":63}],190:[function(require,module,exports){
+},{"./PooledClass":238,"./ReactElement":274,"./traverseAllChildren":357,"fbjs/lib/emptyFunction":114}],243:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -40452,7 +41377,7 @@ var ReactChildrenMutationWarningHook = {
 
 module.exports = ReactChildrenMutationWarningHook;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":195,"_process":158,"fbjs/lib/warning":80}],191:[function(require,module,exports){
+},{"./ReactComponentTreeHook":248,"_process":211,"fbjs/lib/warning":131}],244:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -41187,7 +42112,7 @@ var ReactClass = {
 
 module.exports = ReactClass;
 }).call(this,require('_process'))
-},{"./ReactComponent":192,"./ReactElement":221,"./ReactNoopUpdateQueue":240,"./ReactPropTypeLocationNames":242,"./ReactPropTypeLocations":243,"./reactProdInvariant":299,"_process":158,"fbjs/lib/emptyObject":64,"fbjs/lib/invariant":71,"fbjs/lib/keyMirror":74,"fbjs/lib/keyOf":75,"fbjs/lib/warning":80,"object-assign":156}],192:[function(require,module,exports){
+},{"./ReactComponent":245,"./ReactElement":274,"./ReactNoopUpdateQueue":293,"./ReactPropTypeLocationNames":295,"./ReactPropTypeLocations":296,"./reactProdInvariant":352,"_process":211,"fbjs/lib/emptyObject":115,"fbjs/lib/invariant":122,"fbjs/lib/keyMirror":125,"fbjs/lib/keyOf":126,"fbjs/lib/warning":131,"object-assign":209}],245:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -41308,7 +42233,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactComponent;
 }).call(this,require('_process'))
-},{"./ReactNoopUpdateQueue":240,"./canDefineProperty":277,"./reactProdInvariant":299,"_process":158,"fbjs/lib/emptyObject":64,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],193:[function(require,module,exports){
+},{"./ReactNoopUpdateQueue":293,"./canDefineProperty":330,"./reactProdInvariant":352,"_process":211,"fbjs/lib/emptyObject":115,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],246:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -41339,7 +42264,7 @@ var ReactComponentBrowserEnvironment = {
 };
 
 module.exports = ReactComponentBrowserEnvironment;
-},{"./DOMChildrenOperations":167,"./ReactDOMIDOperations":207}],194:[function(require,module,exports){
+},{"./DOMChildrenOperations":220,"./ReactDOMIDOperations":260}],247:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -41387,7 +42312,7 @@ var ReactComponentEnvironment = {
 
 module.exports = ReactComponentEnvironment;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],195:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],248:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -41732,7 +42657,7 @@ var ReactComponentTreeHook = {
 
 module.exports = ReactComponentTreeHook;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":197,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],196:[function(require,module,exports){
+},{"./ReactCurrentOwner":250,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],249:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -42639,7 +43564,7 @@ var ReactCompositeComponent = {
 
 module.exports = ReactCompositeComponent;
 }).call(this,require('_process'))
-},{"./ReactComponentEnvironment":194,"./ReactCurrentOwner":197,"./ReactElement":221,"./ReactErrorUtils":224,"./ReactInstanceMap":232,"./ReactInstrumentation":233,"./ReactNodeTypes":239,"./ReactPropTypeLocations":243,"./ReactReconciler":248,"./checkReactTypeSpec":278,"./reactProdInvariant":299,"./shouldUpdateReactComponent":303,"_process":158,"fbjs/lib/emptyObject":64,"fbjs/lib/invariant":71,"fbjs/lib/shallowEqual":79,"fbjs/lib/warning":80,"object-assign":156}],197:[function(require,module,exports){
+},{"./ReactComponentEnvironment":247,"./ReactCurrentOwner":250,"./ReactElement":274,"./ReactErrorUtils":277,"./ReactInstanceMap":285,"./ReactInstrumentation":286,"./ReactNodeTypes":292,"./ReactPropTypeLocations":296,"./ReactReconciler":301,"./checkReactTypeSpec":331,"./reactProdInvariant":352,"./shouldUpdateReactComponent":356,"_process":211,"fbjs/lib/emptyObject":115,"fbjs/lib/invariant":122,"fbjs/lib/shallowEqual":130,"fbjs/lib/warning":131,"object-assign":209}],250:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -42671,7 +43596,7 @@ var ReactCurrentOwner = {
 };
 
 module.exports = ReactCurrentOwner;
-},{}],198:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -42784,7 +43709,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactDOM;
 }).call(this,require('_process'))
-},{"./ReactDOMComponentTree":202,"./ReactDOMNullInputValuePropHook":209,"./ReactDOMUnknownPropertyHook":217,"./ReactDefaultInjection":220,"./ReactInstrumentation":233,"./ReactMount":236,"./ReactReconciler":248,"./ReactUpdates":255,"./ReactVersion":256,"./findDOMNode":282,"./getHostComponentFromComposite":289,"./renderSubtreeIntoContainer":300,"_process":158,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/warning":80}],199:[function(require,module,exports){
+},{"./ReactDOMComponentTree":255,"./ReactDOMNullInputValuePropHook":262,"./ReactDOMUnknownPropertyHook":270,"./ReactDefaultInjection":273,"./ReactInstrumentation":286,"./ReactMount":289,"./ReactReconciler":301,"./ReactUpdates":308,"./ReactVersion":309,"./findDOMNode":335,"./getHostComponentFromComposite":342,"./renderSubtreeIntoContainer":353,"_process":211,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/warning":131}],252:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -42809,7 +43734,7 @@ var ReactDOMButton = {
 };
 
 module.exports = ReactDOMButton;
-},{"./DisabledInputUtils":174}],200:[function(require,module,exports){
+},{"./DisabledInputUtils":227}],253:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -43818,7 +44743,7 @@ _assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mi
 
 module.exports = ReactDOMComponent;
 }).call(this,require('_process'))
-},{"./AutoFocusUtils":161,"./CSSPropertyOperations":164,"./DOMLazyTree":168,"./DOMNamespaces":169,"./DOMProperty":170,"./DOMPropertyOperations":171,"./EventConstants":176,"./EventPluginHub":177,"./EventPluginRegistry":178,"./ReactBrowserEventEmitter":187,"./ReactDOMButton":199,"./ReactDOMComponentFlags":201,"./ReactDOMComponentTree":202,"./ReactDOMInput":208,"./ReactDOMOption":210,"./ReactDOMSelect":211,"./ReactDOMTextarea":215,"./ReactInstrumentation":233,"./ReactMultiChild":237,"./ReactServerRenderingTransaction":252,"./escapeTextContentForBrowser":281,"./isEventSupported":295,"./reactProdInvariant":299,"./validateDOMNesting":305,"_process":158,"fbjs/lib/emptyFunction":63,"fbjs/lib/invariant":71,"fbjs/lib/keyOf":75,"fbjs/lib/shallowEqual":79,"fbjs/lib/warning":80,"object-assign":156}],201:[function(require,module,exports){
+},{"./AutoFocusUtils":214,"./CSSPropertyOperations":217,"./DOMLazyTree":221,"./DOMNamespaces":222,"./DOMProperty":223,"./DOMPropertyOperations":224,"./EventConstants":229,"./EventPluginHub":230,"./EventPluginRegistry":231,"./ReactBrowserEventEmitter":240,"./ReactDOMButton":252,"./ReactDOMComponentFlags":254,"./ReactDOMComponentTree":255,"./ReactDOMInput":261,"./ReactDOMOption":263,"./ReactDOMSelect":264,"./ReactDOMTextarea":268,"./ReactInstrumentation":286,"./ReactMultiChild":290,"./ReactServerRenderingTransaction":305,"./escapeTextContentForBrowser":334,"./isEventSupported":348,"./reactProdInvariant":352,"./validateDOMNesting":358,"_process":211,"fbjs/lib/emptyFunction":114,"fbjs/lib/invariant":122,"fbjs/lib/keyOf":126,"fbjs/lib/shallowEqual":130,"fbjs/lib/warning":131,"object-assign":209}],254:[function(require,module,exports){
 /**
  * Copyright 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -43837,7 +44762,7 @@ var ReactDOMComponentFlags = {
 };
 
 module.exports = ReactDOMComponentFlags;
-},{}],202:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -44028,7 +44953,7 @@ var ReactDOMComponentTree = {
 
 module.exports = ReactDOMComponentTree;
 }).call(this,require('_process'))
-},{"./DOMProperty":170,"./ReactDOMComponentFlags":201,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],203:[function(require,module,exports){
+},{"./DOMProperty":223,"./ReactDOMComponentFlags":254,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],256:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -44064,7 +44989,7 @@ function ReactDOMContainerInfo(topLevelWrapper, node) {
 
 module.exports = ReactDOMContainerInfo;
 }).call(this,require('_process'))
-},{"./validateDOMNesting":305,"_process":158}],204:[function(require,module,exports){
+},{"./validateDOMNesting":358,"_process":211}],257:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -44125,7 +45050,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 });
 
 module.exports = ReactDOMEmptyComponent;
-},{"./DOMLazyTree":168,"./ReactDOMComponentTree":202,"object-assign":156}],205:[function(require,module,exports){
+},{"./DOMLazyTree":221,"./ReactDOMComponentTree":255,"object-assign":209}],258:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -44298,7 +45223,7 @@ var ReactDOMFactories = {
 
 module.exports = ReactDOMFactories;
 }).call(this,require('_process'))
-},{"./ReactElement":221,"./ReactElementValidator":222,"_process":158}],206:[function(require,module,exports){
+},{"./ReactElement":274,"./ReactElementValidator":275,"_process":211}],259:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -44317,7 +45242,7 @@ var ReactDOMFeatureFlags = {
 };
 
 module.exports = ReactDOMFeatureFlags;
-},{}],207:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -44352,7 +45277,7 @@ var ReactDOMIDOperations = {
 };
 
 module.exports = ReactDOMIDOperations;
-},{"./DOMChildrenOperations":167,"./ReactDOMComponentTree":202}],208:[function(require,module,exports){
+},{"./DOMChildrenOperations":220,"./ReactDOMComponentTree":255}],261:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -44624,7 +45549,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMInput;
 }).call(this,require('_process'))
-},{"./DOMPropertyOperations":171,"./DisabledInputUtils":174,"./LinkedValueUtils":184,"./ReactDOMComponentTree":202,"./ReactUpdates":255,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80,"object-assign":156}],209:[function(require,module,exports){
+},{"./DOMPropertyOperations":224,"./DisabledInputUtils":227,"./LinkedValueUtils":237,"./ReactDOMComponentTree":255,"./ReactUpdates":308,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131,"object-assign":209}],262:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -44670,7 +45595,7 @@ var ReactDOMNullInputValuePropHook = {
 
 module.exports = ReactDOMNullInputValuePropHook;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":195,"_process":158,"fbjs/lib/warning":80}],210:[function(require,module,exports){
+},{"./ReactComponentTreeHook":248,"_process":211,"fbjs/lib/warning":131}],263:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -44796,7 +45721,7 @@ var ReactDOMOption = {
 
 module.exports = ReactDOMOption;
 }).call(this,require('_process'))
-},{"./ReactChildren":189,"./ReactDOMComponentTree":202,"./ReactDOMSelect":211,"_process":158,"fbjs/lib/warning":80,"object-assign":156}],211:[function(require,module,exports){
+},{"./ReactChildren":242,"./ReactDOMComponentTree":255,"./ReactDOMSelect":264,"_process":211,"fbjs/lib/warning":131,"object-assign":209}],264:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -45000,7 +45925,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMSelect;
 }).call(this,require('_process'))
-},{"./DisabledInputUtils":174,"./LinkedValueUtils":184,"./ReactDOMComponentTree":202,"./ReactUpdates":255,"_process":158,"fbjs/lib/warning":80,"object-assign":156}],212:[function(require,module,exports){
+},{"./DisabledInputUtils":227,"./LinkedValueUtils":237,"./ReactDOMComponentTree":255,"./ReactUpdates":308,"_process":211,"fbjs/lib/warning":131,"object-assign":209}],265:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -45213,7 +46138,7 @@ var ReactDOMSelection = {
 };
 
 module.exports = ReactDOMSelection;
-},{"./getNodeForCharacterOffset":291,"./getTextContentAccessor":292,"fbjs/lib/ExecutionEnvironment":57}],213:[function(require,module,exports){
+},{"./getNodeForCharacterOffset":344,"./getTextContentAccessor":345,"fbjs/lib/ExecutionEnvironment":108}],266:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -45240,7 +46165,7 @@ var ReactDOMServer = {
 };
 
 module.exports = ReactDOMServer;
-},{"./ReactDefaultInjection":220,"./ReactServerRendering":251,"./ReactVersion":256}],214:[function(require,module,exports){
+},{"./ReactDefaultInjection":273,"./ReactServerRendering":304,"./ReactVersion":309}],267:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -45407,7 +46332,7 @@ _assign(ReactDOMTextComponent.prototype, {
 
 module.exports = ReactDOMTextComponent;
 }).call(this,require('_process'))
-},{"./DOMChildrenOperations":167,"./DOMLazyTree":168,"./ReactDOMComponentTree":202,"./escapeTextContentForBrowser":281,"./reactProdInvariant":299,"./validateDOMNesting":305,"_process":158,"fbjs/lib/invariant":71,"object-assign":156}],215:[function(require,module,exports){
+},{"./DOMChildrenOperations":220,"./DOMLazyTree":221,"./ReactDOMComponentTree":255,"./escapeTextContentForBrowser":334,"./reactProdInvariant":352,"./validateDOMNesting":358,"_process":211,"fbjs/lib/invariant":122,"object-assign":209}],268:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -45565,7 +46490,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMTextarea;
 }).call(this,require('_process'))
-},{"./DisabledInputUtils":174,"./LinkedValueUtils":184,"./ReactDOMComponentTree":202,"./ReactUpdates":255,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80,"object-assign":156}],216:[function(require,module,exports){
+},{"./DisabledInputUtils":227,"./LinkedValueUtils":237,"./ReactDOMComponentTree":255,"./ReactUpdates":308,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131,"object-assign":209}],269:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -45704,7 +46629,7 @@ module.exports = {
   traverseEnterLeave: traverseEnterLeave
 };
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],217:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],270:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -45819,7 +46744,7 @@ var ReactDOMUnknownPropertyHook = {
 
 module.exports = ReactDOMUnknownPropertyHook;
 }).call(this,require('_process'))
-},{"./DOMProperty":170,"./EventPluginRegistry":178,"./ReactComponentTreeHook":195,"_process":158,"fbjs/lib/warning":80}],218:[function(require,module,exports){
+},{"./DOMProperty":223,"./EventPluginRegistry":231,"./ReactComponentTreeHook":248,"_process":211,"fbjs/lib/warning":131}],271:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -46123,7 +47048,7 @@ if (/[?&]react_perf\b/.test(url)) {
 
 module.exports = ReactDebugTool;
 }).call(this,require('_process'))
-},{"./ReactChildrenMutationWarningHook":190,"./ReactComponentTreeHook":195,"./ReactHostOperationHistoryHook":229,"./ReactInvalidSetStateWarningHook":234,"_process":158,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/performanceNow":78,"fbjs/lib/warning":80}],219:[function(require,module,exports){
+},{"./ReactChildrenMutationWarningHook":243,"./ReactComponentTreeHook":248,"./ReactHostOperationHistoryHook":282,"./ReactInvalidSetStateWarningHook":287,"_process":211,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/performanceNow":129,"fbjs/lib/warning":131}],272:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -46192,7 +47117,7 @@ var ReactDefaultBatchingStrategy = {
 };
 
 module.exports = ReactDefaultBatchingStrategy;
-},{"./ReactUpdates":255,"./Transaction":273,"fbjs/lib/emptyFunction":63,"object-assign":156}],220:[function(require,module,exports){
+},{"./ReactUpdates":308,"./Transaction":326,"fbjs/lib/emptyFunction":114,"object-assign":209}],273:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -46277,7 +47202,7 @@ function inject() {
 module.exports = {
   inject: inject
 };
-},{"./BeforeInputEventPlugin":162,"./ChangeEventPlugin":166,"./DefaultEventPluginOrder":173,"./EnterLeaveEventPlugin":175,"./HTMLDOMPropertyConfig":182,"./ReactComponentBrowserEnvironment":193,"./ReactDOMComponent":200,"./ReactDOMComponentTree":202,"./ReactDOMEmptyComponent":204,"./ReactDOMTextComponent":214,"./ReactDOMTreeTraversal":216,"./ReactDefaultBatchingStrategy":219,"./ReactEventListener":226,"./ReactInjection":230,"./ReactReconcileTransaction":247,"./SVGDOMPropertyConfig":257,"./SelectEventPlugin":258,"./SimpleEventPlugin":259}],221:[function(require,module,exports){
+},{"./BeforeInputEventPlugin":215,"./ChangeEventPlugin":219,"./DefaultEventPluginOrder":226,"./EnterLeaveEventPlugin":228,"./HTMLDOMPropertyConfig":235,"./ReactComponentBrowserEnvironment":246,"./ReactDOMComponent":253,"./ReactDOMComponentTree":255,"./ReactDOMEmptyComponent":257,"./ReactDOMTextComponent":267,"./ReactDOMTreeTraversal":269,"./ReactDefaultBatchingStrategy":272,"./ReactEventListener":279,"./ReactInjection":283,"./ReactReconcileTransaction":300,"./SVGDOMPropertyConfig":310,"./SelectEventPlugin":311,"./SimpleEventPlugin":312}],274:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -46628,7 +47553,7 @@ ReactElement.REACT_ELEMENT_TYPE = REACT_ELEMENT_TYPE;
 
 module.exports = ReactElement;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":197,"./canDefineProperty":277,"_process":158,"fbjs/lib/warning":80,"object-assign":156}],222:[function(require,module,exports){
+},{"./ReactCurrentOwner":250,"./canDefineProperty":330,"_process":211,"fbjs/lib/warning":131,"object-assign":209}],275:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -46859,7 +47784,7 @@ var ReactElementValidator = {
 
 module.exports = ReactElementValidator;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":195,"./ReactCurrentOwner":197,"./ReactElement":221,"./ReactPropTypeLocations":243,"./canDefineProperty":277,"./checkReactTypeSpec":278,"./getIteratorFn":290,"_process":158,"fbjs/lib/warning":80}],223:[function(require,module,exports){
+},{"./ReactComponentTreeHook":248,"./ReactCurrentOwner":250,"./ReactElement":274,"./ReactPropTypeLocations":296,"./canDefineProperty":330,"./checkReactTypeSpec":331,"./getIteratorFn":343,"_process":211,"fbjs/lib/warning":131}],276:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -46890,7 +47815,7 @@ var ReactEmptyComponent = {
 ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 
 module.exports = ReactEmptyComponent;
-},{}],224:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -46969,7 +47894,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactErrorUtils;
 }).call(this,require('_process'))
-},{"_process":158}],225:[function(require,module,exports){
+},{"_process":211}],278:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -47003,7 +47928,7 @@ var ReactEventEmitterMixin = {
 };
 
 module.exports = ReactEventEmitterMixin;
-},{"./EventPluginHub":177}],226:[function(require,module,exports){
+},{"./EventPluginHub":230}],279:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -47161,7 +48086,7 @@ var ReactEventListener = {
 };
 
 module.exports = ReactEventListener;
-},{"./PooledClass":185,"./ReactDOMComponentTree":202,"./ReactUpdates":255,"./getEventTarget":288,"fbjs/lib/EventListener":56,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/getUnboundedScrollPosition":68,"object-assign":156}],227:[function(require,module,exports){
+},{"./PooledClass":238,"./ReactDOMComponentTree":255,"./ReactUpdates":308,"./getEventTarget":341,"fbjs/lib/EventListener":107,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/getUnboundedScrollPosition":119,"object-assign":209}],280:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -47184,7 +48109,7 @@ var ReactFeatureFlags = {
 };
 
 module.exports = ReactFeatureFlags;
-},{}],228:[function(require,module,exports){
+},{}],281:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -47263,7 +48188,7 @@ var ReactHostComponent = {
 
 module.exports = ReactHostComponent;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"object-assign":156}],229:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"object-assign":209}],282:[function(require,module,exports){
 /**
  * Copyright 2016-present, Facebook, Inc.
  * All rights reserved.
@@ -47301,7 +48226,7 @@ var ReactHostOperationHistoryHook = {
 };
 
 module.exports = ReactHostOperationHistoryHook;
-},{}],230:[function(require,module,exports){
+},{}],283:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -47338,7 +48263,7 @@ var ReactInjection = {
 };
 
 module.exports = ReactInjection;
-},{"./DOMProperty":170,"./EventPluginHub":177,"./EventPluginUtils":179,"./ReactBrowserEventEmitter":187,"./ReactClass":191,"./ReactComponentEnvironment":194,"./ReactEmptyComponent":223,"./ReactHostComponent":228,"./ReactUpdates":255}],231:[function(require,module,exports){
+},{"./DOMProperty":223,"./EventPluginHub":230,"./EventPluginUtils":232,"./ReactBrowserEventEmitter":240,"./ReactClass":244,"./ReactComponentEnvironment":247,"./ReactEmptyComponent":276,"./ReactHostComponent":281,"./ReactUpdates":308}],284:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -47463,7 +48388,7 @@ var ReactInputSelection = {
 };
 
 module.exports = ReactInputSelection;
-},{"./ReactDOMSelection":212,"fbjs/lib/containsNode":60,"fbjs/lib/focusNode":65,"fbjs/lib/getActiveElement":66}],232:[function(require,module,exports){
+},{"./ReactDOMSelection":265,"fbjs/lib/containsNode":111,"fbjs/lib/focusNode":116,"fbjs/lib/getActiveElement":117}],285:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -47512,7 +48437,7 @@ var ReactInstanceMap = {
 };
 
 module.exports = ReactInstanceMap;
-},{}],233:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -47536,7 +48461,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = { debugTool: debugTool };
 }).call(this,require('_process'))
-},{"./ReactDebugTool":218,"_process":158}],234:[function(require,module,exports){
+},{"./ReactDebugTool":271,"_process":211}],287:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -47575,7 +48500,7 @@ var ReactInvalidSetStateWarningHook = {
 
 module.exports = ReactInvalidSetStateWarningHook;
 }).call(this,require('_process'))
-},{"_process":158,"fbjs/lib/warning":80}],235:[function(require,module,exports){
+},{"_process":211,"fbjs/lib/warning":131}],288:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -47626,7 +48551,7 @@ var ReactMarkupChecksum = {
 };
 
 module.exports = ReactMarkupChecksum;
-},{"./adler32":276}],236:[function(require,module,exports){
+},{"./adler32":329}],289:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -48163,7 +49088,7 @@ var ReactMount = {
 
 module.exports = ReactMount;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":168,"./DOMProperty":170,"./ReactBrowserEventEmitter":187,"./ReactCurrentOwner":197,"./ReactDOMComponentTree":202,"./ReactDOMContainerInfo":203,"./ReactDOMFeatureFlags":206,"./ReactElement":221,"./ReactFeatureFlags":227,"./ReactInstanceMap":232,"./ReactInstrumentation":233,"./ReactMarkupChecksum":235,"./ReactReconciler":248,"./ReactUpdateQueue":254,"./ReactUpdates":255,"./instantiateReactComponent":294,"./reactProdInvariant":299,"./setInnerHTML":301,"./shouldUpdateReactComponent":303,"_process":158,"fbjs/lib/emptyObject":64,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],237:[function(require,module,exports){
+},{"./DOMLazyTree":221,"./DOMProperty":223,"./ReactBrowserEventEmitter":240,"./ReactCurrentOwner":250,"./ReactDOMComponentTree":255,"./ReactDOMContainerInfo":256,"./ReactDOMFeatureFlags":259,"./ReactElement":274,"./ReactFeatureFlags":280,"./ReactInstanceMap":285,"./ReactInstrumentation":286,"./ReactMarkupChecksum":288,"./ReactReconciler":301,"./ReactUpdateQueue":307,"./ReactUpdates":308,"./instantiateReactComponent":347,"./reactProdInvariant":352,"./setInnerHTML":354,"./shouldUpdateReactComponent":356,"_process":211,"fbjs/lib/emptyObject":115,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],290:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -48617,7 +49542,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 }).call(this,require('_process'))
-},{"./ReactChildReconciler":188,"./ReactComponentEnvironment":194,"./ReactCurrentOwner":197,"./ReactInstanceMap":232,"./ReactInstrumentation":233,"./ReactMultiChildUpdateTypes":238,"./ReactReconciler":248,"./flattenChildren":283,"./reactProdInvariant":299,"_process":158,"fbjs/lib/emptyFunction":63,"fbjs/lib/invariant":71}],238:[function(require,module,exports){
+},{"./ReactChildReconciler":241,"./ReactComponentEnvironment":247,"./ReactCurrentOwner":250,"./ReactInstanceMap":285,"./ReactInstrumentation":286,"./ReactMultiChildUpdateTypes":291,"./ReactReconciler":301,"./flattenChildren":336,"./reactProdInvariant":352,"_process":211,"fbjs/lib/emptyFunction":114,"fbjs/lib/invariant":122}],291:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -48650,7 +49575,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 });
 
 module.exports = ReactMultiChildUpdateTypes;
-},{"fbjs/lib/keyMirror":74}],239:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":125}],292:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -48693,7 +49618,7 @@ var ReactNodeTypes = {
 
 module.exports = ReactNodeTypes;
 }).call(this,require('_process'))
-},{"./ReactElement":221,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],240:[function(require,module,exports){
+},{"./ReactElement":274,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],293:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -48792,7 +49717,7 @@ var ReactNoopUpdateQueue = {
 
 module.exports = ReactNoopUpdateQueue;
 }).call(this,require('_process'))
-},{"_process":158,"fbjs/lib/warning":80}],241:[function(require,module,exports){
+},{"_process":211,"fbjs/lib/warning":131}],294:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -48889,7 +49814,7 @@ var ReactOwner = {
 
 module.exports = ReactOwner;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],242:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],295:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -48916,7 +49841,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactPropTypeLocationNames;
 }).call(this,require('_process'))
-},{"_process":158}],243:[function(require,module,exports){
+},{"_process":211}],296:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -48939,7 +49864,7 @@ var ReactPropTypeLocations = keyMirror({
 });
 
 module.exports = ReactPropTypeLocations;
-},{"fbjs/lib/keyMirror":74}],244:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":125}],297:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -49373,7 +50298,7 @@ function getClassName(propValue) {
 
 module.exports = ReactPropTypes;
 }).call(this,require('_process'))
-},{"./ReactElement":221,"./ReactPropTypeLocationNames":242,"./ReactPropTypesSecret":245,"./getIteratorFn":290,"_process":158,"fbjs/lib/emptyFunction":63,"fbjs/lib/warning":80}],245:[function(require,module,exports){
+},{"./ReactElement":274,"./ReactPropTypeLocationNames":295,"./ReactPropTypesSecret":298,"./getIteratorFn":343,"_process":211,"fbjs/lib/emptyFunction":114,"fbjs/lib/warning":131}],298:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -49390,7 +50315,7 @@ module.exports = ReactPropTypes;
 var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
-},{}],246:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -49433,7 +50358,7 @@ _assign(ReactPureComponent.prototype, ReactComponent.prototype);
 ReactPureComponent.prototype.isPureReactComponent = true;
 
 module.exports = ReactPureComponent;
-},{"./ReactComponent":192,"./ReactNoopUpdateQueue":240,"fbjs/lib/emptyObject":64,"object-assign":156}],247:[function(require,module,exports){
+},{"./ReactComponent":245,"./ReactNoopUpdateQueue":293,"fbjs/lib/emptyObject":115,"object-assign":209}],300:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -49614,7 +50539,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 }).call(this,require('_process'))
-},{"./CallbackQueue":165,"./PooledClass":185,"./ReactBrowserEventEmitter":187,"./ReactInputSelection":231,"./ReactInstrumentation":233,"./ReactUpdateQueue":254,"./Transaction":273,"_process":158,"object-assign":156}],248:[function(require,module,exports){
+},{"./CallbackQueue":218,"./PooledClass":238,"./ReactBrowserEventEmitter":240,"./ReactInputSelection":284,"./ReactInstrumentation":286,"./ReactUpdateQueue":307,"./Transaction":326,"_process":211,"object-assign":209}],301:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -49785,7 +50710,7 @@ var ReactReconciler = {
 
 module.exports = ReactReconciler;
 }).call(this,require('_process'))
-},{"./ReactInstrumentation":233,"./ReactRef":249,"_process":158,"fbjs/lib/warning":80}],249:[function(require,module,exports){
+},{"./ReactInstrumentation":286,"./ReactRef":302,"_process":211,"fbjs/lib/warning":131}],302:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -49866,7 +50791,7 @@ ReactRef.detachRefs = function (instance, element) {
 };
 
 module.exports = ReactRef;
-},{"./ReactOwner":241}],250:[function(require,module,exports){
+},{"./ReactOwner":294}],303:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -49889,7 +50814,7 @@ var ReactServerBatchingStrategy = {
 };
 
 module.exports = ReactServerBatchingStrategy;
-},{}],251:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -49982,7 +50907,7 @@ module.exports = {
   renderToStaticMarkup: renderToStaticMarkup
 };
 }).call(this,require('_process'))
-},{"./ReactDOMContainerInfo":203,"./ReactDefaultBatchingStrategy":219,"./ReactElement":221,"./ReactInstrumentation":233,"./ReactMarkupChecksum":235,"./ReactReconciler":248,"./ReactServerBatchingStrategy":250,"./ReactServerRenderingTransaction":252,"./ReactUpdates":255,"./instantiateReactComponent":294,"./reactProdInvariant":299,"_process":158,"fbjs/lib/emptyObject":64,"fbjs/lib/invariant":71}],252:[function(require,module,exports){
+},{"./ReactDOMContainerInfo":256,"./ReactDefaultBatchingStrategy":272,"./ReactElement":274,"./ReactInstrumentation":286,"./ReactMarkupChecksum":288,"./ReactReconciler":301,"./ReactServerBatchingStrategy":303,"./ReactServerRenderingTransaction":305,"./ReactUpdates":308,"./instantiateReactComponent":347,"./reactProdInvariant":352,"_process":211,"fbjs/lib/emptyObject":115,"fbjs/lib/invariant":122}],305:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -50075,7 +51000,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 }).call(this,require('_process'))
-},{"./PooledClass":185,"./ReactInstrumentation":233,"./ReactServerUpdateQueue":253,"./Transaction":273,"_process":158,"object-assign":156}],253:[function(require,module,exports){
+},{"./PooledClass":238,"./ReactInstrumentation":286,"./ReactServerUpdateQueue":306,"./Transaction":326,"_process":211,"object-assign":209}],306:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -50219,7 +51144,7 @@ var ReactServerUpdateQueue = function () {
 
 module.exports = ReactServerUpdateQueue;
 }).call(this,require('_process'))
-},{"./ReactUpdateQueue":254,"./Transaction":273,"_process":158,"fbjs/lib/warning":80}],254:[function(require,module,exports){
+},{"./ReactUpdateQueue":307,"./Transaction":326,"_process":211,"fbjs/lib/warning":131}],307:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -50448,7 +51373,7 @@ var ReactUpdateQueue = {
 
 module.exports = ReactUpdateQueue;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":197,"./ReactInstanceMap":232,"./ReactInstrumentation":233,"./ReactUpdates":255,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],255:[function(require,module,exports){
+},{"./ReactCurrentOwner":250,"./ReactInstanceMap":285,"./ReactInstrumentation":286,"./ReactUpdates":308,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],308:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -50702,7 +51627,7 @@ var ReactUpdates = {
 
 module.exports = ReactUpdates;
 }).call(this,require('_process'))
-},{"./CallbackQueue":165,"./PooledClass":185,"./ReactFeatureFlags":227,"./ReactReconciler":248,"./Transaction":273,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"object-assign":156}],256:[function(require,module,exports){
+},{"./CallbackQueue":218,"./PooledClass":238,"./ReactFeatureFlags":280,"./ReactReconciler":301,"./Transaction":326,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"object-assign":209}],309:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -50717,7 +51642,7 @@ module.exports = ReactUpdates;
 'use strict';
 
 module.exports = '15.3.2';
-},{}],257:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -51020,7 +51945,7 @@ Object.keys(ATTRS).forEach(function (key) {
 });
 
 module.exports = SVGDOMPropertyConfig;
-},{}],258:[function(require,module,exports){
+},{}],311:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -51217,7 +52142,7 @@ var SelectEventPlugin = {
 };
 
 module.exports = SelectEventPlugin;
-},{"./EventConstants":176,"./EventPropagators":180,"./ReactDOMComponentTree":202,"./ReactInputSelection":231,"./SyntheticEvent":264,"./isTextInputElement":296,"fbjs/lib/ExecutionEnvironment":57,"fbjs/lib/getActiveElement":66,"fbjs/lib/keyOf":75,"fbjs/lib/shallowEqual":79}],259:[function(require,module,exports){
+},{"./EventConstants":229,"./EventPropagators":233,"./ReactDOMComponentTree":255,"./ReactInputSelection":284,"./SyntheticEvent":317,"./isTextInputElement":349,"fbjs/lib/ExecutionEnvironment":108,"fbjs/lib/getActiveElement":117,"fbjs/lib/keyOf":126,"fbjs/lib/shallowEqual":130}],312:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -51855,7 +52780,7 @@ var SimpleEventPlugin = {
 
 module.exports = SimpleEventPlugin;
 }).call(this,require('_process'))
-},{"./EventConstants":176,"./EventPropagators":180,"./ReactDOMComponentTree":202,"./SyntheticAnimationEvent":260,"./SyntheticClipboardEvent":261,"./SyntheticDragEvent":263,"./SyntheticEvent":264,"./SyntheticFocusEvent":265,"./SyntheticKeyboardEvent":267,"./SyntheticMouseEvent":268,"./SyntheticTouchEvent":269,"./SyntheticTransitionEvent":270,"./SyntheticUIEvent":271,"./SyntheticWheelEvent":272,"./getEventCharCode":285,"./reactProdInvariant":299,"_process":158,"fbjs/lib/EventListener":56,"fbjs/lib/emptyFunction":63,"fbjs/lib/invariant":71,"fbjs/lib/keyOf":75}],260:[function(require,module,exports){
+},{"./EventConstants":229,"./EventPropagators":233,"./ReactDOMComponentTree":255,"./SyntheticAnimationEvent":313,"./SyntheticClipboardEvent":314,"./SyntheticDragEvent":316,"./SyntheticEvent":317,"./SyntheticFocusEvent":318,"./SyntheticKeyboardEvent":320,"./SyntheticMouseEvent":321,"./SyntheticTouchEvent":322,"./SyntheticTransitionEvent":323,"./SyntheticUIEvent":324,"./SyntheticWheelEvent":325,"./getEventCharCode":338,"./reactProdInvariant":352,"_process":211,"fbjs/lib/EventListener":107,"fbjs/lib/emptyFunction":114,"fbjs/lib/invariant":122,"fbjs/lib/keyOf":126}],313:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -51895,7 +52820,7 @@ function SyntheticAnimationEvent(dispatchConfig, dispatchMarker, nativeEvent, na
 SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 
 module.exports = SyntheticAnimationEvent;
-},{"./SyntheticEvent":264}],261:[function(require,module,exports){
+},{"./SyntheticEvent":317}],314:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -51934,7 +52859,7 @@ function SyntheticClipboardEvent(dispatchConfig, dispatchMarker, nativeEvent, na
 SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 
 module.exports = SyntheticClipboardEvent;
-},{"./SyntheticEvent":264}],262:[function(require,module,exports){
+},{"./SyntheticEvent":317}],315:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -51971,7 +52896,7 @@ function SyntheticCompositionEvent(dispatchConfig, dispatchMarker, nativeEvent, 
 SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface);
 
 module.exports = SyntheticCompositionEvent;
-},{"./SyntheticEvent":264}],263:[function(require,module,exports){
+},{"./SyntheticEvent":317}],316:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52008,7 +52933,7 @@ function SyntheticDragEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeE
 SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
-},{"./SyntheticMouseEvent":268}],264:[function(require,module,exports){
+},{"./SyntheticMouseEvent":321}],317:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -52279,7 +53204,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
   }
 }
 }).call(this,require('_process'))
-},{"./PooledClass":185,"_process":158,"fbjs/lib/emptyFunction":63,"fbjs/lib/warning":80,"object-assign":156}],265:[function(require,module,exports){
+},{"./PooledClass":238,"_process":211,"fbjs/lib/emptyFunction":114,"fbjs/lib/warning":131,"object-assign":209}],318:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52316,7 +53241,7 @@ function SyntheticFocusEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
-},{"./SyntheticUIEvent":271}],266:[function(require,module,exports){
+},{"./SyntheticUIEvent":324}],319:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52354,7 +53279,7 @@ function SyntheticInputEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 
 module.exports = SyntheticInputEvent;
-},{"./SyntheticEvent":264}],267:[function(require,module,exports){
+},{"./SyntheticEvent":317}],320:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52439,7 +53364,7 @@ function SyntheticKeyboardEvent(dispatchConfig, dispatchMarker, nativeEvent, nat
 SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
-},{"./SyntheticUIEvent":271,"./getEventCharCode":285,"./getEventKey":286,"./getEventModifierState":287}],268:[function(require,module,exports){
+},{"./SyntheticUIEvent":324,"./getEventCharCode":338,"./getEventKey":339,"./getEventModifierState":340}],321:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52512,7 +53437,7 @@ function SyntheticMouseEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
-},{"./SyntheticUIEvent":271,"./ViewportMetrics":274,"./getEventModifierState":287}],269:[function(require,module,exports){
+},{"./SyntheticUIEvent":324,"./ViewportMetrics":327,"./getEventModifierState":340}],322:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52558,7 +53483,7 @@ function SyntheticTouchEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
-},{"./SyntheticUIEvent":271,"./getEventModifierState":287}],270:[function(require,module,exports){
+},{"./SyntheticUIEvent":324,"./getEventModifierState":340}],323:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52598,7 +53523,7 @@ function SyntheticTransitionEvent(dispatchConfig, dispatchMarker, nativeEvent, n
 SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 
 module.exports = SyntheticTransitionEvent;
-},{"./SyntheticEvent":264}],271:[function(require,module,exports){
+},{"./SyntheticEvent":317}],324:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52658,7 +53583,7 @@ function SyntheticUIEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEve
 SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
-},{"./SyntheticEvent":264,"./getEventTarget":288}],272:[function(require,module,exports){
+},{"./SyntheticEvent":317,"./getEventTarget":341}],325:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52713,7 +53638,7 @@ function SyntheticWheelEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
-},{"./SyntheticMouseEvent":268}],273:[function(require,module,exports){
+},{"./SyntheticMouseEvent":321}],326:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -52949,7 +53874,7 @@ var Transaction = {
 
 module.exports = Transaction;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],274:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],327:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -52977,7 +53902,7 @@ var ViewportMetrics = {
 };
 
 module.exports = ViewportMetrics;
-},{}],275:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -53038,7 +53963,7 @@ function accumulateInto(current, next) {
 
 module.exports = accumulateInto;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],276:[function(require,module,exports){
+},{"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],329:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53083,7 +54008,7 @@ function adler32(data) {
 }
 
 module.exports = adler32;
-},{}],277:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -53110,7 +54035,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = canDefineProperty;
 }).call(this,require('_process'))
-},{"_process":158}],278:[function(require,module,exports){
+},{"_process":211}],331:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -53200,7 +54125,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
 module.exports = checkReactTypeSpec;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeHook":195,"./ReactPropTypeLocationNames":242,"./ReactPropTypesSecret":245,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],279:[function(require,module,exports){
+},{"./ReactComponentTreeHook":248,"./ReactPropTypeLocationNames":295,"./ReactPropTypesSecret":298,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],332:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53233,7 +54158,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 };
 
 module.exports = createMicrosoftUnsafeLocalFunction;
-},{}],280:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -53315,7 +54240,7 @@ function dangerousStyleValue(name, value, component) {
 
 module.exports = dangerousStyleValue;
 }).call(this,require('_process'))
-},{"./CSSProperty":163,"_process":158,"fbjs/lib/warning":80}],281:[function(require,module,exports){
+},{"./CSSProperty":216,"_process":211,"fbjs/lib/warning":131}],334:[function(require,module,exports){
 /**
  * Copyright 2016-present, Facebook, Inc.
  * All rights reserved.
@@ -53439,7 +54364,7 @@ function escapeTextContentForBrowser(text) {
 }
 
 module.exports = escapeTextContentForBrowser;
-},{}],282:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -53502,7 +54427,7 @@ function findDOMNode(componentOrElement) {
 
 module.exports = findDOMNode;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":197,"./ReactDOMComponentTree":202,"./ReactInstanceMap":232,"./getHostComponentFromComposite":289,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],283:[function(require,module,exports){
+},{"./ReactCurrentOwner":250,"./ReactDOMComponentTree":255,"./ReactInstanceMap":285,"./getHostComponentFromComposite":342,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],336:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -53581,7 +54506,7 @@ function flattenChildren(children, selfDebugID) {
 
 module.exports = flattenChildren;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":183,"./ReactComponentTreeHook":195,"./traverseAllChildren":304,"_process":158,"fbjs/lib/warning":80}],284:[function(require,module,exports){
+},{"./KeyEscapeUtils":236,"./ReactComponentTreeHook":248,"./traverseAllChildren":357,"_process":211,"fbjs/lib/warning":131}],337:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53613,7 +54538,7 @@ function forEachAccumulated(arr, cb, scope) {
 }
 
 module.exports = forEachAccumulated;
-},{}],285:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53664,7 +54589,7 @@ function getEventCharCode(nativeEvent) {
 }
 
 module.exports = getEventCharCode;
-},{}],286:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53767,7 +54692,7 @@ function getEventKey(nativeEvent) {
 }
 
 module.exports = getEventKey;
-},{"./getEventCharCode":285}],287:[function(require,module,exports){
+},{"./getEventCharCode":338}],340:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53811,7 +54736,7 @@ function getEventModifierState(nativeEvent) {
 }
 
 module.exports = getEventModifierState;
-},{}],288:[function(require,module,exports){
+},{}],341:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53847,7 +54772,7 @@ function getEventTarget(nativeEvent) {
 }
 
 module.exports = getEventTarget;
-},{}],289:[function(require,module,exports){
+},{}],342:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53878,7 +54803,7 @@ function getHostComponentFromComposite(inst) {
 }
 
 module.exports = getHostComponentFromComposite;
-},{"./ReactNodeTypes":239}],290:[function(require,module,exports){
+},{"./ReactNodeTypes":292}],343:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53920,7 +54845,7 @@ function getIteratorFn(maybeIterable) {
 }
 
 module.exports = getIteratorFn;
-},{}],291:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -53995,7 +54920,7 @@ function getNodeForCharacterOffset(root, offset) {
 }
 
 module.exports = getNodeForCharacterOffset;
-},{}],292:[function(require,module,exports){
+},{}],345:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54029,7 +54954,7 @@ function getTextContentAccessor() {
 }
 
 module.exports = getTextContentAccessor;
-},{"fbjs/lib/ExecutionEnvironment":57}],293:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":108}],346:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54131,7 +55056,7 @@ function getVendorPrefixedEventName(eventName) {
 }
 
 module.exports = getVendorPrefixedEventName;
-},{"fbjs/lib/ExecutionEnvironment":57}],294:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":108}],347:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -54253,7 +55178,7 @@ function instantiateReactComponent(node, shouldHaveDebugID) {
 
 module.exports = instantiateReactComponent;
 }).call(this,require('_process'))
-},{"./ReactCompositeComponent":196,"./ReactEmptyComponent":223,"./ReactHostComponent":228,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80,"object-assign":156}],295:[function(require,module,exports){
+},{"./ReactCompositeComponent":249,"./ReactEmptyComponent":276,"./ReactHostComponent":281,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131,"object-assign":209}],348:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54314,7 +55239,7 @@ function isEventSupported(eventNameSuffix, capture) {
 }
 
 module.exports = isEventSupported;
-},{"fbjs/lib/ExecutionEnvironment":57}],296:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":108}],349:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54366,7 +55291,7 @@ function isTextInputElement(elem) {
 }
 
 module.exports = isTextInputElement;
-},{}],297:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -54407,7 +55332,7 @@ function onlyChild(children) {
 
 module.exports = onlyChild;
 }).call(this,require('_process'))
-},{"./ReactElement":221,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71}],298:[function(require,module,exports){
+},{"./ReactElement":274,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122}],351:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54434,7 +55359,7 @@ function quoteAttributeValueForBrowser(value) {
 }
 
 module.exports = quoteAttributeValueForBrowser;
-},{"./escapeTextContentForBrowser":281}],299:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":334}],352:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54474,7 +55399,7 @@ function reactProdInvariant(code) {
 }
 
 module.exports = reactProdInvariant;
-},{}],300:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54491,7 +55416,7 @@ module.exports = reactProdInvariant;
 var ReactMount = require('./ReactMount');
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
-},{"./ReactMount":236}],301:[function(require,module,exports){
+},{"./ReactMount":289}],354:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54590,7 +55515,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setInnerHTML;
-},{"./DOMNamespaces":169,"./createMicrosoftUnsafeLocalFunction":279,"fbjs/lib/ExecutionEnvironment":57}],302:[function(require,module,exports){
+},{"./DOMNamespaces":222,"./createMicrosoftUnsafeLocalFunction":332,"fbjs/lib/ExecutionEnvironment":108}],355:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54639,7 +55564,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setTextContent;
-},{"./escapeTextContentForBrowser":281,"./setInnerHTML":301,"fbjs/lib/ExecutionEnvironment":57}],303:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":334,"./setInnerHTML":354,"fbjs/lib/ExecutionEnvironment":108}],356:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -54682,7 +55607,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 }
 
 module.exports = shouldUpdateReactComponent;
-},{}],304:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -54852,7 +55777,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":183,"./ReactCurrentOwner":197,"./ReactElement":221,"./getIteratorFn":290,"./reactProdInvariant":299,"_process":158,"fbjs/lib/invariant":71,"fbjs/lib/warning":80}],305:[function(require,module,exports){
+},{"./KeyEscapeUtils":236,"./ReactCurrentOwner":250,"./ReactElement":274,"./getIteratorFn":343,"./reactProdInvariant":352,"_process":211,"fbjs/lib/invariant":122,"fbjs/lib/warning":131}],358:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -55237,15 +56162,15 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = validateDOMNesting;
 }).call(this,require('_process'))
-},{"_process":158,"fbjs/lib/emptyFunction":63,"fbjs/lib/warning":80,"object-assign":156}],306:[function(require,module,exports){
+},{"_process":211,"fbjs/lib/emptyFunction":114,"fbjs/lib/warning":131,"object-assign":209}],359:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/React');
 
-},{"./lib/React":186}],307:[function(require,module,exports){
+},{"./lib/React":239}],360:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":308}],308:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":361}],361:[function(require,module,exports){
 // a duplex stream is just a stream that is both readable and writable.
 // Since JS doesn't have multiple prototypal inheritance, this class
 // prototypally inherits from Readable, and then parasitically from
@@ -55321,7 +56246,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":310,"./_stream_writable":312,"core-util-is":19,"inherits":94,"process-nextick-args":157}],309:[function(require,module,exports){
+},{"./_stream_readable":363,"./_stream_writable":365,"core-util-is":19,"inherits":145,"process-nextick-args":210}],362:[function(require,module,exports){
 // a passthrough stream.
 // basically just the most minimal sort of Transform stream.
 // Every written chunk gets output as-is.
@@ -55348,7 +56273,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":311,"core-util-is":19,"inherits":94}],310:[function(require,module,exports){
+},{"./_stream_transform":364,"core-util-is":19,"inherits":145}],363:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -56288,7 +57213,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'))
-},{"./_stream_duplex":308,"./internal/streams/BufferList":313,"_process":158,"buffer":7,"buffer-shims":6,"core-util-is":19,"events":55,"inherits":94,"isarray":97,"process-nextick-args":157,"string_decoder/":367,"util":5}],311:[function(require,module,exports){
+},{"./_stream_duplex":361,"./internal/streams/BufferList":366,"_process":211,"buffer":7,"buffer-shims":6,"core-util-is":19,"events":106,"inherits":145,"isarray":148,"process-nextick-args":210,"string_decoder/":426,"util":5}],364:[function(require,module,exports){
 // a transform stream is a readable/writable stream where you do
 // something with the data.  Sometimes it's called a "filter",
 // but that's not a great name for it, since that implies a thing where
@@ -56469,7 +57394,7 @@ function done(stream, er) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":308,"core-util-is":19,"inherits":94}],312:[function(require,module,exports){
+},{"./_stream_duplex":361,"core-util-is":19,"inherits":145}],365:[function(require,module,exports){
 (function (process){
 // A bit simpler than readable streams.
 // Implement an async ._write(chunk, encoding, cb), and it'll handle all
@@ -56998,7 +57923,7 @@ function CorkedRequest(state) {
   };
 }
 }).call(this,require('_process'))
-},{"./_stream_duplex":308,"_process":158,"buffer":7,"buffer-shims":6,"core-util-is":19,"events":55,"inherits":94,"process-nextick-args":157,"util-deprecate":371}],313:[function(require,module,exports){
+},{"./_stream_duplex":361,"_process":211,"buffer":7,"buffer-shims":6,"core-util-is":19,"events":106,"inherits":145,"process-nextick-args":210,"util-deprecate":429}],366:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('buffer').Buffer;
@@ -57063,10 +57988,10 @@ BufferList.prototype.concat = function (n) {
   }
   return ret;
 };
-},{"buffer":7,"buffer-shims":6}],314:[function(require,module,exports){
+},{"buffer":7,"buffer-shims":6}],367:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":309}],315:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":362}],368:[function(require,module,exports){
 (function (process){
 var Stream = (function (){
   try {
@@ -57086,13 +58011,13 @@ if (!process.browser && process.env.READABLE_STREAM === 'disable' && Stream) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/_stream_duplex.js":308,"./lib/_stream_passthrough.js":309,"./lib/_stream_readable.js":310,"./lib/_stream_transform.js":311,"./lib/_stream_writable.js":312,"_process":158}],316:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":361,"./lib/_stream_passthrough.js":362,"./lib/_stream_readable.js":363,"./lib/_stream_transform.js":364,"./lib/_stream_writable.js":365,"_process":211}],369:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":311}],317:[function(require,module,exports){
+},{"./lib/_stream_transform.js":364}],370:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":312}],318:[function(require,module,exports){
+},{"./lib/_stream_writable.js":365}],371:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57123,6 +58048,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _selection = require('../models/selection');
 
 var _selection2 = _interopRequireDefault(_selection);
@@ -57143,6 +58072,10 @@ var _keycode = require('keycode');
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
+var _noop = require('../utils/noop');
+
+var _noop2 = _interopRequireDefault(_noop);
+
 var _environment = require('../constants/environment');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -57160,14 +58093,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  */
 
 var debug = (0, _debug2.default)('slate:content');
-
-/**
- * Noop.
- *
- * @type {Function}
- */
-
-function noop() {}
 
 /**
  * Content.
@@ -57208,7 +58133,7 @@ var Content = function (_React$Component) {
    *
    * @param {Object} props
    * @param {Object} state
-   * @return {Boolean} shouldUpdate
+   * @return {Boolean}
    */
 
   /**
@@ -57218,17 +58143,11 @@ var Content = function (_React$Component) {
    */
 
   /**
-   * While rendering, set the `isRendering` flag.
+   * On update, if the state is blurred now, but was focused before, and the
+   * DOM still has a node inside the editor selected, we need to blur it.
    *
-   * @param {Object} props
-   * @param {Object} state
-   */
-
-  /**
-   * When finished rendering, move the `isRendering` flag on next tick.
-   *
-   * @param {Object} props
-   * @param {Object} state
+   * @param {Object} prevProps
+   * @param {Object} prevState
    */
 
   _createClass(Content, [{
@@ -57244,9 +58163,9 @@ var Content = function (_React$Component) {
      */
 
     value: function getPoint(element, offset) {
-      var _props = this.props;
-      var state = _props.state;
-      var editor = _props.editor;
+      var _props = this.props,
+          state = _props.state,
+          editor = _props.editor;
       var document = state.document;
 
       var schema = editor.getSchema();
@@ -57261,15 +58180,30 @@ var Content = function (_React$Component) {
     }
 
     /**
+     * The React ref method to set the root content element locally.
+     *
+     * @param {Element} n
+     */
+
+    /**
+     * Check if an `event` is being fired from within the contenteditable element.
+     * This will return false for edits happening in non-contenteditable children,
+     * such as void nodes and other nested Slate editors.
+     *
+     * @param {Event} event
+     * @return {Boolean}
+     */
+
+    /**
      * On before input, bubble up.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On blur, update the selection to be not focused.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
@@ -57281,7 +58215,7 @@ var Content = function (_React$Component) {
     /**
      * On composition start, set the `isComposing` flag.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
@@ -57289,82 +58223,82 @@ var Content = function (_React$Component) {
      * increment the `forces` key, which will force the contenteditable element
      * to completely re-render, since IME puts React in an unreconcilable state.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On copy, defer to `onCutCopy`, then bubble up.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On cut, defer to `onCutCopy`, then bubble up.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On drag end, unset the `isDragging` flag.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On drag over, set the `isDragging` flag and the `isInternalDrag` flag.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On drag start, set the `isDragging` flag and the `isInternalDrag` flag.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On drop.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On input, handle spellcheck and other similar edits that don't go trigger
      * the `onBeforeInput` and instead update the DOM directly.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On key down, prevent the default behavior of certain commands that will
      * leave the editor in an out-of-sync state, then bubble up.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On paste, determine the type and bubble up.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * On select, update the current state's selection.
      *
-     * @param {Event} e
+     * @param {Event} event
      */
 
     /**
      * Render the editor content.
      *
-     * @return {Element} element
+     * @return {Element}
      */
 
     /**
      * Render a `node`.
      *
      * @param {Node} node
-     * @return {Element} element
+     * @return {Element}
      */
 
   }]);
@@ -57373,11 +58307,9 @@ var Content = function (_React$Component) {
 }(_react2.default.Component);
 
 /**
- * Check if an `event` is being fired from inside a non-contentediable child
- * element, in which case we'll want to ignore it.
+ * Export.
  *
- * @param {Event} event
- * @return {Boolean}
+ * @type {Component}
  */
 
 Content.propTypes = {
@@ -57417,35 +58349,47 @@ var _initialiseProps = function _initialiseProps() {
     return props.className != _this2.props.className || props.schema != _this2.props.schema || props.spellCheck != _this2.props.spellCheck || props.state != _this2.props.state || props.style != _this2.props.style;
   };
 
-  this.componentWillUpdate = function (props, state) {
-    _this2.tmp.isRendering = true;
+  this.componentDidUpdate = function (prevProps, prevState) {
+    if (_this2.props.state.isBlurred && prevProps.state.isFocused) {
+      var el = _reactDom2.default.findDOMNode(_this2);
+      var window = (0, _getWindow2.default)(el);
+      var native = window.getSelection();
+      if (!el.contains(native.anchorNode)) return;
+      native.removeAllRanges();
+      el.blur();
+    }
   };
 
-  this.componentDidUpdate = function (props, state) {
-    setTimeout(function () {
-      _this2.tmp.isRendering = false;
-    }, 1);
+  this.ref = function (element) {
+    _this2.element = element;
   };
 
-  this.onBeforeInput = function (e) {
+  this.isInContentEditable = function (event) {
+    var element = _this2.element;
+    var target = event.target;
+
+    return target.isContentEditable && (target === element || target.closest('[contenteditable]') == element);
+  };
+
+  this.onBeforeInput = function (event) {
     if (_this2.props.readOnly) return;
-    if (isNonEditable(e)) return;
+    if (!_this2.isInContentEditable(event)) return;
 
     var data = {};
 
-    debug('onBeforeInput', data);
-    _this2.props.onBeforeInput(e, data);
+    debug('onBeforeInput', { event: event, data: data });
+    _this2.props.onBeforeInput(event, data);
   };
 
-  this.onBlur = function (e) {
+  this.onBlur = function (event) {
     if (_this2.props.readOnly) return;
     if (_this2.tmp.isCopying) return;
-    if (isNonEditable(e)) return;
+    if (!_this2.isInContentEditable(event)) return;
 
     var data = {};
 
-    debug('onBlur', data);
-    _this2.props.onBlur(e, data);
+    debug('onBlur', { event: event, data: data });
+    _this2.props.onBlur(event, data);
   };
 
   this.onChange = function (state) {
@@ -57453,17 +58397,17 @@ var _initialiseProps = function _initialiseProps() {
     _this2.props.onChange(state);
   };
 
-  this.onCompositionStart = function (e) {
-    if (isNonEditable(e)) return;
+  this.onCompositionStart = function (event) {
+    if (!_this2.isInContentEditable(event)) return;
 
     _this2.tmp.isComposing = true;
     _this2.tmp.compositions++;
 
-    debug('onCompositionStart');
+    debug('onCompositionStart', { event: event });
   };
 
-  this.onCompositionEnd = function (e) {
-    if (isNonEditable(e)) return;
+  this.onCompositionEnd = function (event) {
+    if (!_this2.isInContentEditable(event)) return;
 
     _this2.forces++;
     var count = _this2.tmp.compositions;
@@ -57476,12 +58420,12 @@ var _initialiseProps = function _initialiseProps() {
       _this2.tmp.isComposing = false;
     });
 
-    debug('onCompositionEnd');
+    debug('onCompositionEnd', { event: event });
   };
 
-  this.onCopy = function (e) {
-    if (isNonEditable(e)) return;
-    var window = (0, _getWindow2.default)(e.target);
+  this.onCopy = function (event) {
+    if (!_this2.isInContentEditable(event)) return;
+    var window = (0, _getWindow2.default)(event.target);
 
     _this2.tmp.isCopying = true;
     window.requestAnimationFrame(function () {
@@ -57494,14 +58438,14 @@ var _initialiseProps = function _initialiseProps() {
     data.type = 'fragment';
     data.fragment = state.fragment;
 
-    debug('onCopy', data);
-    _this2.props.onCopy(e, data);
+    debug('onCopy', { event: event, data: data });
+    _this2.props.onCopy(event, data);
   };
 
-  this.onCut = function (e) {
+  this.onCut = function (event) {
     if (_this2.props.readOnly) return;
-    if (isNonEditable(e)) return;
-    var window = (0, _getWindow2.default)(e.target);
+    if (!_this2.isInContentEditable(event)) return;
+    var window = (0, _getWindow2.default)(event.target);
 
     _this2.tmp.isCopying = true;
     window.requestAnimationFrame(function () {
@@ -57514,44 +58458,44 @@ var _initialiseProps = function _initialiseProps() {
     data.type = 'fragment';
     data.fragment = state.fragment;
 
-    debug('onCut', data);
-    _this2.props.onCut(e, data);
+    debug('onCut', { event: event, data: data });
+    _this2.props.onCut(event, data);
   };
 
-  this.onDragEnd = function (e) {
-    if (isNonEditable(e)) return;
+  this.onDragEnd = function (event) {
+    if (!_this2.isInContentEditable(event)) return;
 
     _this2.tmp.isDragging = false;
     _this2.tmp.isInternalDrag = null;
 
-    debug('onDragEnd');
+    debug('onDragEnd', { event: event });
   };
 
-  this.onDragOver = function (e) {
-    if (isNonEditable(e)) return;
+  this.onDragOver = function (event) {
+    if (!_this2.isInContentEditable(event)) return;
 
-    var dataTransfer = e.nativeEvent.dataTransfer;
+    var dataTransfer = event.nativeEvent.dataTransfer;
 
     var transfer = new _transfer2.default(dataTransfer);
 
     // Prevent default when nodes are dragged to allow dropping.
     if (transfer.getType() == 'node') {
-      e.preventDefault();
+      event.preventDefault();
     }
 
     if (_this2.tmp.isDragging) return;
     _this2.tmp.isDragging = true;
     _this2.tmp.isInternalDrag = false;
 
-    debug('onDragOver');
+    debug('onDragOver', { event: event });
   };
 
-  this.onDragStart = function (e) {
-    if (isNonEditable(e)) return;
+  this.onDragStart = function (event) {
+    if (!_this2.isInContentEditable(event)) return;
 
     _this2.tmp.isDragging = true;
     _this2.tmp.isInternalDrag = true;
-    var dataTransfer = e.nativeEvent.dataTransfer;
+    var dataTransfer = event.nativeEvent.dataTransfer;
 
     var transfer = new _transfer2.default(dataTransfer);
 
@@ -57564,21 +58508,21 @@ var _initialiseProps = function _initialiseProps() {
     var encoded = _base2.default.serializeNode(fragment);
     dataTransfer.setData(_types2.default.FRAGMENT, encoded);
 
-    debug('onDragStart');
+    debug('onDragStart', { event: event });
   };
 
-  this.onDrop = function (e) {
+  this.onDrop = function (event) {
     if (_this2.props.readOnly) return;
-    if (isNonEditable(e)) return;
+    if (!_this2.isInContentEditable(event)) return;
 
-    e.preventDefault();
+    event.preventDefault();
 
-    var window = (0, _getWindow2.default)(e.target);
+    var window = (0, _getWindow2.default)(event.target);
     var state = _this2.props.state;
-    var _e$nativeEvent = e.nativeEvent;
-    var dataTransfer = _e$nativeEvent.dataTransfer;
-    var x = _e$nativeEvent.x;
-    var y = _e$nativeEvent.y;
+    var nativeEvent = event.nativeEvent;
+    var dataTransfer = nativeEvent.dataTransfer,
+        x = nativeEvent.x,
+        y = nativeEvent.y;
 
     var transfer = new _transfer2.default(dataTransfer);
     var data = transfer.getData();
@@ -57591,7 +58535,7 @@ var _initialiseProps = function _initialiseProps() {
       range = window.document.caretRangeFromPoint(x, y);
     } else {
       range = window.document.createRange();
-      range.setStart(e.nativeEvent.rangeParent, e.nativeEvent.rangeOffset);
+      range.setStart(nativeEvent.rangeParent, nativeEvent.rangeOffset);
     }
 
     var startNode = range.startContainer;
@@ -57616,59 +58560,63 @@ var _initialiseProps = function _initialiseProps() {
       data.isInternal = _this2.tmp.isInternalDrag;
     }
 
-    debug('onDrop', data);
-    _this2.props.onDrop(e, data);
+    debug('onDrop', { event: event, data: data });
+    _this2.props.onDrop(event, data);
   };
 
-  this.onInput = function (e) {
-    if (_this2.tmp.isRendering) return;
+  this.onInput = function (event) {
     if (_this2.tmp.isComposing) return;
-    if (isNonEditable(e)) return;
-    debug('onInput');
+    if (_this2.props.state.isBlurred) return;
+    if (!_this2.isInContentEditable(event)) return;
+    debug('onInput', { event: event });
 
-    var window = (0, _getWindow2.default)(e.target);
+    var window = (0, _getWindow2.default)(event.target);
 
     // Get the selection point.
     var native = window.getSelection();
-    var anchorNode = native.anchorNode;
-    var anchorOffset = native.anchorOffset;
+    var anchorNode = native.anchorNode,
+        anchorOffset = native.anchorOffset;
 
     var point = _this2.getPoint(anchorNode, anchorOffset);
-    var key = point.key;
-    var index = point.index;
-    var start = point.start;
-    var end = point.end;
+    var key = point.key,
+        index = point.index,
+        start = point.start,
+        end = point.end;
 
     // Get the range in question.
 
-    var _props2 = _this2.props;
-    var state = _props2.state;
-    var editor = _props2.editor;
-    var document = state.document;
-    var selection = state.selection;
+    var _props2 = _this2.props,
+        state = _props2.state,
+        editor = _props2.editor;
+    var document = state.document,
+        selection = state.selection;
 
     var schema = editor.getSchema();
     var decorators = document.getDescendantDecorators(key, schema);
     var node = document.getDescendant(key);
+    var block = document.getClosestBlock(node.key);
     var ranges = node.getRanges(decorators);
-    var range = ranges.get(index);
+    var lastText = block.getLastText();
 
     // Get the text information.
-    var isLast = index == ranges.size - 1;
-    var text = range.text;
-    var marks = range.marks;
     var textContent = anchorNode.textContent;
 
     var lastChar = textContent.charAt(textContent.length - 1);
+    var isLastText = node == lastText;
+    var isLastRange = index == ranges.size - 1;
 
     // If we're dealing with the last leaf, and the DOM text ends in a new line,
     // we will have added another new line in <Leaf>'s render method to account
     // for browsers collapsing a single trailing new lines, so remove it.
-    if (isLast && lastChar == '\n') {
+    if (isLastText && isLastRange && lastChar == '\n') {
       textContent = textContent.slice(0, -1);
     }
 
     // If the text is no different, abort.
+    var range = ranges.get(index);
+    var text = range.text,
+        marks = range.marks;
+
     if (textContent == text) return;
 
     // Determine what the selection should be after changing the text.
@@ -57687,67 +58635,72 @@ var _initialiseProps = function _initialiseProps() {
     _this2.onChange(next);
   };
 
-  this.onKeyDown = function (e) {
+  this.onKeyDown = function (event) {
     if (_this2.props.readOnly) return;
-    if (isNonEditable(e)) return;
+    if (!_this2.isInContentEditable(event)) return;
 
-    var key = (0, _keycode2.default)(e.which);
+    var altKey = event.altKey,
+        ctrlKey = event.ctrlKey,
+        metaKey = event.metaKey,
+        shiftKey = event.shiftKey,
+        which = event.which;
+
+    var key = (0, _keycode2.default)(which);
     var data = {};
 
     // When composing, these characters commit the composition but also move the
     // selection before we're able to handle it, so prevent their default,
     // selection-moving behavior.
     if (_this2.tmp.isComposing && (key == 'left' || key == 'right' || key == 'up' || key == 'down')) {
-      e.preventDefault();
+      event.preventDefault();
       return;
     }
 
     // Add helpful properties for handling hotkeys to the data object.
-    data.code = e.which;
+    data.code = which;
     data.key = key;
-    data.isAlt = e.altKey;
-    data.isCmd = _environment.IS_MAC ? e.metaKey && !e.altKey : false;
-    data.isCtrl = e.ctrlKey && !e.altKey;
-    data.isLine = _environment.IS_MAC ? e.metaKey : false;
-    data.isMeta = e.metaKey;
-    data.isMod = _environment.IS_MAC ? e.metaKey && !e.altKey : e.ctrlKey && !e.altKey;
-    data.isModAlt = _environment.IS_MAC ? e.metaKey && e.altKey : e.ctrlKey && e.altKey;
-    data.isShift = e.shiftKey;
-    data.isWord = _environment.IS_MAC ? e.altKey : e.ctrlKey;
+    data.isAlt = altKey;
+    data.isCmd = _environment.IS_MAC ? metaKey && !altKey : false;
+    data.isCtrl = ctrlKey && !altKey;
+    data.isLine = _environment.IS_MAC ? metaKey : false;
+    data.isMeta = metaKey;
+    data.isMod = _environment.IS_MAC ? metaKey && !altKey : ctrlKey && !altKey;
+    data.isModAlt = _environment.IS_MAC ? metaKey && altKey : ctrlKey && altKey;
+    data.isShift = shiftKey;
+    data.isWord = _environment.IS_MAC ? altKey : ctrlKey;
 
     // These key commands have native behavior in contenteditable elements which
     // will cause our state to be out of sync, so prevent them.
     if (key == 'enter' || key == 'backspace' || key == 'delete' || key == 'b' && data.isMod || key == 'i' && data.isMod || key == 'y' && data.isMod || key == 'z' && data.isMod) {
-      e.preventDefault();
+      event.preventDefault();
     }
 
-    debug('onKeyDown', data);
-    _this2.props.onKeyDown(e, data);
+    debug('onKeyDown', { event: event, data: data });
+    _this2.props.onKeyDown(event, data);
   };
 
-  this.onPaste = function (e) {
+  this.onPaste = function (event) {
     if (_this2.props.readOnly) return;
-    if (isNonEditable(e)) return;
+    if (!_this2.isInContentEditable(event)) return;
 
-    e.preventDefault();
-    var transfer = new _transfer2.default(e.clipboardData);
+    event.preventDefault();
+    var transfer = new _transfer2.default(event.clipboardData);
     var data = transfer.getData();
 
-    debug('onPaste', data);
-    _this2.props.onPaste(e, data);
+    debug('onPaste', { event: event, data: data });
+    _this2.props.onPaste(event, data);
   };
 
-  this.onSelect = function (e) {
+  this.onSelect = function (event) {
     if (_this2.props.readOnly) return;
-    if (_this2.tmp.isRendering) return;
     if (_this2.tmp.isCopying) return;
     if (_this2.tmp.isComposing) return;
-    if (isNonEditable(e)) return;
+    if (!_this2.isInContentEditable(event)) return;
 
-    var window = (0, _getWindow2.default)(e.target);
+    var window = (0, _getWindow2.default)(event.target);
     var state = _this2.props.state;
-    var document = state.document;
-    var selection = state.selection;
+    var document = state.document,
+        selection = state.selection;
 
     var native = window.getSelection();
     var data = {};
@@ -57760,10 +58713,10 @@ var _initialiseProps = function _initialiseProps() {
 
     // Otherwise, determine the Slate selection from the native one.
     else {
-        var anchorNode = native.anchorNode;
-        var anchorOffset = native.anchorOffset;
-        var focusNode = native.focusNode;
-        var focusOffset = native.focusOffset;
+        var anchorNode = native.anchorNode,
+            anchorOffset = native.anchorOffset,
+            focusNode = native.focusNode,
+            focusOffset = native.focusOffset;
 
         var anchor = _this2.getPoint(anchorNode, anchorOffset);
         var focus = _this2.getPoint(focusNode, focusOffset);
@@ -57788,17 +58741,15 @@ var _initialiseProps = function _initialiseProps() {
         data.selection = selection.merge(properties).normalize(document);
       }
 
-    debug('onSelect', { data: data, selection: data.selection.toJS() });
-    _this2.props.onSelect(e, data);
+    debug('onSelect', { event: event, data: data });
+    _this2.props.onSelect(event, data);
   };
 
   this.render = function () {
-    debug('render');
-
-    var _props3 = _this2.props;
-    var className = _props3.className;
-    var readOnly = _props3.readOnly;
-    var state = _props3.state;
+    var props = _this2.props;
+    var className = props.className,
+        readOnly = props.readOnly,
+        state = props.state;
     var document = state.document;
 
     var children = document.nodes.map(function (node) {
@@ -57812,17 +58763,20 @@ var _initialiseProps = function _initialiseProps() {
       whiteSpace: 'pre-wrap',
       // Allow words to break if they are too long.
       wordWrap: 'break-word'
-    }, readOnly ? {} : { WebkitUserModify: 'read-write-plaintext-only' }, _this2.props.style);
+    }, readOnly ? {} : { WebkitUserModify: 'read-write-plaintext-only' }, props.style);
 
     // COMPAT: In Firefox, spellchecking can remove entire wrapping elements
     // including inline ones like `<a>`, which is jarring for the user but also
-    // causes the DOM to get into an irreconilable state.
-    var spellCheck = _environment.IS_FIREFOX ? false : _this2.props.spellCheck;
+    // causes the DOM to get into an irreconcilable state. (2016/09/01)
+    var spellCheck = _environment.IS_FIREFOX ? false : props.spellCheck;
+
+    debug('render', { props: props });
 
     return _react2.default.createElement(
       'div',
       {
         key: _this2.forces,
+        ref: _this2.ref,
         contentEditable: !readOnly,
         suppressContentEditableWarning: true,
         className: className,
@@ -57838,7 +58792,7 @@ var _initialiseProps = function _initialiseProps() {
         onDrop: _this2.onDrop,
         onInput: _this2.onInput,
         onKeyDown: _this2.onKeyDown,
-        onKeyUp: noop,
+        onKeyUp: _noop2.default,
         onPaste: _this2.onPaste,
         onSelect: _this2.onSelect,
         spellCheck: spellCheck,
@@ -57849,10 +58803,10 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.renderNode = function (node) {
-    var _props4 = _this2.props;
-    var editor = _props4.editor;
-    var schema = _props4.schema;
-    var state = _props4.state;
+    var _props3 = _this2.props,
+        editor = _props3.editor,
+        schema = _props3.schema,
+        state = _props3.state;
 
 
     return _react2.default.createElement(_node2.default, {
@@ -57866,21 +58820,8 @@ var _initialiseProps = function _initialiseProps() {
   };
 };
 
-function isNonEditable(event) {
-  var target = event.target;
-  var currentTarget = event.currentTarget;
-
-  var nonEditable = target.closest('[contenteditable="false"]');
-  var isContained = currentTarget.contains(nonEditable);
-  return isContained;
-}
-
-/**
- * Export.
- */
-
 exports.default = Content;
-},{"../constants/environment":324,"../constants/types":325,"../models/selection":335,"../serializers/base-64":341,"../utils/offset-key":360,"../utils/transfer":363,"./node":321,"debug":28,"get-window":82,"keycode":98,"react":306}],319:[function(require,module,exports){
+},{"../constants/environment":377,"../constants/types":379,"../models/selection":390,"../serializers/base-64":396,"../utils/noop":415,"../utils/offset-key":417,"../utils/transfer":420,"./node":374,"debug":422,"get-window":133,"keycode":149,"react":359,"react-dom":212}],372:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57909,6 +58850,10 @@ var _schema3 = require('../models/schema');
 
 var _schema4 = _interopRequireDefault(_schema3);
 
+var _noop = require('../utils/noop');
+
+var _noop2 = _interopRequireDefault(_noop);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -57923,17 +58868,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * Debug.
- */
-
-var debug = (0, _debug2.default)('slate:editor');
-
-/**
- * Noop.
  *
  * @type {Function}
  */
 
-function noop() {}
+var debug = (0, _debug2.default)('slate:editor');
 
 /**
  * Event handlers to mix in to the editor.
@@ -57959,7 +58898,9 @@ var Editor = function (_React$Component) {
    */
 
   /**
-   * Properties.
+   * Property types.
+   *
+   * @type {Object}
    */
 
   function Editor(props) {
@@ -57973,7 +58914,10 @@ var Editor = function (_React$Component) {
     _this.state = {};
     _this.state.plugins = _this.resolvePlugins(props);
     _this.state.schema = _this.resolveSchema(_this.state.plugins);
-    _this.state.state = _this.onBeforeChange(props.state);
+
+    var state = _this.onBeforeChange(props.state);
+    _this.cacheState(state);
+    _this.state.state = state;
 
     // Mix in the event handlers.
     var _iteratorNormalCompletion = true;
@@ -58022,6 +58966,15 @@ var Editor = function (_React$Component) {
 
   /**
    * Default properties.
+   *
+   * @type {Object}
+   */
+
+  /**
+   * Cache a `state` in memory to be able to compare against it later, for
+   * things like `onDocumentChange`.
+   *
+   * @param {State} state
    */
 
   /**
@@ -58048,7 +59001,7 @@ var Editor = function (_React$Component) {
    * When the editor receives a new 'state'
    *
    * @param {State} state
-   * @return {State} newState
+   * @return {State}
    */
 
   /**
@@ -58116,9 +59069,9 @@ Editor.propTypes = {
   style: _react2.default.PropTypes.object
 };
 Editor.defaultProps = {
-  onChange: noop,
-  onDocumentChange: noop,
-  onSelectionChange: noop,
+  onChange: _noop2.default,
+  onDocumentChange: _noop2.default,
+  onSelectionChange: _noop2.default,
   plugins: [],
   readOnly: false,
   schema: {},
@@ -58138,9 +59091,14 @@ var _initialiseProps = function _initialiseProps() {
       _this2.setState({ schema: _schema });
     }
 
-    _this2.setState({
-      state: _this2.onBeforeChange(props.state)
-    });
+    var state = _this2.onBeforeChange(props.state);
+    _this2.cacheState(state);
+    _this2.setState({ state: state });
+  };
+
+  this.cacheState = function (state) {
+    _this2.tmp.document = state.document;
+    _this2.tmp.selection = state.selection;
   };
 
   this.blur = function () {
@@ -58232,13 +59190,13 @@ var _initialiseProps = function _initialiseProps() {
 
     if (state.document != _this2.tmp.document) {
       _this2.props.onDocumentChange(state.document, state);
-      _this2.tmp.document = state.document;
     }
 
     if (state.selection != _this2.tmp.selection) {
       _this2.props.onSelectionChange(state.selection, state);
-      _this2.tmp.selection = state.selection;
     }
+
+    _this2.cacheState(state);
   };
 
   this.onEvent = function (name) {
@@ -58277,9 +59235,10 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.render = function () {
-    debug('render');
+    var props = _this2.props,
+        state = _this2.state;
 
-    var handlers = {};
+    var handlers = { onChange: _this2.onChange };
 
     var _iteratorNormalCompletion6 = true;
     var _didIteratorError6 = false;
@@ -58306,23 +59265,24 @@ var _initialiseProps = function _initialiseProps() {
       }
     }
 
+    debug('render', { props: props, state: state });
+
     return _react2.default.createElement(_content2.default, _extends({}, handlers, {
-      className: _this2.props.className,
+      className: props.className,
       editor: _this2,
-      onChange: _this2.onChange,
-      readOnly: _this2.props.readOnly,
-      schema: _this2.state.schema,
-      spellCheck: _this2.props.spellCheck,
-      state: _this2.state.state,
-      style: _this2.props.style
+      readOnly: props.readOnly,
+      schema: state.schema,
+      spellCheck: props.spellCheck,
+      state: state.state,
+      style: props.style
     }));
   };
 
   this.resolvePlugins = function (props) {
-    var onChange = props.onChange;
-    var plugins = props.plugins;
-
-    var editorPlugin = _objectWithoutProperties(props, ['onChange', 'plugins']);
+    // eslint-disable-next-line no-unused-vars
+    var onChange = props.onChange,
+        plugins = props.plugins,
+        editorPlugin = _objectWithoutProperties(props, ['onChange', 'plugins']);
 
     var corePlugin = (0, _core2.default)(props);
     return [editorPlugin].concat(_toConsumableArray(plugins), [corePlugin]);
@@ -58376,6 +59336,8 @@ try {
 
   /**
    * Export.
+   *
+   * @type {Component}
    */
 } catch (err) {
   _didIteratorError2 = true;
@@ -58393,7 +59355,7 @@ try {
 }
 
 exports.default = Editor;
-},{"../models/schema":334,"../plugins/core":339,"./content":318,"debug":28,"react":306}],320:[function(require,module,exports){
+},{"../models/schema":389,"../plugins/core":394,"../utils/noop":415,"./content":371,"debug":422,"react":359}],373:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58421,6 +59383,8 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 var _getWindow = require('get-window');
 
 var _getWindow2 = _interopRequireDefault(_getWindow);
+
+var _environment = require('../constants/environment');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58516,16 +59480,15 @@ var Leaf = function (_React$Component) {
       // If the selection was previously focused, and now it isn't, re-render so
       // that the selection will be properly removed.
       if (this.props.state.isFocused && props.state.isBlurred) {
-        var _props = this.props;
-        var index = _props.index;
-        var node = _props.node;
-        var ranges = _props.ranges;
-        var state = _props.state;
+        var _props = this.props,
+            index = _props.index,
+            node = _props.node,
+            ranges = _props.ranges,
+            state = _props.state;
 
-        var _OffsetKey$findBounds = _offsetKey2.default.findBounds(index, ranges);
-
-        var start = _OffsetKey$findBounds.start;
-        var end = _OffsetKey$findBounds.end;
+        var _OffsetKey$findBounds = _offsetKey2.default.findBounds(index, ranges),
+            start = _OffsetKey$findBounds.start,
+            end = _OffsetKey$findBounds.end;
 
         if (state.selection.hasEdgeBetween(node, start, end)) return true;
       }
@@ -58533,15 +59496,14 @@ var Leaf = function (_React$Component) {
       // If the selection will be focused, only re-render if this leaf contains
       // one or both of the selection's edges.
       if (props.state.isFocused) {
-        var _index = props.index;
-        var _node = props.node;
-        var _ranges = props.ranges;
-        var _state = props.state;
+        var _index = props.index,
+            _node = props.node,
+            _ranges = props.ranges,
+            _state = props.state;
 
-        var _OffsetKey$findBounds2 = _offsetKey2.default.findBounds(_index, _ranges);
-
-        var _start = _OffsetKey$findBounds2.start;
-        var _end = _OffsetKey$findBounds2.end;
+        var _OffsetKey$findBounds2 = _offsetKey2.default.findBounds(_index, _ranges),
+            _start = _OffsetKey$findBounds2.start,
+            _end = _OffsetKey$findBounds2.end;
 
         if (_state.selection.hasEdgeBetween(_node, _start, _end)) return true;
       }
@@ -58572,44 +59534,47 @@ var Leaf = function (_React$Component) {
   }, {
     key: 'updateSelection',
     value: function updateSelection() {
-      var _props2 = this.props;
-      var state = _props2.state;
-      var ranges = _props2.ranges;
-      var isVoid = _props2.isVoid;
+      var _props2 = this.props,
+          state = _props2.state,
+          ranges = _props2.ranges;
       var selection = state.selection;
 
       // If the selection is blurred we have nothing to do.
 
       if (selection.isBlurred) return;
 
-      var anchorOffset = selection.anchorOffset;
-      var focusOffset = selection.focusOffset;
-      var _props3 = this.props;
-      var node = _props3.node;
-      var index = _props3.index;
+      var anchorOffset = selection.anchorOffset,
+          focusOffset = selection.focusOffset;
+      var _props3 = this.props,
+          node = _props3.node,
+          index = _props3.index;
 
-      var _OffsetKey$findBounds3 = _offsetKey2.default.findBounds(index, ranges);
-
-      var start = _OffsetKey$findBounds3.start;
-      var end = _OffsetKey$findBounds3.end;
+      var _OffsetKey$findBounds3 = _offsetKey2.default.findBounds(index, ranges),
+          start = _OffsetKey$findBounds3.start,
+          end = _OffsetKey$findBounds3.end;
 
       // If neither matches, the selection doesn't start or end here, so exit.
+
 
       var hasAnchor = selection.hasAnchorBetween(node, start, end);
       var hasFocus = selection.hasFocusBetween(node, start, end);
       if (!hasAnchor && !hasFocus) return;
 
-      // If the leaf is a void leaf, ensure that it has no width. This is due to
-      // void nodes always rendering an empty leaf, for browser compatibility.
-      if (isVoid) {
-        anchorOffset = 0;
-        focusOffset = 0;
-      }
-
       // We have a selection to render, so prepare a few things...
-      var el = findDeepestNode(_reactDom2.default.findDOMNode(this));
+      var ref = _reactDom2.default.findDOMNode(this);
+      var el = findDeepestNode(ref);
       var window = (0, _getWindow2.default)(el);
       var native = window.getSelection();
+      var parent = ref.closest('[contenteditable]');
+
+      // COMPAT: In Firefox, it's not enough to create a range, you also need to
+      // focus the contenteditable element. (2016/11/16)
+      function focus() {
+        if (!_environment.IS_FIREFOX) return;
+        if (parent) setTimeout(function () {
+          return parent.focus();
+        });
+      }
 
       // If both the start and end are here, set the selection all at once.
       if (hasAnchor && hasFocus) {
@@ -58618,45 +59583,50 @@ var Leaf = function (_React$Component) {
         range.setStart(el, anchorOffset - start);
         native.addRange(range);
         native.extend(el, focusOffset - start);
-        return;
+        focus();
       }
 
-      // If the selection is forward, we can set things in sequence. In
-      // the first leaf to render, reset the selection and set the new start. And
-      // then in the second leaf to render, extend to the new end.
-      if (selection.isForward) {
-        if (hasAnchor) {
-          native.removeAllRanges();
-          var _range = window.document.createRange();
-          _range.setStart(el, anchorOffset - start);
-          native.addRange(_range);
-        } else if (hasFocus) {
-          native.extend(el, focusOffset - start);
-        }
-      }
-
-      // Otherwise, if the selection is backward, we need to hack the order a bit.
-      // In the first leaf to render, set a phony start anchor to store the true
-      // end position. And then in the second leaf to render, set the start and
-      // extend the end to the stored value.
+      // Otherwise we need to set the selection across two different leaves.
       else {
-          if (hasFocus) {
-            native.removeAllRanges();
-            var _range2 = window.document.createRange();
-            _range2.setStart(el, focusOffset - start);
-            native.addRange(_range2);
-          } else if (hasAnchor) {
-            var endNode = native.focusNode;
-            var endOffset = native.focusOffset;
-            native.removeAllRanges();
-            var _range3 = window.document.createRange();
-            _range3.setStart(el, anchorOffset - start);
-            native.addRange(_range3);
-            native.extend(endNode, endOffset);
+          // If the selection is forward, we can set things in sequence. In the
+          // first leaf to render, reset the selection and set the new start. And
+          // then in the second leaf to render, extend to the new end.
+          if (selection.isForward) {
+            if (hasAnchor) {
+              native.removeAllRanges();
+              var _range = window.document.createRange();
+              _range.setStart(el, anchorOffset - start);
+              native.addRange(_range);
+            } else if (hasFocus) {
+              native.extend(el, focusOffset - start);
+              focus();
+            }
           }
+
+          // Otherwise, if the selection is backward, we need to hack the order a bit.
+          // In the first leaf to render, set a phony start anchor to store the true
+          // end position. And then in the second leaf to render, set the start and
+          // extend the end to the stored value.
+          else {
+              if (hasFocus) {
+                native.removeAllRanges();
+                var _range2 = window.document.createRange();
+                _range2.setStart(el, focusOffset - start);
+                native.addRange(_range2);
+              } else if (hasAnchor) {
+                var endNode = native.focusNode;
+                var endOffset = native.focusOffset;
+                native.removeAllRanges();
+                var _range3 = window.document.createRange();
+                _range3.setStart(el, anchorOffset - start);
+                native.addRange(_range3);
+                native.extend(endNode, endOffset);
+                focus();
+              }
+            }
         }
 
-      this.debug('updateSelection');
+      this.debug('updateSelection', { selection: selection });
     }
 
     /**
@@ -58668,11 +59638,9 @@ var Leaf = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      this.debug('render');
-
       var props = this.props;
-      var node = props.node;
-      var index = props.index;
+      var node = props.node,
+          index = props.index;
 
       var offsetKey = _offsetKey2.default.stringify({
         key: node.key,
@@ -58684,6 +59652,8 @@ var Leaf = function (_React$Component) {
       // renders where we don't update the leaves cause React's internal state to
       // get out of sync, causing it to not realize the DOM needs updating.
       this.tmp.renders++;
+
+      this.debug('render', { props: props });
 
       return _react2.default.createElement(
         'span',
@@ -58701,14 +59671,17 @@ var Leaf = function (_React$Component) {
 
   }, {
     key: 'renderText',
-    value: function renderText(_ref) {
-      var parent = _ref.parent;
-      var text = _ref.text;
-      var index = _ref.index;
-      var ranges = _ref.ranges;
+    value: function renderText(props) {
+      var node = props.node,
+          state = props.state,
+          parent = props.parent,
+          text = props.text,
+          index = props.index,
+          ranges = props.ranges;
 
       // COMPAT: If the text is empty and it's the only child, we need to render a
       // <br/> to get the block to have the proper height.
+
       if (text == '' && parent.kind == 'block' && parent.text == '') return _react2.default.createElement('br', null);
 
       // COMPAT: If the text is empty otherwise, it's because it's on the edge of
@@ -58722,9 +59695,12 @@ var Leaf = function (_React$Component) {
 
       // COMPAT: Browsers will collapse trailing new lines at the end of blocks,
       // so we need to add an extra trailing new lines to prevent that.
+      var block = state.document.getClosestBlock(node.key);
+      var lastText = block.getLastText();
       var lastChar = text.charAt(text.length - 1);
-      var isLast = index == ranges.size - 1;
-      if (isLast && lastChar == '\n') return text + '\n';
+      var isLastText = node == lastText;
+      var isLastRange = index == ranges.size - 1;
+      if (isLastText && isLastRange && lastChar == '\n') return text + '\n';
 
       // Otherwise, just return the text.
       return text;
@@ -58740,8 +59716,8 @@ var Leaf = function (_React$Component) {
   }, {
     key: 'renderMarks',
     value: function renderMarks(props) {
-      var marks = props.marks;
-      var schema = props.schema;
+      var marks = props.marks,
+          schema = props.schema;
 
       var text = this.renderText(props);
 
@@ -58787,19 +59763,17 @@ function findDeepestNode(element) {
 
 /**
  * Export.
+ *
+ * @type {Component}
  */
 
 exports.default = Leaf;
-},{"../utils/offset-key":360,"debug":28,"get-window":82,"react":306,"react-dom":159}],321:[function(require,module,exports){
+},{"../constants/environment":377,"../utils/offset-key":417,"debug":422,"get-window":133,"react":359,"react-dom":212}],374:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _immutable = require('immutable');
-
-var _immutable2 = _interopRequireDefault(_immutable);
 
 var _base = require('../serializers/base-64');
 
@@ -58832,10 +59806,6 @@ var _void2 = _interopRequireDefault(_void);
 var _scrollTo = require('../utils/scroll-to');
 
 var _scrollTo2 = _interopRequireDefault(_scrollTo);
-
-var _warning = require('../utils/warning');
-
-var _warning2 = _interopRequireDefault(_warning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58875,8 +59845,8 @@ var Node = function (_React$Component) {
 
     _initialiseProps.call(_this);
 
-    var node = props.node;
-    var schema = props.schema;
+    var node = props.node,
+        schema = props.schema;
 
     _this.state = {};
     _this.state.Component = node.kind == 'text' ? null : node.getComponent(schema);
@@ -58905,7 +59875,7 @@ var Node = function (_React$Component) {
   /**
    * Should the node update?
    *
-   * @param {Object} props
+   * @param {Object} nextProps
    * @param {Object} state
    * @return {Boolean}
    */
@@ -58937,32 +59907,32 @@ var Node = function (_React$Component) {
   /**
    * Render.
    *
-   * @return {Element} element
+   * @return {Element}
    */
 
   /**
    * Render a `child` node.
    *
    * @param {Node} child
-   * @return {Element} element
+   * @return {Element}
    */
 
   /**
    * Render an element `node`.
    *
-   * @return {Element} element
+   * @return {Element}
    */
 
   /**
    * Render a text node.
    *
-   * @return {Element} element
+   * @return {Element}
    */
 
   /**
    * Render a single leaf node given a `range` and `offset`.
    *
-   * @param {List} ranges
+   * @param {List<Range>} ranges
    * @param {Range} range
    * @param {Number} index
    * @param {Number} offset
@@ -58995,9 +59965,9 @@ var _initialiseProps = function _initialiseProps() {
     }
 
     var node = _this2.props.node;
-    var key = node.key;
-    var kind = node.kind;
-    var type = node.type;
+    var key = node.key,
+        kind = node.kind,
+        type = node.type;
 
     var id = kind == 'text' ? key + ' (' + kind + ')' : key + ' (' + type + ')';
     debug.apply(undefined, [message, '' + id].concat(args));
@@ -59010,7 +59980,7 @@ var _initialiseProps = function _initialiseProps() {
     _this2.setState({ Component: Component });
   };
 
-  this.shouldComponentUpdate = function (props) {
+  this.shouldComponentUpdate = function (nextProps) {
     var Component = _this2.state.Component;
 
     // If the node is rendered with a `Component` that has enabled suppression
@@ -59021,40 +59991,44 @@ var _initialiseProps = function _initialiseProps() {
       return true;
     }
 
-    // If the node has changed, update.
-    if (props.node != _this2.props.node) {
-      if (!_immutable2.default.is(props.node, _this2.props.node)) {
-        return true;
-      } else {
-        (0, _warning2.default)('Encountered different references for identical node values in "shouldComponentUpdate". Check that you are preserving references for the following node:\n', props.node);
-      }
-    }
-
-    // If the selection is focused and is inside the node, we need to update so
-    // that the selection will be set by one of the <Leaf> components.
-    if (props.state.isFocused && props.state.selection.hasEdgeIn(props.node)) {
+    // If the node has changed, update. PERF: There are certain cases where the
+    // node instance will have changed, but it's properties will be exactly the
+    // same (copy-paste, delete backwards, etc.) in which case this will not
+    // catch a potentially avoidable re-render. But those cases are rare enough
+    // that they aren't really a drag on performance, so for simplicity we just
+    // let them through.
+    if (nextProps.node != _this2.props.node) {
       return true;
     }
 
-    // If the selection is blurred but was previously focused inside the node,
+    var nextHasEdgeIn = nextProps.state.selection.hasEdgeIn(nextProps.node);
+
+    // If the selection is focused and is inside the node, we need to update so
+    // that the selection will be set by one of the <Leaf> components.
+    if (nextProps.state.isFocused && nextHasEdgeIn) {
+      return true;
+    }
+
+    var hasEdgeIn = _this2.props.state.selection.hasEdgeIn(nextProps.node);
+    // If the selection is blurred but was previously focused (or vice versa) inside the node,
     // we need to update to ensure the selection gets updated by re-rendering.
-    if (props.state.isBlurred && _this2.props.state.isFocused && _this2.props.state.selection.hasEdgeIn(props.node)) {
+    if (_this2.props.state.isFocused != nextProps.state.isFocused && (hasEdgeIn || nextHasEdgeIn)) {
       return true;
     }
 
     // For block and inline nodes, which can have custom renderers, we need to
     // include another check for whether the previous selection had an edge in
     // the node, to allow for intuitive selection-based rendering.
-    if (_this2.props.node.kind != 'text' && (props.state.isFocused != _this2.props.state.isFocused || _this2.props.state.selection.hasEdgeIn(_this2.props.node) != props.state.selection.hasEdgeIn(props.node))) {
+    if (_this2.props.node.kind != 'text' && hasEdgeIn != nextHasEdgeIn) {
       return true;
     }
 
     // For text nodes, which can have custom decorations, we need to check to
     // see if the block has changed, which has caused the decorations to change.
-    if (props.node.kind == 'text') {
-      var node = props.node;
-      var schema = props.schema;
-      var state = props.state;
+    if (nextProps.node.kind == 'text' && nextProps.schema.hasDecorators) {
+      var node = nextProps.node,
+          schema = nextProps.schema,
+          state = nextProps.state;
       var document = state.document;
 
       var decorators = document.getDescendantDecorators(node.key, schema);
@@ -59066,7 +60040,9 @@ var _initialiseProps = function _initialiseProps() {
       var prevDecorators = prevDocument.getDescendantDecorators(prevNode.key, prevSchema);
       var prevRanges = prevNode.getRanges(prevDecorators);
 
-      if (!ranges.equals(prevRanges)) return true;
+      if (!ranges.equals(prevRanges)) {
+        return true;
+      }
     }
 
     // Otherwise, don't update.
@@ -59082,9 +60058,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.updateScroll = function () {
-    var _props = _this2.props;
-    var node = _props.node;
-    var state = _props.state;
+    var _props = _this2.props,
+        node = _props.node,
+        state = _props.state;
     var selection = state.selection;
 
     // If this isn't a block, or it's a wrapping block, abort.
@@ -59113,9 +60089,11 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.render = function () {
-    _this2.debug('render');
-
+    var props = _this2.props;
     var node = _this2.props.node;
+
+
+    _this2.debug('render', { props: props });
 
     return node.kind == 'text' ? _this2.renderText() : _this2.renderElement();
   };
@@ -59132,11 +60110,11 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.renderElement = function () {
-    var _props2 = _this2.props;
-    var editor = _props2.editor;
-    var node = _props2.node;
-    var parent = _props2.parent;
-    var state = _props2.state;
+    var _props2 = _this2.props,
+        editor = _props2.editor,
+        node = _props2.node,
+        parent = _props2.parent,
+        state = _props2.state;
     var Component = _this2.state.Component;
 
     var children = node.nodes.map(function (child) {
@@ -59178,13 +60156,13 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.renderText = function () {
-    var _props3 = _this2.props;
-    var node = _props3.node;
-    var schema = _props3.schema;
-    var state = _props3.state;
+    var _props3 = _this2.props,
+        node = _props3.node,
+        schema = _props3.schema,
+        state = _props3.state;
     var document = state.document;
 
-    var decorators = document.getDescendantDecorators(node.key, schema);
+    var decorators = schema.hasDecorators ? document.getDescendantDecorators(node.key, schema) : [];
     var ranges = node.getRanges(decorators);
     var offset = 0;
 
@@ -59202,11 +60180,11 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.renderLeaf = function (ranges, range, index, offset) {
-    var _props4 = _this2.props;
-    var node = _props4.node;
-    var parent = _props4.parent;
-    var schema = _props4.schema;
-    var state = _props4.state;
+    var _props4 = _this2.props,
+        node = _props4.node,
+        parent = _props4.parent,
+        schema = _props4.schema,
+        state = _props4.state;
 
     var text = range.text;
     var marks = range.marks;
@@ -59226,7 +60204,7 @@ var _initialiseProps = function _initialiseProps() {
 };
 
 exports.default = Node;
-},{"../constants/types":325,"../serializers/base-64":341,"../utils/scroll-to":361,"../utils/warning":365,"./leaf":320,"./void":323,"debug":28,"immutable":93,"react":306,"react-dom":159}],322:[function(require,module,exports){
+},{"../constants/types":379,"../serializers/base-64":396,"../utils/scroll-to":418,"./leaf":373,"./void":376,"debug":422,"react":359,"react-dom":212}],375:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -59249,6 +60227,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * Placeholder.
+ *
+ * @type {Component}
  */
 
 var Placeholder = function (_React$Component) {
@@ -59268,24 +60248,21 @@ var Placeholder = function (_React$Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Placeholder.__proto__ || Object.getPrototypeOf(Placeholder)).call.apply(_ref, [this].concat(args))), _this), _this.shouldComponentUpdate = function (props, state) {
       return props.children != _this.props.children || props.className != _this.props.className || props.parent != _this.props.parent || props.node != _this.props.node || props.style != _this.props.style;
     }, _this.isVisible = function () {
-      var _this$props = _this.props;
-      var node = _this$props.node;
-      var parent = _this$props.parent;
+      var _this$props = _this.props,
+          node = _this$props.node,
+          parent = _this$props.parent;
 
       if (node.text) return false;
       if (parent.nodes.size > 1) return false;
-
-      var isFirst = parent.nodes.first() === node;
-      if (isFirst) return true;
-
+      if (parent.nodes.first() === node) return true;
       return false;
     }, _this.render = function () {
       var isVisible = _this.isVisible();
       if (!isVisible) return null;
 
-      var _this$props2 = _this.props;
-      var children = _this$props2.children;
-      var className = _this$props2.className;
+      var _this$props2 = _this.props,
+          children = _this$props2.children,
+          className = _this$props2.className;
       var style = _this.props.style;
 
 
@@ -59313,7 +60290,9 @@ var Placeholder = function (_React$Component) {
   }
 
   /**
-   * Properties.
+   * Property types.
+   *
+   * @type {Object}
    */
 
   /**
@@ -59336,7 +60315,7 @@ var Placeholder = function (_React$Component) {
    * If the placeholder is a string, and no `className` or `style` has been
    * passed, give it a default style of lowered opacity.
    *
-   * @return {Element} element
+   * @return {Element}
    */
 
   return Placeholder;
@@ -59344,6 +60323,8 @@ var Placeholder = function (_React$Component) {
 
 /**
  * Export.
+ *
+ * @type {Component}
  */
 
 Placeholder.propTypes = {
@@ -59355,12 +60336,16 @@ Placeholder.propTypes = {
   style: _react2.default.PropTypes.object
 };
 exports.default = Placeholder;
-},{"react":306}],323:[function(require,module,exports){
+},{"react":359}],376:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _debug = require('debug');
+
+var _debug2 = _interopRequireDefault(_debug);
 
 var _leaf = require('./leaf');
 
@@ -59378,6 +60363,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _noop = require('../utils/noop');
+
+var _noop2 = _interopRequireDefault(_noop);
+
 var _environment = require('../constants/environment');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -59389,12 +60378,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Noop.
+ * Debug.
  *
  * @type {Function}
  */
 
-function noop() {}
+var debug = (0, _debug2.default)('slate:void');
 
 /**
  * Void.
@@ -59416,109 +60405,26 @@ var Void = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Void.__proto__ || Object.getPrototypeOf(Void)).call.apply(_ref, [this].concat(args))), _this), _this.onClick = function (e) {
-      e.preventDefault();
-      var _this$props = _this.props;
-      var node = _this$props.node;
-      var editor = _this$props.editor;
-
-      var next = editor.getState().transform().collapseToStartOf(node).focus().apply();
-
-      editor.onChange(next);
-    }, _this.render = function () {
-      var _this$props2 = _this.props;
-      var children = _this$props2.children;
-      var node = _this$props2.node;
-
-      var Tag = node.kind == 'block' ? 'div' : 'span';
-
-      // Make the outer wrapper relative, so the spacer can overlay it.
-      var style = {
-        position: 'relative'
-      };
-
-      return _react2.default.createElement(
-        Tag,
-        { style: style, onClick: _this.onClick },
-        _this.renderSpacer(),
-        _react2.default.createElement(
-          Tag,
-          { contentEditable: false },
-          children
-        )
-      );
-    }, _this.renderSpacer = function () {
-      var node = _this.props.node;
-
-      var style = void 0;
-
-      if (node.kind == 'block') {
-        style = _environment.IS_FIREFOX ? {
-          pointerEvents: 'none',
-          width: '0px',
-          height: '0px',
-          lineHeight: '0px',
-          visibility: 'hidden'
-        } : {
-          position: 'absolute',
-          top: '0px',
-          left: '-9999px',
-          textIndent: '-9999px'
-        };
-      } else {
-        style = {
-          position: 'relative',
-          top: '0px',
-          left: '-9999px',
-          textIndent: '-9999px'
-        };
-      }
-
-      return _react2.default.createElement(
-        'span',
-        { style: style },
-        _this.renderLeaf()
-      );
-    }, _this.renderLeaf = function () {
-      var _this$props3 = _this.props;
-      var node = _this$props3.node;
-      var schema = _this$props3.schema;
-      var state = _this$props3.state;
-
-      var child = node.getFirstText();
-      var ranges = child.getRanges();
-      var text = '';
-      var marks = _mark2.default.createSet();
-      var index = 0;
-      var offsetKey = _offsetKey2.default.stringify({
-        key: child.key,
-        index: index
-      });
-
-      return _react2.default.createElement(_leaf2.default, {
-        isVoid: true,
-        renderMark: noop,
-        key: offsetKey,
-        schema: schema,
-        state: state,
-        node: child,
-        parent: node,
-        ranges: ranges,
-        index: index,
-        text: text,
-        marks: marks
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Void.__proto__ || Object.getPrototypeOf(Void)).call.apply(_ref, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   /**
    * Property types.
+   *
+   * @type {Object}
+   */
+
+  /**
+   * Debug.
+   *
+   * @param {String} message
+   * @param {Mixed} ...args
    */
 
   /**
    * When one of the wrapper elements it clicked, select the void node.
    *
-   * @param {Event} e
+   * @param {Event} event
    */
 
   /**
@@ -59547,6 +60453,8 @@ var Void = function (_React$Component) {
 
 /**
  * Export.
+ *
+ * @type {Component}
  */
 
 Void.propTypes = {
@@ -59557,8 +60465,135 @@ Void.propTypes = {
   schema: _react2.default.PropTypes.object.isRequired,
   state: _react2.default.PropTypes.object.isRequired
 };
+
+var _initialiseProps = function _initialiseProps() {
+  var _this2 = this;
+
+  this.debug = function (message) {
+    for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
+
+    var node = _this2.props.node;
+    var key = node.key,
+        type = node.type;
+
+    var id = key + ' (' + type + ')';
+    debug.apply(undefined, [message, '' + id].concat(args));
+  };
+
+  this.onClick = function (event) {
+    event.preventDefault();
+    _this2.debug('onClick', { event: event });
+
+    var _props = _this2.props,
+        node = _props.node,
+        editor = _props.editor;
+
+    var next = editor.getState().transform()
+    // COMPAT: In Chrome & Safari, selections that are at the zero offset of
+    // an inline node will be automatically replaced to be at the last offset
+    // of a previous inline node, which screws us up, so we always want to set
+    // it to the end of the node. (2016/11/29)
+    .collapseToEndOf(node).focus().apply();
+
+    editor.onChange(next);
+  };
+
+  this.render = function () {
+    var props = _this2.props;
+    var children = props.children,
+        node = props.node;
+
+    var Tag = node.kind == 'block' ? 'div' : 'span';
+
+    // Make the outer wrapper relative, so the spacer can overlay it.
+    var style = {
+      position: 'relative'
+    };
+
+    _this2.debug('render', { props: props });
+
+    return _react2.default.createElement(
+      Tag,
+      { style: style, onClick: _this2.onClick },
+      _this2.renderSpacer(),
+      _react2.default.createElement(
+        Tag,
+        { contentEditable: false },
+        children
+      )
+    );
+  };
+
+  this.renderSpacer = function () {
+    var node = _this2.props.node;
+
+    var style = void 0;
+
+    if (node.kind == 'block') {
+      style = _environment.IS_FIREFOX ? {
+        pointerEvents: 'none',
+        width: '0px',
+        height: '0px',
+        lineHeight: '0px',
+        visibility: 'hidden'
+      } : {
+        position: 'absolute',
+        top: '0px',
+        left: '-9999px',
+        textIndent: '-9999px'
+      };
+    } else {
+      style = {
+        position: 'relative',
+        top: '0px',
+        left: '-9999px',
+        textIndent: '-9999px'
+      };
+    }
+
+    return _react2.default.createElement(
+      'span',
+      { style: style },
+      _this2.renderLeaf()
+    );
+  };
+
+  this.renderLeaf = function () {
+    var _props2 = _this2.props,
+        node = _props2.node,
+        schema = _props2.schema,
+        state = _props2.state;
+
+    var child = node.getFirstText();
+    var ranges = child.getRanges();
+    var text = '';
+    var marks = _mark2.default.createSet();
+    var index = 0;
+    var offsetKey = _offsetKey2.default.stringify({
+      key: child.key,
+      index: index
+    });
+
+    return _react2.default.createElement(_leaf2.default, {
+      isVoid: true,
+      renderMark: _noop2.default,
+      key: offsetKey,
+      schema: schema,
+      state: state,
+      node: child,
+      parent: node,
+      ranges: ranges,
+      index: index,
+      text: text,
+      marks: marks
+    });
+  };
+};
+
 exports.default = Void;
-},{"../constants/environment":324,"../models/mark":332,"../utils/offset-key":360,"./leaf":320,"react":306}],324:[function(require,module,exports){
+},{"../constants/environment":377,"../models/mark":386,"../utils/noop":415,"../utils/offset-key":417,"./leaf":373,"debug":422,"react":359}],377:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -59583,6 +60618,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 var IS_ANDROID = exports.IS_ANDROID = process.browser && _detectBrowser2.default.name == 'android';
@@ -59609,7 +60646,31 @@ exports.default = {
   IS_WINDOWS: IS_WINDOWS
 };
 }).call(this,require('_process'))
-},{"_process":158,"detect-browser":30,"lodash/includes":134,"ua-parser-js":369}],325:[function(require,module,exports){
+},{"_process":211,"detect-browser":30,"lodash/includes":186,"ua-parser-js":428}],378:[function(require,module,exports){
+(function (process){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/**
+ * Is in development?
+ *
+ * @type {Boolean}
+ */
+
+var IS_DEV = typeof process !== 'undefined' && process.env && process.env.NODE_ENV !== 'production';
+
+/**
+ * Export.
+ *
+ * @type {Boolean}
+ */
+
+exports.default = IS_DEV;
+}).call(this,require('_process'))
+},{"_process":211}],379:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -59629,16 +60690,18 @@ var TYPES = {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = TYPES;
-},{}],326:[function(require,module,exports){
+},{}],380:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.findDOMNode = exports.Transforms = exports.Text = exports.State = exports.Selection = exports.Schema = exports.Raw = exports.Plain = exports.Placeholder = exports.Mark = exports.Inline = exports.Html = exports.Editor = exports.Document = exports.Data = exports.Character = exports.Block = undefined;
+exports.setKeyGenerator = exports.findDOMNode = exports.Transforms = exports.Text = exports.State = exports.Selection = exports.Schema = exports.Raw = exports.Range = exports.Plain = exports.Placeholder = exports.Mark = exports.Inline = exports.Html = exports.Editor = exports.Document = exports.Data = exports.Character = exports.Block = undefined;
 
 var _editor = require('./components/editor');
 
@@ -59688,6 +60751,10 @@ var _text = require('./models/text');
 
 var _text2 = _interopRequireDefault(_text);
 
+var _range = require('./models/range');
+
+var _range2 = _interopRequireDefault(_range);
+
 var _html = require('./serializers/html');
 
 var _html2 = _interopRequireDefault(_html);
@@ -59708,6 +60775,8 @@ var _findDomNode = require('./utils/find-dom-node');
 
 var _findDomNode2 = _interopRequireDefault(_findDomNode);
 
+var _generateKey = require('./utils/generate-key');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -59717,7 +60786,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 /**
- * Transforms.
+ * Utils.
+ */
+
+/**
+ * Serializers.
  */
 
 exports.Block = _block2.default;
@@ -59730,6 +60803,7 @@ exports.Inline = _inline2.default;
 exports.Mark = _mark2.default;
 exports.Placeholder = _placeholder2.default;
 exports.Plain = _plain2.default;
+exports.Range = _range2.default;
 exports.Raw = _raw2.default;
 exports.Schema = _schema2.default;
 exports.Selection = _selection2.default;
@@ -59737,13 +60811,10 @@ exports.State = _state2.default;
 exports.Text = _text2.default;
 exports.Transforms = _transforms2.default;
 exports.findDOMNode = _findDomNode2.default;
+exports.setKeyGenerator = _generateKey.setKeyGenerator;
 
 /**
- * Utils.
- */
-
-/**
- * Serializers.
+ * Transforms.
  */
 
 /**
@@ -59765,15 +60836,17 @@ exports.default = {
   Mark: _mark2.default,
   Placeholder: _placeholder2.default,
   Plain: _plain2.default,
+  Range: _range2.default,
   Raw: _raw2.default,
   Schema: _schema2.default,
   Selection: _selection2.default,
   State: _state2.default,
   Text: _text2.default,
   Transforms: _transforms2.default,
-  findDOMNode: _findDomNode2.default
+  findDOMNode: _findDomNode2.default,
+  setKeyGenerator: _generateKey.setKeyGenerator
 };
-},{"./components/editor":319,"./components/placeholder":322,"./models/block":327,"./models/character":328,"./models/data":329,"./models/document":330,"./models/inline":331,"./models/mark":332,"./models/schema":334,"./models/selection":335,"./models/state":336,"./models/text":337,"./serializers/html":342,"./serializers/plain":343,"./serializers/raw":344,"./transforms":349,"./utils/find-dom-node":354}],327:[function(require,module,exports){
+},{"./components/editor":372,"./components/placeholder":375,"./models/block":381,"./models/character":382,"./models/data":383,"./models/document":384,"./models/inline":385,"./models/mark":386,"./models/range":388,"./models/schema":389,"./models/selection":390,"./models/state":391,"./models/text":392,"./serializers/html":397,"./serializers/plain":398,"./serializers/raw":399,"./transforms":404,"./utils/find-dom-node":409,"./utils/generate-key":410}],381:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -59800,9 +60873,9 @@ var _text = require('./text');
 
 var _text2 = _interopRequireDefault(_text);
 
-var _uid = require('../utils/uid');
+var _generateKey = require('../utils/generate-key');
 
-var _uid2 = _interopRequireDefault(_uid);
+var _generateKey2 = _interopRequireDefault(_generateKey);
 
 var _immutable = require('immutable');
 
@@ -59814,7 +60887,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 /**
- * Prevent circuit.
+ * Prevent circular dependencies.
  */
 
 /**
@@ -59823,6 +60896,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * Default properties.
+ *
+ * @type {Object}
  */
 
 var DEFAULTS = {
@@ -59835,6 +60910,8 @@ var DEFAULTS = {
 
 /**
  * Block.
+ *
+ * @type {Block}
  */
 
 var Block = function (_ref) {
@@ -59853,7 +60930,7 @@ var Block = function (_ref) {
     /**
      * Get the node's kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -59863,7 +60940,7 @@ var Block = function (_ref) {
     /**
      * Is the node empty?
      *
-     * @return {Boolean} isEmpty
+     * @return {Boolean}
      */
 
   }, {
@@ -59875,7 +60952,7 @@ var Block = function (_ref) {
     /**
      * Get the length of the concatenated text of the node.
      *
-     * @return {Number} length
+     * @return {Number}
      */
 
   }, {
@@ -59887,15 +60964,13 @@ var Block = function (_ref) {
     /**
      * Get the concatenated text `string` of all child nodes.
      *
-     * @return {String} text
+     * @return {String}
      */
 
   }, {
     key: 'text',
     get: function get() {
-      return this.nodes.map(function (node) {
-        return node.text;
-      }).join('');
+      return this.getText();
     }
   }], [{
     key: 'create',
@@ -59904,8 +60979,8 @@ var Block = function (_ref) {
     /**
      * Create a new `Block` with `properties`.
      *
-     * @param {Object} properties
-     * @return {Block} element
+     * @param {Object|Block} properties
+     * @return {Block}
      */
 
     value: function create() {
@@ -59916,7 +60991,7 @@ var Block = function (_ref) {
       if (properties instanceof _text2.default) return properties;
       if (!properties.type) throw new Error('You must pass a block `type`.');
 
-      properties.key = properties.key || (0, _uid2.default)(4);
+      properties.key = properties.key || (0, _generateKey2.default)();
       properties.data = _data2.default.create(properties.data);
       properties.isVoid = !!properties.isVoid;
       properties.nodes = Block.createList(properties.nodes);
@@ -59931,8 +61006,8 @@ var Block = function (_ref) {
     /**
      * Create a list of `Blocks` from an array.
      *
-     * @param {Array} elements
-     * @return {List} list
+     * @param {Array<Object|Block>} elements
+     * @return {List<Block>}
      */
 
   }, {
@@ -59958,10 +61033,12 @@ for (var method in _node2.default) {
 
 /**
  * Export.
+ *
+ * @type {Block}
  */
 
 exports.default = Block;
-},{"../utils/uid":364,"./data":329,"./document":330,"./inline":331,"./node":333,"./text":337,"immutable":93}],328:[function(require,module,exports){
+},{"../utils/generate-key":410,"./data":383,"./document":384,"./inline":385,"./node":387,"./text":392,"immutable":144}],382:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -59985,20 +61062,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Record.
+ * Default properties.
+ *
+ * @type {Object}
  */
 
-var CharacterRecord = new _immutable.Record({
+var DEFAULTS = {
   marks: new _immutable.Set(),
   text: ''
-});
+};
 
 /**
  * Character.
+ *
+ * @type {Character}
  */
 
-var Character = function (_CharacterRecord) {
-  _inherits(Character, _CharacterRecord);
+var Character = function (_ref) {
+  _inherits(Character, _ref);
 
   function Character() {
     _classCallCheck(this, Character);
@@ -60013,7 +61094,7 @@ var Character = function (_CharacterRecord) {
     /**
      * Get the kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -60026,8 +61107,8 @@ var Character = function (_CharacterRecord) {
     /**
      * Create a character record with `properties`.
      *
-     * @param {Object} properties
-     * @return {Character} character
+     * @param {Object|Character} properties
+     * @return {Character}
      */
 
     value: function create() {
@@ -60041,8 +61122,8 @@ var Character = function (_CharacterRecord) {
     /**
      * Create a characters list from an array of characters.
      *
-     * @param {Array} array
-     * @return {List} characters
+     * @param {Array<Object|Character>} array
+     * @return {List<Character>}
      */
 
   }, {
@@ -60058,8 +61139,8 @@ var Character = function (_CharacterRecord) {
      * Create a characters list from a `string` and optional `marks`.
      *
      * @param {String} string
-     * @param {Set} marks (optional)
-     * @return {List}
+     * @param {Set<Mark>} marks (optional)
+     * @return {List<Character>}
      */
 
   }, {
@@ -60074,14 +61155,16 @@ var Character = function (_CharacterRecord) {
   }]);
 
   return Character;
-}(CharacterRecord);
+}(new _immutable.Record(DEFAULTS));
 
 /**
  * Export.
+ *
+ * @type {Character}
  */
 
 exports.default = Character;
-},{"./mark":332,"immutable":93}],329:[function(require,module,exports){
+},{"./mark":386,"immutable":144}],383:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -60095,6 +61178,8 @@ var _immutable = require('immutable');
  *
  * This isn't an immutable record, it's just a thin wrapper around `Map` so that
  * we can allow for more convenient creation.
+ *
+ * @type {Object}
  */
 
 var Data = {
@@ -60115,10 +61200,12 @@ var Data = {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = Data;
-},{"immutable":93}],330:[function(require,module,exports){
+},{"immutable":144}],384:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -60137,9 +61224,9 @@ var _node = require('./node');
 
 var _node2 = _interopRequireDefault(_node);
 
-var _uid = require('../utils/uid');
+var _generateKey = require('../utils/generate-key');
 
-var _uid2 = _interopRequireDefault(_uid);
+var _generateKey2 = _interopRequireDefault(_generateKey);
 
 var _immutable = require('immutable');
 
@@ -60151,7 +61238,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 /**
- * Prevent circuit.
+ * Prevent circular dependencies.
  */
 
 /**
@@ -60159,16 +61246,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  */
 
 /**
- * Defaults.
+ * Default properties.
+ *
+ * @type {Object}
  */
 
 var DEFAULTS = {
   key: null,
-  nodes: new _immutable.OrderedMap()
+  nodes: new _immutable.List()
 };
 
 /**
  * Document.
+ *
+ * @type {Document}
  */
 
 var Document = function (_ref) {
@@ -60187,7 +61278,7 @@ var Document = function (_ref) {
     /**
      * Get the node's kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -60197,7 +61288,7 @@ var Document = function (_ref) {
     /**
      * Is the document empty?
      *
-     * @return {Boolean} isEmpty
+     * @return {Boolean}
      */
 
   }, {
@@ -60209,7 +61300,7 @@ var Document = function (_ref) {
     /**
      * Get the length of the concatenated text of the document.
      *
-     * @return {Number} length
+     * @return {Number}
      */
 
   }, {
@@ -60221,15 +61312,13 @@ var Document = function (_ref) {
     /**
      * Get the concatenated text `string` of all child nodes.
      *
-     * @return {String} text
+     * @return {String}
      */
 
   }, {
     key: 'text',
     get: function get() {
-      return this.nodes.map(function (node) {
-        return node.text;
-      }).join('');
+      return this.getText();
     }
   }], [{
     key: 'create',
@@ -60238,8 +61327,8 @@ var Document = function (_ref) {
     /**
      * Create a new `Document` with `properties`.
      *
-     * @param {Objetc} properties
-     * @return {Document} document
+     * @param {Object|Document} properties
+     * @return {Document}
      */
 
     value: function create() {
@@ -60247,7 +61336,7 @@ var Document = function (_ref) {
 
       if (properties instanceof Document) return properties;
 
-      properties.key = properties.key || (0, _uid2.default)(4);
+      properties.key = properties.key || (0, _generateKey2.default)();
       properties.nodes = _block2.default.createList(properties.nodes);
 
       return new Document(properties);
@@ -60267,10 +61356,12 @@ for (var method in _node2.default) {
 
 /**
  * Export.
+ *
+ * @type {Document}
  */
 
 exports.default = Document;
-},{"../utils/uid":364,"./block":327,"./inline":331,"./node":333,"immutable":93}],331:[function(require,module,exports){
+},{"../utils/generate-key":410,"./block":381,"./inline":385,"./node":387,"immutable":144}],385:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -60297,9 +61388,9 @@ var _text = require('./text');
 
 var _text2 = _interopRequireDefault(_text);
 
-var _uid = require('../utils/uid');
+var _generateKey = require('../utils/generate-key');
 
-var _uid2 = _interopRequireDefault(_uid);
+var _generateKey2 = _interopRequireDefault(_generateKey);
 
 var _immutable = require('immutable');
 
@@ -60311,7 +61402,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 /**
- * Prevent circuit.
+ * Prevent circular dependencies.
  */
 
 /**
@@ -60319,7 +61410,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  */
 
 /**
- * Record.
+ * Default properties.
+ *
+ * @type {Object}
  */
 
 var DEFAULTS = {
@@ -60332,6 +61425,8 @@ var DEFAULTS = {
 
 /**
  * Inline.
+ *
+ * @type {Inline}
  */
 
 var Inline = function (_ref) {
@@ -60350,7 +61445,7 @@ var Inline = function (_ref) {
     /**
      * Get the node's kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -60360,7 +61455,7 @@ var Inline = function (_ref) {
     /**
      * Is the node empty?
      *
-     * @return {Boolean} isEmpty
+     * @return {Boolean}
      */
 
   }, {
@@ -60372,7 +61467,7 @@ var Inline = function (_ref) {
     /**
      * Get the length of the concatenated text of the node.
      *
-     * @return {Number} length
+     * @return {Number}
      */
 
   }, {
@@ -60384,15 +61479,13 @@ var Inline = function (_ref) {
     /**
      * Get the concatenated text `string` of all child nodes.
      *
-     * @return {String} text
+     * @return {String}
      */
 
   }, {
     key: 'text',
     get: function get() {
-      return this.nodes.map(function (node) {
-        return node.text;
-      }).join('');
+      return this.getText();
     }
   }], [{
     key: 'create',
@@ -60401,8 +61494,8 @@ var Inline = function (_ref) {
     /**
      * Create a new `Inline` with `properties`.
      *
-     * @param {Object} properties
-     * @return {Inline} element
+     * @param {Object|Inline} properties
+     * @return {Inline}
      */
 
     value: function create() {
@@ -60413,7 +61506,7 @@ var Inline = function (_ref) {
       if (properties instanceof _text2.default) return properties;
       if (!properties.type) throw new Error('You must pass an inline `type`.');
 
-      properties.key = properties.key || (0, _uid2.default)(4);
+      properties.key = properties.key || (0, _generateKey2.default)();
       properties.data = _data2.default.create(properties.data);
       properties.isVoid = !!properties.isVoid;
       properties.nodes = Inline.createList(properties.nodes);
@@ -60428,8 +61521,8 @@ var Inline = function (_ref) {
     /**
      * Create a list of `Inlines` from an array.
      *
-     * @param {Array} elements
-     * @return {List} map
+     * @param {Array<Object|Inline>} elements
+     * @return {List<Inline>}
      */
 
   }, {
@@ -60455,10 +61548,12 @@ for (var method in _node2.default) {
 
 /**
  * Export.
+ *
+ * @type {Inline}
  */
 
 exports.default = Inline;
-},{"../utils/uid":364,"./block":327,"./data":329,"./document":330,"./node":333,"./text":337,"immutable":93}],332:[function(require,module,exports){
+},{"../utils/generate-key":410,"./block":381,"./data":383,"./document":384,"./node":387,"./text":392,"immutable":144}],386:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -60486,7 +61581,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Record.
+ * Default properties.
+ *
+ * @type {Object}
  */
 
 var DEFAULTS = {
@@ -60496,6 +61593,8 @@ var DEFAULTS = {
 
 /**
  * Mark.
+ *
+ * @type {Mark}
  */
 
 var Mark = function (_ref) {
@@ -60515,7 +61614,7 @@ var Mark = function (_ref) {
      * Get the component for the node from a `schema`.
      *
      * @param {Schema} schema
-     * @return {Component || Void}
+     * @return {Component|Void}
      */
 
     value: function getComponent(schema) {
@@ -60528,7 +61627,7 @@ var Mark = function (_ref) {
     /**
      * Get the kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -60541,8 +61640,8 @@ var Mark = function (_ref) {
     /**
      * Create a new `Mark` with `properties`.
      *
-     * @param {Object} properties
-     * @return {Mark} mark
+     * @param {Object|Mark} properties
+     * @return {Mark}
      */
 
     value: function create() {
@@ -60557,8 +61656,8 @@ var Mark = function (_ref) {
     /**
      * Create a marks set from an array of marks.
      *
-     * @param {Array} array
-     * @return {Set} marks
+     * @param {Array<Object|Mark>} array
+     * @return {Set<Mark>}
      */
 
   }, {
@@ -60582,10 +61681,12 @@ var Mark = function (_ref) {
 
 /**
  * Export.
+ *
+ * @type {Mark}
  */
 
 exports.default = Mark;
-},{"../utils/memoize":358,"./data":329,"immutable":93}],333:[function(require,module,exports){
+},{"../utils/memoize":414,"./data":383,"immutable":144}],387:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -60624,9 +61725,9 @@ var _memoize = require('../utils/memoize');
 
 var _memoize2 = _interopRequireDefault(_memoize);
 
-var _uid = require('../utils/uid');
+var _generateKey = require('../utils/generate-key');
 
-var _uid2 = _interopRequireDefault(_uid);
+var _generateKey2 = _interopRequireDefault(_generateKey);
 
 var _immutable = require('immutable');
 
@@ -60637,14 +61738,46 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * And interface that `Document`, `Block` and `Inline` all implement, to make
  * working with the recursive node tree easier.
+ *
+ * @type {Object}
  */
 
 var Node = {
 
   /**
+   * Return a set of all keys in the node.
+   *
+   * @return {Set<Node>}
+   */
+
+  getKeys: function getKeys() {
+    var keys = [];
+
+    this.forEachDescendant(function (desc) {
+      keys.push(desc.key);
+    });
+
+    return (0, _immutable.Set)(keys);
+  },
+
+
+  /**
+   * Get the concatenated text `string` of all child nodes.
+   *
+   * @return {String}
+   */
+
+  getText: function getText() {
+    return this.nodes.reduce(function (result, node) {
+      return result + node.text;
+    }, '');
+  },
+
+
+  /**
    * Assert that a node has a child by `key` and return it.
    *
-   * @param {String or Node} key
+   * @param {String} key
    * @return {Node}
    */
 
@@ -60663,7 +61796,7 @@ var Node = {
   /**
    * Assert that a node has a descendant by `key` and return it.
    *
-   * @param {String or Node} key
+   * @param {String} key
    * @return {Node}
    */
 
@@ -60676,6 +61809,25 @@ var Node = {
     }
 
     return descendant;
+  },
+
+
+  /**
+   * Assert that a node's tree has a node by `key` and return it.
+   *
+   * @param {String} key
+   * @return {Node}
+   */
+
+  assertNode: function assertNode(key) {
+    var node = this.getNode(key);
+
+    if (!node) {
+      key = _normalize2.default.key(key);
+      throw new Error('Could not find a node with key "' + key + '".');
+    }
+
+    return node;
   },
 
 
@@ -60700,8 +61852,8 @@ var Node = {
   /**
    * Concat children `nodes` on to the end of the node.
    *
-   * @param {List} nodes
-   * @return {Node} node
+   * @param {List<Node>} nodes
+   * @return {Node}
    */
 
   concatChildren: function concatChildren(nodes) {
@@ -60714,7 +61866,7 @@ var Node = {
    * Decorate all of the text nodes with a `decorator` function.
    *
    * @param {Function} decorator
-   * @return {Node} node
+   * @return {Node}
    */
 
   decorateTexts: function decorateTexts(decorator) {
@@ -60728,14 +61880,15 @@ var Node = {
    * Recursively find all descendant nodes by `iterator`. Breadth first.
    *
    * @param {Function} iterator
-   * @return {Node or Null} node
+   * @return {Node|Null}
    */
 
   findDescendant: function findDescendant(iterator) {
-    var found = this.nodes.find(iterator);
-    if (found) return found;
+    var childFound = this.nodes.find(iterator);
+    if (childFound) return childFound;
 
     var descendantFound = null;
+
     this.nodes.find(function (node) {
       if (node.kind != 'text') {
         descendantFound = node.findDescendant(iterator);
@@ -60753,22 +61906,46 @@ var Node = {
    * Recursively find all descendant nodes by `iterator`. Depth first.
    *
    * @param {Function} iterator
-   * @return {Node or Null} node
+   * @return {Node|Null}
    */
 
   findDescendantDeep: function findDescendantDeep(iterator) {
-    var descendantFound = null;
+    var found = void 0;
 
-    var found = this.nodes.find(function (node) {
-      if (node.kind != 'text') {
-        descendantFound = node.findDescendantDeep(iterator);
-        return descendantFound || iterator(node);
+    this.forEachDescendant(function (node) {
+      if (iterator(node)) {
+        found = node;
+        return false;
       }
-
-      return iterator(node) ? node : null;
     });
 
-    return descendantFound || found;
+    return found;
+  },
+
+
+  /**
+   * Recursively iterate over all descendant nodes with `iterator`.
+   *
+   * @param {Function} iterator
+   */
+
+  forEachDescendant: function forEachDescendant(iterator) {
+    // If the iterator returns false it will break the loop.
+    var ret = void 0;
+
+    this.nodes.forEach(function (child, i, nodes) {
+      if (iterator(child, i, nodes) === false) {
+        ret = false;
+        return false;
+      }
+
+      if (child.kind != 'text') {
+        ret = child.forEachDescendant(iterator);
+        return ret;
+      }
+    });
+
+    return ret;
   },
 
 
@@ -60776,23 +61953,26 @@ var Node = {
    * Recursively filter all descendant nodes with `iterator`.
    *
    * @param {Function} iterator
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   filterDescendants: function filterDescendants(iterator) {
-    return this.nodes.reduce(function (matches, child, i, nodes) {
-      if (iterator(child, i, nodes)) matches = matches.push(child);
-      if (child.kind != 'text') matches = matches.concat(child.filterDescendants(iterator));
-      return matches;
-    }, _block2.default.createList());
+    var matches = [];
+
+    this.forEachDescendant(function (child, i, nodes) {
+      if (iterator(child, i, nodes)) matches.push(child);
+    });
+
+    return (0, _immutable.List)(matches);
   },
 
 
   /**
    * Recursively filter all descendant nodes with `iterator`, depth-first.
+   * It is different from `filterDescendants` in regard of the order of results.
    *
    * @param {Function} iterator
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   filterDescendantsDeep: function filterDescendantsDeep(iterator) {
@@ -60807,14 +61987,14 @@ var Node = {
   /**
    * Get the closest block nodes for each text node in the node.
    *
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   getBlocks: function getBlocks() {
     var _this = this;
 
     return this.getTexts().map(function (text) {
-      return _this.getClosestBlock(text);
+      return _this.getClosestBlock(text.key);
     }).toOrderedSet().toList();
   },
 
@@ -60823,14 +62003,14 @@ var Node = {
    * Get the closest block nodes for each text node in a `range`.
    *
    * @param {Selection} range
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   getBlocksAtRange: function getBlocksAtRange(range) {
     var _this2 = this;
 
     return this.getTextsAtRange(range).map(function (text) {
-      return _this2.getClosestBlock(text);
+      return _this2.getClosestBlock(text.key);
     });
   },
 
@@ -60839,7 +62019,7 @@ var Node = {
    * Get a list of the characters in a `range`.
    *
    * @param {Selection} range
-   * @return {List} characters
+   * @return {List<Node>} characters
    */
 
   getCharactersAtRange: function getCharactersAtRange(range) {
@@ -60853,67 +62033,11 @@ var Node = {
 
 
   /**
-   * Get children after a child by `key`.
-   *
-   * @param {String or Node} key
-   * @return {Node} node
-   */
-
-  getChildrenAfter: function getChildrenAfter(key) {
-    var child = this.assertChild(key);
-    var index = this.nodes.indexOf(child);
-    return this.nodes.slice(index + 1);
-  },
-
-
-  /**
-   * Get children after a child by `key`, including the child.
-   *
-   * @param {String or Node} key
-   * @return {Node} node
-   */
-
-  getChildrenAfterIncluding: function getChildrenAfterIncluding(key) {
-    var child = this.assertChild(key);
-    var index = this.nodes.indexOf(child);
-    return this.nodes.slice(index);
-  },
-
-
-  /**
-   * Get children before a child by `key`.
-   *
-   * @param {String or Node} key
-   * @return {Node} node
-   */
-
-  getChildrenBefore: function getChildrenBefore(key) {
-    var child = this.assertChild(key);
-    var index = this.nodes.indexOf(child);
-    return this.nodes.slice(0, index);
-  },
-
-
-  /**
-   * Get children before a child by `key`, including the child.
-   *
-   * @param {String or Node} key
-   * @return {Node} node
-   */
-
-  getChildrenBeforeIncluding: function getChildrenBeforeIncluding(key) {
-    var child = this.assertChild(key);
-    var index = this.nodes.indexOf(child);
-    return this.nodes.slice(0, index + 1);
-  },
-
-
-  /**
    * Get children between two child keys.
    *
-   * @param {String or Node} start
-   * @param {String or Node} end
-   * @return {Node} node
+   * @param {String} start
+   * @param {String} end
+   * @return {Node}
    */
 
   getChildrenBetween: function getChildrenBetween(start, end) {
@@ -60928,9 +62052,9 @@ var Node = {
   /**
    * Get children between two child keys, including the two children.
    *
-   * @param {String or Node} start
-   * @param {String or Node} end
-   * @return {Node} node
+   * @param {String} start
+   * @param {String} end
+   * @return {Node}
    */
 
   getChildrenBetweenIncluding: function getChildrenBetweenIncluding(start, end) {
@@ -60945,12 +62069,13 @@ var Node = {
   /**
    * Get closest parent of node by `key` that matches `iterator`.
    *
-   * @param {String or Node} key
+   * @param {String} key
    * @param {Function} iterator
-   * @return {Node or Null} node
+   * @return {Node|Null}
    */
 
   getClosest: function getClosest(key, iterator) {
+    key = _normalize2.default.key(key);
     var ancestors = this.getAncestors(key);
     if (!ancestors) {
       throw new Error('Could not find a descendant node with key "' + key + '".');
@@ -60964,8 +62089,8 @@ var Node = {
   /**
    * Get the closest block parent of a `node`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getClosestBlock: function getClosestBlock(key) {
@@ -60978,8 +62103,8 @@ var Node = {
   /**
    * Get the closest inline parent of a `node`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getClosestInline: function getClosestInline(key) {
@@ -60992,8 +62117,8 @@ var Node = {
   /**
    * Get a child node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getChild: function getChild(key) {
@@ -61007,12 +62132,15 @@ var Node = {
   /**
    * Get the common ancestor of nodes `one` and `two` by keys.
    *
-   * @param {String or Node} one
-   * @param {String or Node} two
+   * @param {String} one
+   * @param {String} two
    * @return {Node}
    */
 
   getCommonAncestor: function getCommonAncestor(one, two) {
+    if (one == this.key) return this;
+    if (two == this.key) return this;
+
     this.assertDescendant(one);
     this.assertDescendant(two);
     var ancestors = new _immutable.List();
@@ -61021,12 +62149,12 @@ var Node = {
 
     while (oneParent) {
       ancestors = ancestors.push(oneParent);
-      oneParent = this.getParent(oneParent);
+      oneParent = this.getParent(oneParent.key);
     }
 
     while (twoParent) {
       if (ancestors.includes(twoParent)) return twoParent;
-      twoParent = this.getParent(twoParent);
+      twoParent = this.getParent(twoParent.key);
     }
   },
 
@@ -61035,7 +62163,7 @@ var Node = {
    * Get the component for the node from a `schema`.
    *
    * @param {Schema} schema
-   * @return {Component || Void}
+   * @return {Component|Void}
    */
 
   getComponent: function getComponent(schema) {
@@ -61064,6 +62192,10 @@ var Node = {
    */
 
   getDescendantDecorators: function getDescendantDecorators(key, schema) {
+    if (!schema.hasDecorators) {
+      return [];
+    }
+
     var descendant = this.assertDescendant(key);
     var child = this.getHighestChild(key);
     var decorators = [];
@@ -61082,15 +62214,31 @@ var Node = {
    * Get a descendant node by `key`.
    *
    * @param {String} key
-   * @return {Node or Null} node
+   * @return {Node|Null}
    */
 
   getDescendant: function getDescendant(key) {
     key = _normalize2.default.key(key);
+    return this._getDescendant(key);
+  },
 
-    return this.findDescendantDeep(function (node) {
-      return node.key == key;
+
+  // This one is memoized
+  _getDescendant: function _getDescendant(key) {
+    var descendantFound = null;
+
+    var found = this.nodes.find(function (node) {
+      if (node.key === key) {
+        return node;
+      } else if (node.kind !== 'text') {
+        descendantFound = node._getDescendant(key);
+        return descendantFound;
+      } else {
+        return false;
+      }
     });
+
+    return descendantFound || found;
   },
 
 
@@ -61098,7 +62246,7 @@ var Node = {
    * Get a descendant by `path`.
    *
    * @param {Array} path
-   * @return {Node || Void}
+   * @return {Node|Null}
    */
 
   getDescendantAtPath: function getDescendantAtPath(path) {
@@ -61136,9 +62284,35 @@ var Node = {
 
 
   /**
+   * True if the node has both descendants in that order, false
+   * otherwise. The order is depth-first, post-order.
+   *
+   * @param {String} key1
+   * @param {String} key2
+   * @return {Boolean} True if nodes are found in this order
+   */
+
+  areDescendantSorted: function areDescendantSorted(key1, key2) {
+    var sorted = void 0;
+
+    this.forEachDescendant(function (n) {
+      if (n.key === key1) {
+        sorted = true;
+        return false;
+      } else if (n.key === key2) {
+        sorted = false;
+        return false;
+      }
+    });
+
+    return sorted;
+  },
+
+
+  /**
    * Get the depth of a child node by `key`, with optional `startAt`.
    *
-   * @param {String or Node} key
+   * @param {String} key
    * @param {Number} startAt (optional)
    * @return {Number} depth
    */
@@ -61155,7 +62329,7 @@ var Node = {
    * Get a fragment of the node at a `range`.
    *
    * @param {Selection} range
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   getFragmentAtRange: function getFragmentAtRange(range) {
@@ -61166,10 +62340,10 @@ var Node = {
     if (range.isCollapsed) return _document2.default.create({ nodes: nodes });
 
     // Make sure the children exist.
-    var startKey = range.startKey;
-    var startOffset = range.startOffset;
-    var endKey = range.endKey;
-    var endOffset = range.endOffset;
+    var startKey = range.startKey,
+        startOffset = range.startOffset,
+        endKey = range.endKey,
+        endOffset = range.endOffset;
 
     node.assertDescendant(startKey);
     node.assertDescendant(endKey);
@@ -61183,10 +62357,10 @@ var Node = {
     node = node.splitBlockAtRange(end, Infinity);
 
     // Get the start and end nodes.
-    var startNode = node.getNextSibling(node.getHighestChild(startKey));
-    var endNode = startKey == endKey ? node.getHighestChild(next) : node.getHighestChild(endKey);
+    var startNode = node.getNextSibling(node.getHighestChild(startKey).key);
+    var endNode = startKey == endKey ? node.getHighestChild(next.key) : node.getHighestChild(endKey);
 
-    nodes = node.getChildrenBetweenIncluding(startNode, endNode);
+    nodes = node.getChildrenBetweenIncluding(startNode.key, endNode.key);
 
     // Return a new document fragment.
     return _document2.default.create({ nodes: nodes });
@@ -61196,28 +62370,28 @@ var Node = {
   /**
    * Get the furthest parent of a node by `key` that matches an `iterator`.
    *
-   * @param {String or Node} key
+   * @param {String} key
    * @param {Function} iterator
-   * @return {Node or Null}
+   * @return {Node|Null}
    */
 
   getFurthest: function getFurthest(key, iterator) {
-    var node = this.assertDescendant(key);
-    var furthest = null;
-
-    while (node = this.getClosest(node, iterator)) {
-      furthest = node;
+    var ancestors = this.getAncestors(key);
+    if (!ancestors) {
+      key = _normalize2.default.key(key);
+      throw new Error('Could not find a descendant node with key "' + key + '".');
     }
 
-    return furthest;
+    // Exclude this node itself
+    return ancestors.rest().find(iterator);
   },
 
 
   /**
    * Get the furthest block parent of a node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getFurthestBlock: function getFurthestBlock(key) {
@@ -61230,8 +62404,8 @@ var Node = {
   /**
    * Get the furthest inline parent of a node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getFurthestInline: function getFurthestInline(key) {
@@ -61244,8 +62418,8 @@ var Node = {
   /**
    * Get the highest child ancestor of a node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getHighestChild: function getHighestChild(key) {
@@ -61261,8 +62435,8 @@ var Node = {
   /**
    * Get the highest parent of a node by `key` which has an only child.
    *
-   * @param {String or Node} key
-   * @return {Node or Null}
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getHighestOnlyChildParent: function getHighestOnlyChildParent(key) {
@@ -61281,14 +62455,14 @@ var Node = {
   /**
    * Get the furthest inline nodes for each text node in the node.
    *
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   getInlines: function getInlines() {
     var _this3 = this;
 
     return this.getTexts().map(function (text) {
-      return _this3.getFurthestInline(text);
+      return _this3.getFurthestInline(text.key);
     }).filter(function (exists) {
       return exists;
     }).toOrderedSet().toList();
@@ -61299,14 +62473,14 @@ var Node = {
    * Get the closest inline nodes for each text node in a `range`.
    *
    * @param {Selection} range
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   getInlinesAtRange: function getInlinesAtRange(range) {
     var _this4 = this;
 
     return this.getTextsAtRange(range).map(function (text) {
-      return _this4.getClosestInline(text);
+      return _this4.getClosestInline(text.key);
     }).filter(function (exists) {
       return exists;
     }).toOrderedSet().toList();
@@ -61317,14 +62491,14 @@ var Node = {
    * Get a set of the marks in a `range`.
    *
    * @param {Selection} range
-   * @return {Set} marks
+   * @return {Set<Mark>}
    */
 
   getMarksAtRange: function getMarksAtRange(range) {
     range = range.normalize(this);
-    var _range = range;
-    var startKey = _range.startKey;
-    var startOffset = _range.startOffset;
+    var _range = range,
+        startKey = _range.startKey,
+        startOffset = _range.startOffset;
 
     var marks = _mark2.default.createSet();
 
@@ -61353,8 +62527,8 @@ var Node = {
   /**
    * Get the block node before a descendant text node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getNextBlock: function getNextBlock(key) {
@@ -61371,30 +62545,37 @@ var Node = {
     var next = this.getNextText(last);
     if (!next) return null;
 
-    return this.getClosestBlock(next);
+    return this.getClosestBlock(next.key);
   },
 
 
   /**
    * Get the node after a descendant by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getNextSibling: function getNextSibling(key) {
-    var node = this.assertDescendant(key);
-    return this.getParent(node).nodes.skipUntil(function (child) {
-      return child == node;
-    }).get(1);
+    key = _normalize2.default.key(key);
+
+    var parent = this.getParent(key);
+    var after = parent.nodes.skipUntil(function (child) {
+      return child.key == key;
+    });
+
+    if (after.size == 0) {
+      throw new Error('Could not find a child node with key "' + key + '".');
+    }
+    return after.get(1);
   },
 
 
   /**
    * Get the text node after a descendant text node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getNextText: function getNextText(key) {
@@ -61406,10 +62587,23 @@ var Node = {
 
 
   /**
+   * Get a node in the tree by `key`.
+   *
+   * @param {String} key
+   * @return {Node|Null}
+   */
+
+  getNode: function getNode(key) {
+    key = _normalize2.default.key(key);
+    return this.key == key ? this : this.getDescendant(key);
+  },
+
+
+  /**
    * Get the offset for a descendant text node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Number} offset
+   * @param {String} key
+   * @return {Number}
    */
 
   getOffset: function getOffset(key) {
@@ -61432,7 +62626,7 @@ var Node = {
    * Get the offset from a `range`.
    *
    * @param {Selection} range
-   * @return {Number} offset
+   * @return {Number}
    */
 
   getOffsetAtRange: function getOffsetAtRange(range) {
@@ -61442,9 +62636,9 @@ var Node = {
       throw new Error('The range must be collapsed to calculcate its offset.');
     }
 
-    var _range2 = range;
-    var startKey = _range2.startKey;
-    var startOffset = _range2.startOffset;
+    var _range2 = range,
+        startKey = _range2.startKey,
+        startOffset = _range2.startOffset;
 
     return this.getOffset(startKey) + startOffset;
   },
@@ -61453,8 +62647,8 @@ var Node = {
   /**
    * Get the parent of a child node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getParent: function getParent(key) {
@@ -61478,7 +62672,7 @@ var Node = {
   /**
    * Get the path of a descendant node by `key`.
    *
-   * @param {String || Node} key
+   * @param {String|Node} key
    * @return {Array}
    */
 
@@ -61512,8 +62706,8 @@ var Node = {
   /**
    * Get the path of ancestors of a descendant node by `key`.
    *
-   * @param {String || Node} node
-   * @return {List<Node> or Null}
+   * @param {String|Node} key
+   * @return {List<Node>|Null}
    */
 
   getAncestors: function getAncestors(key) {
@@ -61540,23 +62734,30 @@ var Node = {
   /**
    * Get the node before a descendant node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getPreviousSibling: function getPreviousSibling(key) {
-    var node = this.assertDescendant(key);
-    return this.getParent(node).nodes.takeUntil(function (child) {
-      return child == node;
-    }).last();
+    key = _normalize2.default.key(key);
+    var parent = this.getParent(key);
+    var before = parent.nodes.takeUntil(function (child) {
+      return child.key == key;
+    });
+
+    if (before.size == parent.nodes.size) {
+      throw new Error('Could not find a child node with key "' + key + '".');
+    }
+
+    return before.last();
   },
 
 
   /**
    * Get the text node before a descendant text node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getPreviousText: function getPreviousText(key) {
@@ -61570,8 +62771,8 @@ var Node = {
   /**
    * Get the block node before a descendant text node by `key`.
    *
-   * @param {String or Node} key
-   * @return {Node or Null} node
+   * @param {String} key
+   * @return {Node|Null}
    */
 
   getPreviousBlock: function getPreviousBlock(key) {
@@ -61588,7 +62789,7 @@ var Node = {
     var previous = this.getPreviousText(first);
     if (!previous) return null;
 
-    return this.getClosestBlock(previous);
+    return this.getClosestBlock(previous.key);
   },
 
 
@@ -61596,7 +62797,7 @@ var Node = {
    * Get the descendent text node at an `offset`.
    *
    * @param {String} offset
-   * @return {Node or Null} node
+   * @return {Node|Null}
    */
 
   getTextAtOffset: function getTextAtOffset(offset) {
@@ -61611,7 +62812,7 @@ var Node = {
   /**
    * Get the direction of the node's text.
    *
-   * @return {String} direction
+   * @return {String}
    */
 
   getTextDirection: function getTextDirection() {
@@ -61624,33 +62825,50 @@ var Node = {
   /**
    * Recursively get all of the child text nodes in order of appearance.
    *
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   getTexts: function getTexts() {
+    return (0, _immutable.List)(this._getTexts());
+  },
+
+
+  // This one is memoized for performance.
+  _getTexts: function _getTexts() {
     return this.nodes.reduce(function (texts, node) {
-      return node.kind == 'text' ? texts.push(node) : texts.concat(node.getTexts());
-    }, _block2.default.createList());
+      if (node.kind == 'text') {
+        texts.push(node);
+        return texts;
+      } else {
+        return texts.concat(node._getTexts());
+      }
+    }, []);
   },
 
 
   /**
    * Get the first child text node.
    *
-   * @return {Node || Null} node
+   * @return {Node|Null}
    */
 
   getFirstText: function getFirstText() {
-    return this.findDescendantDeep(function (node) {
-      return node.kind == 'text';
+    var descendantFound = null;
+
+    var found = this.nodes.find(function (node) {
+      if (node.kind == 'text') return true;
+      descendantFound = node.getFirstText();
+      return descendantFound;
     });
+
+    return descendantFound || found;
   },
 
 
   /**
    * Get the last child text node.
    *
-   * @return {Node} node
+   * @return {Node|Null}
    */
 
   getLastText: function getLastText() {
@@ -61670,14 +62888,14 @@ var Node = {
    * Get all of the text nodes in a `range`.
    *
    * @param {Selection} range
-   * @return {List} nodes
+   * @return {List<Node>}
    */
 
   getTextsAtRange: function getTextsAtRange(range) {
     range = range.normalize(this);
-    var _range3 = range;
-    var startKey = _range3.startKey;
-    var endKey = _range3.endKey;
+    var _range3 = range,
+        startKey = _range3.startKey,
+        endKey = _range3.endKey;
 
     var texts = this.getTexts();
     var startText = this.getDescendant(startKey);
@@ -61691,8 +62909,8 @@ var Node = {
   /**
    * Check if a child node exists by `key`.
    *
-   * @param {String or Node} key
-   * @return {Boolean} exists
+   * @param {String} key
+   * @return {Boolean}
    */
 
   hasChild: function hasChild(key) {
@@ -61703,8 +62921,8 @@ var Node = {
   /**
    * Recursively check if a child node exists by `key`.
    *
-   * @param {String or Node} key
-   * @return {Boolean} exists
+   * @param {String} key
+   * @return {Boolean}
    */
 
   hasDescendant: function hasDescendant(key) {
@@ -61713,9 +62931,21 @@ var Node = {
 
 
   /**
+   * Recursively check if a node exists by `key`.
+   *
+   * @param {String} key
+   * @return {Boolean}
+   */
+
+  hasNode: function hasNode(key) {
+    return !!this.getNode(key);
+  },
+
+
+  /**
    * Check if a node has a void parent by `key`.
    *
-   * @param {String or Node} key
+   * @param {String} key
    * @return {Boolean}
    */
 
@@ -61735,11 +62965,7 @@ var Node = {
    */
 
   insertNode: function insertNode(index, node) {
-    var keys = new _immutable.Set([this.key]);
-
-    this.findDescendant(function (desc) {
-      keys = keys.add(desc.key);
-    });
+    var keys = this.getKeys();
 
     if (keys.contains(node.key)) {
       node = node.regenerateKey();
@@ -61751,7 +62977,7 @@ var Node = {
       });
     }
 
-    var nodes = this.nodes.splice(index, 0, node);
+    var nodes = this.nodes.insert(index, node);
     return this.merge({ nodes: nodes });
   },
 
@@ -61760,15 +62986,15 @@ var Node = {
    * Check if the inline nodes are split at a `range`.
    *
    * @param {Selection} range
-   * @return {Boolean} isSplit
+   * @return {Boolean}
    */
 
   isInlineSplitAtRange: function isInlineSplitAtRange(range) {
     range = range.normalize(this);
     if (range.isExpanded) throw new Error();
 
-    var _range4 = range;
-    var startKey = _range4.startKey;
+    var _range4 = range,
+        startKey = _range4.startKey;
 
     var start = this.getFurthestInline(startKey) || this.getDescendant(startKey);
     return range.isAtStartOf(start) || range.isAtEndOf(start);
@@ -61782,18 +63008,23 @@ var Node = {
    *
    * @param {Node} first
    * @param {Node} second
+   * @param {Boolean} options.deep (optional) Join recursively the
+   * respective last node and first node of the nodes' children. Like a zipper :)
    * @return {Node}
    */
 
-  joinNode: function joinNode(first, second) {
+  joinNode: function joinNode(first, second, options) {
+    var _options$deep = options.deep,
+        deep = _options$deep === undefined ? false : _options$deep;
+
     var node = this;
-    var parent = node.getParent(second);
+    var parent = node.getParent(second.key);
     var isParent = node == parent;
     var index = parent.nodes.indexOf(second);
 
     if (second.kind == 'text') {
-      var _first = first;
-      var characters = _first.characters;
+      var _first = first,
+          characters = _first.characters;
 
       characters = characters.concat(second.characters);
       first = first.merge({ characters: characters });
@@ -61803,6 +63034,11 @@ var Node = {
         second.nodes.forEach(function (child, i) {
           first = first.insertNode(size + i, child);
         });
+
+        if (deep) {
+          // Join recursively
+          first = first.joinNode(first.nodes.get(size - 1), first.nodes.get(size), { deep: deep });
+        }
       })();
     }
 
@@ -61818,7 +63054,7 @@ var Node = {
    * optimized to not return a new node if no changes are made.
    *
    * @param {Function} iterator
-   * @return {Node} node
+   * @return {Node}
    */
 
   mapChildren: function mapChildren(iterator) {
@@ -61840,7 +63076,7 @@ var Node = {
    * optimized to not return a new node if no changes are made.
    *
    * @param {Function} iterator
-   * @return {Node} node
+   * @return {Node}
    */
 
   mapDescendants: function mapDescendants(iterator) {
@@ -61865,19 +63101,19 @@ var Node = {
   /**
    * Regenerate the node's key.
    *
-   * @return {Node} node
+   * @return {Node}
    */
 
   regenerateKey: function regenerateKey() {
-    return this.merge({ key: (0, _uid2.default)() });
+    return this.merge({ key: (0, _generateKey2.default)() });
   },
 
 
   /**
    * Remove a `node` from the children node map.
    *
-   * @param {String or Node} key
-   * @return {Node} node
+   * @param {String} key
+   * @return {Node}
    */
 
   removeDescendant: function removeDescendant(key) {
@@ -61916,7 +63152,7 @@ var Node = {
   /**
    * Split a node by `path` at `offset`.
    *
-   * @param {String} path
+   * @param {Array} path
    * @param {Number} offset
    * @return {Node}
    */
@@ -61924,7 +63160,7 @@ var Node = {
   splitNode: function splitNode(path, offset) {
     var base = this;
     var node = base.assertPath(path);
-    var parent = base.getParent(node);
+    var parent = base.getParent(node.key);
     var isParent = base == parent;
     var index = parent.nodes.indexOf(node);
 
@@ -61938,34 +63174,74 @@ var Node = {
 
     while (child && child != parent) {
       if (child.kind == 'text') {
-        var i = node.kind == 'text' ? offset : offset - node.getOffset(child);
-        var _child = child;
-        var characters = _child.characters;
+        var i = node.kind == 'text' ? offset : offset - node.getOffset(child.key);
+        var _child = child,
+            characters = _child.characters;
 
         var oneChars = characters.take(i);
         var twoChars = characters.skip(i);
         one = child.merge({ characters: oneChars });
-        two = child.merge({ characters: twoChars, key: (0, _uid2.default)() });
+        two = child.merge({ characters: twoChars }).regenerateKey();
       } else {
-        var _child2 = child;
-        var nodes = _child2.nodes;
+        var _child2 = child,
+            nodes = _child2.nodes;
+
+        // Try to preserve the nodes list to preserve reference of one == node to avoid re-render
+        // When spliting at the end of a text node, the first node is preserved
 
         var oneNodes = nodes.takeUntil(function (n) {
           return n.key == one.key;
-        }).push(one);
+        });
+        oneNodes = oneNodes.size == nodes.size - 1 && one == nodes.last() ? nodes : oneNodes.push(one);
+
         var twoNodes = nodes.skipUntil(function (n) {
           return n.key == one.key;
         }).rest().unshift(two);
         one = child.merge({ nodes: oneNodes });
-        two = child.merge({ nodes: twoNodes, key: (0, _uid2.default)() });
+        two = child.merge({ nodes: twoNodes }).regenerateKey();
       }
 
-      child = base.getParent(child);
+      child = base.getParent(child.key);
     }
 
     parent = parent.removeNode(index);
     parent = parent.insertNode(index, two);
     parent = parent.insertNode(index, one);
+    base = isParent ? parent : base.updateDescendant(parent);
+    return base;
+  },
+
+
+  /**
+   * Split a node by `path` after 'count' children.
+   * Does not work on Text nodes. Use `Node.splitNode` to split text nodes as well.
+   *
+   * @param {Array} path
+   * @param {Number} count
+   * @return {Node}
+   */
+
+  splitNodeAfter: function splitNodeAfter(path, count) {
+    var base = this;
+    var node = base.assertPath(path);
+    if (node.kind === 'text') throw new Error('Cannot split text node at index. Use Node.splitNode at offset instead');
+    var nodes = node.nodes;
+
+
+    var parent = base.getParent(node.key);
+    var isParent = base == parent;
+
+    var oneNodes = nodes.take(count);
+    var twoNodes = nodes.skip(count);
+
+    var one = node.merge({ nodes: oneNodes });
+    var two = node.merge({ nodes: twoNodes }).regenerateKey();
+
+    var nodeIndex = parent.nodes.indexOf(node);
+    parent = parent.removeNode(nodeIndex);
+    parent = parent.insertNode(nodeIndex, two);
+    parent = parent.insertNode(nodeIndex, one);
+
     base = isParent ? parent : base.updateDescendant(parent);
     return base;
   },
@@ -61981,19 +63257,19 @@ var Node = {
 
   splitBlockAtRange: function splitBlockAtRange(range) {
     var height = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    var startKey = range.startKey;
-    var startOffset = range.startOffset;
+    var startKey = range.startKey,
+        startOffset = range.startOffset;
 
     var base = this;
     var node = base.assertDescendant(startKey);
-    var parent = base.getClosestBlock(node);
+    var parent = base.getClosestBlock(node.key);
     var offset = startOffset;
     var h = 0;
 
     while (parent && parent.kind == 'block' && h < height) {
-      offset += parent.getOffset(node);
+      offset += parent.getOffset(node.key);
       node = parent;
-      parent = base.getClosestBlock(parent);
+      parent = base.getClosestBlock(parent.key);
       h++;
     }
 
@@ -62006,7 +63282,7 @@ var Node = {
    * Set a new value for a child node by `key`.
    *
    * @param {Node} node
-   * @return {Node} node
+   * @return {Node}
    */
 
   updateDescendant: function updateDescendant(node) {
@@ -62033,7 +63309,7 @@ var Node = {
    * Validate the node against a `schema`.
    *
    * @param {Schema} schema
-   * @return {Object || Void}
+   * @return {Object|Null}
    */
 
   validate: function validate(schema) {
@@ -62045,14 +63321,134 @@ var Node = {
  * Memoize read methods.
  */
 
-(0, _memoize2.default)(Node, ['assertChild', 'assertDescendant', 'filterDescendants', 'filterDescendantsDeep', 'findDescendant', 'findDescendantDeep', 'getAncestors', 'getBlocks', 'getBlocksAtRange', 'getCharactersAtRange', 'getChild', 'getChildrenAfter', 'getChildrenAfterIncluding', 'getChildrenBefore', 'getChildrenBeforeIncluding', 'getChildrenBetween', 'getChildrenBetweenIncluding', 'getClosest', 'getClosestBlock', 'getClosestInline', 'getComponent', 'getDecorators', 'getDepth', 'getDescendant', 'getDescendantDecorators', 'getFirstText', 'getFragmentAtRange', 'getFurthest', 'getFurthestBlock', 'getFurthestInline', 'getHighestChild', 'getHighestOnlyChildParent', 'getInlinesAtRange', 'getLastText', 'getMarksAtRange', 'getNextBlock', 'getNextSibling', 'getNextText', 'getOffset', 'getOffsetAtRange', 'getParent', 'getPreviousBlock', 'getPreviousSibling', 'getPreviousText', 'getTextAtOffset', 'getTextDirection', 'getTexts', 'getTextsAtRange', 'hasChild', 'hasDescendant', 'hasVoidParent', 'isInlineSplitAtRange', 'validate']);
+(0, _memoize2.default)(Node, ['getText', 'getAncestors', 'getBlocks', 'getBlocksAtRange', 'getCharactersAtRange', 'getChild', 'getClosestBlock', 'getClosestInline', 'getComponent', 'getDecorators', 'getDepth', '_getDescendant', 'getDescendantAtPath', 'getDescendantDecorators', 'getFirstText', 'getFragmentAtRange', 'getFurthestBlock', 'getFurthestInline', 'getHighestChild', 'getHighestOnlyChildParent', 'getInlinesAtRange', 'getLastText', 'getMarksAtRange', 'getNextBlock', 'getNextSibling', 'getNextText', 'getNode', 'getOffset', 'getOffsetAtRange', 'getParent', 'getPreviousBlock', 'getPreviousSibling', 'getPreviousText', 'getTextAtOffset', 'getTextDirection', '_getTexts', 'getTextsAtRange', 'hasVoidParent', 'isInlineSplitAtRange', 'validate']);
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = Node;
-},{"../utils/is-in-range":356,"../utils/memoize":358,"../utils/normalize":359,"../utils/uid":364,"./block":327,"./character":328,"./document":330,"./mark":332,"direction":32,"immutable":93}],334:[function(require,module,exports){
+},{"../utils/generate-key":410,"../utils/is-in-range":412,"../utils/memoize":414,"../utils/normalize":416,"./block":381,"./character":382,"./document":384,"./mark":386,"direction":32,"immutable":144}],388:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _character = require('./character');
+
+var _character2 = _interopRequireDefault(_character);
+
+var _mark = require('./mark');
+
+var _mark2 = _interopRequireDefault(_mark);
+
+var _immutable = require('immutable');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Default properties.
+ *
+ * @type {Object}
+ */
+
+var DEFAULTS = {
+  marks: new _immutable.Set(),
+  text: ''
+};
+
+/**
+ * Range.
+ *
+ * @type {Range}
+ */
+
+var Range = function (_ref) {
+  _inherits(Range, _ref);
+
+  function Range() {
+    _classCallCheck(this, Range);
+
+    return _possibleConstructorReturn(this, (Range.__proto__ || Object.getPrototypeOf(Range)).apply(this, arguments));
+  }
+
+  _createClass(Range, [{
+    key: 'getCharacters',
+
+
+    /**
+     * Return range as a list of characters
+     *
+     * @return {List<Character>}
+     */
+
+    value: function getCharacters() {
+      var marks = this.marks;
+
+
+      return _character2.default.createList(this.text.split('').map(function (char) {
+        return _character2.default.create({
+          text: char,
+          marks: marks
+        });
+      }));
+    }
+  }, {
+    key: 'kind',
+
+
+    /**
+     * Get the node's kind.
+     *
+     * @return {String}
+     */
+
+    get: function get() {
+      return 'range';
+    }
+  }], [{
+    key: 'create',
+
+
+    /**
+     * Create a new `Range` with `properties`.
+     *
+     * @param {Object|Range} properties
+     * @return {Range}
+     */
+
+    value: function create() {
+      var properties = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      if (properties instanceof Range) return properties;
+      properties.text = properties.text;
+      properties.marks = _mark2.default.createSet(properties.marks);
+      return new Range(properties);
+    }
+  }]);
+
+  return Range;
+}(new _immutable.Record(DEFAULTS));
+
+/**
+ * Export.
+ *
+ * @type {Range}
+ */
+
+exports.default = Range;
+},{"./character":382,"./mark":386,"immutable":144}],389:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -62096,7 +63492,7 @@ var DEFAULTS = {
 /**
  * Schema.
  *
- * @type {Record}
+ * @type {Schema}
  */
 
 var Schema = function (_ref) {
@@ -62120,7 +63516,7 @@ var Schema = function (_ref) {
      * much better performance.
      *
      * @param {Mixed} object
-     * @return {Component || Void}
+     * @return {Component|Void}
      */
 
     value: function __getComponent(object) {
@@ -62163,7 +63559,7 @@ var Schema = function (_ref) {
      * much better performance.
      *
      * @param {Mixed} object
-     * @return {Object || Void}
+     * @return {Object|Void}
      */
 
   }, {
@@ -62193,7 +63589,7 @@ var Schema = function (_ref) {
     /**
      * Get the kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -62202,15 +63598,33 @@ var Schema = function (_ref) {
 
     /**
      * Return true if one rule can normalize the document
+     *
+     * @return {Boolean}
      */
 
   }, {
-    key: 'isNormalization',
+    key: 'hasValidators',
     get: function get() {
       var rules = this.rules;
 
       return rules.some(function (rule) {
         return rule.validate;
+      });
+    }
+
+    /**
+     * Return true if one rule can decorate text nodes
+     *
+     * @return {Boolean}
+     */
+
+  }, {
+    key: 'hasDecorators',
+    get: function get() {
+      var rules = this.rules;
+
+      return rules.some(function (rule) {
+        return rule.decorate;
       });
     }
   }], [{
@@ -62220,8 +63634,8 @@ var Schema = function (_ref) {
     /**
      * Create a new `Schema` with `properties`.
      *
-     * @param {Object} properties
-     * @return {Schema} mark
+     * @param {Object|Schema} properties
+     * @return {Schema}
      */
 
     value: function create() {
@@ -62243,10 +63657,10 @@ var Schema = function (_ref) {
  */
 
 function normalizeProperties(properties) {
-  var _properties$rules = properties.rules;
-  var rules = _properties$rules === undefined ? [] : _properties$rules;
-  var nodes = properties.nodes;
-  var marks = properties.marks;
+  var _properties$rules = properties.rules,
+      rules = _properties$rules === undefined ? [] : _properties$rules,
+      nodes = properties.nodes,
+      marks = properties.marks;
 
 
   if (nodes) {
@@ -62327,7 +63741,7 @@ function normalizeMarks(marks) {
 /**
  * Normalize a mark `render` property.
  *
- * @param {Component || Function || Object || String} render
+ * @param {Component|Function|Object|String} render
  * @return {Component}
  */
 
@@ -62359,11 +63773,11 @@ function normalizeMarkComponent(render) {
 /**
  * Export.
  *
- * @type {Record}
+ * @type {Schema}
  */
 
 exports.default = Schema;
-},{"../utils/is-react-component":357,"immutable":93,"react":306,"type-of":368}],335:[function(require,module,exports){
+},{"../utils/is-react-component":413,"immutable":144,"react":359,"type-of":427}],390:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -62374,17 +63788,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _memoize = require('../utils/memoize');
-
-var _memoize2 = _interopRequireDefault(_memoize);
-
 var _getLeafText = require('../utils/get-leaf-text');
 
 var _getLeafText2 = _interopRequireDefault(_getLeafText);
 
-var _warning = require('../utils/warning');
+var _warn = require('../utils/warn');
 
-var _warning2 = _interopRequireDefault(_warning);
+var _warn2 = _interopRequireDefault(_warn);
 
 var _immutable = require('immutable');
 
@@ -62398,12 +63808,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * Start-end-and-edge convenience methods to auto-generate.
+ *
+ * @type {Array}
  */
 
 var EDGE_METHODS = ['has%AtStartOf', 'has%AtEndOf', 'has%Between', 'has%In'];
 
 /**
  * Default properties.
+ *
+ * @type {Object}
  */
 
 var DEFAULTS = {
@@ -62418,6 +63832,8 @@ var DEFAULTS = {
 
 /**
  * Selection.
+ *
+ * @type {Selection}
  */
 
 var Selection = function (_ref) {
@@ -62486,12 +63902,11 @@ var Selection = function (_ref) {
   }, {
     key: 'hasAnchorIn',
     value: function hasAnchorIn(node) {
-      var _this2 = this;
-
-      var nodes = node.kind == 'text' ? [node] : node.getTexts();
-      return nodes.some(function (n) {
-        return n.key == _this2.anchorKey;
-      });
+      if (node.kind == 'text') {
+        return node.key === this.anchorKey;
+      } else {
+        return node.hasDescendant(this.anchorKey);
+      }
     }
 
     /**
@@ -62549,27 +63964,26 @@ var Selection = function (_ref) {
   }, {
     key: 'hasFocusIn',
     value: function hasFocusIn(node) {
-      var _this3 = this;
-
-      var nodes = node.kind == 'text' ? [node] : node.getTexts();
-      return nodes.some(function (n) {
-        return n.key == _this3.focusKey;
-      });
+      if (node.kind == 'text') {
+        return node.key === this.focusKey;
+      } else {
+        return node.hasDescendant(this.focusKey);
+      }
     }
 
     /**
      * Check whether the selection is at the start of a `node`.
      *
      * @param {Node} node
-     * @return {Boolean} isAtStart
+     * @return {Boolean}
      */
 
   }, {
     key: 'isAtStartOf',
     value: function isAtStartOf(node) {
-      var isExpanded = this.isExpanded;
-      var startKey = this.startKey;
-      var startOffset = this.startOffset;
+      var isExpanded = this.isExpanded,
+          startKey = this.startKey,
+          startOffset = this.startOffset;
 
       if (isExpanded) return false;
       if (startOffset != 0) return false;
@@ -62581,15 +63995,15 @@ var Selection = function (_ref) {
      * Check whether the selection is at the end of a `node`.
      *
      * @param {Node} node
-     * @return {Boolean} isAtEnd
+     * @return {Boolean}
      */
 
   }, {
     key: 'isAtEndOf',
     value: function isAtEndOf(node) {
-      var endKey = this.endKey;
-      var endOffset = this.endOffset;
-      var isExpanded = this.isExpanded;
+      var endKey = this.endKey,
+          endOffset = this.endOffset,
+          isExpanded = this.isExpanded;
 
       if (isExpanded) return false;
       var last = node.kind == 'text' ? node : node.getLastText();
@@ -62601,18 +64015,18 @@ var Selection = function (_ref) {
      * and focus nodes of the selection always refer to leaf text nodes.
      *
      * @param {Node} node
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
     key: 'normalize',
     value: function normalize(node) {
       var selection = this;
-      var anchorKey = selection.anchorKey;
-      var anchorOffset = selection.anchorOffset;
-      var focusKey = selection.focusKey;
-      var focusOffset = selection.focusOffset;
-      var isBackward = selection.isBackward;
+      var anchorKey = selection.anchorKey,
+          anchorOffset = selection.anchorOffset,
+          focusKey = selection.focusKey,
+          focusOffset = selection.focusOffset,
+          isBackward = selection.isBackward;
 
       // If the selection isn't formed yet or is malformed, ensure that it is
       // properly zeroed out.
@@ -62633,7 +64047,7 @@ var Selection = function (_ref) {
 
       // If the anchor node isn't a text node, match it to one.
       if (anchorNode.kind != 'text') {
-        (0, _warning2.default)('Selection anchor is on a non text node, matching to leaf');
+        (0, _warn2.default)('The selection anchor was set to a Node that is not a Text node. This should not happen and can degrade performance. The node in question was:', anchorNode);
         var anchorText = anchorNode.getTextAtOffset(anchorOffset);
         var offset = anchorNode.getOffset(anchorText);
         anchorOffset = anchorOffset - offset;
@@ -62642,7 +64056,7 @@ var Selection = function (_ref) {
 
       // If the focus node isn't a text node, match it to one.
       if (focusNode.kind != 'text') {
-        (0, _warning2.default)('Selection focus is on a non text node, matching to leaf');
+        (0, _warn2.default)('The selection focus was set to a Node that is not a Text node. This should not happen and can degrade performance. The node in question was:', focusNode);
         var focusText = focusNode.getTextAtOffset(focusOffset);
         var _offset = focusNode.getOffset(focusText);
         focusOffset = focusOffset - _offset;
@@ -62651,10 +64065,11 @@ var Selection = function (_ref) {
 
       // If `isBackward` is not set, derive it.
       if (isBackward == null) {
-        var texts = node.getTexts();
-        var anchorIndex = texts.indexOf(anchorNode);
-        var focusIndex = texts.indexOf(focusNode);
-        isBackward = anchorIndex == focusIndex ? anchorOffset > focusOffset : anchorIndex > focusIndex;
+        if (anchorNode.key === focusNode.key) {
+          isBackward = anchorOffset > focusOffset;
+        } else {
+          isBackward = !node.areDescendantSorted(anchorNode.key, focusNode.key);
+        }
       }
 
       // Merge in any updated properties.
@@ -62670,7 +64085,7 @@ var Selection = function (_ref) {
     /**
      * Focus the selection.
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62684,7 +64099,7 @@ var Selection = function (_ref) {
     /**
      * Blur the selection.
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62698,7 +64113,7 @@ var Selection = function (_ref) {
     /**
      * Move the focus point to the anchor point.
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62714,7 +64129,7 @@ var Selection = function (_ref) {
     /**
      * Move the anchor point to the focus point.
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62730,7 +64145,7 @@ var Selection = function (_ref) {
     /**
      * Move the end point to the start point.
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62748,7 +64163,7 @@ var Selection = function (_ref) {
     /**
      * Move the end point to the start point.
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62767,7 +64182,7 @@ var Selection = function (_ref) {
      * Move to the start of a `node`.
      *
      * @param {Node} node
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62787,7 +64202,7 @@ var Selection = function (_ref) {
     /**
      * Move to the end of a `node`.
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62810,7 +64225,7 @@ var Selection = function (_ref) {
      * @param {Node} start
      * @param {Node} end (optional)
      * @param {Document} document
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62834,7 +64249,7 @@ var Selection = function (_ref) {
      * Move the selection forward `n` characters.
      *
      * @param {Number} n (optional)
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62852,7 +64267,7 @@ var Selection = function (_ref) {
      * Move the selection backward `n` characters.
      *
      * @param {Number} n (optional)
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62871,7 +64286,7 @@ var Selection = function (_ref) {
      *
      * @param {Number} anchor
      * @param {Number} focus (optional)
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62894,7 +64309,7 @@ var Selection = function (_ref) {
      * Extend the focus point forward `n` characters.
      *
      * @param {Number} n (optional)
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62912,7 +64327,7 @@ var Selection = function (_ref) {
      * Extend the focus point backward `n` characters.
      *
      * @param {Number} n (optional)
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62930,7 +64345,7 @@ var Selection = function (_ref) {
      * Extend the start point forward `n` characters.
      *
      * @param {Number} n (optional)
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62945,7 +64360,7 @@ var Selection = function (_ref) {
      * Extend the end point forward `n` characters.
      *
      * @param {Number} n (optional)
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62960,7 +64375,7 @@ var Selection = function (_ref) {
      * Move the start key, while preserving the direction
      *
      * @param {String} key
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62975,7 +64390,7 @@ var Selection = function (_ref) {
      * Move the end key, while preserving the direction
      *
      * @param {String} key
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -62990,7 +64405,7 @@ var Selection = function (_ref) {
      * Extend the focus point to the start of a `node`.
      *
      * @param {Node} node
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -63007,7 +64422,7 @@ var Selection = function (_ref) {
      * Extend the focus point to the end of a `node`.
      *
      * @param {Node} node
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -63023,7 +64438,7 @@ var Selection = function (_ref) {
     /**
      * Unset the selection
      *
-     * @return {Selection} selection
+     * @return {Selection}
      */
 
   }, {
@@ -63045,7 +64460,7 @@ var Selection = function (_ref) {
     /**
      * Get the kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -63055,7 +64470,7 @@ var Selection = function (_ref) {
     /**
      * Get whether the selection is blurred.
      *
-     * @return {Boolean} isBlurred
+     * @return {Boolean}
      */
 
   }, {
@@ -63067,7 +64482,7 @@ var Selection = function (_ref) {
     /**
      * Get whether the selection is collapsed.
      *
-     * @return {Boolean} isCollapsed
+     * @return {Boolean}
      */
 
   }, {
@@ -63079,7 +64494,7 @@ var Selection = function (_ref) {
     /**
      * Get whether the selection is expanded.
      *
-     * @return {Boolean} isExpanded
+     * @return {Boolean}
      */
 
   }, {
@@ -63091,13 +64506,25 @@ var Selection = function (_ref) {
     /**
      * Get whether the selection is forward.
      *
-     * @return {Boolean} isForward
+     * @return {Boolean}
      */
 
   }, {
     key: 'isForward',
     get: function get() {
       return this.isBackward == null ? null : !this.isBackward;
+    }
+
+    /**
+     * Check whether the selection's keys are set.
+     *
+     * @return {Boolean}
+     */
+
+  }, {
+    key: 'isSet',
+    get: function get() {
+      return this.anchorKey != null && this.focusKey != null;
     }
 
     /**
@@ -63109,13 +64536,13 @@ var Selection = function (_ref) {
   }, {
     key: 'isUnset',
     get: function get() {
-      return this.anchorKey == null || this.focusKey == null;
+      return !this.isSet;
     }
 
     /**
      * Get the start key.
      *
-     * @return {String} startKey
+     * @return {String}
      */
 
   }, {
@@ -63145,8 +64572,8 @@ var Selection = function (_ref) {
     /**
      * Create a new `Selection` with `properties`.
      *
-     * @param {Object} properties
-     * @return {Selection} selection
+     * @param {Object|Selection} properties
+     * @return {Selection}
      */
 
     value: function create() {
@@ -63165,12 +64592,10 @@ var Selection = function (_ref) {
  */
 
 EDGE_METHODS.forEach(function (pattern) {
-  var _pattern$split = pattern.split('%');
-
-  var _pattern$split2 = _slicedToArray(_pattern$split, 2);
-
-  var p = _pattern$split2[0];
-  var s = _pattern$split2[1];
+  var _pattern$split = pattern.split('%'),
+      _pattern$split2 = _slicedToArray(_pattern$split, 2),
+      p = _pattern$split2[0],
+      s = _pattern$split2[1];
 
   var anchor = p + 'Anchor' + s;
   var edge = p + 'Edge' + s;
@@ -63192,28 +64617,30 @@ EDGE_METHODS.forEach(function (pattern) {
 });
 
 /**
- * Memoize read methods.
- */
-
-(0, _memoize2.default)(Selection.prototype, ['hasAnchorAtStartOf', 'hasAnchorAtEndOf', 'hasAnchorBetween', 'hasAnchorIn', 'hasFocusAtEndOf', 'hasFocusAtStartOf', 'hasFocusBetween', 'hasFocusIn', 'isAtStartOf', 'isAtEndOf']);
-
-/**
  * Export.
+ *
+ * @type {Selection}
  */
 
 exports.default = Selection;
-},{"../utils/get-leaf-text":355,"../utils/memoize":358,"../utils/warning":365,"immutable":93}],336:[function(require,module,exports){
+},{"../utils/get-leaf-text":411,"../utils/warn":421,"immutable":144}],391:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _document = require('./document');
 
 var _document2 = _interopRequireDefault(_document);
+
+var _core = require('../schemas/core');
+
+var _core2 = _interopRequireDefault(_core);
 
 var _selection = require('./selection');
 
@@ -63235,6 +64662,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * History.
+ *
+ * @type {History}
  */
 
 var History = new _immutable.Record({
@@ -63244,6 +64673,8 @@ var History = new _immutable.Record({
 
 /**
  * Default properties.
+ *
+ * @type {Object}
  */
 
 var DEFAULTS = {
@@ -63255,6 +64686,8 @@ var DEFAULTS = {
 
 /**
  * State.
+ *
+ * @type {State}
  */
 
 var State = function (_ref) {
@@ -63273,12 +64706,17 @@ var State = function (_ref) {
     /**
      * Return a new `Transform` with the current state as a starting point.
      *
-     * @return {Transform} transform
+     * @param {Object} properties
+     * @return {Transform}
      */
 
     value: function transform() {
+      var properties = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
       var state = this;
-      return new _transform2.default({ state: state });
+      return new _transform2.default(_extends({}, properties, {
+        state: state
+      }));
     }
   }, {
     key: 'kind',
@@ -63287,7 +64725,7 @@ var State = function (_ref) {
     /**
      * Get the kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -63297,7 +64735,7 @@ var State = function (_ref) {
     /**
      * Are there undoable events?
      *
-     * @return {Boolean} hasUndos
+     * @return {Boolean}
      */
 
   }, {
@@ -63309,7 +64747,7 @@ var State = function (_ref) {
     /**
      * Are there redoable events?
      *
-     * @return {Boolean} hasRedos
+     * @return {Boolean}
      */
 
   }, {
@@ -63321,7 +64759,7 @@ var State = function (_ref) {
     /**
      * Is the current selection blurred?
      *
-     * @return {Boolean} isBlurred
+     * @return {Boolean}
      */
 
   }, {
@@ -63333,7 +64771,7 @@ var State = function (_ref) {
     /**
      * Is the current selection focused?
      *
-     * @return {Boolean} isFocused
+     * @return {Boolean}
      */
 
   }, {
@@ -63345,7 +64783,7 @@ var State = function (_ref) {
     /**
      * Is the current selection collapsed?
      *
-     * @return {Boolean} isCollapsed
+     * @return {Boolean}
      */
 
   }, {
@@ -63357,7 +64795,7 @@ var State = function (_ref) {
     /**
      * Is the current selection expanded?
      *
-     * @return {Boolean} isExpanded
+     * @return {Boolean}
      */
 
   }, {
@@ -63381,7 +64819,7 @@ var State = function (_ref) {
     /**
      * Is the current selection forward?
      *
-     * @return {Boolean} isForward
+     * @return {Boolean}
      */
 
   }, {
@@ -63393,7 +64831,7 @@ var State = function (_ref) {
     /**
      * Get the current start key.
      *
-     * @return {String} startKey
+     * @return {String}
      */
 
   }, {
@@ -63405,7 +64843,7 @@ var State = function (_ref) {
     /**
      * Get the current end key.
      *
-     * @return {String} endKey
+     * @return {String}
      */
 
   }, {
@@ -63417,7 +64855,7 @@ var State = function (_ref) {
     /**
      * Get the current start offset.
      *
-     * @return {String} startOffset
+     * @return {String}
      */
 
   }, {
@@ -63429,7 +64867,7 @@ var State = function (_ref) {
     /**
      * Get the current end offset.
      *
-     * @return {String} endOffset
+     * @return {String}
      */
 
   }, {
@@ -63441,7 +64879,7 @@ var State = function (_ref) {
     /**
      * Get the current anchor key.
      *
-     * @return {String} anchorKey
+     * @return {String}
      */
 
   }, {
@@ -63453,7 +64891,7 @@ var State = function (_ref) {
     /**
      * Get the current focus key.
      *
-     * @return {String} focusKey
+     * @return {String}
      */
 
   }, {
@@ -63465,7 +64903,7 @@ var State = function (_ref) {
     /**
      * Get the current anchor offset.
      *
-     * @return {String} anchorOffset
+     * @return {String}
      */
 
   }, {
@@ -63477,7 +64915,7 @@ var State = function (_ref) {
     /**
      * Get the current focus offset.
      *
-     * @return {String} focusOffset
+     * @return {String}
      */
 
   }, {
@@ -63489,7 +64927,7 @@ var State = function (_ref) {
     /**
      * Get the current start text node's closest block parent.
      *
-     * @return {Block} block
+     * @return {Block}
      */
 
   }, {
@@ -63501,7 +64939,7 @@ var State = function (_ref) {
     /**
      * Get the current end text node's closest block parent.
      *
-     * @return {Block} block
+     * @return {Block}
      */
 
   }, {
@@ -63513,7 +64951,7 @@ var State = function (_ref) {
     /**
      * Get the current anchor text node's closest block parent.
      *
-     * @return {Block} block
+     * @return {Block}
      */
 
   }, {
@@ -63525,7 +64963,7 @@ var State = function (_ref) {
     /**
      * Get the current focus text node's closest block parent.
      *
-     * @return {Block} block
+     * @return {Block}
      */
 
   }, {
@@ -63537,7 +64975,7 @@ var State = function (_ref) {
     /**
      * Get the current start text node's closest inline parent.
      *
-     * @return {Inline} inline
+     * @return {Inline}
      */
 
   }, {
@@ -63549,7 +64987,7 @@ var State = function (_ref) {
     /**
      * Get the current end text node's closest inline parent.
      *
-     * @return {Inline} inline
+     * @return {Inline}
      */
 
   }, {
@@ -63561,7 +64999,7 @@ var State = function (_ref) {
     /**
      * Get the current anchor text node's closest inline parent.
      *
-     * @return {Inline} inline
+     * @return {Inline}
      */
 
   }, {
@@ -63573,7 +65011,7 @@ var State = function (_ref) {
     /**
      * Get the current focus text node's closest inline parent.
      *
-     * @return {Inline} inline
+     * @return {Inline}
      */
 
   }, {
@@ -63585,7 +65023,7 @@ var State = function (_ref) {
     /**
      * Get the current start text node.
      *
-     * @return {Text} text
+     * @return {Text}
      */
 
   }, {
@@ -63597,7 +65035,7 @@ var State = function (_ref) {
     /**
      * Get the current end node.
      *
-     * @return {Text} text
+     * @return {Text}
      */
 
   }, {
@@ -63609,7 +65047,7 @@ var State = function (_ref) {
     /**
      * Get the current anchor node.
      *
-     * @return {Text} text
+     * @return {Text}
      */
 
   }, {
@@ -63621,7 +65059,7 @@ var State = function (_ref) {
     /**
      * Get the current focus node.
      *
-     * @return {Text} text
+     * @return {Text}
      */
 
   }, {
@@ -63633,7 +65071,7 @@ var State = function (_ref) {
     /**
      * Get the characters in the current selection.
      *
-     * @return {List} characters
+     * @return {List<Character>}
      */
 
   }, {
@@ -63645,7 +65083,7 @@ var State = function (_ref) {
     /**
      * Get the marks of the current selection.
      *
-     * @return {Set} marks
+     * @return {Set<Mark>}
      */
 
   }, {
@@ -63657,7 +65095,7 @@ var State = function (_ref) {
     /**
      * Get the block nodes in the current selection.
      *
-     * @return {List} nodes
+     * @return {List<Block>}
      */
 
   }, {
@@ -63669,7 +65107,7 @@ var State = function (_ref) {
     /**
      * Get the fragment of the current selection.
      *
-     * @return {List} nodes
+     * @return {Document}
      */
 
   }, {
@@ -63681,7 +65119,7 @@ var State = function (_ref) {
     /**
      * Get the inline nodes in the current selection.
      *
-     * @return {List} nodes
+     * @return {List<Inline>}
      */
 
   }, {
@@ -63693,7 +65131,7 @@ var State = function (_ref) {
     /**
      * Get the text nodes in the current selection.
      *
-     * @return {List} nodes
+     * @return {List<Text>}
      */
 
   }, {
@@ -63708,8 +65146,8 @@ var State = function (_ref) {
     /**
      * Create a new `State` with `properties`.
      *
-     * @param {Object} properties
-     * @return {State} state
+     * @param {Object|State} properties
+     * @return {State}
      */
 
     value: function create() {
@@ -63726,7 +65164,8 @@ var State = function (_ref) {
       }
 
       var state = new State({ document: document, selection: selection });
-      return state.transform().normalize().apply({ save: false });
+
+      return state.transform().normalize(_core2.default).apply({ save: false });
     }
   }]);
 
@@ -63738,7 +65177,7 @@ var State = function (_ref) {
  */
 
 exports.default = State;
-},{"./document":330,"./selection":335,"./transform":338,"immutable":93}],337:[function(require,module,exports){
+},{"../schemas/core":395,"./document":384,"./selection":390,"./transform":393,"immutable":144}],392:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -63755,13 +65194,17 @@ var _mark = require('./mark');
 
 var _mark2 = _interopRequireDefault(_mark);
 
+var _range = require('./range');
+
+var _range2 = _interopRequireDefault(_range);
+
 var _memoize = require('../utils/memoize');
 
 var _memoize2 = _interopRequireDefault(_memoize);
 
-var _uid = require('../utils/uid');
+var _generateKey = require('../utils/generate-key');
 
-var _uid2 = _interopRequireDefault(_uid);
+var _generateKey2 = _interopRequireDefault(_generateKey);
 
 var _immutable = require('immutable');
 
@@ -63774,17 +65217,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Range.
- */
-
-var Range = new _immutable.Record({
-  kind: 'range',
-  marks: new _immutable.Set(),
-  text: ''
-});
-
-/**
  * Default properties.
+ *
+ * @type {Object}
  */
 
 var DEFAULTS = {
@@ -63794,6 +65229,8 @@ var DEFAULTS = {
 
 /**
  * Text.
+ *
+ * @type {Text}
  */
 
 var Text = function (_ref) {
@@ -63822,8 +65259,8 @@ var Text = function (_ref) {
       var characters = this.characters.map(function (char, i) {
         if (i < index) return char;
         if (i >= index + length) return char;
-        var _char = char;
-        var marks = _char.marks;
+        var _char = char,
+            marks = _char.marks;
 
         marks = marks.add(mark);
         char = char.merge({ marks: marks });
@@ -63837,7 +65274,7 @@ var Text = function (_ref) {
      * Derive a set of decorated characters with `decorators`.
      *
      * @param {Array} decorators
-     * @return {List}
+     * @return {List<Character>}
      */
 
   }, {
@@ -63894,7 +65331,7 @@ var Text = function (_ref) {
      * Get the marks on the text at `index`.
      *
      * @param {Number} index
-     * @return {Set}
+     * @return {Set<Mark>}
      */
 
   }, {
@@ -63909,10 +65346,23 @@ var Text = function (_ref) {
     }
 
     /**
+     * Get a node by `key`, to parallel other nodes.
+     *
+     * @param {String} key
+     * @return {Node|Null}
+     */
+
+  }, {
+    key: 'getNode',
+    value: function getNode(key) {
+      return this.key == key ? this : null;
+    }
+
+    /**
      * Derive the ranges for a list of `characters`.
      *
-     * @param {Array || Void} decorators (optional)
-     * @return {List}
+     * @param {Array|Void} decorators (optional)
+     * @return {List<Range>}
      */
 
   }, {
@@ -63925,18 +65375,18 @@ var Text = function (_ref) {
 
       // If there are no characters, return one empty range.
       if (characters.size == 0) {
-        return list.push(new Range());
+        return list.push(new _range2.default());
       }
 
       // Convert the now-decorated characters into ranges.
       var ranges = characters.reduce(function (memo, char, i) {
-        var marks = char.marks;
-        var text = char.text;
+        var marks = char.marks,
+            text = char.text;
 
         // The first one can always just be created.
 
         if (i == 0) {
-          return memo.push(new Range({ text: text, marks: marks }));
+          return memo.push(new _range2.default({ text: text, marks: marks }));
         }
 
         // Otherwise, compare to the previous and see if a new range should be
@@ -63961,11 +65411,24 @@ var Text = function (_ref) {
         }
 
         // Otherwise, create a new range.
-        return memo.push(new Range({ text: text, marks: marks }));
+        return memo.push(new _range2.default({ text: text, marks: marks }));
       }, list);
 
       // Return the ranges.
       return ranges;
+    }
+
+    /**
+     * Check if the node has a node by `key`, to parallel other nodes.
+     *
+     * @param {String} key
+     * @return {Boolean}
+     */
+
+  }, {
+    key: 'hasNode',
+    value: function hasNode(key) {
+      return !!this.getNode(key);
     }
 
     /**
@@ -63999,7 +65462,7 @@ var Text = function (_ref) {
   }, {
     key: 'regenerateKey',
     value: function regenerateKey() {
-      return this.merge({ key: (0, _uid2.default)() });
+      return this.merge({ key: (0, _generateKey2.default)() });
     }
 
     /**
@@ -64017,8 +65480,8 @@ var Text = function (_ref) {
       var characters = this.characters.map(function (char, i) {
         if (i < index) return char;
         if (i >= index + length) return char;
-        var _char2 = char;
-        var marks = _char2.marks;
+        var _char2 = char,
+            marks = _char2.marks;
 
         marks = marks.remove(mark);
         char = char.merge({ marks: marks });
@@ -64055,23 +65518,22 @@ var Text = function (_ref) {
      * @param {Number} index
      * @param {Number} length
      * @param {Mark} mark
-     * @param {Object} properties
+     * @param {Mark} newMark
      * @return {Text}
      */
 
   }, {
     key: 'updateMark',
-    value: function updateMark(index, length, mark, properties) {
-      var m = mark.merge(properties);
+    value: function updateMark(index, length, mark, newMark) {
       var characters = this.characters.map(function (char, i) {
         if (i < index) return char;
         if (i >= index + length) return char;
-        var _char3 = char;
-        var marks = _char3.marks;
+        var _char3 = char,
+            marks = _char3.marks;
 
         if (!marks.has(mark)) return char;
         marks = marks.remove(mark);
-        marks = marks.add(m);
+        marks = marks.add(newMark);
         char = char.merge({ marks: marks });
         return char;
       });
@@ -64080,10 +65542,10 @@ var Text = function (_ref) {
     }
 
     /**
-     * Validate the node against a `schema`.
+     * Validate the text node against a `schema`.
      *
      * @param {Schema} schema
-     * @return {Object || Void}
+     * @return {Object|Void}
      */
 
   }, {
@@ -64098,7 +65560,7 @@ var Text = function (_ref) {
     /**
      * Get the node's kind.
      *
-     * @return {String} kind
+     * @return {String}
      */
 
     get: function get() {
@@ -64108,7 +65570,7 @@ var Text = function (_ref) {
     /**
      * Is the node empty?
      *
-     * @return {Boolean} isEmpty
+     * @return {Boolean}
      */
 
   }, {
@@ -64120,7 +65582,7 @@ var Text = function (_ref) {
     /**
      * Get the length of the concatenated text of the node.
      *
-     * @return {Number} length
+     * @return {Number}
      */
 
   }, {
@@ -64132,15 +65594,15 @@ var Text = function (_ref) {
     /**
      * Get the concatenated text of the node.
      *
-     * @return {String} text
+     * @return {String}
      */
 
   }, {
     key: 'text',
     get: function get() {
-      return this.characters.map(function (char) {
-        return char.text;
-      }).join('');
+      return this.characters.reduce(function (result, char) {
+        return result + char.text;
+      }, '');
     }
   }], [{
     key: 'create',
@@ -64149,7 +65611,7 @@ var Text = function (_ref) {
     /**
      * Create a new `Text` with `properties`.
      *
-     * @param {Object} properties
+     * @param {Object|Text} properties
      * @return {Text}
      */
 
@@ -64157,7 +65619,7 @@ var Text = function (_ref) {
       var properties = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       if (properties instanceof Text) return properties;
-      properties.key = properties.key || (0, _uid2.default)(4);
+      properties.key = properties.key || (0, _generateKey2.default)();
       properties.characters = _character2.default.createList(properties.characters);
       return new Text(properties);
     }
@@ -64165,17 +65627,34 @@ var Text = function (_ref) {
     /**
      * Create a new `Text` from a string
      *
-     * @param {String} content
+     * @param {String} text
+     * @param {Set<Mark>} marks (optional)
      * @return {Text}
      */
 
   }, {
     key: 'createFromString',
-    value: function createFromString(content) {
+    value: function createFromString(text) {
+      var marks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _immutable.Set)();
+
+      return Text.createFromRanges([_range2.default.create({ text: text, marks: marks })]);
+    }
+
+    /**
+     * Create a new `Text` from a list of ranges
+     *
+     * @param {List<Range>|Array<Range>} ranges
+     * @return {Text}
+     */
+
+  }, {
+    key: 'createFromRanges',
+    value: function createFromRanges(ranges) {
       return Text.create({
-        characters: _character2.default.createList(content.split('').map(function (c) {
-          return { text: c };
-        }))
+        characters: ranges.reduce(function (characters, range) {
+          range = _range2.default.create(range);
+          return characters.concat(range.getCharacters());
+        }, _character2.default.createList())
       });
     }
 
@@ -64183,7 +65662,7 @@ var Text = function (_ref) {
      * Create a list of `Texts` from an array.
      *
      * @param {Array} elements
-     * @return {List} map
+     * @return {List<Text>}
      */
 
   }, {
@@ -64207,10 +65686,12 @@ var Text = function (_ref) {
 
 /**
  * Export.
+ *
+ * @type {Text}
  */
 
 exports.default = Text;
-},{"../utils/memoize":358,"../utils/uid":364,"./character":328,"./mark":332,"immutable":93}],338:[function(require,module,exports){
+},{"../utils/generate-key":410,"../utils/memoize":414,"./character":382,"./mark":386,"./range":388,"immutable":144}],393:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -64251,12 +65732,16 @@ var Transform = function () {
    * Constructor.
    *
    * @param {Object} properties
+   *   @property {State} properties.state
+   *   @property {Boolean} properties.normalized
    */
 
   function Transform(properties) {
     _classCallCheck(this, Transform);
 
-    var state = properties.state;
+    var state = properties.state,
+        _properties$normalize = properties.normalized,
+        normalized = _properties$normalize === undefined ? true : _properties$normalize;
 
     this.state = state;
     this.operations = [];
@@ -64265,7 +65750,7 @@ var Transform = function () {
   /**
    * Get the kind.
    *
-   * @return {String} kind
+   * @return {String}
    */
 
   _createClass(Transform, [{
@@ -64279,25 +65764,24 @@ var Transform = function () {
      *   @property {Boolean} isNative
      *   @property {Boolean} merge
      *   @property {Boolean} save
-     * @return {State} state
+     * @return {State}
      */
 
     value: function apply() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       var transform = this;
-      var merge = options.merge;
-      var save = options.save;
-      var _options$isNative = options.isNative;
-      var isNative = _options$isNative === undefined ? false : _options$isNative;
+      var merge = options.merge,
+          save = options.save,
+          _options$isNative = options.isNative,
+          isNative = _options$isNative === undefined ? false : _options$isNative;
 
       // Ensure that the selection is normalized.
 
-      transform = transform.normalizeSelection();
+      transform.normalizeSelection();
 
-      var _transform = transform;
-      var state = _transform.state;
-      var operations = _transform.operations;
+      var state = transform.state,
+          operations = transform.operations;
       var history = state.history;
       var undos = history.undos;
 
@@ -64344,7 +65828,8 @@ Object.keys(_transforms2.default).forEach(function (type) {
     }
 
     debug(type, { args: args });
-    return _transforms2.default[type].apply(_transforms2.default, [this].concat(args));
+    _transforms2.default[type].apply(_transforms2.default, [this].concat(args));
+    return this;
   };
 });
 
@@ -64434,7 +65919,7 @@ function isContiguousRemoves(operations, previous) {
  */
 
 exports.default = Transform;
-},{"../transforms":349,"debug":28}],339:[function(require,module,exports){
+},{"../transforms":404,"debug":422}],394:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -64495,9 +65980,9 @@ var debug = (0, _debug2.default)('slate:core');
 
 function Plugin() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var placeholder = options.placeholder;
-  var placeholderClassName = options.placeholderClassName;
-  var placeholderStyle = options.placeholderStyle;
+  var placeholder = options.placeholder,
+      placeholderClassName = options.placeholderClassName,
+      placeholderStyle = options.placeholderStyle;
 
   /**
    * On before change, enforce the editor's schema.
@@ -64508,10 +65993,20 @@ function Plugin() {
    */
 
   function onBeforeChange(state, editor) {
+    // Don't normalize with plugins schema when typing text in native mode
     if (state.isNative) return state;
-    var schema = editor.getSchema();
 
-    return state.transform().normalizeWith(schema).apply({ save: false });
+    var schema = editor.getSchema();
+    var prevState = editor.state.state;
+
+    // Since schema can only normalize the document, we avoid creating
+    // a transform and normalize the selection if the document is the same
+
+    if (prevState && state.document == prevState.document) return state;
+
+    var newState = state.transform().normalize(schema).apply({ save: false });
+
+    return newState;
   }
 
   /**
@@ -64526,24 +66021,27 @@ function Plugin() {
    */
 
   function onBeforeInput(e, data, state, editor) {
-    var document = state.document;
-    var startKey = state.startKey;
-    var startOffset = state.startOffset;
-    var startInline = state.startInline;
-    var startText = state.startText;
+    var document = state.document,
+        startKey = state.startKey,
+        startOffset = state.startOffset,
+        startInline = state.startInline,
+        startText = state.startText;
 
     // Determine what the characters would be if natively inserted.
 
     var schema = editor.getSchema();
     var decorators = document.getDescendantDecorators(startKey, schema);
-    var prevChars = startText.getDecorations(decorators);
-    var prevChar = prevChars.get(startOffset - 1);
+    var initialChars = startText.getDecorations(decorators);
+    var prevChar = startOffset === 0 ? null : initialChars.get(startOffset - 1);
+    var nextChar = startOffset === initialChars.size ? null : initialChars.get(startOffset);
     var char = _character2.default.create({
       text: e.data,
-      marks: prevChar && prevChar.marks
+      // When cursor is at start of a range of marks, without preceding text,
+      // the native behavior is to insert inside the range of marks.
+      marks: prevChar && prevChar.marks || nextChar && nextChar.marks || []
     });
 
-    var chars = prevChars.slice(0, startOffset).push(char).concat(prevChars.slice(startOffset));
+    var chars = initialChars.insert(startOffset, char);
 
     // Determine what the characters should be, if not natively inserted.
     var next = state.transform().insertText(e.data).apply();
@@ -64555,7 +66053,9 @@ function Plugin() {
     // current node is not empty, there are no marks on the cursor, the cursor
     // is not at the edge of an inline node, and the natively inserted
     // characters would be the same as the non-native.
-    var isNative = state.isCollapsed && state.startText.text != '' && state.selection.marks == null && (!startInline || !state.selection.isAtStartOf(startInline)) && (!startInline || !state.selection.isAtEndOf(startInline)) && chars.equals(nextChars);
+    var isNative = state.isCollapsed && state.startText.text != '' && state.selection.marks == null && (
+    // Must not be, for example, at edge of an inline link
+    !startInline || !state.selection.isAtStartOf(startInline)) && (!startInline || !state.selection.isAtEndOf(startInline)) && chars.equals(nextChars);
 
     // Add the `isNative` flag directly, so we don't have to re-transform.
     if (isNative) {
@@ -64722,9 +66222,9 @@ function Plugin() {
     debug('onDropFragment', { data: data });
 
     var selection = state.selection;
-    var fragment = data.fragment;
-    var target = data.target;
-    var isInternal = data.isInternal;
+    var fragment = data.fragment,
+        target = data.target,
+        isInternal = data.isInternal;
 
     // If the drag is internal and the target is after the selection, it
     // needs to account for the selection's content being deleted.
@@ -64735,7 +66235,7 @@ function Plugin() {
 
     var transform = state.transform();
 
-    if (isInternal) transform = transform.delete();
+    if (isInternal) transform.delete();
 
     return transform.moveTo(target).insertFragment(fragment).apply();
   }
@@ -64752,14 +66252,14 @@ function Plugin() {
   function onDropText(e, data, state) {
     debug('onDropText', { data: data });
 
-    var text = data.text;
-    var target = data.target;
+    var text = data.text,
+        target = data.target;
 
     var transform = state.transform().moveTo(target);
 
     text.split('\n').forEach(function (line, i) {
-      if (i > 0) transform = transform.splitBlock();
-      transform = transform.insertText(line);
+      if (i > 0) transform.splitBlock();
+      transform.insertText(line);
     });
 
     return transform.apply();
@@ -64809,9 +66309,9 @@ function Plugin() {
   function onKeyDownEnter(e, data, state) {
     debug('onKeyDownEnter', { data: data });
 
-    var document = state.document;
-    var startKey = state.startKey;
-    var startBlock = state.startBlock;
+    var document = state.document,
+        startKey = state.startKey,
+        startBlock = state.startBlock;
 
     // For void blocks, we don't want to split. Instead we just move to the
     // start of the next text node if one exists.
@@ -64842,8 +66342,8 @@ function Plugin() {
       return state.transform().delete().apply();
     }
 
-    var startOffset = state.startOffset;
-    var startBlock = state.startBlock;
+    var startOffset = state.startOffset,
+        startBlock = state.startBlock;
 
     var text = startBlock.text;
     var n = void 0;
@@ -64877,8 +66377,8 @@ function Plugin() {
       return state.transform().delete().apply();
     }
 
-    var startOffset = state.startOffset;
-    var startBlock = state.startBlock;
+    var startOffset = state.startOffset,
+        startBlock = state.startBlock;
 
     var text = startBlock.text;
     var n = void 0;
@@ -64913,13 +66413,14 @@ function Plugin() {
     if (data.isOpt) return;
     if (state.isExpanded) return;
 
-    var document = state.document;
-    var startText = state.startText;
+    var document = state.document,
+        startKey = state.startKey,
+        startText = state.startText;
 
-    var hasVoidParent = document.hasVoidParent(startText);
+    var hasVoidParent = document.hasVoidParent(startKey);
 
     if (startText.text == '' || hasVoidParent) {
-      var previousText = document.getPreviousText(startText);
+      var previousText = document.getPreviousText(startKey);
       if (!previousText) return;
 
       debug('onKeyDownLeft', { data: data });
@@ -64947,19 +66448,27 @@ function Plugin() {
     if (data.isOpt) return;
     if (state.isExpanded) return;
 
-    var document = state.document;
-    var startText = state.startText;
+    var document = state.document,
+        startKey = state.startKey,
+        startText = state.startText;
 
-    var hasVoidParent = document.hasVoidParent(startText);
+    var hasVoidParent = document.hasVoidParent(startKey);
 
     if (startText.text == '' || hasVoidParent) {
-      var nextText = document.getNextText(startText);
+      var nextText = document.getNextText(startKey);
       if (!nextText) return state;
 
       debug('onKeyDownRight', { data: data });
 
+      // COMPAT: In Chrome & Safari, selections that are at the zero offset of
+      // an inline node will be automatically replaced to be at the last offset
+      // of a previous inline node, which screws us up, so we always want to set
+      // it to the end of the node. (2016/11/29)
+      var hasNextVoidParent = document.hasVoidParent(nextText.key);
+      var method = hasNextVoidParent ? 'collapseToEndOf' : 'collapseToStartOf';
+
       e.preventDefault();
-      return state.transform().collapseToStartOf(nextText).apply();
+      return state.transform()[method](nextText).apply();
     }
   }
 
@@ -65011,8 +66520,8 @@ function Plugin() {
 
     debug('onKeyDownK', { data: data });
 
-    var startOffset = state.startOffset;
-    var startBlock = state.startBlock;
+    var startOffset = state.startOffset,
+        startBlock = state.startBlock;
 
 
     return state.transform().deleteForward(startBlock.text.length - startOffset).apply();
@@ -65069,8 +66578,8 @@ function Plugin() {
     var transform = state.transform();
 
     data.text.split('\n').forEach(function (line, i) {
-      if (i > 0) transform = transform.splitBlock();
-      transform = transform.insertText(line);
+      if (i > 0) transform.splitBlock();
+      transform.insertText(line);
     });
 
     return transform.apply();
@@ -65092,13 +66601,10 @@ function Plugin() {
     debug('onSelect', { data: data, selection: selection.toJS() });
 
     return state.transform().moveTo(selection)
-    // Since the document has not changed, We only normalize the selection
-    .normalizeSelection().apply({ normalize: false });
+    // Since the document has not changed, we only need to normalize the
+    // selection and this is done automatically in `transform.apply()`.
+    .apply();
   }
-
-  /**
-   * Extend core schema with rendering
-   */
 
   /**
    * A default schema rule to render block nodes.
@@ -65149,12 +66655,20 @@ function Plugin() {
     }
   };
 
+  /**
+   * Add default rendering rules to the schema.
+   *
+   * @type {Object}
+   */
+
   var schema = {
     rules: [BLOCK_RENDER_RULE, INLINE_RENDER_RULE]
   };
 
   /**
    * Return the core plugin.
+   *
+   * @type {Object}
    */
 
   return {
@@ -65173,10 +66687,12 @@ function Plugin() {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = Plugin;
-},{"../components/placeholder":322,"../constants/environment":324,"../models/character":328,"../serializers/base-64":341,"../utils/string":362,"debug":28,"get-window":82,"react":306}],340:[function(require,module,exports){
+},{"../components/placeholder":375,"../constants/environment":377,"../models/character":382,"../serializers/base-64":396,"../utils/string":419,"debug":422,"get-window":133,"react":359}],395:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -65197,16 +66713,16 @@ var _immutable = require('immutable');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
-    This module contains the default schema to normalize documents
+/**
+ * Options object with normalize set to `false`.
+ *
+ * @type {Object}
  */
 
-function isInlineVoid(node) {
-  return node.kind == 'inline' && node.isVoid;
-}
+var OPTS = { normalize: false };
 
 /**
- * A default schema rule to only allow block nodes in documents.
+ * Only allow block nodes in documents.
  *
  * @type {Object}
  */
@@ -65216,22 +66732,20 @@ var DOCUMENT_CHILDREN_RULE = {
     return node.kind == 'document';
   },
   validate: function validate(document) {
-    var nodes = document.nodes;
-
-    var invalids = nodes.filter(function (n) {
+    var invalids = document.nodes.filter(function (n) {
       return n.kind != 'block';
     });
     return invalids.size ? invalids : null;
   },
   normalize: function normalize(transform, document, invalids) {
-    return invalids.reduce(function (t, n) {
-      return t.removeNodeByKey(n.key, { normalize: false });
-    }, transform);
+    invalids.forEach(function (node) {
+      transform.removeNodeByKey(node.key, OPTS);
+    });
   }
 };
 
 /**
- * A default schema rule to only allow block, inline and text nodes in blocks.
+ * Only allow block, inline and text nodes in blocks.
  *
  * @type {Object}
  */
@@ -65241,22 +66755,21 @@ var BLOCK_CHILDREN_RULE = {
     return node.kind == 'block';
   },
   validate: function validate(block) {
-    var nodes = block.nodes;
-
-    var invalids = nodes.filter(function (n) {
+    var invalids = block.nodes.filter(function (n) {
       return n.kind != 'block' && n.kind != 'inline' && n.kind != 'text';
     });
+
     return invalids.size ? invalids : null;
   },
   normalize: function normalize(transform, block, invalids) {
-    return invalids.reduce(function (t, n) {
-      return t.removeNodeByKey(n.key, { normalize: false });
-    }, transform);
+    invalids.forEach(function (node) {
+      transform.removeNodeByKey(node.key, OPTS);
+    });
   }
 };
 
 /**
- * A default schema rule to have at least one text node in blocks/inlines
+ * Ensure that block and inline nodes have at least one text child.
  *
  * @type {Object}
  */
@@ -65266,17 +66779,16 @@ var MIN_TEXT_RULE = {
     return object.kind == 'block' || object.kind == 'inline';
   },
   validate: function validate(node) {
-    var nodes = node.nodes;
-
-    return nodes.size === 0 ? true : null;
+    return node.nodes.size == 0;
   },
   normalize: function normalize(transform, node) {
-    return transform.insertNodeByKey(node.key, 0, _text2.default.create(), { normalize: false });
+    var text = _text2.default.create();
+    transform.insertNodeByKey(node.key, 0, text, OPTS);
   }
 };
 
 /**
- * A default schema rule to only allow inline and text nodes in inlines.
+ * Only allow inline and text nodes in inlines.
  *
  * @type {Object}
  */
@@ -65286,22 +66798,25 @@ var INLINE_CHILDREN_RULE = {
     return object.kind == 'inline';
   },
   validate: function validate(inline) {
-    var nodes = inline.nodes;
-
-    var invalids = nodes.filter(function (n) {
+    var invalids = inline.nodes.filter(function (n) {
       return n.kind != 'inline' && n.kind != 'text';
     });
     return invalids.size ? invalids : null;
   },
   normalize: function normalize(transform, inline, invalids) {
-    return invalids.reduce(function (t, n) {
-      return t.removeNodeByKey(n.key, { normalize: false });
-    }, transform);
+    invalids.forEach(function (node) {
+      transform.removeNodeByKey(node.key, OPTS);
+    });
   }
 };
 
 /**
- * A default schema rule to ensure that inline nodes are not empty
+ * Ensure that inline nodes are never empty.
+ *
+ * This rule is applied to all blocks, because when they contain an empty
+ * inline, we need to remove the inline from that parent block. If `validate`
+ * was to be memoized, it should be against the parent node, not the inline
+ * themselves.
  *
  * @type {Object}
  */
@@ -65311,28 +66826,32 @@ var INLINE_NO_EMPTY = {
     return object.kind == 'block';
   },
   validate: function validate(block) {
-    return block.nodes.some(function (child) {
-      return child.kind == 'inline' && child.text == '';
+    var invalids = block.nodes.filter(function (n) {
+      return n.kind == 'inline' && n.text == '';
     });
+    return invalids.size ? invalids : null;
   },
-  normalize: function normalize(transform, block) {
-    return block.nodes.reduce(function (tr, child, index) {
-      if (child.kind == 'inline' && child.text == '') {
-        return transform.removeNodeByKey(child.key, { normalize: false }).insertNodeByKey(block.key, index, _text2.default.createFromString(''), { normalize: false });
-      } else {
-        return tr;
-      }
-    }, transform);
+  normalize: function normalize(transform, block, invalids) {
+    // If all of the block's nodes are invalid, insert an empty text node so
+    // that the selection will be preserved when they are all removed.
+    if (block.nodes.size == invalids.size) {
+      var text = _text2.default.create();
+      transform.insertNodeByKey(block.key, 1, text, OPTS);
+    }
+
+    invalids.forEach(function (node) {
+      transform.removeNodeByKey(node.key, OPTS);
+    });
   }
 };
 
 /**
- * A default schema rule to ensure that void nodes contain a single space of content.
+ * Ensure that void nodes contain a text node with a single space of text.
  *
  * @type {Object}
  */
 
-var INLINE_VOID_TEXT_RULE = {
+var VOID_TEXT_RULE = {
   match: function match(object) {
     return (object.kind == 'inline' || object.kind == 'block') && object.isVoid;
   },
@@ -65340,16 +66859,20 @@ var INLINE_VOID_TEXT_RULE = {
     return node.text !== ' ' || node.nodes.size !== 1;
   },
   normalize: function normalize(transform, node, result) {
-    transform = node.nodes.reduce(function (t, child) {
-      return t.removeNodeByKey(child.key, { normalize: false });
-    }, transform);
+    var text = _text2.default.createFromString(' ');
+    var index = node.nodes.size;
 
-    return transform.insertNodeByKey(node.key, 0, _text2.default.createFromString(' '), { normalize: false });
+    transform.insertNodeByKey(node.key, index, text, OPTS);
+
+    node.nodes.forEach(function (child) {
+      transform.removeNodeByKey(child.key, OPTS);
+    });
   }
 };
 
 /**
- * A default schema rule to ensure that inline void nodes are surrounded with text nodes
+ * Ensure that inline void nodes are surrounded by text nodes, by adding extra
+ * blank text nodes if necessary.
  *
  * @type {Object}
  */
@@ -65359,46 +66882,43 @@ var INLINE_VOID_TEXTS_AROUND_RULE = {
     return object.kind == 'block' || object.kind == 'inline';
   },
   validate: function validate(block) {
-    var invalids = block.nodes.reduce(function (accu, child, index) {
-      if (child.kind === 'block' || !child.isVoid) {
-        return accu;
+    var invalids = block.nodes.reduce(function (list, child, index) {
+      if (child.kind == 'block') return list;
+      if (!child.isVoid) return list;
+
+      var prev = index > 0 ? block.nodes.get(index - 1) : null;
+      var next = block.nodes.get(index + 1);
+      var insertBefore = !prev;
+      var insertAfter = !next || isInlineVoid(next);
+
+      if (insertAfter || insertBefore) {
+        list = list.push({ insertAfter: insertAfter, insertBefore: insertBefore, index: index });
       }
 
-      var prevNode = index > 0 ? block.nodes.get(index - 1) : null;
-      var nextNode = block.nodes.get(index + 1);
-
-      var prev = !prevNode;
-      var next = !nextNode || isInlineVoid(nextNode);
-
-      if (next || prev) {
-        return accu.push({ next: next, prev: prev, index: index });
-      } else {
-        return accu;
-      }
+      return list;
     }, new _immutable.List());
 
-    return !invalids.isEmpty() ? invalids : null;
+    return invalids.size ? invalids : null;
   },
   normalize: function normalize(transform, block, invalids) {
-    // Shift for every text node inserted previously
+    // Shift for every text node inserted previously.
     var shift = 0;
 
-    return invalids.reduce(function (t, _ref) {
-      var index = _ref.index;
-      var next = _ref.next;
-      var prev = _ref.prev;
+    invalids.forEach(function (_ref) {
+      var index = _ref.index,
+          insertAfter = _ref.insertAfter,
+          insertBefore = _ref.insertBefore;
 
-      if (prev) {
-        t = t.insertNodeByKey(block.key, shift + index, _text2.default.create(), { normalize: false });
-        shift = shift + 1;
-      }
-      if (next) {
-        t = t.insertNodeByKey(block.key, shift + index + 1, _text2.default.create(), { normalize: false });
-        shift = shift + 1;
+      if (insertBefore) {
+        transform.insertNodeByKey(block.key, shift + index, _text2.default.create(), OPTS);
+        shift++;
       }
 
-      return t;
-    }, transform);
+      if (insertAfter) {
+        transform.insertNodeByKey(block.key, shift + index + 1, _text2.default.create(), OPTS);
+        shift++;
+      }
+    });
   }
 };
 
@@ -65413,35 +66933,30 @@ var NO_ADJACENT_TEXT_RULE = {
     return object.kind == 'block' || object.kind == 'inline';
   },
   validate: function validate(node) {
-    var nodes = node.nodes;
-
-    var invalids = nodes.map(function (n, i) {
-      var next = nodes.get(i + 1);
-      if (n.kind !== 'text' || !next || next.kind !== 'text') {
-        return;
-      }
-
-      return [n, next];
+    var invalids = node.nodes.map(function (child, i) {
+      var next = node.nodes.get(i + 1);
+      if (child.kind != 'text') return;
+      if (!next || next.kind != 'text') return;
+      return [child, next];
     }).filter(Boolean);
 
     return invalids.size ? invalids : null;
   },
   normalize: function normalize(transform, node, pairs) {
-    return pairs
-    // We reverse the list since we want to handle 3 consecutive text nodes
-    .reverse().reduce(function (t, pair) {
-      var _pair = _slicedToArray(pair, 2);
+    // We reverse the list to handle consecutive joins, since the earlier nodes
+    // will always exist after each join.
+    pairs.reverse().forEach(function (pair) {
+      var _pair = _slicedToArray(pair, 2),
+          first = _pair[0],
+          second = _pair[1];
 
-      var first = _pair[0];
-      var second = _pair[1];
-
-      return t.joinNodeByKey(second.key, first.key, { normalize: false });
-    }, transform);
+      return transform.joinNodeByKey(second.key, first.key, OPTS);
+    });
   }
 };
 
 /**
- * Prevent extra empty text nodes.
+ * Prevent extra empty text nodes, except when adjacent to inline void nodes.
  *
  * @type {Object}
  */
@@ -65453,60 +66968,66 @@ var NO_EMPTY_TEXT_RULE = {
   validate: function validate(node) {
     var nodes = node.nodes;
 
-
-    if (nodes.size <= 1) {
-      return;
-    }
+    if (nodes.size <= 1) return;
 
     var invalids = nodes.filter(function (desc, i) {
-      if (desc.kind != 'text' || desc.length > 0) {
-        return;
-      }
+      if (desc.kind != 'text') return;
+      if (desc.length > 0) return;
 
-      // Empty text nodes are only allowed near inline void node
-      var next = nodes.get(i + 1);
       var prev = i > 0 ? nodes.get(i - 1) : null;
+      var next = nodes.get(i + 1);
 
-      // If last one and previous is an inline void, we need to preserve it
-      if (!next && isInlineVoid(prev)) {
-        return;
-      }
+      // If it's the first node, and the next is a void, preserve it.
+      if (!prev && isInlineVoid(next)) return;
 
-      // If first one and next one is an inline, we preserve it
-      if (!prev && isInlineVoid(next)) {
-        return;
-      }
+      // It it's the last node, and the previous is a void, preserve it.
+      if (!next && isInlineVoid(prev)) return;
 
-      // If surrounded by inline void, we preserve it
-      if (next && prev && isInlineVoid(next) && isInlineVoid(prev)) {
-        return;
-      }
+      // If it's surrounded by voids, preserve it.
+      if (next && prev && isInlineVoid(next) && isInlineVoid(prev)) return;
 
-      // Otherwise we remove it
+      // Otherwise, remove it.
       return true;
     });
 
     return invalids.size ? invalids : null;
   },
   normalize: function normalize(transform, node, invalids) {
-    return invalids.reduce(function (t, text) {
-      return t.removeNodeByKey(text.key, { normalize: false });
-    }, transform);
+    invalids.forEach(function (text) {
+      transform.removeNodeByKey(text.key, OPTS);
+    });
   }
 };
 
 /**
- * The default schema.
+ * Test if a `node` is an inline void node.
  *
- * @type {Object}
+ * @param {Node} node
+ * @return {Boolean}
  */
 
-var schema = _schema2.default.create({
-  rules: [DOCUMENT_CHILDREN_RULE, BLOCK_CHILDREN_RULE, INLINE_CHILDREN_RULE, INLINE_VOID_TEXT_RULE, MIN_TEXT_RULE, INLINE_NO_EMPTY, INLINE_VOID_TEXTS_AROUND_RULE, NO_ADJACENT_TEXT_RULE, NO_EMPTY_TEXT_RULE]
+function isInlineVoid(node) {
+  return node.kind == 'inline' && node.isVoid;
+}
+
+/**
+ * The core schema.
+ *
+ * @type {Schema}
+ */
+
+var SCHEMA = _schema2.default.create({
+  rules: [DOCUMENT_CHILDREN_RULE, BLOCK_CHILDREN_RULE, INLINE_CHILDREN_RULE, VOID_TEXT_RULE, MIN_TEXT_RULE, INLINE_NO_EMPTY, INLINE_VOID_TEXTS_AROUND_RULE, NO_ADJACENT_TEXT_RULE, NO_EMPTY_TEXT_RULE]
 });
 
-exports.default = schema;
-},{"../models/schema":334,"../models/text":337,"immutable":93}],341:[function(require,module,exports){
+/**
+ * Export.
+ *
+ * @type {Schema}
+ */
+
+exports.default = SCHEMA;
+},{"../models/schema":389,"../models/text":392,"immutable":144}],396:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -65523,7 +67044,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Encode a JSON `object` as base-64 `string`.
  *
  * @param {Object} object
- * @return {String} encoded
+ * @return {String}
  */
 
 function encode(object) {
@@ -65536,7 +67057,7 @@ function encode(object) {
  * Decode a base-64 `string` to a JSON `object`.
  *
  * @param {String} string
- * @return {Object} object
+ * @return {Object}
  */
 
 function decode(string) {
@@ -65549,7 +67070,7 @@ function decode(string) {
  * Deserialize a State `string`.
  *
  * @param {String} string
- * @return {State} state
+ * @return {State}
  */
 
 function deserialize(string) {
@@ -65562,7 +67083,7 @@ function deserialize(string) {
  * Deserialize a Node `string`.
  *
  * @param {String} string
- * @return {Node} node
+ * @return {Node}
  */
 
 function deserializeNode(string) {
@@ -65575,7 +67096,7 @@ function deserializeNode(string) {
  * Serialize a `state`.
  *
  * @param {State} state
- * @return {String} encoded
+ * @return {String}
  */
 
 function serialize(state) {
@@ -65588,7 +67109,7 @@ function serialize(state) {
  * Serialize a `node`.
  *
  * @param {Node} node
- * @return {String} encoded
+ * @return {String}
  */
 
 function serializeNode(node) {
@@ -65599,6 +67120,8 @@ function serializeNode(node) {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = {
@@ -65607,7 +67130,7 @@ exports.default = {
   serialize: serialize,
   serializeNode: serializeNode
 };
-},{"./raw":344}],342:[function(require,module,exports){
+},{"./raw":399}],397:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -65644,6 +67167,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 /**
  * String.
+ *
+ * @type {String}
  */
 
 var String = new _immutable.Record({
@@ -65698,7 +67223,6 @@ var Html =
  *
  * @param {Object} options
  *   @property {Array} rules
- * @return {Html} serializer
  */
 
 function Html() {
@@ -65715,28 +67239,28 @@ function Html() {
  * Deserialize pasted HTML.
  *
  * @param {String} html
- * @return {State} state
+ * @return {State}
  */
 
 /**
  * Deserialize an array of Cheerio `elements`.
  *
  * @param {Array} elements
- * @return {Array} nodes
+ * @return {Array}
  */
 
 /**
  * Deserialize a Cheerio `element`.
  *
  * @param {Object} element
- * @return {Mixed} node
+ * @return {Any}
  */
 
 /**
  * Deserialize a `mark` object.
  *
  * @param {Object} mark
- * @return {Array} nodes
+ * @return {Array}
  */
 
 /**
@@ -65745,7 +67269,7 @@ function Html() {
  * @param {State} state
  * @param {Object} options
  *   @property {Boolean} render
- * @return {String|Array} html
+ * @return {String|Array}
  */
 
 /**
@@ -65867,6 +67391,7 @@ var _initialiseProps = function _initialiseProps() {
         var ret = rule.deserialize(element, next);
         if (!ret) continue;
         node = ret.kind == 'mark' ? _this.deserializeMark(ret) : ret;
+        break;
       }
     } catch (err) {
       _didIteratorError = true;
@@ -65887,8 +67412,8 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.deserializeMark = function (mark) {
-    var type = mark.type;
-    var data = mark.data;
+    var type = mark.type,
+        data = mark.data;
 
 
     var applyMark = function applyMark(node) {
@@ -66044,10 +67569,12 @@ function addKey(element) {
 
 /**
  * Export.
+ *
+ * @type {Html}
  */
 
 exports.default = Html;
-},{"./raw":344,"cheerio":8,"immutable":93,"react":306,"react-dom/server":160,"type-of":368}],343:[function(require,module,exports){
+},{"./raw":399,"cheerio":8,"immutable":144,"react":359,"react-dom/server":213,"type-of":427}],398:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -66129,13 +67656,15 @@ function serialize(state) {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = {
   deserialize: deserialize,
   serialize: serialize
 };
-},{"../models/block":327,"../models/document":330,"../models/state":336,"../models/text":337}],344:[function(require,module,exports){
+},{"../models/block":381,"../models/document":384,"../models/state":391,"../models/text":392}],399:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -66232,6 +67761,7 @@ var Raw = {
 
   deserializeDocument: function deserializeDocument(object, options) {
     return _document2.default.create({
+      key: object.key,
       nodes: _block2.default.createList(object.nodes.map(function (node) {
         return Raw.deserializeNode(node, options);
       }))
@@ -66269,7 +67799,7 @@ var Raw = {
    *
    * @param {Object} object
    * @param {Object} options (optional)
-   * @return {Mark} mark
+   * @return {Mark}
    */
 
   deserializeMark: function deserializeMark(object, options) {
@@ -66282,7 +67812,7 @@ var Raw = {
    *
    * @param {Object} object
    * @param {Object} options (optional)
-   * @return {Text}
+   * @return {Node}
    */
 
   deserializeNode: function deserializeNode(object, options) {
@@ -66308,7 +67838,7 @@ var Raw = {
    *
    * @param {Object} object
    * @param {Object} options (optional)
-   * @return {List}
+   * @return {List<Character>}
    */
 
   deserializeRange: function deserializeRange(object) {
@@ -66403,6 +67933,10 @@ var Raw = {
       })
     };
 
+    if (!options.preserveKeys) {
+      delete object.key;
+    }
+
     return options.terse ? Raw.tersifyBlock(object) : object;
   },
 
@@ -66419,11 +67953,16 @@ var Raw = {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     var object = {
+      key: document.key,
       kind: document.kind,
       nodes: document.nodes.toArray().map(function (node) {
         return Raw.serializeNode(node, options);
       })
     };
+
+    if (!options.preserveKeys) {
+      delete object.key;
+    }
 
     return options.terse ? Raw.tersifyDocument(object) : object;
   },
@@ -66451,6 +67990,10 @@ var Raw = {
       })
     };
 
+    if (!options.preserveKeys) {
+      delete object.key;
+    }
+
     return options.terse ? Raw.tersifyInline(object) : object;
   },
 
@@ -66460,7 +68003,7 @@ var Raw = {
    *
    * @param {Mark} mark
    * @param {Object} options (optional)
-   * @return {Object} Object
+   * @return {Object}
    */
 
   serializeMark: function serializeMark(mark) {
@@ -66481,7 +68024,7 @@ var Raw = {
    *
    * @param {Node} node
    * @param {Object} options (optional)
-   * @return {Object} object
+   * @return {Object}
    */
 
   serializeNode: function serializeNode(node, options) {
@@ -66564,6 +68107,10 @@ var Raw = {
       })
     };
 
+    if (!options.preserveKeys) {
+      delete object.key;
+    }
+
     return options.terse ? Raw.tersifyText(object) : object;
   },
 
@@ -66579,6 +68126,7 @@ var Raw = {
     var ret = {};
     ret.kind = object.kind;
     ret.type = object.type;
+    if (object.key) ret.key = object.key;
     if (!object.isVoid) ret.nodes = object.nodes;
     if (object.isVoid) ret.isVoid = object.isVoid;
     if (!(0, _isEmpty2.default)(object.data)) ret.data = object.data;
@@ -66594,9 +68142,10 @@ var Raw = {
    */
 
   tersifyDocument: function tersifyDocument(object) {
-    return {
-      nodes: object.nodes
-    };
+    var ret = {};
+    ret.nodes = object.nodes;
+    if (object.key) ret.key = object.key;
+    return ret;
   },
 
 
@@ -66611,6 +68160,7 @@ var Raw = {
     var ret = {};
     ret.kind = object.kind;
     ret.type = object.type;
+    if (object.key) ret.key = object.key;
     if (!object.isVoid) ret.nodes = object.nodes;
     if (object.isVoid) ret.isVoid = object.isVoid;
     if (!(0, _isEmpty2.default)(object.data)) ret.data = object.data;
@@ -66668,17 +68218,17 @@ var Raw = {
    */
 
   tersifyText: function tersifyText(object) {
+    var ret = {};
+    ret.kind = object.kind;
+    if (object.key) ret.key = object.key;
+
     if (object.ranges.length == 1 && object.ranges[0].marks == null) {
-      return {
-        kind: object.kind,
-        text: object.ranges[0].text
-      };
+      ret.text = object.ranges[0].text;
+    } else {
+      ret.ranges = object.ranges;
     }
 
-    return {
-      kind: object.kind,
-      ranges: object.ranges
-    };
+    return ret;
   },
 
 
@@ -66761,6 +68311,7 @@ var Raw = {
     return {
       kind: 'state',
       document: {
+        key: object.key,
         kind: 'document',
         nodes: object.nodes
       }
@@ -66791,10 +68342,12 @@ var Raw = {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = Raw;
-},{"../models/block":327,"../models/character":328,"../models/document":330,"../models/inline":331,"../models/mark":332,"../models/state":336,"../models/text":337,"is-empty":96}],345:[function(require,module,exports){
+},{"../models/block":381,"../models/character":382,"../models/document":384,"../models/inline":385,"../models/mark":386,"../models/state":391,"../models/text":392,"is-empty":147}],400:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -66809,9 +68362,9 @@ var _debug = require('debug');
 
 var _debug2 = _interopRequireDefault(_debug);
 
-var _warning = require('../utils/warning');
+var _warn = require('../utils/warn');
 
-var _warning2 = _interopRequireDefault(_warning);
+var _warn2 = _interopRequireDefault(_warn);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -66853,12 +68406,11 @@ var OPERATIONS = {
  *
  * @param {Transform} transform
  * @param {Object} operation
- * @return {Transform}
  */
 
 function applyOperation(transform, operation) {
-  var state = transform.state;
-  var operations = transform.operations;
+  var state = transform.state,
+      operations = transform.operations;
   var type = operation.type;
 
   var fn = OPERATIONS[type];
@@ -66868,11 +68420,8 @@ function applyOperation(transform, operation) {
   }
 
   debug(type, operation);
-
   transform.state = fn(state, operation);
   transform.operations = operations.concat([operation]);
-
-  return transform;
 }
 
 /**
@@ -66884,12 +68433,12 @@ function applyOperation(transform, operation) {
  */
 
 function addMark(state, operation) {
-  var path = operation.path;
-  var offset = operation.offset;
-  var length = operation.length;
-  var mark = operation.mark;
-  var _state = state;
-  var document = _state.document;
+  var path = operation.path,
+      offset = operation.offset,
+      length = operation.length,
+      mark = operation.mark;
+  var _state = state,
+      document = _state.document;
 
   var node = document.assertPath(path);
   node = node.addMark(offset, length, mark);
@@ -66907,11 +68456,11 @@ function addMark(state, operation) {
  */
 
 function insertNode(state, operation) {
-  var path = operation.path;
-  var index = operation.index;
-  var node = operation.node;
-  var _state2 = state;
-  var document = _state2.document;
+  var path = operation.path,
+      index = operation.index,
+      node = operation.node;
+  var _state2 = state,
+      document = _state2.document;
 
   var parent = document.assertPath(path);
   var isParent = document == parent;
@@ -66930,18 +68479,18 @@ function insertNode(state, operation) {
  */
 
 function insertText(state, operation) {
-  var path = operation.path;
-  var offset = operation.offset;
-  var text = operation.text;
-  var marks = operation.marks;
-  var _state3 = state;
-  var document = _state3.document;
-  var selection = _state3.selection;
-  var _selection = selection;
-  var startKey = _selection.startKey;
-  var endKey = _selection.endKey;
-  var startOffset = _selection.startOffset;
-  var endOffset = _selection.endOffset;
+  var path = operation.path,
+      offset = operation.offset,
+      text = operation.text,
+      marks = operation.marks;
+  var _state3 = state,
+      document = _state3.document,
+      selection = _state3.selection;
+  var _selection = selection,
+      startKey = _selection.startKey,
+      endKey = _selection.endKey,
+      startOffset = _selection.startOffset,
+      endOffset = _selection.endOffset;
 
   var node = document.assertPath(path);
 
@@ -66966,42 +68515,48 @@ function insertText(state, operation) {
  *
  * @param {State} state
  * @param {Object} operation
+ *   @param {Boolean} operation.deep (optional) Join recursively the
+ *   respective last node and first node of the nodes' children. Like a zipper :)
  * @return {State}
  */
 
 function joinNode(state, operation) {
-  var path = operation.path;
-  var withPath = operation.withPath;
-  var _state4 = state;
-  var document = _state4.document;
-  var selection = _state4.selection;
+  var path = operation.path,
+      withPath = operation.withPath,
+      _operation$deep = operation.deep,
+      deep = _operation$deep === undefined ? false : _operation$deep;
+  var _state4 = state,
+      document = _state4.document,
+      selection = _state4.selection;
 
   var first = document.assertPath(withPath);
   var second = document.assertPath(path);
 
-  // Update doc
-  document = document.joinNode(first, second);
+  document = document.joinNode(first, second, { deep: deep });
 
-  // Update selection
-  // When merging two texts together
-  if (second.kind == 'text') {
-    var _selection2 = selection;
-    var anchorKey = _selection2.anchorKey;
-    var anchorOffset = _selection2.anchorOffset;
-    var focusKey = _selection2.focusKey;
-    var focusOffset = _selection2.focusOffset;
-    // The final key is the `first` key
+  // If the operation is deep, or the nodes are text nodes, it means we will be
+  // merging two text nodes together, so we need to update the selection.
+  if (deep || second.kind == 'text') {
+    var _selection2 = selection,
+        anchorKey = _selection2.anchorKey,
+        anchorOffset = _selection2.anchorOffset,
+        focusKey = _selection2.focusKey,
+        focusOffset = _selection2.focusOffset;
 
-    if (anchorKey == second.key) {
+    var firstText = first.kind == 'text' ? first : first.getLastText();
+    var secondText = second.kind == 'text' ? second : second.getFirstText();
+
+    if (anchorKey == secondText.key) {
       selection = selection.merge({
-        anchorKey: first.key,
-        anchorOffset: anchorOffset + first.characters.size
+        anchorKey: firstText.key,
+        anchorOffset: anchorOffset + firstText.characters.size
       });
     }
-    if (focusKey == second.key) {
+
+    if (focusKey == secondText.key) {
       selection = selection.merge({
-        focusKey: first.key,
-        focusOffset: focusOffset + first.characters.size
+        focusKey: firstText.key,
+        focusOffset: focusOffset + firstText.characters.size
       });
     }
   }
@@ -67019,16 +68574,16 @@ function joinNode(state, operation) {
  */
 
 function moveNode(state, operation) {
-  var path = operation.path;
-  var newPath = operation.newPath;
-  var newIndex = operation.newIndex;
-  var _state5 = state;
-  var document = _state5.document;
+  var path = operation.path,
+      newPath = operation.newPath,
+      newIndex = operation.newIndex;
+  var _state5 = state,
+      document = _state5.document;
 
   var node = document.assertPath(path);
 
   // Remove the node from its current parent
-  var parent = document.getParent(node);
+  var parent = document.getParent(node.key);
   var isParent = document == parent;
   var index = parent.nodes.indexOf(node);
   parent = parent.removeNode(index);
@@ -67053,12 +68608,12 @@ function moveNode(state, operation) {
  */
 
 function removeMark(state, operation) {
-  var path = operation.path;
-  var offset = operation.offset;
-  var length = operation.length;
-  var mark = operation.mark;
-  var _state6 = state;
-  var document = _state6.document;
+  var path = operation.path,
+      offset = operation.offset,
+      length = operation.length,
+      mark = operation.mark;
+  var _state6 = state,
+      document = _state6.document;
 
   var node = document.assertPath(path);
   node = node.removeMark(offset, length, mark);
@@ -67077,58 +68632,56 @@ function removeMark(state, operation) {
 
 function removeNode(state, operation) {
   var path = operation.path;
-  var _state7 = state;
-  var document = _state7.document;
-  var selection = _state7.selection;
-  var _selection3 = selection;
-  var startKey = _selection3.startKey;
-  var endKey = _selection3.endKey;
+  var _state7 = state,
+      document = _state7.document,
+      selection = _state7.selection;
+  var _selection3 = selection,
+      startKey = _selection3.startKey,
+      endKey = _selection3.endKey;
 
-  // Preserve previous document
-
-  var prevDocument = document;
-
-  // Update the document
   var node = document.assertPath(path);
-  var parent = document.getParent(node);
+
+  // If the selection is set, check to see if it needs to be updated.
+  if (selection.isSet) {
+    var hasStartNode = node.hasNode(startKey);
+    var hasEndNode = node.hasNode(endKey);
+
+    // If one of the selection's nodes is being removed, we need to update it.
+    if (hasStartNode) {
+      var prev = document.getPreviousText(startKey);
+      var next = document.getNextText(startKey);
+
+      if (prev) {
+        selection = selection.moveStartTo(prev.key, prev.length);
+      } else if (next) {
+        selection = selection.moveStartTo(next.key, 0);
+      } else {
+        selection = selection.unset();
+      }
+    }
+
+    if (hasEndNode) {
+      var _prev = document.getPreviousText(endKey);
+      var _next = document.getNextText(endKey);
+
+      if (_prev) {
+        selection = selection.moveEndTo(_prev.key, _prev.length);
+      } else if (_next) {
+        selection = selection.moveEndTo(_next.key, 0);
+      } else {
+        selection = selection.unset();
+      }
+    }
+  }
+
+  // Remove the node from the document.
+  var parent = document.getParent(node.key);
   var index = parent.nodes.indexOf(node);
   var isParent = document == parent;
   parent = parent.removeNode(index);
   document = isParent ? parent : document.updateDescendant(parent);
 
-  function getRemoved(key) {
-    if (key === node.key) return node;
-    if (node.kind == 'text') return null;
-    return node.getDescendant(key);
-  }
-
-  // Update the selection, if one of the anchor/focus has been removed
-  var startDesc = startKey ? getRemoved(startKey) : null;
-  var endDesc = endKey ? getRemoved(endKey) : null;
-
-  if (startDesc) {
-    var prevText = prevDocument.getTexts().takeUntil(function (text) {
-      return text.key == startKey;
-    }).filter(function (text) {
-      return !getRemoved(text.key);
-    }).last();
-    if (!prevText) selection = selection.unset();else selection = selection.moveStartTo(prevText.key, prevText.length);
-  }
-  if (endDesc) {
-    // The whole selection is inside the node, we collapse to the previous text node
-    if (startKey == endKey) {
-      selection = selection.collapseToStart();
-    } else {
-      var nextText = prevDocument.getTexts().skipUntil(function (text) {
-        return text.key == startKey;
-      }).slice(1).filter(function (text) {
-        return !getRemoved(text.key);
-      }).first();
-
-      if (!nextText) selection = selection.unset();else selection = selection.moveEndTo(nextText.key, 0);
-    }
-  }
-
+  // Update the document and selection.
   state = state.merge({ document: document, selection: selection });
   return state;
 }
@@ -67142,25 +68695,21 @@ function removeNode(state, operation) {
  */
 
 function removeText(state, operation) {
-  var path = operation.path;
-  var offset = operation.offset;
-  var length = operation.length;
-  var _state8 = state;
-  var document = _state8.document;
-  var selection = _state8.selection;
-  var _selection4 = selection;
-  var startKey = _selection4.startKey;
-  var endKey = _selection4.endKey;
-  var startOffset = _selection4.startOffset;
-  var endOffset = _selection4.endOffset;
-
-  var node = document.assertPath(path);
+  var path = operation.path,
+      offset = operation.offset,
+      length = operation.length;
 
   var rangeOffset = offset + length;
+  var _state8 = state,
+      document = _state8.document,
+      selection = _state8.selection;
+  var _selection4 = selection,
+      startKey = _selection4.startKey,
+      endKey = _selection4.endKey,
+      startOffset = _selection4.startOffset,
+      endOffset = _selection4.endOffset;
 
-  // Update the document
-  node = node.removeText(offset, length);
-  document = document.updateDescendant(node);
+  var node = document.assertPath(path);
 
   // Update the selection
   if (startKey == node.key && startOffset >= rangeOffset) {
@@ -67170,6 +68719,8 @@ function removeText(state, operation) {
     selection = selection.moveEndOffset(-length);
   }
 
+  node = node.removeText(offset, length);
+  document = document.updateDescendant(node);
   state = state.merge({ document: document, selection: selection });
   return state;
 }
@@ -67183,16 +68734,16 @@ function removeText(state, operation) {
  */
 
 function setMark(state, operation) {
-  var path = operation.path;
-  var offset = operation.offset;
-  var length = operation.length;
-  var mark = operation.mark;
-  var properties = operation.properties;
-  var _state9 = state;
-  var document = _state9.document;
+  var path = operation.path,
+      offset = operation.offset,
+      length = operation.length,
+      mark = operation.mark,
+      newMark = operation.newMark;
+  var _state9 = state,
+      document = _state9.document;
 
   var node = document.assertPath(path);
-  node = node.updateMark(offset, length, mark, properties);
+  node = node.updateMark(offset, length, mark, newMark);
   document = document.updateDescendant(node);
   state = state.merge({ document: document });
   return state;
@@ -67207,19 +68758,22 @@ function setMark(state, operation) {
  */
 
 function setNode(state, operation) {
-  var path = operation.path;
-  var properties = operation.properties;
-  var _state10 = state;
-  var document = _state10.document;
+  var path = operation.path,
+      properties = operation.properties;
+  var _state10 = state,
+      document = _state10.document;
 
   var node = document.assertPath(path);
 
-  // Deprecate using setNode for updating children, or keys
+  // Deprecate the ability to overwite a node's children.
   if (properties.nodes && properties.nodes != node.nodes) {
-    (0, _warning2.default)('Updating Node.nodes through setNode is not allowed. Use appropriate insertion and removal functions.');
+    (0, _warn2.default)('Updating a Node\'s `nodes` property via `setNode()` is not allowed. Use the appropriate insertion and removal operations instead. The opeartion in question was:', operation);
     delete properties.nodes;
-  } else if (properties.key && properties.key != node.key) {
-    (0, _warning2.default)('Updating Node.key through setNode is not allowed. You should not have to update keys yourself.');
+  }
+
+  // Deprecate the ability to change a node's key.
+  if (properties.key && properties.key != node.key) {
+    (0, _warn2.default)('Updating a Node\'s `key` property via `setNode()` is not allowed. There should be no reason to do this. The opeartion in question was:', operation);
     delete properties.key;
   }
 
@@ -67239,9 +68793,9 @@ function setNode(state, operation) {
 
 function setSelection(state, operation) {
   var properties = _extends({}, operation.properties);
-  var _state11 = state;
-  var document = _state11.document;
-  var selection = _state11.selection;
+  var _state11 = state,
+      document = _state11.document,
+      selection = _state11.selection;
 
 
   if (properties.anchorPath !== undefined) {
@@ -67265,69 +68819,81 @@ function setSelection(state, operation) {
  *
  * @param {State} state
  * @param {Object} operation
+ *   @param {Array} operation.path The path of the node to split
+ *   @param {Number} operation.offset (optional) Split using a relative offset
+ *   @param {Number} operation.count (optional) Split after `count`
+ *   children. Cannot be used in combination with offset.
  * @return {State}
  */
 
 function splitNode(state, operation) {
-  var path = operation.path;
-  var offset = operation.offset;
-  var _state12 = state;
-  var document = _state12.document;
-
-  // Update document
-
-  var newDocument = document.splitNode(path, offset);
-
-  // Update selection
-  var _state13 = state;
-  var selection = _state13.selection;
-  var _selection5 = selection;
-  var anchorKey = _selection5.anchorKey;
-  var anchorOffset = _selection5.anchorOffset;
-  var focusKey = _selection5.focusKey;
-  var focusOffset = _selection5.focusOffset;
+  var path = operation.path,
+      offset = operation.offset,
+      count = operation.count;
+  var _state12 = state,
+      document = _state12.document;
 
 
-  var node = document.assertPath(path);
-  // The text node that was split
-  var splittedText = node.kind == 'text' ? node : node.getTextAtOffset(offset);
-  var textOffset = node.kind == 'text' ? offset : offset - node.getOffset(splittedText);
+  if (offset === undefined) {
+    return state.merge({
+      document: document.splitNodeAfter(path, count)
+      // No need to update selection
+    });
+  } else {
+    // Update document
+    var newDocument = document.splitNode(path, offset);
 
-  // Should we update the selection ?
-  var shouldUpdateAnchor = splittedText.key == anchorKey && textOffset <= anchorOffset;
-  var shouldUpdateFocus = splittedText.key == focusKey && textOffset <= focusOffset;
-  if (shouldUpdateFocus || shouldUpdateAnchor) {
-    // The node next to `node`, resulting from the split
-    var secondNode = newDocument.getNextSibling(node);
-    var secondText = void 0,
-        newOffset = void 0;
+    // Update selection
+    var _state13 = state,
+        selection = _state13.selection;
+    var _selection5 = selection,
+        anchorKey = _selection5.anchorKey,
+        anchorOffset = _selection5.anchorOffset,
+        focusKey = _selection5.focusKey,
+        focusOffset = _selection5.focusOffset;
 
-    if (shouldUpdateAnchor) {
-      newOffset = anchorOffset - textOffset;
-      secondText = secondNode.kind == 'text' ? secondNode : secondNode.getTextAtOffset(newOffset);
-      selection = selection.merge({
-        anchorKey: secondText.key,
-        anchorOffset: newOffset
-      });
+
+    var node = document.assertPath(path);
+    // The text node that was split
+    var splittedText = node.kind == 'text' ? node : node.getTextAtOffset(offset);
+    var textOffset = node.kind == 'text' ? offset : offset - node.getOffset(splittedText.key);
+
+    // Should we update the selection ?
+    var shouldUpdateAnchor = splittedText.key == anchorKey && textOffset <= anchorOffset;
+    var shouldUpdateFocus = splittedText.key == focusKey && textOffset <= focusOffset;
+    if (shouldUpdateFocus || shouldUpdateAnchor) {
+      // The node next to `node`, resulting from the split
+      var secondNode = newDocument.getNextSibling(node.key);
+      var secondText = void 0,
+          newOffset = void 0;
+
+      if (shouldUpdateAnchor) {
+        newOffset = anchorOffset - textOffset;
+        secondText = secondNode.kind == 'text' ? secondNode : secondNode.getTextAtOffset(newOffset);
+        selection = selection.merge({
+          anchorKey: secondText.key,
+          anchorOffset: newOffset
+        });
+      }
+
+      if (shouldUpdateFocus) {
+        newOffset = focusOffset - textOffset;
+        secondText = secondNode.kind == 'text' ? secondNode : secondNode.getTextAtOffset(newOffset);
+        selection = selection.merge({
+          focusKey: secondText.key,
+          focusOffset: newOffset
+        });
+      }
     }
 
-    if (shouldUpdateFocus) {
-      newOffset = focusOffset - textOffset;
-      secondText = secondNode.kind == 'text' ? secondNode : secondNode.getTextAtOffset(newOffset);
-      selection = selection.merge({
-        focusKey: secondText.key,
-        focusOffset: newOffset
-      });
-    }
+    state = state.merge({
+      document: newDocument,
+      selection: selection
+    });
+    return state;
   }
-
-  state = state.merge({
-    document: newDocument,
-    selection: selection
-  });
-  return state;
 }
-},{"../utils/warning":365,"debug":28}],346:[function(require,module,exports){
+},{"../utils/warn":421,"debug":422}],401:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -67364,78 +68930,48 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @param {Transform} transform
  * @param {Mark} mark
- * @return {Transform}
  */
 
 function addMark(transform, mark) {
   mark = _normalize2.default.mark(mark);
-
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
 
   if (selection.isExpanded) {
-    return transform.addMarkAtRange(selection, mark);
-  } else if (selection.marks) {
-    var marks = selection.marks.add(mark);
-    var sel = selection.merge({ marks: marks });
-    return transform.moveTo(sel);
-  } else {
-    var _marks = document.getMarksAtRange(selection).add(mark);
-    var _sel = selection.merge({ marks: _marks });
-    return transform.moveTo(_sel);
+    transform.addMarkAtRange(selection, mark);
+    return;
   }
+
+  if (selection.marks) {
+    var _marks = selection.marks.add(mark);
+    var _sel = selection.merge({ marks: _marks });
+    transform.moveTo(_sel);
+    return;
+  }
+
+  var marks = document.getMarksAtRange(selection).add(mark);
+  var sel = selection.merge({ marks: marks });
+  transform.moveTo(sel);
 }
 
 /**
  * Delete at the current selection.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function _delete(transform) {
   var state = transform.state;
-  var document = state.document;
   var selection = state.selection;
 
-  var after = void 0;
+  if (selection.isCollapsed) return;
 
-  if (selection.isCollapsed) return transform;
-
-  var startText = state.startText;
-  var startKey = selection.startKey;
-  var startOffset = selection.startOffset;
-  var endKey = selection.endKey;
-  var endOffset = selection.endOffset;
-
-  var block = document.getClosestBlock(startText);
-  var highest = block.getHighestChild(startText);
-  var previous = block.getPreviousSibling(highest);
-  var next = block.getNextSibling(highest);
-
-  if (previous && startOffset == 0 && (endKey != startKey || endOffset == startText.length)) {
-    if (previous.kind == 'text') {
-      if (next && next.kind == 'text') {
-        after = selection.merge({
-          anchorKey: previous.key,
-          anchorOffset: previous.length,
-          focusKey: previous.key,
-          focusOffset: previous.length
-        });
-      } else {
-        after = selection.collapseToEndOf(previous);
-      }
-    } else {
-      var last = previous.getLastText();
-      after = selection.collapseToEndOf(last);
-    }
-  } else {
-    after = selection.collapseToStart();
-  }
-
-  return transform.unsetSelection().deleteAtRange(selection).moveTo(after);
+  transform.snapshotSelection().deleteAtRange(selection)
+  // Ensure that the selection is collapsed to the start, because in certain
+  // cases when deleting across inline nodes this isn't guaranteed.
+  .collapseToStart().snapshotSelection();
 }
 
 /**
@@ -67443,7 +68979,6 @@ function _delete(transform) {
  *
  * @param {Transform} transform
  * @param {Number} n (optional)
- * @return {Transform}
  */
 
 function deleteBackward(transform) {
@@ -67451,8 +68986,7 @@ function deleteBackward(transform) {
   var state = transform.state;
   var selection = state.selection;
 
-
-  return transform.deleteBackwardAtRange(selection, n).collapseToEnd();
+  transform.deleteBackwardAtRange(selection, n);
 }
 
 /**
@@ -67460,7 +68994,6 @@ function deleteBackward(transform) {
  *
  * @param {Transform} transform
  * @param {Number} n (optional)
- * @return {Transform}
  */
 
 function deleteForward(transform) {
@@ -67468,39 +69001,26 @@ function deleteForward(transform) {
   var state = transform.state;
   var selection = state.selection;
 
-
-  return transform.deleteForwardAtRange(selection, n).collapseToEnd();
+  transform.deleteForwardAtRange(selection, n);
 }
 
 /**
  * Insert a `block` at the current selection.
  *
  * @param {Transform} transform
- * @param {String || Object || Block} block
- * @return {Transform}
+ * @param {String|Object|Block} block
  */
 
 function insertBlock(transform, block) {
+  block = _normalize2.default.block(block);
   var state = transform.state;
-  var _state = state;
-  var document = _state.document;
-  var selection = _state.selection;
+  var selection = state.selection;
 
-  var keys = document.getTexts().map(function (text) {
-    return text.key;
-  });
-
-  transform.unsetSelection();
   transform.insertBlockAtRange(selection, block);
-  state = transform.state;
-  document = state.document;
 
-  var text = document.getTexts().find(function (n) {
-    return !keys.includes(n.key);
-  });
-  var after = selection.collapseToEndOf(text);
-
-  return transform.moveTo(after);
+  // If the node was successfully inserted, update the selection.
+  var node = transform.state.document.getNode(block.key);
+  if (node) transform.collapseToEndOf(node);
 }
 
 /**
@@ -67508,89 +69028,67 @@ function insertBlock(transform, block) {
  *
  * @param {Transform} transform
  * @param {Document} fragment
- * @return {Transform}
  */
 
 function insertFragment(transform, fragment) {
   var state = transform.state;
-  var _state2 = state;
-  var document = _state2.document;
-  var selection = _state2.selection;
+  var _state = state,
+      document = _state.document,
+      selection = _state.selection;
 
 
-  if (!fragment.length) return transform;
+  if (!fragment.length) return;
+
+  var _state2 = state,
+      startText = _state2.startText,
+      endText = _state2.endText;
 
   var lastText = fragment.getLastText();
-  var lastInline = fragment.getClosestInline(lastText);
-  var beforeTexts = document.getTexts();
-  var appending = selection.hasEdgeAtEndOf(document.getDescendant(selection.endKey));
+  var lastInline = fragment.getClosestInline(lastText.key);
+  var keys = document.getTexts().map(function (text) {
+    return text.key;
+  });
+  var isAppending = selection.hasEdgeAtEndOf(endText) || selection.hasEdgeAtStartOf(startText);
 
   transform.unsetSelection();
   transform.insertFragmentAtRange(selection, fragment);
   state = transform.state;
   document = state.document;
 
-  var keys = beforeTexts.map(function (text) {
-    return text.key;
-  });
-  var news = document.getTexts().filter(function (n) {
+  var newTexts = document.getTexts().filter(function (n) {
     return !keys.includes(n.key);
   });
-  var text = appending ? news.last() : news.takeLast(2).first();
+  var newText = isAppending ? newTexts.last() : newTexts.takeLast(2).first();
   var after = void 0;
 
-  if (text && lastInline) {
-    after = selection.collapseToEndOf(text);
-  } else if (text) {
-    after = selection.collapseToStartOf(text).moveForward(lastText.length);
+  if (newText && lastInline) {
+    after = selection.collapseToEndOf(newText);
+  } else if (newText) {
+    after = selection.collapseToStartOf(newText).moveForward(lastText.length);
   } else {
     after = selection.collapseToStart().moveForward(lastText.length);
   }
 
-  return transform.moveTo(after);
+  transform.moveTo(after);
 }
 
 /**
  * Insert a `inline` at the current selection.
  *
  * @param {Transform} transform
- * @param {String || Object || Block} inline
- * @return {Transform}
+ * @param {String|Object|Block} inline
  */
 
 function insertInline(transform, inline) {
+  inline = _normalize2.default.inline(inline);
   var state = transform.state;
-  var _state3 = state;
-  var document = _state3.document;
-  var selection = _state3.selection;
-  var startText = _state3.startText;
+  var selection = state.selection;
 
-  var after = void 0;
-
-  var hasVoid = document.hasVoidParent(startText);
-  var keys = document.getTexts().map(function (text) {
-    return text.key;
-  });
-
-  transform.unsetSelection();
   transform.insertInlineAtRange(selection, inline);
-  state = transform.state;
-  document = state.document;
 
-  if (hasVoid) {
-    after = selection;
-  } else {
-    var text = document.getTexts().find(function (n) {
-      if (keys.includes(n.key)) return false;
-      var parent = document.getParent(n);
-      if (parent.kind != 'inline') return false;
-      return true;
-    });
-
-    after = selection.collapseToEndOf(text);
-  }
-
-  return transform.moveTo(after);
+  // If the node was successfully inserted, update the selection.
+  var node = transform.state.document.getNode(inline.key);
+  if (node) transform.collapseToEndOf(node);
 }
 
 /**
@@ -67598,30 +69096,22 @@ function insertInline(transform, inline) {
  *
  * @param {Transform} transform
  * @param {String} text
- * @param {Set} marks (optional)
- * @return {Transform}
+ * @param {Set<Mark>} marks (optional)
  */
 
 function insertText(transform, text, marks) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
-  var startKey = selection.startKey;
-
-  var isVoid = document.hasVoidParent(startKey);
-  var after = void 0;
-
-  if (isVoid) {
-    after = selection;
-  } else if (selection.isExpanded) {
-    after = selection.collapseToStart().moveForward(text.length);
-  } else {
-    after = selection.moveForward(text.length);
-  }
+  var document = state.document,
+      selection = state.selection;
 
   marks = marks || selection.marks;
+  transform.insertTextAtRange(selection, text, marks);
 
-  return transform.unsetSelection().insertTextAtRange(selection, text, marks).moveTo(after);
+  // If the text was successfully inserted, and the selection had marks on it,
+  // unset the selection's marks.
+  if (selection.marks && document != transform.state.document) {
+    transform.unsetMarks();
+  }
 }
 
 /**
@@ -67629,14 +69119,13 @@ function insertText(transform, text, marks) {
  *
  * @param {Transform} transform
  * @param {Object} properties
- * @return {Transform}
  */
 
 function setBlock(transform, properties) {
   var state = transform.state;
   var selection = state.selection;
 
-  return transform.setBlockAtRange(selection, properties);
+  transform.setBlockAtRange(selection, properties);
 }
 
 /**
@@ -67644,14 +69133,13 @@ function setBlock(transform, properties) {
  *
  * @param {Transform} transform
  * @param {Object} properties
- * @return {Transform}
  */
 
 function setInline(transform, properties) {
   var state = transform.state;
   var selection = state.selection;
 
-  return transform.setInlineAtRange(selection, properties);
+  transform.setInlineAtRange(selection, properties);
 }
 
 /**
@@ -67659,30 +69147,14 @@ function setInline(transform, properties) {
  *
  * @param {Transform} transform
  * @param {Number} depth (optional)
- * @return {Transform}
  */
 
 function splitBlock(transform) {
   var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
   var state = transform.state;
-  var _state4 = state;
-  var document = _state4.document;
-  var selection = _state4.selection;
+  var selection = state.selection;
 
-
-  transform.unsetSelection();
-  transform.splitBlockAtRange(selection, depth);
-
-  state = transform.state;
-  document = state.document;
-
-  var startKey = selection.startKey;
-
-  var startNode = document.getDescendant(startKey);
-  var nextNode = document.getNextText(startNode);
-  var after = selection.collapseToStartOf(nextNode);
-
-  return transform.moveTo(after);
+  transform.snapshotSelection().splitBlockAtRange(selection, depth).collapseToEnd().snapshotSelection();
 }
 
 /**
@@ -67690,53 +69162,14 @@ function splitBlock(transform) {
  *
  * @param {Transform} transform
  * @param {Number} depth (optional)
- * @return {Transform}
  */
 
 function splitInline(transform) {
   var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Infinity;
   var state = transform.state;
-  var _state5 = state;
-  var document = _state5.document;
-  var selection = _state5.selection;
+  var selection = state.selection;
 
-  // If the selection is expanded, remove it first.
-
-  if (selection.isExpanded) {
-    transform.delete();
-    state = transform.state;
-    document = state.document;
-    selection = state.selection;
-  }
-
-  var after = selection;
-  var _selection = selection;
-  var startKey = _selection.startKey;
-  var startOffset = _selection.startOffset;
-
-  var startNode = document.assertDescendant(startKey);
-  var furthestInline = document.getFurthestInline(startKey);
-  var offset = furthestInline.getOffset(startNode);
-
-  // If the selection is at the start of end of the furthest inline, there isn't
-  // anything to split, so abort.
-  if (offset + startOffset == 0 || offset + startNode.length == startOffset) {
-    return transform;
-  }
-
-  transform.unsetSelection();
-  transform.splitInlineAtRange(selection, depth);
-  state = transform.state;
-  document = state.document;
-  var closestInline = document.getClosestInline(startKey);
-
-  if (closestInline) {
-    startNode = document.getDescendant(startKey);
-    var nextNode = document.getNextText(startNode);
-    after = selection.collapseToStartOf(nextNode);
-  }
-
-  return transform.moveTo(after);
+  transform.snapshotSelection().splitInlineAtRange(selection, depth).snapshotSelection();
 }
 
 /**
@@ -67744,28 +69177,30 @@ function splitInline(transform) {
  *
  * @param {Transform} transform
  * @param {Mark} mark
- * @return {Transform}
  */
 
 function removeMark(transform, mark) {
   mark = _normalize2.default.mark(mark);
-
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
 
   if (selection.isExpanded) {
-    return transform.removeMarkAtRange(selection, mark);
-  } else if (selection.marks) {
-    var marks = selection.marks.remove(mark);
-    var sel = selection.merge({ marks: marks });
-    return transform.moveTo(sel);
-  } else {
-    var _marks2 = document.getMarksAtRange(selection).remove(mark);
-    var _sel2 = selection.merge({ marks: _marks2 });
-    return transform.moveTo(_sel2);
+    transform.removeMarkAtRange(selection, mark);
+    return;
   }
+
+  if (selection.marks) {
+    var _marks2 = selection.marks.remove(mark);
+    var _sel2 = selection.merge({ marks: _marks2 });
+    transform.moveTo(_sel2);
+    return;
+  }
+
+  var marks = document.getMarksAtRange(selection).remove(mark);
+  var sel = selection.merge({ marks: marks });
+  transform.moveTo(sel);
 }
 
 /**
@@ -67774,12 +69209,10 @@ function removeMark(transform, mark) {
  *
  * @param {Transform} transform
  * @param {Mark} mark
- * @return {Transform}
  */
 
 function toggleMark(transform, mark) {
   mark = _normalize2.default.mark(mark);
-
   var state = transform.state;
 
   var exists = state.marks.some(function (m) {
@@ -67787,9 +69220,9 @@ function toggleMark(transform, mark) {
   });
 
   if (exists) {
-    return transform.removeMark(mark);
+    transform.removeMark(mark);
   } else {
-    return transform.addMark(mark);
+    transform.addMark(mark);
   }
 }
 
@@ -67797,30 +69230,28 @@ function toggleMark(transform, mark) {
  * Unwrap the current selection from a block parent with `properties`.
  *
  * @param {Transform} transform
- * @param {Object or String} properties
- * @return {Transform}
+ * @param {Object|String} properties
  */
 
 function unwrapBlock(transform, properties) {
   var state = transform.state;
   var selection = state.selection;
 
-  return transform.unwrapBlockAtRange(selection, properties);
+  transform.unwrapBlockAtRange(selection, properties);
 }
 
 /**
  * Unwrap the current selection from an inline parent with `properties`.
  *
  * @param {Transform} transform
- * @param {Object or String} properties
- * @return {Transform}
+ * @param {Object|String} properties
  */
 
 function unwrapInline(transform, properties) {
   var state = transform.state;
   var selection = state.selection;
 
-  return transform.unwrapInlineAtRange(selection, properties);
+  transform.unwrapInlineAtRange(selection, properties);
 }
 
 /**
@@ -67828,30 +69259,28 @@ function unwrapInline(transform, properties) {
  * `properties`.
  *
  * @param {Transform} transform
- * @param {Object or String} properties
- * @return {Transform}
+ * @param {Object|String} properties
  */
 
 function wrapBlock(transform, properties) {
   var state = transform.state;
   var selection = state.selection;
 
-  return transform.wrapBlockAtRange(selection, properties);
+  transform.wrapBlockAtRange(selection, properties);
 }
 
 /**
  * Wrap the current selection in new inline nodes with `properties`.
  *
  * @param {Transform} transform
- * @param {Object or String} properties
- * @return {Transform}
+ * @param {Object|String} properties
  */
 
 function wrapInline(transform, properties) {
   var state = transform.state;
-  var _state6 = state;
-  var document = _state6.document;
-  var selection = _state6.selection;
+  var _state3 = state,
+      document = _state3.document,
+      selection = _state3.selection;
 
   var after = void 0;
 
@@ -67868,7 +69297,7 @@ function wrapInline(transform, properties) {
   if (selection.isCollapsed) {
     after = selection;
   } else if (selection.startOffset == 0) {
-    var text = previous ? document.getNextText(previous) : document.getFirstText();
+    var text = previous ? document.getNextText(previous.key) : document.getFirstText();
     after = selection.moveToRangeOf(text);
   } else if (selection.startKey == selection.endKey) {
     var _text = document.getNextText(selection.startKey);
@@ -67885,7 +69314,7 @@ function wrapInline(transform, properties) {
   }
 
   after = after.normalize(document);
-  return transform.moveTo(after);
+  transform.moveTo(after);
 }
 
 /**
@@ -67894,33 +69323,25 @@ function wrapInline(transform, properties) {
  * @param {Transform} transform
  * @param {String} prefix
  * @param {String} suffix
- * @return {Transform}
  */
 
 function wrapText(transform, prefix) {
   var suffix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : prefix;
   var state = transform.state;
   var selection = state.selection;
-  var anchorOffset = selection.anchorOffset;
-  var anchorKey = selection.anchorKey;
-  var focusOffset = selection.focusOffset;
-  var focusKey = selection.focusKey;
-  var isBackward = selection.isBackward;
 
-  var after = void 0;
+  transform.wrapTextAtRange(selection, prefix, suffix);
 
-  if (anchorKey == focusKey) {
-    after = selection.moveForward(prefix.length);
-  } else {
-    after = selection.merge({
-      anchorOffset: isBackward ? anchorOffset : anchorOffset + prefix.length,
-      focusOffset: isBackward ? focusOffset + prefix.length : focusOffset
-    });
+  // Adding the suffix will have pushed the end of the selection further on, so
+  // we need to move it back to account for this.
+  transform.moveEndOffset(0 - suffix.length);
+
+  // If the selection was collapsed, it will have moved the start offset too.
+  if (selection.isCollapsed) {
+    transform.moveStartOffset(0 - prefix.length);
   }
-
-  return transform.unsetSelection().wrapTextAtRange(selection, prefix, suffix).moveTo(after);
 }
-},{"../utils/normalize":359}],347:[function(require,module,exports){
+},{"../utils/normalize":416}],402:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -67950,7 +69371,23 @@ var _normalize = require('../utils/normalize');
 
 var _normalize2 = _interopRequireDefault(_normalize);
 
+var _core = require('../schemas/core');
+
+var _core2 = _interopRequireDefault(_core);
+
+var _immutable = require('immutable');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * An options object with normalize set to `false`.
+ *
+ * @type {Object}
+ */
+
+var OPTS = {
+  normalize: false
+};
 
 /**
  * Add a new `mark` to the characters at `range`.
@@ -67959,25 +69396,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {Selection} range
  * @param {Mixed} mark
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
+
+/* eslint no-console: 0 */
 
 function addMarkAtRange(transform, range, mark) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
-  if (range.isCollapsed) {
-    return transform;
-  }
+  if (range.isCollapsed) return;
 
-  var _options$normalize = options.normalize;
-  var normalize = _options$normalize === undefined ? true : _options$normalize;
+  var _options$normalize = options.normalize,
+      normalize = _options$normalize === undefined ? true : _options$normalize;
   var state = transform.state;
   var document = state.document;
-  var startKey = range.startKey;
-  var startOffset = range.startOffset;
-  var endKey = range.endKey;
-  var endOffset = range.endOffset;
+  var startKey = range.startKey,
+      startOffset = range.startOffset,
+      endKey = range.endKey,
+      endOffset = range.endOffset;
 
   var texts = document.getTextsAtRange(range);
 
@@ -67993,8 +69429,6 @@ function addMarkAtRange(transform, range, mark) {
 
     transform.addMarkByKey(key, index, length, mark, { normalize: normalize });
   });
-
-  return transform;
 }
 
 /**
@@ -68003,37 +69437,32 @@ function addMarkAtRange(transform, range, mark) {
  * @param {Transform} transform
  * @param {Selection} range
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
-
-/* eslint no-console: 0 */
 
 function deleteAtRange(transform, range) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-  if (range.isCollapsed) {
-    return transform;
-  }
+  if (range.isCollapsed) return;
 
-  var _options$normalize2 = options.normalize;
-  var normalize = _options$normalize2 === undefined ? true : _options$normalize2;
-  var startKey = range.startKey;
-  var startOffset = range.startOffset;
-  var endKey = range.endKey;
-  var endOffset = range.endOffset;
+  var _options$normalize2 = options.normalize,
+      normalize = _options$normalize2 === undefined ? true : _options$normalize2;
+  var startKey = range.startKey,
+      startOffset = range.startOffset,
+      endKey = range.endKey,
+      endOffset = range.endOffset;
 
 
   if (startKey == endKey) {
     var index = startOffset;
     var length = endOffset - startOffset;
-    return transform.removeTextByKey(startKey, index, length, { normalize: normalize });
+    transform.removeTextByKey(startKey, index, length, { normalize: normalize });
+    return;
   }
 
-  var _transform = transform;
-  var state = _transform.state;
-  var _state = state;
-  var document = _state.document;
+  var state = transform.state;
+  var _state = state,
+      document = _state.document;
 
   // split the nodes at range, within the common ancestor
 
@@ -68043,13 +69472,13 @@ function deleteAtRange(transform, range) {
   var startOff = (startChild.kind == 'text' ? 0 : startChild.getOffset(startKey)) + startOffset;
   var endOff = (endChild.kind == 'text' ? 0 : endChild.getOffset(endKey)) + endOffset;
 
-  transform = transform.splitNodeByKey(startChild.key, startOff, { normalize: false });
-  transform = transform.splitNodeByKey(endChild.key, endOff, { normalize: false });
+  transform.splitNodeByKey(startChild.key, startOff, OPTS);
+  transform.splitNodeByKey(endChild.key, endOff, OPTS);
 
   state = transform.state;
   document = state.document;
   var startBlock = document.getClosestBlock(startKey);
-  var endBlock = document.getClosestBlock(document.getNextText(endKey));
+  var endBlock = document.getClosestBlock(document.getNextText(endKey).key);
 
   // remove all of the nodes between range
   ancestor = document.getCommonAncestor(startKey, endKey);
@@ -68062,7 +69491,7 @@ function deleteAtRange(transform, range) {
   if (middles.size) {
     // remove first nodes directly so the document is not normalized
     middles.forEach(function (child) {
-      transform.removeNodeByKey(child.key, { normalize: false });
+      transform.removeNodeByKey(child.key, OPTS);
     });
   }
 
@@ -68070,22 +69499,18 @@ function deleteAtRange(transform, range) {
     endBlock.nodes.forEach(function (child, i) {
       var newKey = startBlock.key;
       var newIndex = startBlock.nodes.size + i;
-      transform.moveNodeByKey(child.key, newKey, newIndex, { normalize: false });
+      transform.moveNodeByKey(child.key, newKey, newIndex, OPTS);
     });
 
-    var lonely = document.getFurthest(endBlock, function (p) {
+    var lonely = document.getFurthest(endBlock.key, function (p) {
       return p.nodes.size == 1;
     }) || endBlock;
-    transform.removeNodeByKey(lonely.key, { normalize: false });
+    transform.removeNodeByKey(lonely.key, OPTS);
   }
 
   if (normalize) {
-    transform.normalizeNodeByKey(ancestor.key);
+    transform.normalizeNodeByKey(ancestor.key, _core2.default);
   }
-
-  transform.normalizeDocument();
-
-  return transform;
 }
 
 /**
@@ -68095,52 +69520,56 @@ function deleteAtRange(transform, range) {
  * @param {Selection} range
  * @param {Number} n (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function deleteBackwardAtRange(transform, range) {
   var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize3 = options.normalize;
-  var normalize = _options$normalize3 === undefined ? true : _options$normalize3;
+  var _options$normalize3 = options.normalize,
+      normalize = _options$normalize3 === undefined ? true : _options$normalize3;
   var state = transform.state;
   var document = state.document;
-  var _range = range;
-  var startKey = _range.startKey;
-  var focusOffset = _range.focusOffset;
+  var _range = range,
+      startKey = _range.startKey,
+      focusOffset = _range.focusOffset;
 
-  var text = document.getDescendant(startKey);
-  var block = document.getClosestBlock(startKey);
-  var inline = document.getClosestInline(startKey);
 
   if (range.isExpanded) {
-    return transform.deleteAtRange(range, { normalize: normalize });
+    transform.deleteAtRange(range, { normalize: normalize });
+    return;
   }
 
+  var block = document.getClosestBlock(startKey);
   if (block && block.isVoid) {
-    return transform.removeNodeByKey(block.key, { normalize: normalize });
+    transform.removeNodeByKey(block.key, { normalize: normalize });
+    return;
   }
 
+  var inline = document.getClosestInline(startKey);
   if (inline && inline.isVoid) {
-    return transform.removeNodeByKey(inline.key, { normalize: normalize });
+    transform.removeNodeByKey(inline.key, { normalize: normalize });
+    return;
   }
 
   if (range.isAtStartOf(document)) {
-    return transform;
+    return;
   }
 
+  var text = document.getDescendant(startKey);
   if (range.isAtStartOf(text)) {
-    var prev = document.getPreviousText(text);
-    var prevBlock = document.getClosestBlock(prev);
-    var prevInline = document.getClosestInline(prev);
+    var prev = document.getPreviousText(text.key);
+    var prevBlock = document.getClosestBlock(prev.key);
+    var prevInline = document.getClosestInline(prev.key);
 
     if (prevBlock && prevBlock.isVoid) {
-      return transform.removeNodeByKey(prevBlock.key, { normalize: normalize });
+      transform.removeNodeByKey(prevBlock.key, { normalize: normalize });
+      return;
     }
 
     if (prevInline && prevInline.isVoid) {
-      return transform.removeNodeByKey(prevInline.key, { normalize: normalize });
+      transform.removeNodeByKey(prevInline.key, { normalize: normalize });
+      return;
     }
 
     range = range.merge({
@@ -68148,7 +69577,8 @@ function deleteBackwardAtRange(transform, range) {
       anchorOffset: prev.length
     });
 
-    return transform.deleteAtRange(range, { normalize: normalize });
+    transform.deleteAtRange(range, { normalize: normalize });
+    return;
   }
 
   range = range.merge({
@@ -68156,7 +69586,7 @@ function deleteBackwardAtRange(transform, range) {
     isBackward: true
   });
 
-  return transform.deleteAtRange(range, { normalize: normalize });
+  transform.deleteAtRange(range, { normalize: normalize });
 }
 
 /**
@@ -68166,52 +69596,56 @@ function deleteBackwardAtRange(transform, range) {
  * @param {Selection} range
  * @param {Number} n (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function deleteForwardAtRange(transform, range) {
   var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize4 = options.normalize;
-  var normalize = _options$normalize4 === undefined ? true : _options$normalize4;
+  var _options$normalize4 = options.normalize,
+      normalize = _options$normalize4 === undefined ? true : _options$normalize4;
   var state = transform.state;
   var document = state.document;
-  var _range2 = range;
-  var startKey = _range2.startKey;
-  var focusOffset = _range2.focusOffset;
+  var _range2 = range,
+      startKey = _range2.startKey,
+      focusOffset = _range2.focusOffset;
 
-  var text = document.getDescendant(startKey);
-  var inline = document.getClosestInline(startKey);
-  var block = document.getClosestBlock(startKey);
 
   if (range.isExpanded) {
-    return transform.deleteAtRange(range, { normalize: normalize });
+    transform.deleteAtRange(range, { normalize: normalize });
+    return;
   }
 
+  var block = document.getClosestBlock(startKey);
   if (block && block.isVoid) {
-    return transform.removeNodeByKey(block.key, { normalize: normalize });
+    transform.removeNodeByKey(block.key, { normalize: normalize });
+    return;
   }
 
+  var inline = document.getClosestInline(startKey);
   if (inline && inline.isVoid) {
-    return transform.removeNodeByKey(inline.key, { normalize: normalize });
+    transform.removeNodeByKey(inline.key, { normalize: normalize });
+    return;
   }
 
   if (range.isAtEndOf(document)) {
-    return transform;
+    return;
   }
 
+  var text = document.getDescendant(startKey);
   if (range.isAtEndOf(text)) {
-    var next = document.getNextText(text);
-    var nextBlock = document.getClosestBlock(next);
-    var nextInline = document.getClosestInline(next);
+    var next = document.getNextText(text.key);
+    var nextBlock = document.getClosestBlock(next.key);
+    var nextInline = document.getClosestInline(next.key);
 
     if (nextBlock && nextBlock.isVoid) {
-      return transform.removeNodeByKey(nextBlock.key, { normalize: normalize });
+      transform.removeNodeByKey(nextBlock.key, { normalize: normalize });
+      return;
     }
 
     if (nextInline && nextInline.isVoid) {
-      return transform.removeNodeByKey(nextInline.key, { normalize: normalize });
+      transform.removeNodeByKey(nextInline.key, { normalize: normalize });
+      return;
     }
 
     range = range.merge({
@@ -68219,14 +69653,15 @@ function deleteForwardAtRange(transform, range) {
       focusOffset: 0
     });
 
-    return transform.deleteAtRange(range, { normalize: normalize });
+    transform.deleteAtRange(range, { normalize: normalize });
+    return;
   }
 
   range = range.merge({
     focusOffset: focusOffset + n
   });
 
-  return transform.deleteAtRange(range, { normalize: normalize });
+  transform.deleteAtRange(range, { normalize: normalize });
 }
 
 /**
@@ -68234,18 +69669,17 @@ function deleteForwardAtRange(transform, range) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {Block or String or Object} block
+ * @param {Block|String|Object} block
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function insertBlockAtRange(transform, range, block) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
   block = _normalize2.default.block(block);
-  var _options$normalize5 = options.normalize;
-  var normalize = _options$normalize5 === undefined ? true : _options$normalize5;
+  var _options$normalize5 = options.normalize,
+      normalize = _options$normalize5 === undefined ? true : _options$normalize5;
 
 
   if (range.isExpanded) {
@@ -68255,13 +69689,13 @@ function insertBlockAtRange(transform, range, block) {
 
   var state = transform.state;
   var document = state.document;
-  var _range3 = range;
-  var startKey = _range3.startKey;
-  var startOffset = _range3.startOffset;
+  var _range3 = range,
+      startKey = _range3.startKey,
+      startOffset = _range3.startOffset;
 
   var startText = document.assertDescendant(startKey);
   var startBlock = document.getClosestBlock(startKey);
-  var parent = document.getParent(startBlock);
+  var parent = document.getParent(startBlock.key);
   var index = parent.nodes.indexOf(startBlock);
 
   if (startBlock.isVoid) {
@@ -68274,16 +69708,14 @@ function insertBlockAtRange(transform, range, block) {
   } else if (range.isAtEndOf(startBlock)) {
     transform.insertNodeByKey(parent.key, index + 1, block, { normalize: normalize });
   } else {
-    var offset = startBlock.getOffset(startText) + startOffset;
+    var offset = startBlock.getOffset(startText.key) + startOffset;
     transform.splitNodeByKey(startBlock.key, offset, { normalize: normalize });
     transform.insertNodeByKey(parent.key, index + 1, block, { normalize: normalize });
   }
 
   if (normalize) {
-    transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -68293,110 +69725,126 @@ function insertBlockAtRange(transform, range, block) {
  * @param {Selection} range
  * @param {Document} fragment
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function insertFragmentAtRange(transform, range, fragment) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize6 = options.normalize;
-  var normalize = _options$normalize6 === undefined ? true : _options$normalize6;
+  var _options$normalize6 = options.normalize,
+      normalize = _options$normalize6 === undefined ? true : _options$normalize6;
 
+  // If the range is expanded, delete it first.
 
   if (range.isExpanded) {
-    transform = transform.deleteAtRange(range, { normalize: false });
+    transform.deleteAtRange(range, OPTS);
     range = range.collapseToStart();
   }
 
-  if (!fragment.length) {
-    return transform;
-  }
+  // If the fragment is empty, there's nothing to do after deleting.
+  if (!fragment.length) return;
 
+  // Regenerate the keys for all of the fragments nodes, so that they're
+  // guaranteed not to collide with the existing keys in the document. Otherwise
+  // they will be rengerated automatically and we won't have an easy way to
+  // reference them.
   fragment = fragment.mapDescendants(function (child) {
     return child.regenerateKey();
   });
 
-  var _range4 = range;
-  var startKey = _range4.startKey;
-  var startOffset = _range4.startOffset;
-  var _transform2 = transform;
-  var state = _transform2.state;
-  var _state2 = state;
-  var document = _state2.document;
+  // Calculate a few things...
+  var _range4 = range,
+      startKey = _range4.startKey,
+      startOffset = _range4.startOffset;
+  var state = transform.state;
+  var _state2 = state,
+      document = _state2.document;
 
   var startText = document.getDescendant(startKey);
-  var startBlock = document.getClosestBlock(startText);
-  var startChild = startBlock.getHighestChild(startText);
-  var parent = document.getParent(startBlock);
+  var startBlock = document.getClosestBlock(startText.key);
+  var startChild = startBlock.getHighestChild(startText.key);
+  var isAtStart = range.isAtStartOf(startBlock);
+  var parent = document.getParent(startBlock.key);
   var index = parent.nodes.indexOf(startBlock);
-  var offset = startChild == startText ? startOffset : startChild.getOffset(startText) + startOffset;
+  var offset = startChild == startText ? startOffset : startChild.getOffset(startText.key) + startOffset;
 
   var blocks = fragment.getBlocks();
   var firstBlock = blocks.first();
   var lastBlock = blocks.last();
 
+  // If the first and last block aren't the same, we need to insert all of the
+  // nodes after the fragment's first block at the index.
   if (firstBlock != lastBlock) {
     (function () {
-      var lonelyParent = fragment.getFurthest(firstBlock, function (p) {
+      var lonelyParent = fragment.getFurthest(firstBlock.key, function (p) {
         return p.nodes.size == 1;
       });
       var lonelyChild = lonelyParent || firstBlock;
       var startIndex = parent.nodes.indexOf(startBlock);
-      fragment = fragment.removeDescendant(lonelyChild);
+      fragment = fragment.removeDescendant(lonelyChild.key);
 
       fragment.nodes.forEach(function (node, i) {
         var newIndex = startIndex + i + 1;
-        transform = transform.insertNodeByKey(parent.key, newIndex, node, { normalize: false });
+        transform.insertNodeByKey(parent.key, newIndex, node, OPTS);
       });
     })();
   }
 
+  // Check if we need to split the node.
   if (startOffset != 0) {
-    transform.splitNodeByKey(startChild.key, offset, { normalize: false });
+    transform.splitNodeByKey(startChild.key, offset, OPTS);
   }
 
+  // Update our variables with the new state.
   state = transform.state;
   document = state.document;
   startText = document.getDescendant(startKey);
   startBlock = document.getClosestBlock(startKey);
-  startChild = startBlock.getHighestChild(startText);
+  startChild = startBlock.getHighestChild(startText.key);
 
+  // If the first and last block aren't the same, we need to move any of the
+  // starting block's children after the split into the last block of the
+  // fragment, which has already been inserted.
   if (firstBlock != lastBlock) {
     (function () {
-      var nextChild = startBlock.getNextSibling(startChild);
-      var nextNodes = startBlock.nodes.skipUntil(function (n) {
-        return n == nextChild;
-      });
+      var nextChild = isAtStart ? startChild : startBlock.getNextSibling(startChild.key);
+      var nextNodes = nextChild ? startBlock.nodes.skipUntil(function (n) {
+        return n.key == nextChild.key;
+      }) : (0, _immutable.List)();
       var lastIndex = lastBlock.nodes.size;
 
       nextNodes.forEach(function (node, i) {
         var newIndex = lastIndex + i;
-        transform.moveNodeByKey(node.key, lastBlock.key, newIndex, { normalize: false });
+        transform.moveNodeByKey(node.key, lastBlock.key, newIndex, OPTS);
       });
     })();
   }
 
+  // If the starting block is empty, we replace it entirely with the first block
+  // of the fragment, since this leads to a more expected behavior for the user.
   if (startBlock.isEmpty) {
-    transform.removeNodeByKey(startBlock.key, { normalize: false });
-    transform.insertNodeByKey(parent.key, index, firstBlock, { normalize: false });
-  } else {
-    (function () {
-      var inlineChild = startBlock.getHighestChild(startText);
-      var inlineIndex = startBlock.nodes.indexOf(inlineChild);
-
-      firstBlock.nodes.forEach(function (inline, i) {
-        var o = startOffset == 0 ? 0 : 1;
-        var newIndex = inlineIndex + i + o;
-        transform.insertNodeByKey(startBlock.key, newIndex, inline, { normalize: false });
-      });
-    })();
+    transform.removeNodeByKey(startBlock.key, OPTS);
+    transform.insertNodeByKey(parent.key, index, firstBlock, OPTS);
   }
 
+  // Otherwise, we maintain the starting block, and insert all of the first
+  // block's inline nodes into it at the split point.
+  else {
+      (function () {
+        var inlineChild = startBlock.getHighestChild(startText.key);
+        var inlineIndex = startBlock.nodes.indexOf(inlineChild);
+
+        firstBlock.nodes.forEach(function (inline, i) {
+          var o = startOffset == 0 ? 0 : 1;
+          var newIndex = inlineIndex + i + o;
+          transform.insertNodeByKey(startBlock.key, newIndex, inline, OPTS);
+        });
+      })();
+    }
+
+  // Normalize if requested.
   if (normalize) {
-    transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -68404,46 +69852,41 @@ function insertFragmentAtRange(transform, range, fragment) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {Inline or String or Object} inline
+ * @param {Inline|String|Object} inline
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function insertInlineAtRange(transform, range, inline) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize7 = options.normalize;
-  var normalize = _options$normalize7 === undefined ? true : _options$normalize7;
+  var _options$normalize7 = options.normalize,
+      normalize = _options$normalize7 === undefined ? true : _options$normalize7;
 
   inline = _normalize2.default.inline(inline);
 
   if (range.isExpanded) {
-    transform.deleteAtRange(range, { normalize: false });
+    transform.deleteAtRange(range, OPTS);
     range = range.collapseToStart();
   }
 
   var state = transform.state;
   var document = state.document;
-  var _range5 = range;
-  var startKey = _range5.startKey;
-  var startOffset = _range5.startOffset;
+  var _range5 = range,
+      startKey = _range5.startKey,
+      startOffset = _range5.startOffset;
 
   var parent = document.getParent(startKey);
   var startText = document.assertDescendant(startKey);
   var index = parent.nodes.indexOf(startText);
 
-  if (parent.isVoid) {
-    return transform;
-  }
+  if (parent.isVoid) return;
 
-  transform.splitNodeByKey(startKey, startOffset, { normalize: false });
-  transform.insertNodeByKey(parent.key, index + 1, inline, { normalize: false });
+  transform.splitNodeByKey(startKey, startOffset, OPTS);
+  transform.insertNodeByKey(parent.key, index + 1, inline, OPTS);
 
   if (normalize) {
-    transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -68452,37 +69895,33 @@ function insertInlineAtRange(transform, range, inline) {
  * @param {Transform} transform
  * @param {Selection} range
  * @param {String} text
- * @param {Set} marks (optional)
+ * @param {Set<Mark>} marks (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function insertTextAtRange(transform, range, text, marks) {
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
   var normalize = options.normalize;
-  var _transform3 = transform;
-  var state = _transform3.state;
+  var state = transform.state;
   var document = state.document;
-  var startKey = range.startKey;
-  var startOffset = range.startOffset;
+  var startKey = range.startKey,
+      startOffset = range.startOffset;
 
   var parent = document.getParent(startKey);
 
-  if (parent.isVoid) {
-    return transform;
-  }
+  if (parent.isVoid) return;
 
   if (range.isExpanded) {
-    transform = transform.deleteAtRange(range, { normalize: false });
+    transform.deleteAtRange(range, OPTS);
   }
 
-  // Unless specified, don't normalize if only inserting text
+  // PERF: Unless specified, don't normalize if only inserting text.
   if (normalize !== undefined) {
     normalize = range.isExpanded;
   }
 
-  return transform.insertTextByKey(startKey, startOffset, text, marks, { normalize: normalize });
+  transform.insertTextByKey(startKey, startOffset, text, marks, { normalize: normalize });
 }
 
 /**
@@ -68490,29 +69929,26 @@ function insertTextAtRange(transform, range, text, marks) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {Mark or String} mark (optional)
+ * @param {Mark|String} mark (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function removeMarkAtRange(transform, range, mark) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize8 = options.normalize;
-  var normalize = _options$normalize8 === undefined ? true : _options$normalize8;
 
-  if (range.isCollapsed) {
-    return transform;
-  }
+  if (range.isCollapsed) return;
 
+  var _options$normalize8 = options.normalize,
+      normalize = _options$normalize8 === undefined ? true : _options$normalize8;
   var state = transform.state;
   var document = state.document;
 
   var texts = document.getTextsAtRange(range);
-  var startKey = range.startKey;
-  var startOffset = range.startOffset;
-  var endKey = range.endKey;
-  var endOffset = range.endOffset;
+  var startKey = range.startKey,
+      startOffset = range.startOffset,
+      endKey = range.endKey,
+      endOffset = range.endOffset;
 
 
   texts.forEach(function (text) {
@@ -68527,8 +69963,6 @@ function removeMarkAtRange(transform, range, mark) {
 
     transform.removeMarkByKey(key, index, length, mark, { normalize: normalize });
   });
-
-  return transform;
 }
 
 /**
@@ -68536,16 +69970,15 @@ function removeMarkAtRange(transform, range, mark) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {Object || String} properties
+ * @param {Object|String} properties
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function setBlockAtRange(transform, range, properties) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize9 = options.normalize;
-  var normalize = _options$normalize9 === undefined ? true : _options$normalize9;
+  var _options$normalize9 = options.normalize,
+      normalize = _options$normalize9 === undefined ? true : _options$normalize9;
   var state = transform.state;
   var document = state.document;
 
@@ -68554,8 +69987,6 @@ function setBlockAtRange(transform, range, properties) {
   blocks.forEach(function (block) {
     transform.setNodeByKey(block.key, properties, { normalize: normalize });
   });
-
-  return transform;
 }
 
 /**
@@ -68563,16 +69994,15 @@ function setBlockAtRange(transform, range, properties) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {Object || String} properties
+ * @param {Object|String} properties
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function setInlineAtRange(transform, range, properties) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize10 = options.normalize;
-  var normalize = _options$normalize10 === undefined ? true : _options$normalize10;
+  var _options$normalize10 = options.normalize,
+      normalize = _options$normalize10 === undefined ? true : _options$normalize10;
   var state = transform.state;
   var document = state.document;
 
@@ -68581,8 +70011,6 @@ function setInlineAtRange(transform, range, properties) {
   inlines.forEach(function (inline) {
     transform.setNodeByKey(inline.key, properties, { normalize: normalize });
   });
-
-  return transform;
 }
 
 /**
@@ -68592,42 +70020,40 @@ function setInlineAtRange(transform, range, properties) {
  * @param {Selection} range
  * @param {Number} height (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function splitBlockAtRange(transform, range) {
   var height = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize11 = options.normalize;
-  var normalize = _options$normalize11 === undefined ? true : _options$normalize11;
+  var _options$normalize11 = options.normalize,
+      normalize = _options$normalize11 === undefined ? true : _options$normalize11;
+
 
   if (range.isExpanded) {
     transform.deleteAtRange(range, { normalize: normalize });
     range = range.collapseToStart();
   }
 
-  var _range6 = range;
-  var startKey = _range6.startKey;
-  var startOffset = _range6.startOffset;
+  var _range6 = range,
+      startKey = _range6.startKey,
+      startOffset = _range6.startOffset;
   var state = transform.state;
   var document = state.document;
 
   var node = document.assertDescendant(startKey);
-  var parent = document.getClosestBlock(node);
+  var parent = document.getClosestBlock(node.key);
   var offset = startOffset;
   var h = 0;
 
   while (parent && parent.kind == 'block' && h < height) {
-    offset += parent.getOffset(node);
+    offset += parent.getOffset(node.key);
     node = parent;
-    parent = document.getClosestBlock(parent);
+    parent = document.getClosestBlock(parent.key);
     h++;
   }
 
   transform.splitNodeByKey(node.key, offset, { normalize: normalize });
-
-  return transform;
 }
 
 /**
@@ -68637,40 +70063,40 @@ function splitBlockAtRange(transform, range) {
  * @param {Selection} range
  * @param {Number} height (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function splitInlineAtRange(transform, range) {
   var height = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Infinity;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize12 = options.normalize;
-  var normalize = _options$normalize12 === undefined ? true : _options$normalize12;
+  var _options$normalize12 = options.normalize,
+      normalize = _options$normalize12 === undefined ? true : _options$normalize12;
+
 
   if (range.isExpanded) {
     transform.deleteAtRange(range, { normalize: normalize });
     range = range.collapseToStart();
   }
 
-  var _range7 = range;
-  var startKey = _range7.startKey;
-  var startOffset = _range7.startOffset;
+  var _range7 = range,
+      startKey = _range7.startKey,
+      startOffset = _range7.startOffset;
   var state = transform.state;
   var document = state.document;
 
   var node = document.assertDescendant(startKey);
-  var parent = document.getClosestInline(node);
+  var parent = document.getClosestInline(node.key);
   var offset = startOffset;
   var h = 0;
 
   while (parent && parent.kind == 'inline' && h < height) {
-    offset += parent.getOffset(node);
+    offset += parent.getOffset(node.key);
     node = parent;
-    parent = document.getClosestInline(parent);
+    parent = document.getClosestInline(parent.key);
     h++;
   }
 
-  return transform.splitNodeByKey(node.key, offset, { normalize: normalize });
+  transform.splitNodeByKey(node.key, offset, { normalize: normalize });
 }
 
 /**
@@ -68681,21 +70107,18 @@ function splitInlineAtRange(transform, range) {
  * @param {Selection} range
  * @param {Mixed} mark
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function toggleMarkAtRange(transform, range, mark) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize13 = options.normalize;
-  var normalize = _options$normalize13 === undefined ? true : _options$normalize13;
 
-  if (range.isCollapsed) {
-    return transform;
-  }
+  if (range.isCollapsed) return;
 
   mark = _normalize2.default.mark(mark);
 
+  var _options$normalize13 = options.normalize,
+      normalize = _options$normalize13 === undefined ? true : _options$normalize13;
   var state = transform.state;
   var document = state.document;
 
@@ -68709,8 +70132,6 @@ function toggleMarkAtRange(transform, range, mark) {
   } else {
     transform.addMarkAtRange(range, mark, { normalize: normalize });
   }
-
-  return transform;
 }
 
 /**
@@ -68718,26 +70139,25 @@ function toggleMarkAtRange(transform, range, mark) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {String or Object} properties
+ * @param {String|Object} properties
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function unwrapBlockAtRange(transform, range, properties) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize14 = options.normalize;
-  var normalize = _options$normalize14 === undefined ? true : _options$normalize14;
 
   properties = _normalize2.default.nodeProperties(properties);
 
+  var _options$normalize14 = options.normalize,
+      normalize = _options$normalize14 === undefined ? true : _options$normalize14;
   var state = transform.state;
-  var _state3 = state;
-  var document = _state3.document;
+  var _state3 = state,
+      document = _state3.document;
 
   var blocks = document.getBlocksAtRange(range);
   var wrappers = blocks.map(function (block) {
-    return document.getClosest(block, function (parent) {
+    return document.getClosest(block.key, function (parent) {
       if (parent.kind != 'block') return false;
       if (properties.type != null && parent.type != properties.type) return false;
       if (properties.isVoid != null && parent.isVoid != properties.isVoid) return false;
@@ -68751,12 +70171,12 @@ function unwrapBlockAtRange(transform, range, properties) {
   wrappers.forEach(function (block) {
     var first = block.nodes.first();
     var last = block.nodes.last();
-    var parent = document.getParent(block);
+    var parent = document.getParent(block.key);
     var index = parent.nodes.indexOf(block);
 
     var children = block.nodes.filter(function (child) {
       return blocks.some(function (b) {
-        return child == b || child.hasDescendant(b);
+        return child == b || child.hasDescendant(b.key);
       });
     });
 
@@ -68765,44 +70185,42 @@ function unwrapBlockAtRange(transform, range, properties) {
 
     if (first == firstMatch && last == lastMatch) {
       block.nodes.forEach(function (child, i) {
-        transform.moveNodeByKey(child.key, parent.key, index + i, { normalize: false });
+        transform.moveNodeByKey(child.key, parent.key, index + i, OPTS);
       });
 
-      transform.removeNodeByKey(block.key, { normalize: false });
+      transform.removeNodeByKey(block.key, OPTS);
     } else if (last == lastMatch) {
       block.nodes.skipUntil(function (n) {
         return n == firstMatch;
       }).forEach(function (child, i) {
-        transform.moveNodeByKey(child.key, parent.key, index + 1 + i, { normalize: false });
+        transform.moveNodeByKey(child.key, parent.key, index + 1 + i, OPTS);
       });
     } else if (first == firstMatch) {
       block.nodes.takeUntil(function (n) {
         return n == lastMatch;
       }).push(lastMatch).forEach(function (child, i) {
-        transform.moveNodeByKey(child.key, parent.key, index + i, { normalize: false });
+        transform.moveNodeByKey(child.key, parent.key, index + i, OPTS);
       });
     } else {
-      var offset = block.getOffset(firstMatch);
+      var offset = block.getOffset(firstMatch.key);
 
-      transform.splitNodeByKey(block.key, offset, { normalize: false });
+      transform.splitNodeByKey(block.key, offset, OPTS);
       state = transform.state;
       document = state.document;
-      var extra = document.getPreviousSibling(firstMatch);
+      var extra = document.getPreviousSibling(firstMatch.key);
 
       children.forEach(function (child, i) {
-        transform.moveNodeByKey(child.key, parent.key, index + 1 + i, { normalize: false });
+        transform.moveNodeByKey(child.key, parent.key, index + 1 + i, OPTS);
       });
 
-      transform.removeNodeByKey(extra.key, { normalize: false });
+      transform.removeNodeByKey(extra.key, OPTS);
     }
   });
 
   // TODO: optmize to only normalize the right block
   if (normalize) {
-    transform.normalizeDocument();
+    transform.normalizeDocument(_core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -68810,10 +70228,9 @@ function unwrapBlockAtRange(transform, range, properties) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {String or Object} properties
+ * @param {String|Object} properties
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function unwrapInlineAtRange(transform, range, properties) {
@@ -68821,14 +70238,14 @@ function unwrapInlineAtRange(transform, range, properties) {
 
   properties = _normalize2.default.nodeProperties(properties);
 
-  var _options$normalize15 = options.normalize;
-  var normalize = _options$normalize15 === undefined ? true : _options$normalize15;
+  var _options$normalize15 = options.normalize,
+      normalize = _options$normalize15 === undefined ? true : _options$normalize15;
   var state = transform.state;
   var document = state.document;
 
   var texts = document.getTextsAtRange(range);
   var inlines = texts.map(function (text) {
-    return document.getClosest(text, function (parent) {
+    return document.getClosest(text.key, function (parent) {
       if (parent.kind != 'inline') return false;
       if (properties.type != null && parent.type != properties.type) return false;
       if (properties.isVoid != null && parent.isVoid != properties.isVoid) return false;
@@ -68840,20 +70257,18 @@ function unwrapInlineAtRange(transform, range, properties) {
   }).toOrderedSet().toList();
 
   inlines.forEach(function (inline) {
-    var parent = document.getParent(inline);
+    var parent = document.getParent(inline.key);
     var index = parent.nodes.indexOf(inline);
 
     inline.nodes.forEach(function (child, i) {
-      transform.moveNodeByKey(child.key, parent.key, index + i, { normalize: false });
+      transform.moveNodeByKey(child.key, parent.key, index + i, OPTS);
     });
   });
 
   // TODO: optmize to only normalize the right block
   if (normalize) {
-    transform.normalizeDocument();
+    transform.normalizeDocument(_core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -68861,10 +70276,9 @@ function unwrapInlineAtRange(transform, range, properties) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {Block || Object || String} block
+ * @param {Block|Object|String} block
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function wrapBlockAtRange(transform, range, block) {
@@ -68873,10 +70287,9 @@ function wrapBlockAtRange(transform, range, block) {
   block = _normalize2.default.block(block);
   block = block.merge({ nodes: block.nodes.clear() });
 
-  var _options$normalize16 = options.normalize;
-  var normalize = _options$normalize16 === undefined ? true : _options$normalize16;
-  var _transform4 = transform;
-  var state = _transform4.state;
+  var _options$normalize16 = options.normalize,
+      normalize = _options$normalize16 === undefined ? true : _options$normalize16;
+  var state = transform.state;
   var document = state.document;
 
 
@@ -68889,14 +70302,14 @@ function wrapBlockAtRange(transform, range, block) {
 
   // if there is only one block in the selection then we know the parent and siblings
   if (blocks.length === 1) {
-    parent = document.getParent(firstblock);
+    parent = document.getParent(firstblock.key);
     siblings = blocks;
   }
 
   // determine closest shared parent to all blocks in selection
   else {
-      parent = document.getClosest(firstblock, function (p1) {
-        return !!document.getClosest(lastblock, function (p2) {
+      parent = document.getClosest(firstblock.key, function (p1) {
+        return !!document.getClosest(lastblock.key, function (p2) {
           return p1 == p2;
         });
       });
@@ -68908,8 +70321,8 @@ function wrapBlockAtRange(transform, range, block) {
   // create a list of direct children siblings of parent that fall in the selection
   if (siblings == null) {
     var indexes = parent.nodes.reduce(function (ind, node, i) {
-      if (node == firstblock || node.hasDescendant(firstblock)) ind[0] = i;
-      if (node == lastblock || node.hasDescendant(lastblock)) ind[1] = i;
+      if (node == firstblock || node.hasDescendant(firstblock.key)) ind[0] = i;
+      if (node == lastblock || node.hasDescendant(lastblock.key)) ind[1] = i;
       return ind;
     }, []);
 
@@ -68923,18 +70336,16 @@ function wrapBlockAtRange(transform, range, block) {
   }
 
   // inject the new block node into the parent
-  transform = transform.insertNodeByKey(parent.key, index, block, { normalize: false });
+  transform.insertNodeByKey(parent.key, index, block, OPTS);
 
   // move the sibling nodes into the new block node
   siblings.forEach(function (node, i) {
-    transform = transform.moveNodeByKey(node.key, block.key, i, { normalize: false });
+    transform.moveNodeByKey(node.key, block.key, i, OPTS);
   });
 
   if (normalize) {
-    transform = transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -68942,30 +70353,28 @@ function wrapBlockAtRange(transform, range, block) {
  *
  * @param {Transform} transform
  * @param {Selection} range
- * @param {Inline || Object || String} inline
+ * @param {Inline|Object|String} inline
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function wrapInlineAtRange(transform, range, inline) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
-  if (range.isCollapsed) return transform;
+  if (range.isCollapsed) return;
 
   inline = _normalize2.default.inline(inline);
   inline = inline.merge({ nodes: inline.nodes.clear() });
 
-  var _options$normalize17 = options.normalize;
-  var normalize = _options$normalize17 === undefined ? true : _options$normalize17;
-  var startKey = range.startKey;
-  var startOffset = range.startOffset;
-  var endKey = range.endKey;
-  var endOffset = range.endOffset;
-  var _transform5 = transform;
-  var state = _transform5.state;
-  var _state4 = state;
-  var document = _state4.document;
+  var _options$normalize17 = options.normalize,
+      normalize = _options$normalize17 === undefined ? true : _options$normalize17;
+  var startKey = range.startKey,
+      startOffset = range.startOffset,
+      endKey = range.endKey,
+      endOffset = range.endOffset;
+  var state = transform.state;
+  var _state4 = state,
+      document = _state4.document;
 
   var blocks = document.getBlocksAtRange(range);
   var startBlock = document.getClosestBlock(startKey);
@@ -68982,11 +70391,11 @@ function wrapInlineAtRange(transform, range, inline) {
   if (startBlock == endBlock) {
     (function () {
       if (endOff != endChild.length) {
-        transform.splitNodeByKey(endChild.key, endOff, { normalize: false });
+        transform.splitNodeByKey(endChild.key, endOff, OPTS);
       }
 
       if (startOff != 0) {
-        transform.splitNodeByKey(startChild.key, startOff, { normalize: false });
+        transform.splitNodeByKey(startChild.key, startOff, OPTS);
       }
 
       state = transform.state;
@@ -68994,7 +70403,7 @@ function wrapInlineAtRange(transform, range, inline) {
       startBlock = document.getClosestBlock(startKey);
       startChild = startBlock.getHighestChild(startKey);
 
-      var startInner = startOff == 0 ? startChild : document.getNextSibling(startChild);
+      var startInner = startOff == 0 ? startChild : document.getNextSibling(startChild.key);
 
       var startInnerIndex = startBlock.nodes.indexOf(startInner);
 
@@ -69007,20 +70416,20 @@ function wrapInlineAtRange(transform, range, inline) {
 
       var node = inline.regenerateKey();
 
-      transform.insertNodeByKey(startBlock.key, startInnerIndex, node, { normalize: false });
+      transform.insertNodeByKey(startBlock.key, startInnerIndex, node, OPTS);
 
       inlines.forEach(function (child, i) {
-        transform.moveNodeByKey(child.key, node.key, i, { normalize: false });
+        transform.moveNodeByKey(child.key, node.key, i, OPTS);
       });
 
       if (normalize) {
-        transform = transform.normalizeNodeByKey(startBlock.key);
+        transform.normalizeNodeByKey(startBlock.key, _core2.default);
       }
     })();
   } else {
     (function () {
-      transform.splitNodeByKey(startChild.key, startOff, { normalize: false });
-      transform.splitNodeByKey(endChild.key, endOff, { normalize: false });
+      transform.splitNodeByKey(startChild.key, startOff, OPTS);
+      transform.splitNodeByKey(endChild.key, endOff, OPTS);
 
       state = transform.state;
       document = state.document;
@@ -69032,37 +70441,35 @@ function wrapInlineAtRange(transform, range, inline) {
       var startNode = inline.regenerateKey();
       var endNode = inline.regenerateKey();
 
-      transform.insertNodeByKey(startBlock.key, startIndex - 1, startNode, { normalize: false });
-      transform.insertNodeByKey(endBlock.key, endIndex, endNode, { normalize: false });
+      transform.insertNodeByKey(startBlock.key, startIndex - 1, startNode, OPTS);
+      transform.insertNodeByKey(endBlock.key, endIndex, endNode, OPTS);
 
       startInlines.forEach(function (child, i) {
-        transform.moveNodeByKey(child.key, startNode.key, i, { normalize: false });
+        transform.moveNodeByKey(child.key, startNode.key, i, OPTS);
       });
 
       endInlines.forEach(function (child, i) {
-        transform.moveNodeByKey(child.key, endNode.key, i, { normalize: false });
+        transform.moveNodeByKey(child.key, endNode.key, i, OPTS);
       });
 
       if (normalize) {
-        transform = transform.normalizeNodeByKey(startBlock.key).normalizeNodeByKey(endBlock.key);
+        transform.normalizeNodeByKey(startBlock.key, _core2.default).normalizeNodeByKey(endBlock.key, _core2.default);
       }
 
       blocks.slice(1, -1).forEach(function (block) {
         var node = inline.regenerateKey();
-        transform.insertNodeByKey(block.key, 0, node, { normalize: false });
+        transform.insertNodeByKey(block.key, 0, node, OPTS);
 
         block.nodes.forEach(function (child, i) {
-          transform.moveNodeByKey(child.key, node.key, i, { normalize: false });
+          transform.moveNodeByKey(child.key, node.key, i, OPTS);
         });
 
         if (normalize) {
-          transform = transform.normalizeNodeByKey(block.key);
+          transform.normalizeNodeByKey(block.key, _core2.default);
         }
       });
     })();
   }
-
-  return transform;
 }
 
 /**
@@ -69073,17 +70480,16 @@ function wrapInlineAtRange(transform, range, inline) {
  * @param {String} prefix
  * @param {String} suffix (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function wrapTextAtRange(transform, range, prefix) {
   var suffix = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : prefix;
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-  var _options$normalize18 = options.normalize;
-  var normalize = _options$normalize18 === undefined ? true : _options$normalize18;
-  var startKey = range.startKey;
-  var endKey = range.endKey;
+  var _options$normalize18 = options.normalize,
+      normalize = _options$normalize18 === undefined ? true : _options$normalize18;
+  var startKey = range.startKey,
+      endKey = range.endKey;
 
   var start = range.collapseToStart();
   var end = range.collapseToEnd();
@@ -69094,10 +70500,8 @@ function wrapTextAtRange(transform, range, prefix) {
 
   transform.insertTextAtRange(start, prefix, [], { normalize: normalize });
   transform.insertTextAtRange(end, suffix, [], { normalize: normalize });
-
-  return transform;
 }
-},{"../utils/normalize":359}],348:[function(require,module,exports){
+},{"../schemas/core":395,"../utils/normalize":416,"immutable":144}],403:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -69122,6 +70526,10 @@ var _normalize = require('../utils/normalize');
 
 var _normalize2 = _interopRequireDefault(_normalize);
 
+var _core = require('../schemas/core');
+
+var _core2 = _interopRequireDefault(_core);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -69133,29 +70541,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {Number} length
  * @param {Mixed} mark
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function addMarkByKey(transform, key, offset, length, mark) {
   var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-  var _options$normalize = options.normalize;
-  var normalize = _options$normalize === undefined ? true : _options$normalize;
 
   mark = _normalize2.default.mark(mark);
-  var _transform = transform;
-  var state = _transform.state;
+  var _options$normalize = options.normalize,
+      normalize = _options$normalize === undefined ? true : _options$normalize;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.addMarkOperation(path, offset, length, mark);
+  transform.addMarkOperation(path, offset, length, mark);
+
   if (normalize) {
     var parent = document.getParent(key);
-    transform = transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69166,26 +70571,23 @@ function addMarkByKey(transform, key, offset, length, mark) {
  * @param {Number} index
  * @param {Node} node
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function insertNodeByKey(transform, key, index, node) {
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-  var _options$normalize2 = options.normalize;
-  var normalize = _options$normalize2 === undefined ? true : _options$normalize2;
-  var _transform2 = transform;
-  var state = _transform2.state;
+  var _options$normalize2 = options.normalize,
+      normalize = _options$normalize2 === undefined ? true : _options$normalize2;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.insertNodeOperation(path, index, node);
-  if (normalize) {
-    transform = transform.normalizeNodeByKey(key);
-  }
+  transform.insertNodeOperation(path, index, node);
 
-  return transform;
+  if (normalize) {
+    transform.normalizeNodeByKey(key, _core2.default);
+  }
 }
 
 /**
@@ -69195,29 +70597,26 @@ function insertNodeByKey(transform, key, index, node) {
  * @param {String} key
  * @param {Number} offset
  * @param {String} text
- * @param {Set} marks (optional)
+ * @param {Set<Mark>} marks (optional)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function insertTextByKey(transform, key, offset, text, marks) {
   var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-  var _options$normalize3 = options.normalize;
-  var normalize = _options$normalize3 === undefined ? true : _options$normalize3;
-  var _transform3 = transform;
-  var state = _transform3.state;
+  var _options$normalize3 = options.normalize,
+      normalize = _options$normalize3 === undefined ? true : _options$normalize3;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.insertTextOperation(path, offset, text, marks);
+  transform.insertTextOperation(path, offset, text, marks);
+
   if (normalize) {
     var parent = document.getParent(key);
-    transform = transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69227,33 +70626,25 @@ function insertTextByKey(transform, key, offset, text, marks) {
  * @param {String} key
  * @param {String} withKey
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function joinNodeByKey(transform, key, withKey) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize4 = options.normalize;
-  var normalize = _options$normalize4 === undefined ? true : _options$normalize4;
-  var _transform4 = transform;
-  var state = _transform4.state;
+  var _options$normalize4 = options.normalize,
+      normalize = _options$normalize4 === undefined ? true : _options$normalize4;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
   var withPath = document.getPath(withKey);
 
-  transform = transform.joinNodeOperation(path, withPath);
+  transform.joinNodeOperation(path, withPath);
 
   if (normalize) {
     var parent = document.getCommonAncestor(key, withKey);
-    if (parent) {
-      transform = transform.normalizeNodeByKey(parent.key);
-    } else {
-      transform = transform.normalizeDocument();
-    }
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69265,29 +70656,25 @@ function joinNodeByKey(transform, key, withKey) {
  * @param {String} newKey
  * @param {Number} index
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function moveNodeByKey(transform, key, newKey, newIndex) {
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-  var _options$normalize5 = options.normalize;
-  var normalize = _options$normalize5 === undefined ? true : _options$normalize5;
-  var _transform5 = transform;
-  var state = _transform5.state;
+  var _options$normalize5 = options.normalize,
+      normalize = _options$normalize5 === undefined ? true : _options$normalize5;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
   var newPath = document.getPath(newKey);
 
-  transform = transform.moveNodeOperation(path, newPath, newIndex);
+  transform.moveNodeOperation(path, newPath, newIndex);
 
   if (normalize) {
-    var parent = document.key == newKey ? document : document.getCommonAncestor(key, newKey);
-    transform = transform.normalizeNodeByKey(parent.key);
+    var parent = document.getCommonAncestor(key, newKey);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69299,29 +70686,26 @@ function moveNodeByKey(transform, key, newKey, newIndex) {
  * @param {Number} length
  * @param {Mark} mark
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function removeMarkByKey(transform, key, offset, length, mark) {
   var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-  var _options$normalize6 = options.normalize;
-  var normalize = _options$normalize6 === undefined ? true : _options$normalize6;
 
   mark = _normalize2.default.mark(mark);
-  var _transform6 = transform;
-  var state = _transform6.state;
+  var _options$normalize6 = options.normalize,
+      normalize = _options$normalize6 === undefined ? true : _options$normalize6;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.removeMarkOperation(path, offset, length, mark);
+  transform.removeMarkOperation(path, offset, length, mark);
+
   if (normalize) {
     var parent = document.getParent(key);
-    transform = transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69330,32 +70714,24 @@ function removeMarkByKey(transform, key, offset, length, mark) {
  * @param {Transform} transform
  * @param {String} key
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function removeNodeByKey(transform, key) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var _options$normalize7 = options.normalize;
-  var normalize = _options$normalize7 === undefined ? true : _options$normalize7;
-  var _transform7 = transform;
-  var state = _transform7.state;
+  var _options$normalize7 = options.normalize,
+      normalize = _options$normalize7 === undefined ? true : _options$normalize7;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.removeNodeOperation(path);
+  transform.removeNodeOperation(path);
 
   if (normalize) {
     var parent = document.getParent(key);
-    if (parent) {
-      transform = transform.normalizeNodeByKey(parent.key);
-    } else {
-      transform = transform.normalizeDocument();
-    }
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69366,27 +70742,24 @@ function removeNodeByKey(transform, key) {
  * @param {Number} offset
  * @param {Number} length
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function removeTextByKey(transform, key, offset, length) {
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-  var _options$normalize8 = options.normalize;
-  var normalize = _options$normalize8 === undefined ? true : _options$normalize8;
-  var _transform8 = transform;
-  var state = _transform8.state;
+  var _options$normalize8 = options.normalize,
+      normalize = _options$normalize8 === undefined ? true : _options$normalize8;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.removeTextOperation(path, offset, length);
-  if (normalize) {
-    var parent = document.getParent(key);
-    transform = transform.normalizeParentsByKey(parent.key);
-  }
+  transform.removeTextOperation(path, offset, length);
 
-  return transform;
+  if (normalize) {
+    var block = document.getClosestBlock(key);
+    transform.normalizeNodeByKey(block.key, _core2.default);
+  }
 }
 
 /**
@@ -69398,30 +70771,29 @@ function removeTextByKey(transform, key, offset, length) {
  * @param {Number} length
  * @param {Mark} mark
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function setMarkByKey(transform, key, offset, length, mark, properties) {
   var options = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : {};
-  var _options$normalize9 = options.normalize;
-  var normalize = _options$normalize9 === undefined ? true : _options$normalize9;
 
   mark = _normalize2.default.mark(mark);
   properties = _normalize2.default.markProperties(properties);
-  var _transform9 = transform;
-  var state = _transform9.state;
+  var _options$normalize9 = options.normalize,
+      normalize = _options$normalize9 === undefined ? true : _options$normalize9;
+
+  var newMark = mark.merge(properties);
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.setMarkOperation(path, offset, length, mark, properties);
+  transform.setMarkOperation(path, offset, length, mark, newMark);
+
   if (normalize) {
     var parent = document.getParent(key);
-    transform = transform.normalizeNodeByKey(parent.key);
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69429,36 +70801,28 @@ function setMarkByKey(transform, key, offset, length, mark, properties) {
  *
  * @param {Transform} transform
  * @param {String} key
- * @param {Object || String} properties
+ * @param {Object|String} properties
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function setNodeByKey(transform, key, properties) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize10 = options.normalize;
-  var normalize = _options$normalize10 === undefined ? true : _options$normalize10;
 
   properties = _normalize2.default.nodeProperties(properties);
-  var _transform10 = transform;
-  var state = _transform10.state;
+  var _options$normalize10 = options.normalize,
+      normalize = _options$normalize10 === undefined ? true : _options$normalize10;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.setNodeOperation(path, properties);
+  transform.setNodeOperation(path, properties);
 
   if (normalize) {
     var parent = document.getParent(key);
-    if (parent) {
-      transform = transform.normalizeNodeByKey(parent.key);
-    } else {
-      transform = transform.normalizeDocument();
-    }
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69468,32 +70832,24 @@ function setNodeByKey(transform, key, properties) {
  * @param {String} key
  * @param {Number} offset
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function splitNodeByKey(transform, key, offset) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var _options$normalize11 = options.normalize;
-  var normalize = _options$normalize11 === undefined ? true : _options$normalize11;
-  var _transform11 = transform;
-  var state = _transform11.state;
+  var _options$normalize11 = options.normalize,
+      normalize = _options$normalize11 === undefined ? true : _options$normalize11;
+  var state = transform.state;
   var document = state.document;
 
   var path = document.getPath(key);
 
-  transform = transform.splitNodeOperation(path, offset);
+  transform.splitNodeOperation(path, offset);
 
   if (normalize) {
     var parent = document.getParent(key);
-    if (parent) {
-      transform = transform.normalizeNodeByKey(parent.key);
-    } else {
-      transform = transform.normalizeDocument();
-    }
+    transform.normalizeNodeByKey(parent.key, _core2.default);
   }
-
-  return transform;
 }
 
 /**
@@ -69501,21 +70857,21 @@ function splitNodeByKey(transform, key, offset) {
  *
  * @param {Transform} transform
  * @param {String} key
- * @param {Object or String} properties
+ * @param {Object|String} properties
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function unwrapInlineByKey(transform, key, properties, options) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var node = document.assertDescendant(key);
-  var texts = node.getTexts();
-  var range = selection.moveToRangeOf(texts.first(), texts.last());
-  return transform.unwrapInlineAtRange(range, properties, options);
+  var first = node.getFirstText();
+  var last = node.getLastText();
+  var range = selection.moveToRangeOf(first, last);
+  transform.unwrapInlineAtRange(range, properties, options);
 }
 
 /**
@@ -69523,21 +70879,21 @@ function unwrapInlineByKey(transform, key, properties, options) {
  *
  * @param {Transform} transform
  * @param {String} key
- * @param {Object or String} properties
+ * @param {Object|String} properties
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function unwrapBlockByKey(transform, key, properties, options) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var node = document.assertDescendant(key);
-  var texts = node.getTexts();
-  var range = selection.moveToRangeOf(texts.first(), texts.last());
-  return transform.unwrapBlockAtRange(range, properties, options);
+  var first = node.getFirstText();
+  var last = node.getLastText();
+  var range = selection.moveToRangeOf(first, last);
+  transform.unwrapBlockAtRange(range, properties, options);
 }
 
 /**
@@ -69545,10 +70901,9 @@ function unwrapBlockByKey(transform, key, properties, options) {
  *
  * @param {Transform} transform
  * @param {String} key The node to wrap
- * @param {Block || Object || String} block The wrapping block (its children are discarded)
+ * @param {Block|Object|String} block The wrapping block (its children are discarded)
  * @param {Object} options
- *   @param {Boolean} normalize
- * @return {Transform}
+ *   @property {Boolean} normalize
  */
 
 function wrapBlockByKey(transform, key, block, options) {
@@ -69558,12 +70913,13 @@ function wrapBlockByKey(transform, key, block, options) {
   var document = transform.state.document;
 
   var node = document.assertDescendant(key);
-  var parent = document.getParent(node);
+  var parent = document.getParent(node.key);
   var index = parent.nodes.indexOf(node);
 
-  return transform.insertNodeByKey(parent.key, index, block, { normalize: false }).moveNodeByKey(node.key, block.key, 0, options);
+  transform.insertNodeByKey(parent.key, index, block, { normalize: false });
+  transform.moveNodeByKey(node.key, block.key, 0, options);
 }
-},{"../utils/normalize":359}],349:[function(require,module,exports){
+},{"../schemas/core":395,"../utils/normalize":416}],404:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -69726,10 +71082,14 @@ exports.default = {
   focus: _onSelection.focus,
   moveBackward: _onSelection.moveBackward,
   moveForward: _onSelection.moveForward,
+  moveEndOffset: _onSelection.moveEndOffset,
+  moveStartOffset: _onSelection.moveStartOffset,
   moveTo: _onSelection.moveTo,
   moveToOffsets: _onSelection.moveToOffsets,
   moveToRangeOf: _onSelection.moveToRangeOf,
+  unsetMarks: _onSelection.unsetMarks,
   unsetSelection: _onSelection.unsetSelection,
+  snapshotSelection: _onSelection.snapshotSelection,
 
   /**
    * History.
@@ -69744,13 +71104,9 @@ exports.default = {
    */
 
   normalize: _normalize.normalize,
-  normalizeWith: _normalize.normalizeWith,
-  normalizeNodeWith: _normalize.normalizeNodeWith,
-  normalizeParentsWith: _normalize.normalizeParentsWith,
   normalizeDocument: _normalize.normalizeDocument,
   normalizeSelection: _normalize.normalizeSelection,
-  normalizeNodeByKey: _normalize.normalizeNodeByKey,
-  normalizeParentsByKey: _normalize.normalizeParentsByKey
+  normalizeNodeByKey: _normalize.normalizeNodeByKey
 };
 
 /**
@@ -69768,253 +71124,100 @@ exports.default = {
 /**
  * Operations.
  */
-},{"./apply-operation":345,"./at-current-range":346,"./at-range":347,"./by-key":348,"./normalize":350,"./on-history":351,"./on-selection":352,"./operations":353}],350:[function(require,module,exports){
+},{"./apply-operation":400,"./at-current-range":401,"./at-range":402,"./by-key":403,"./normalize":405,"./on-history":406,"./on-selection":407,"./operations":408}],405:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.normalizeNodeWith = normalizeNodeWith;
-exports.normalizeParentsWith = normalizeParentsWith;
-exports.normalizeWith = normalizeWith;
 exports.normalize = normalize;
 exports.normalizeDocument = normalizeDocument;
 exports.normalizeNodeByKey = normalizeNodeByKey;
-exports.normalizeParentsByKey = normalizeParentsByKey;
 exports.normalizeSelection = normalizeSelection;
 
-var _warning = require('../utils/warning');
+var _normalize = require('../utils/normalize');
 
-var _warning2 = _interopRequireDefault(_warning);
+var _normalize2 = _interopRequireDefault(_normalize);
 
-var _schema = require('../plugins/schema');
+var _schema = require('../models/schema');
 
 var _schema2 = _interopRequireDefault(_schema);
+
+var _warn = require('../utils/warn');
+
+var _warn2 = _interopRequireDefault(_warn);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Refresh a reference to a node that have been modified in a transform.
- * @param  {Transform} transform
- * @param  {Node} node
- * @return {Node} newNode
+ * Normalize the document and selection with a `schema`.
+ *
+ * @param {Transform} transform
+ * @param {Schema} schema
  */
 
-function _refreshNode(transform, node) {
+function normalize(transform, schema) {
+  transform.normalizeDocument(schema);
+  transform.normalizeSelection(schema);
+}
+
+/**
+ * Normalize the document with a `schema`.
+ *
+ * @param {Transform} transform
+ * @param {Schema} schema
+ */
+
+function normalizeDocument(transform, schema) {
   var state = transform.state;
   var document = state.document;
 
-
-  if (node.kind == 'document') {
-    return document;
-  }
-
-  return document.getDescendant(node.key);
+  transform.normalizeNodeByKey(document.key, schema);
 }
 
 /**
- * Normalize all children of a node
- * @param  {Transform} transform
- * @param  {Schema} schema
- * @param  {Node} node
- * @return {Transform} transform
- */
-
-function _normalizeChildrenWith(transform, schema, node) {
-  if (!node.nodes) {
-    return transform;
-  }
-
-  return node.nodes.reduce(function (t, child) {
-    return t.normalizeNodeWith(schema, child);
-  }, transform);
-}
-
-/**
- * Normalize a node without its children
- * @param  {Transform} transform
- * @param  {Schema} schema
- * @param  {Node} node
- * @return {Transform} transform
- */
-
-function _normalizeNodeWith(transform, schema, node) {
-  var failure = schema.__validate(node);
-
-  // Node is valid?
-  if (!failure) {
-    return transform;
-  }
-
-  var value = failure.value;
-  var rule = failure.rule;
-
-  // Normalize and get the new state
-
-  transform = rule.normalize(transform, node, value);
-
-  // Search for the updated node in the new state
-  var newNode = _refreshNode(transform, node);
-
-  // Node no longer exist, go back to normalize parents
-  if (!newNode) {
-    return transform;
-  }
-
-  return _normalizeNodeWith(transform, schema, newNode);
-}
-
-/**
- * Normalize a node (itself and its children) using a schema.
+ * Normalize a `node` and its children with a `schema`.
  *
- * @param  {Transform} transform
- * @param  {Schema} schema
- * @param  {Node} node
- * @return {Transform}
+ * @param {Transform} transform
+ * @param {Node|String} key
+ * @param {Schema} schema
  */
 
-function normalizeNodeWith(transform, schema, node) {
-  // console.log(`normalize node key=${node.key}`)
-  // Iterate over its children
-  transform = _normalizeChildrenWith(transform, schema, node);
+function normalizeNodeByKey(transform, key, schema) {
+  assertSchema(schema);
 
-  // Refresh the node reference, and normalize it
-  node = _refreshNode(transform, node);
-  if (node) {
-    transform = _normalizeNodeWith(transform, schema, node);
-  }
+  // If the schema has no validation rules, there's nothing to normalize.
+  if (!schema.hasValidators) return;
 
-  return transform;
-}
-
-/**
- * Normalize a node its parents using a schema.
- *
- * @param  {Transform} transform
- * @param  {Schema} schema
- * @param  {Node} node
- * @return {Transform}
- */
-
-function normalizeParentsWith(transform, schema, node) {
-  transform = _normalizeNodeWith(transform, schema, node);
-
-  // Normalize went back up to the document
-  if (node.kind == 'document') {
-    return transform;
-  }
-
-  // We search for the new parent
-  node = _refreshNode(transform, node);
-  if (!node) {
-    return transform;
-  }
-
-  var _transform = transform;
-  var state = _transform.state;
-  var document = state.document;
-
-  var parent = document.getParent(node.key);
-
-  return normalizeParentsWith(transform, schema, parent);
-}
-
-/**
- * Normalize state using a schema.
- *
- * @param  {Transform} transform
- * @param  {Schema} schema
- * @return {Transform} transform
- */
-
-function normalizeWith(transform, schema) {
+  key = _normalize2.default.key(key);
   var state = transform.state;
   var document = state.document;
 
-  // Schema was not rule to edit the document
+  var node = document.assertNode(key);
 
-  if (!schema.isNormalization) {
-    return transform;
-  }
-
-  return transform.normalizeNodeWith(schema, document);
+  normalizeNodeAndChildren(transform, node, schema);
 }
 
 /**
- * Normalize the state using the core schema.
+ * Normalize the selection.
  *
- * @param  {Transform} transform
- * @return {Transform} transform
- */
-
-function normalize(transform) {
-  return transform.normalizeDocument().normalizeSelection();
-}
-
-/**
- * Normalize only the document
- *
- * @param  {Transform} transform
- * @return {Transform} transform
- */
-
-function normalizeDocument(transform) {
-  return transform.normalizeWith(_schema2.default);
-}
-
-/**
- * Normalize a node and its children using core schema
- *
- * @param  {Transform} transform
- * @param  {Node or String} key
- * @return {Transform} transform
- */
-
-function normalizeNodeByKey(transform, key) {
-  var state = transform.state;
-  var document = state.document;
-
-  var node = document.key == key ? document : document.assertDescendant(key);
-
-  return transform.normalizeNodeWith(_schema2.default, node);
-}
-
-/**
- * Normalize a node and its parent using core schema
- *
- * @param  {Transform} transform
- * @param  {Node or String} key
- * @return {Transform} transform
- */
-
-function normalizeParentsByKey(transform, key) {
-  var state = transform.state;
-  var document = state.document;
-
-  var node = document.key == key ? document : document.assertDescendant(key);
-
-  return transform.normalizeParentsWith(_schema2.default, node);
-}
-
-/**
- * Normalize only the selection.
- *
- * @param  {Transform} transform
- * @return {Transform} transform
+ * @param {Transform} transform
  */
 
 function normalizeSelection(transform) {
   var state = transform.state;
-  var _state = state;
-  var document = _state.document;
-  var selection = _state.selection;
+  var _state = state,
+      document = _state.document,
+      selection = _state.selection;
 
   selection = selection.normalize(document);
 
-  // If the selection is nulled (not normal)
+  // If the selection is unset, or the anchor or focus key in the selection are
+  // pointing to nodes that no longer exist, warn and reset the selection.
   if (selection.isUnset || !document.hasDescendant(selection.anchorKey) || !document.hasDescendant(selection.focusKey)) {
-    (0, _warning2.default)('Selection was invalid and reset to start of the document');
-    var firstText = document.getTexts().first();
+    (0, _warn2.default)('The selection was invalid and was reset to start of the document. The selection in question was:', selection);
+
+    var firstText = document.getFirstText();
     selection = selection.merge({
       anchorKey: firstText.key,
       anchorOffset: 0,
@@ -70026,9 +71229,115 @@ function normalizeSelection(transform) {
 
   state = state.merge({ selection: selection });
   transform.state = state;
-  return transform;
 }
-},{"../plugins/schema":340,"../utils/warning":365}],351:[function(require,module,exports){
+
+/**
+ * Normalize a `node` and its children with a `schema`.
+ *
+ * @param {Transform} transform
+ * @param {Node} node
+ * @param {Schema} schema
+ */
+
+function normalizeNodeAndChildren(transform, node, schema) {
+  // For performance considerations, we will check if the transform has actually
+  // added operations to the queue.
+  var count = transform.operations.length;
+
+  // Iterate over its children.
+  if (node.kind != 'text') {
+    node.nodes.forEach(function (child) {
+      normalizeNodeAndChildren(transform, child, schema);
+    });
+  }
+
+  // Re-find the node reference if necessary.
+  if (transform.operations.length != count) {
+    node = refindNode(transform, node);
+  }
+
+  // Now normalize the node itself if it still exists.
+  if (node) {
+    normalizeNode(transform, node, schema);
+  }
+}
+
+/**
+ * Re-find a reference to a node that may have been modified or removed
+ * entirely by a transform.
+ *
+ * @param {Transform} transform
+ * @param {Node} node
+ * @return {Node}
+ */
+
+function refindNode(transform, node) {
+  var state = transform.state;
+  var document = state.document;
+
+  return node.kind == 'document' ? document : document.getDescendant(node.key);
+}
+
+/**
+ * Normalize a `node` with a `schema`, but not its children.
+ *
+ * @param {Transform} transform
+ * @param {Node} node
+ * @param {Schema} schema
+ */
+
+function normalizeNode(transform, node, schema) {
+  var max = schema.rules.length;
+  var iterations = 0;
+
+  function iterate(t, n) {
+    var failure = n.validate(schema);
+    if (!failure) return;
+
+    // Run the `normalize` function for the rule with the invalid value.
+    var value = failure.value,
+        rule = failure.rule;
+
+    rule.normalize(t, n, value);
+
+    // Re-find the node reference, in case it was updated. If the node no longer
+    // exists, we're done for this branch.
+    n = refindNode(t, n);
+    if (!n) return;
+
+    // Increment the iterations counter, and check to make sure that we haven't
+    // exceeded the max. Without this check, it's easy for the `validate` or
+    // `normalize` function of a schema rule to be written incorrectly and for
+    // an infinite invalid loop to occur.
+    iterations++;
+
+    if (iterations > max) {
+      throw new Error('A schema rule could not be validated after sufficient iterations. This is usually due to a `rule.validate` or `rule.normalize` function of a schema being incorrectly written, causing an infinite loop.');
+    }
+
+    // Otherwise, iterate again.
+    iterate(t, n);
+  }
+
+  iterate(transform, node);
+}
+
+/**
+ * Assert that a `schema` exists.
+ *
+ * @param {Schema} schema
+ */
+
+function assertSchema(schema) {
+  if (schema instanceof _schema2.default) {
+    return;
+  } else if (schema == null) {
+    throw new Error('You must pass a `schema` object.');
+  } else {
+    throw new Error('You passed an invalid `schema` object: ' + schema + '.');
+  }
+}
+},{"../models/schema":389,"../utils/normalize":416,"../utils/warn":421}],406:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -70042,21 +71351,20 @@ exports.undo = undo;
  * Redo to the next state in the history.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function redo(transform) {
   var state = transform.state;
-  var _state = state;
-  var history = _state.history;
-  var _history = history;
-  var undos = _history.undos;
-  var redos = _history.redos;
+  var _state = state,
+      history = _state.history;
+  var _history = history,
+      undos = _history.undos,
+      redos = _history.redos;
 
   // If there's no next snapshot, abort.
 
   var next = redos.peek();
-  if (!next) return transform;
+  if (!next) return;
 
   // Shift the next state into the undo stack.
   redos = redos.pop();
@@ -70074,7 +71382,6 @@ function redo(transform) {
 
   // Update the transform.
   transform.state = state;
-  return transform;
 }
 
 /**
@@ -70082,24 +71389,23 @@ function redo(transform) {
  *
  * @param {Transform} transform
  * @param {Object} options
- * @return {Transform}
  */
 
 function save(transform) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var _options$merge = options.merge;
-  var merge = _options$merge === undefined ? false : _options$merge;
-  var state = transform.state;
-  var operations = transform.operations;
-  var _state2 = state;
-  var history = _state2.history;
-  var _history2 = history;
-  var undos = _history2.undos;
-  var redos = _history2.redos;
+  var _options$merge = options.merge,
+      merge = _options$merge === undefined ? false : _options$merge;
+  var state = transform.state,
+      operations = transform.operations;
+  var _state2 = state,
+      history = _state2.history;
+  var _history2 = history,
+      undos = _history2.undos,
+      redos = _history2.redos;
 
   // If there are no operations, abort.
 
-  if (!operations.length) return transform;
+  if (!operations.length) return;
 
   // Create a new save point or merge the operations into the previous one.
   if (merge) {
@@ -70121,28 +71427,26 @@ function save(transform) {
 
   // Update the transform.
   transform.state = state;
-  return transform;
 }
 
 /**
  * Undo the previous operations in the history.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function undo(transform) {
   var state = transform.state;
-  var _state3 = state;
-  var history = _state3.history;
-  var _history3 = history;
-  var undos = _history3.undos;
-  var redos = _history3.redos;
+  var _state3 = state,
+      history = _state3.history;
+  var _history3 = history,
+      undos = _history3.undos,
+      redos = _history3.redos;
 
   // If there's no previous snapshot, abort.
 
   var previous = undos.peek();
-  if (!previous) return transform;
+  if (!previous) return;
 
   // Shift the previous operations into the redo stack.
   undos = undos.pop();
@@ -70162,9 +71466,8 @@ function undo(transform) {
 
   // Update the transform.
   transform.state = state;
-  return transform;
 }
-},{}],352:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -70195,13 +71498,16 @@ exports.moveForward = moveForward;
 exports.moveTo = moveTo;
 exports.moveToOffsets = moveToOffsets;
 exports.moveToRangeOf = moveToRangeOf;
+exports.moveStartOffset = moveStartOffset;
+exports.moveEndOffset = moveEndOffset;
+exports.unsetMarks = unsetMarks;
+exports.snapshotSelection = snapshotSelection;
 exports.unsetSelection = unsetSelection;
 
 /**
  * Blur the selection.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function blur(transform) {
@@ -70209,14 +71515,13 @@ function blur(transform) {
   var selection = state.selection;
 
   var sel = selection.blur();
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the focus point to the anchor point.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function collapseToAnchor(transform) {
@@ -70224,14 +71529,13 @@ function collapseToAnchor(transform) {
   var selection = state.selection;
 
   var sel = selection.collapseToAnchor();
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
- * Move the anchor point to the
- *  focus point.
+ * Move the start point to the end point.
+ *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function collapseToEnd(transform) {
@@ -70239,14 +71543,13 @@ function collapseToEnd(transform) {
   var selection = state.selection;
 
   var sel = selection.collapseToEnd();
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
- * Move the anchor point to the
- *  focus point.
+ * Move the anchor point to the focus point.
+ *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function collapseToFocus(transform) {
@@ -70254,14 +71557,13 @@ function collapseToFocus(transform) {
   var selection = state.selection;
 
   var sel = selection.collapseToFocus();
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
- * Move the focus point to the anchor point.
+ * Move the end point to the start point.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function collapseToStart(transform) {
@@ -70269,7 +71571,7 @@ function collapseToStart(transform) {
   var selection = state.selection;
 
   var sel = selection.collapseToStart();
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70277,7 +71579,6 @@ function collapseToStart(transform) {
  *
  * @param {Transform} transform
  * @param {Node} node
- * @return {Transform}
  */
 
 function collapseToEndOf(transform, node) {
@@ -70285,91 +71586,87 @@ function collapseToEndOf(transform, node) {
   var selection = state.selection;
 
   var sel = selection.collapseToEndOf(node);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the end of the next block.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToEndOfNextBlock(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var blocks = document.getBlocksAtRange(selection);
   var last = blocks.last();
   var next = document.getNextBlock(last);
-  if (!next) return transform;
+  if (!next) return;
 
   var sel = selection.collapseToEndOf(next);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the end of the next text.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToEndOfNextText(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var texts = document.getTextsAtRange(selection);
   var last = texts.last();
   var next = document.getNextText(last);
-  if (!next) return transform;
+  if (!next) return;
 
   var sel = selection.collapseToEndOf(next);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the end of the previous block.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToEndOfPreviousBlock(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var blocks = document.getBlocksAtRange(selection);
   var first = blocks.first();
   var previous = document.getPreviousBlock(first);
-  if (!previous) return transform;
+  if (!previous) return;
 
   var sel = selection.collapseToEndOf(previous);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the end of the previous text.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToEndOfPreviousText(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var texts = document.getTextsAtRange(selection);
   var first = texts.first();
   var previous = document.getPreviousText(first);
-  if (!previous) return transform;
+  if (!previous) return;
 
   var sel = selection.collapseToEndOf(previous);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70377,7 +71674,6 @@ function collapseToEndOfPreviousText(transform) {
  *
  * @param {Transform} transform
  * @param {Node} node
- * @return {Transform}
  */
 
 function collapseToStartOf(transform, node) {
@@ -70385,91 +71681,87 @@ function collapseToStartOf(transform, node) {
   var selection = state.selection;
 
   var sel = selection.collapseToStartOf(node);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the start of the next block.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToStartOfNextBlock(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var blocks = document.getBlocksAtRange(selection);
   var last = blocks.last();
   var next = document.getNextBlock(last);
-  if (!next) return transform;
+  if (!next) return;
 
   var sel = selection.collapseToStartOf(next);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the start of the next text.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToStartOfNextText(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var texts = document.getTextsAtRange(selection);
   var last = texts.last();
   var next = document.getNextText(last);
-  if (!next) return transform;
+  if (!next) return;
 
   var sel = selection.collapseToStartOf(next);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the start of the previous block.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToStartOfPreviousBlock(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var blocks = document.getBlocksAtRange(selection);
   var first = blocks.first();
   var previous = document.getPreviousBlock(first);
-  if (!previous) return transform;
+  if (!previous) return;
 
   var sel = selection.collapseToStartOf(previous);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Move the selection to the start of the previous text.
  *
  * @param {Transform} tansform
- * @return {Transform}
  */
 
 function collapseToStartOfPreviousText(transform) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var texts = document.getTextsAtRange(selection);
   var first = texts.first();
   var previous = document.getPreviousText(first);
-  if (!previous) return transform;
+  if (!previous) return;
 
   var sel = selection.collapseToStartOf(previous);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70477,16 +71769,15 @@ function collapseToStartOfPreviousText(transform) {
  *
  * @param {Transform} transform
  * @param {Number} n (optional)
- * @return {Transform}
  */
 
 function extendBackward(transform, n) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var sel = selection.extendBackward(n).normalize(document);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70494,16 +71785,15 @@ function extendBackward(transform, n) {
  *
  * @param {Transform} transform
  * @param {Number} n (optional)
- * @return {Transform}
  */
 
 function extendForward(transform, n) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var sel = selection.extendForward(n).normalize(document);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70511,16 +71801,15 @@ function extendForward(transform, n) {
  *
  * @param {Transform} transform
  * @param {Node} node
- * @return {Transform}
  */
 
 function extendToEndOf(transform, node) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var sel = selection.extendToEndOf(node).normalize(document);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70528,23 +71817,21 @@ function extendToEndOf(transform, node) {
  *
  * @param {Transform} transform
  * @param {Node} node
- * @return {Transform}
  */
 
 function extendToStartOf(transform, node) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var sel = selection.extendToStartOf(node).normalize(document);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
  * Focus the selection.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function focus(transform) {
@@ -70552,7 +71839,7 @@ function focus(transform) {
   var selection = state.selection;
 
   var sel = selection.focus();
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70560,16 +71847,15 @@ function focus(transform) {
  *
  * @param {Transform} transform
  * @param {Number} n (optional)
- * @return {Transform}
  */
 
 function moveBackward(transform, n) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var sel = selection.moveBackward(n).normalize(document);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70577,16 +71863,15 @@ function moveBackward(transform, n) {
  *
  * @param {Transform} transform
  * @param {Number} n (optional)
- * @return {Transform}
  */
 
 function moveForward(transform, n) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var sel = selection.moveForward(n).normalize(document);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70594,11 +71879,10 @@ function moveForward(transform, n) {
  *
  * @param {Transform} transform
  * @param {Object} properties
- * @return {Transform}
  */
 
 function moveTo(transform, properties) {
-  return transform.setSelectionOperation(properties);
+  transform.setSelectionOperation(properties);
 }
 
 /**
@@ -70607,16 +71891,14 @@ function moveTo(transform, properties) {
  * @param {Transform} transform
  * @param {Number} anchor
  * @param {Number} focus (optional)
- * @return {Transform}
  */
 
-function moveToOffsets(transform, anchor, fokus) {
+function moveToOffsets(transform, anchor, _focus) {
   var state = transform.state;
-  var document = state.document;
   var selection = state.selection;
 
-  var sel = selection.moveToOffsets(anchor, fokus);
-  return transform.setSelectionOperation(sel);
+  var sel = selection.moveToOffsets(anchor, _focus);
+  transform.setSelectionOperation(sel);
 }
 
 /**
@@ -70625,27 +71907,80 @@ function moveToOffsets(transform, anchor, fokus) {
  * @param {Transform} transform
  * @param {Node} start
  * @param {Node} end (optional)
- * @return {Transform}
  */
 
 function moveToRangeOf(transform, start, end) {
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var sel = selection.moveToRangeOf(start, end).normalize(document);
-  return transform.setSelectionOperation(sel);
+  transform.setSelectionOperation(sel);
+}
+
+/**
+ * Move the start offset by `n`.
+ *
+ * @param {Transform} transform
+ * @param {Number} n
+ */
+
+function moveStartOffset(transform, n) {
+  var state = transform.state;
+  var document = state.document,
+      selection = state.selection;
+
+  var sel = selection.moveStartOffset(n).normalize(document);
+  transform.setSelectionOperation(sel);
+}
+
+/**
+ * Move the end offset by `n`.
+ *
+ * @param {Transform} transform
+ * @param {Number} n
+ */
+
+function moveEndOffset(transform, n) {
+  var state = transform.state;
+  var document = state.document,
+      selection = state.selection;
+
+  var sel = selection.moveEndOffset(n).normalize(document);
+  transform.setSelectionOperation(sel);
+}
+
+/**
+ * Unset the selection's marks.
+ *
+ * @param {Transform} transform
+ */
+
+function unsetMarks(transform) {
+  transform.setSelectionOperation({ marks: null });
+}
+
+/**
+ * Snapshot the current selection.
+ *
+ * @param {Transform} transform
+ */
+
+function snapshotSelection(transform) {
+  var state = transform.state;
+  var selection = state.selection;
+
+  transform.setSelectionOperation(selection, { snapshot: true });
 }
 
 /**
  * Unset the selection, removing an association to a node.
  *
  * @param {Transform} transform
- * @return {Transform}
  */
 
 function unsetSelection(transform) {
-  return transform.setSelectionOperation({
+  transform.setSelectionOperation({
     anchorKey: null,
     anchorOffset: 0,
     focusKey: null,
@@ -70654,7 +71989,7 @@ function unsetSelection(transform) {
     isBackward: false
   });
 }
-},{}],353:[function(require,module,exports){
+},{}],408:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -70687,7 +72022,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {Number} offset
  * @param {Number} length
  * @param {Mixed} mark
- * @return {Transform}
  */
 
 function addMarkOperation(transform, path, offset, length, mark) {
@@ -70708,7 +72042,7 @@ function addMarkOperation(transform, path, offset, length, mark) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70718,7 +72052,6 @@ function addMarkOperation(transform, path, offset, length, mark) {
  * @param {Array} path
  * @param {Number} index
  * @param {Node} node
- * @return {Transform}
  */
 
 function insertNodeOperation(transform, path, index, node) {
@@ -70736,7 +72069,7 @@ function insertNodeOperation(transform, path, index, node) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70746,8 +72079,7 @@ function insertNodeOperation(transform, path, index, node) {
  * @param {Array} path
  * @param {Number} offset
  * @param {String} text
- * @param {Set} marks (optional)
- * @return {Transform}
+ * @param {Set<Mark>} marks (optional)
  */
 
 function insertTextOperation(transform, path, offset, text, marks) {
@@ -70768,7 +72100,7 @@ function insertTextOperation(transform, path, offset, text, marks) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70777,21 +72109,33 @@ function insertTextOperation(transform, path, offset, text, marks) {
  * @param {Transform} transform
  * @param {Array} path
  * @param {Array} withPath
- * @return {Transform}
  */
 
 function joinNodeOperation(transform, path, withPath) {
   var state = transform.state;
   var document = state.document;
 
-  var node = document.assertPath(path);
-  var offset = node.length;
+  var node = document.assertPath(withPath);
 
-  var inverse = [{
-    type: 'split_node',
-    path: withPath,
-    offset: offset
-  }];
+  var inverse = void 0;
+  if (node.kind === 'text') {
+    var offset = node.length;
+
+    inverse = [{
+      type: 'split_node',
+      path: withPath,
+      offset: offset
+    }];
+  } else {
+    // The number of children after which we split
+    var count = node.nodes.count();
+
+    inverse = [{
+      type: 'split_node',
+      path: withPath,
+      count: count
+    }];
+  }
 
   var operation = {
     type: 'join_node',
@@ -70800,7 +72144,7 @@ function joinNodeOperation(transform, path, withPath) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70810,12 +72154,9 @@ function joinNodeOperation(transform, path, withPath) {
  * @param {Array} path
  * @param {Array} newPath
  * @param {Number} newIndex
- * @return {Transform}
  */
 
 function moveNodeOperation(transform, path, newPath, newIndex) {
-  var state = transform.state;
-
   var parentPath = path.slice(0, -1);
   var parentIndex = path[path.length - 1];
   var inversePath = newPath.slice().concat([newIndex]);
@@ -70835,7 +72176,7 @@ function moveNodeOperation(transform, path, newPath, newIndex) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70846,7 +72187,6 @@ function moveNodeOperation(transform, path, newPath, newIndex) {
  * @param {Number} offset
  * @param {Number} length
  * @param {Mark} mark
- * @return {Transform}
  */
 
 function removeMarkOperation(transform, path, offset, length, mark) {
@@ -70867,7 +72207,7 @@ function removeMarkOperation(transform, path, offset, length, mark) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70875,7 +72215,6 @@ function removeMarkOperation(transform, path, offset, length, mark) {
  *
  * @param {Transform} transform
  * @param {Array} path
- * @return {Transform}
  */
 
 function removeNodeOperation(transform, path) {
@@ -70884,7 +72223,7 @@ function removeNodeOperation(transform, path) {
 
   var node = document.assertPath(path);
   var inversePath = path.slice(0, -1);
-  var inverseIndex = path.slice(-1);
+  var inverseIndex = path[path.length - 1];
 
   var inverse = [{
     type: 'insert_node',
@@ -70899,7 +72238,7 @@ function removeNodeOperation(transform, path) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70909,7 +72248,6 @@ function removeNodeOperation(transform, path) {
  * @param {Array} path
  * @param {Number} offset
  * @param {Number} length
- * @return {Transform}
  */
 
 function removeTextOperation(transform, path, offset, length) {
@@ -70920,16 +72258,20 @@ function removeTextOperation(transform, path, offset, length) {
   var ranges = node.getRanges();
   var inverse = [];
 
+  // Loop the ranges of text in the node, creating inverse insert operations for
+  // each of the ranges that overlap with the remove operation. This is
+  // necessary because insert's can only have a single set of marks associated
+  // with them, but removes can remove many.
   ranges.reduce(function (start, range) {
-    var text = range.text;
-    var marks = range.marks;
+    var text = range.text,
+        marks = range.marks;
 
     var end = start + text.length;
-    if (start > offset + length) return;
-    if (end <= offset) return;
+    if (start > offset + length) return end;
+    if (end <= offset) return end;
 
     var endOffset = Math.min(end, offset + length);
-    var string = text.slice(offset, endOffset);
+    var string = text.slice(offset - start, endOffset - start);
 
     inverse.push({
       type: 'insert_text',
@@ -70950,7 +72292,7 @@ function removeTextOperation(transform, path, offset, length) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70961,23 +72303,17 @@ function removeTextOperation(transform, path, offset, length) {
  * @param {Number} offset
  * @param {Number} length
  * @param {Mark} mark
- * @return {Transform}
+ * @param {Mark} newMark
  */
 
-function setMarkOperation(transform, path, offset, length, mark, properties) {
-  var inverseProps = {};
-
-  for (var k in properties) {
-    inverseProps[k] = mark[k];
-  }
-
+function setMarkOperation(transform, path, offset, length, mark, newMark) {
   var inverse = [{
     type: 'set_mark',
     path: path,
     offset: offset,
     length: length,
-    mark: mark,
-    properties: inverseProps
+    mark: newMark,
+    newMark: mark
   }];
 
   var operation = {
@@ -70986,11 +72322,11 @@ function setMarkOperation(transform, path, offset, length, mark, properties) {
     offset: offset,
     length: length,
     mark: mark,
-    properties: properties,
+    newMark: newMark,
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -70998,8 +72334,7 @@ function setMarkOperation(transform, path, offset, length, mark, properties) {
  *
  * @param {Transform} transform
  * @param {Array} path
- * @param {Object || String} properties
- * @return {Transform}
+ * @param {Object} properties
  */
 
 function setNodeOperation(transform, path, properties) {
@@ -71026,7 +72361,7 @@ function setNodeOperation(transform, path, properties) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -71034,15 +72369,16 @@ function setNodeOperation(transform, path, properties) {
  *
  * @param {Transform} transform
  * @param {Mixed} selection
- * @return {Transform}
  */
 
 function setSelectionOperation(transform, properties) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
   properties = _normalize2.default.selectionProperties(properties);
 
   var state = transform.state;
-  var document = state.document;
-  var selection = state.selection;
+  var document = state.document,
+      selection = state.selection;
 
   var prevProps = {};
   var props = {};
@@ -71051,7 +72387,7 @@ function setSelectionOperation(transform, properties) {
   // create a dictionary of the previous values for all of the properties that
   // are being changed, for the inverse operation.
   for (var k in properties) {
-    if (properties[k] == selection[k]) continue;
+    if (!options.snapshot && properties[k] == selection[k]) continue;
     props[k] = properties[k];
     prevProps[k] = selection[k];
   }
@@ -71101,7 +72437,7 @@ function setSelectionOperation(transform, properties) {
   };
 
   // Apply the operation.
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
 
 /**
@@ -71110,16 +72446,17 @@ function setSelectionOperation(transform, properties) {
  * @param {Transform} transform
  * @param {Array} path
  * @param {Number} offset
- * @return {Transform}
  */
 
 function splitNodeOperation(transform, path, offset) {
-  var inverseIndex = path[path.length - 1] + 1;
-  var inversePath = path.slice(0, -1).concat([inverseIndex]);
+  var inversePath = path.slice();
+  inversePath[path.length - 1] += 1;
+
   var inverse = [{
     type: 'join_node',
     path: inversePath,
-    withPath: path
+    withPath: path,
+    deep: true // we need to join nodes recursively
   }];
 
   var operation = {
@@ -71129,9 +72466,9 @@ function splitNodeOperation(transform, path, offset) {
     inverse: inverse
   };
 
-  return transform.applyOperation(operation);
+  transform.applyOperation(operation);
 }
-},{"../utils/normalize":359}],354:[function(require,module,exports){
+},{"../utils/normalize":416}],409:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71142,7 +72479,7 @@ Object.defineProperty(exports, "__esModule", {
  * Find the DOM node for a `node`.
  *
  * @param {Node} node
- * @return {Element} el
+ * @return {Element}
  */
 
 function findDOMNode(node) {
@@ -71157,10 +72494,63 @@ function findDOMNode(node) {
 
 /**
  * Export.
+ *
+ * @type {Function}
  */
 
 exports.default = findDOMNode;
-},{}],355:[function(require,module,exports){
+},{}],410:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setKeyGenerator = exports.default = undefined;
+
+var _uniqueId = require('lodash/uniqueId');
+
+var _uniqueId2 = _interopRequireDefault(_uniqueId);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Default the generator function to Lodash's implementation, which just returns
+ * incrementing numbers as strings.
+ *
+ * @type {Function}
+ */
+
+var generate = _uniqueId2.default;
+
+/**
+ * Create a key.
+ *
+ * @return {String}
+ */
+
+function generateKey() {
+  return generate();
+}
+
+/**
+ * Set a different unique ID generating `function`.
+ *
+ * @param {Function} func
+ */
+
+function setKeyGenerator(func) {
+  generate = func;
+}
+
+/**
+ * Export.
+ *
+ * @type {Object}
+ */
+
+exports.default = generateKey;
+exports.setKeyGenerator = setKeyGenerator;
+},{"lodash/uniqueId":204}],411:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -71171,7 +72561,7 @@ Object.defineProperty(exports, "__esModule", {
  * Get leaf text for a node
  *
  * @param {Node} node
- * @return {Text} text
+ * @return {Text}
  */
 
 function getLeafText(node) {
@@ -71179,8 +72569,7 @@ function getLeafText(node) {
     return node;
   }
 
-  var texts = node.getTexts();
-  return texts.first();
+  return node.getFirstText();
 }
 
 /**
@@ -71190,7 +72579,7 @@ function getLeafText(node) {
  */
 
 exports.default = getLeafText;
-},{}],356:[function(require,module,exports){
+},{}],412:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71203,14 +72592,14 @@ Object.defineProperty(exports, "__esModule", {
  * @param {Number} index
  * @param {Text} text
  * @param {Selection} range
- * @return {Set} characters
+ * @return {Boolean}
  */
 
 function isInRange(index, text, range) {
-  var startKey = range.startKey;
-  var startOffset = range.startOffset;
-  var endKey = range.endKey;
-  var endOffset = range.endOffset;
+  var startKey = range.startKey,
+      startOffset = range.startOffset,
+      endKey = range.endKey,
+      endOffset = range.endOffset;
 
 
   if (text.key == startKey && text.key == endKey) {
@@ -71231,7 +72620,7 @@ function isInRange(index, text, range) {
  */
 
 exports.default = isInRange;
-},{}],357:[function(require,module,exports){
+},{}],413:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71256,24 +72645,67 @@ function isReactComponent(object) {
  */
 
 exports.default = isReactComponent;
-},{}],358:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.__enable = exports.__clear = exports.default = undefined;
 
-var _immutable = require('immutable');
+var _es6Map = require('es6-map');
+
+var _es6Map2 = _interopRequireDefault(_es6Map);
+
+var _isDev = require('../constants/is-dev');
+
+var _isDev2 = _interopRequireDefault(_isDev);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * The leaf node of a cache tree.
+ * GLOBAL: True if memoization should is enabled. Only effective in DEV mode.
  *
- * An object, so that immutable maps will key it by reference.
+ * @type {Boolean}
+ */
+
+var ENABLED = true;
+
+/**
+ * GLOBAL: Changing this cache key will clear all previous cached results.
+ * Only effective in DEV mode.
+ *
+ * @type {Number}
+ */
+
+var CACHE_KEY = 0;
+
+/**
+ * The leaf node of a cache tree. Used to support variable argument length.
+ *
+ * A unique object, so that native Maps will key it by reference.
  *
  * @type {Object}
  */
 
 var LEAF = {};
+
+/**
+ * A value to represent a memoized undefined value. Allows efficient
+ * value retrieval using Map.get only.
+ *
+ * @type {Object}
+ */
+
+var UNDEFINED = {};
+
+/**
+ * Default value for unset keys in native Maps
+ *
+ * @type {Undefined}
+ */
+
+var UNSET = undefined;
 
 /**
  * Memoize all of the `properties` on a `object`.
@@ -71303,13 +72735,27 @@ function memoize(object, properties) {
           args[_key] = arguments[_key];
         }
 
-        var keys = [property].concat(args, [LEAF]);
-        var cache = this.__cache = this.__cache || new _immutable.Map();
+        if (_isDev2.default) {
+          if (!ENABLED) {
+            // Memoization disabled
+            return original.apply(this, args);
+          } else if (CACHE_KEY !== this.__cache_key) {
+            // Previous caches must be cleared
+            this.__cache_key = CACHE_KEY;
+            this.__cache = new _es6Map2.default();
+          }
+        }
 
-        if (cache.hasIn(keys)) return cache.getIn(keys);
+        var keys = [property].concat(args);
+        this.__cache = this.__cache || new _es6Map2.default();
+
+        var cachedValue = getIn(this.__cache, keys);
+        if (cachedValue !== UNSET) {
+          return cachedValue === UNDEFINED ? undefined : cachedValue;
+        }
 
         var value = original.apply(this, args);
-        this.__cache = cache.setIn(keys, value);
+        this.__cache = setIn(this.__cache, keys, value);
         return value;
       };
     };
@@ -71334,11 +72780,162 @@ function memoize(object, properties) {
 }
 
 /**
+ * Set a value at a key path in a tree of Map, creating Maps on the go.
+ *
+ * @param {Map} map
+ * @param {Array} keys
+ * @param {Any} value
+ * @return {Map}
+ */
+
+function setIn(map, keys, value) {
+  value = value === undefined ? UNDEFINED : value;
+
+  var parentMap = map;
+  var childMap = void 0;
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = keys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var key = _step2.value;
+
+      childMap = parentMap.get(key);
+
+      // If the path was not created yet...
+      if (childMap === UNSET) {
+        childMap = new _es6Map2.default();
+        parentMap.set(key, childMap);
+      }
+
+      parentMap = childMap;
+    }
+
+    // The whole path has been created, so set the value to the bottom most map.
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2.return) {
+        _iterator2.return();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  childMap.set(LEAF, value);
+
+  return map;
+}
+
+/**
+ * Get a value at a key path in a tree of Map.
+ *
+ * If not set, returns UNSET.
+ * If the set value is undefined, returns UNDEFINED.
+ *
+ * @param {Map} map
+ * @param {Array} keys
+ * @return {Any|UNSET|UNDEFINED}
+ */
+
+function getIn(map, keys) {
+  var childMap = void 0;
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = keys[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var key = _step3.value;
+
+      childMap = map.get(key);
+
+      if (childMap === UNSET) {
+        return UNSET;
+      }
+
+      map = childMap;
+    }
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3.return) {
+        _iterator3.return();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
+      }
+    }
+  }
+
+  return childMap.get(LEAF);
+}
+
+/**
+ * In DEV mode, clears the previously memoized values, globally.
+ *
+ * @return {Void}
+ */
+
+function __clear() {
+  CACHE_KEY++;
+  if (CACHE_KEY >= Number.MAX_SAFE_INTEGER) {
+    CACHE_KEY = 0;
+  }
+}
+
+/**
+ * In DEV mode, enable or disable the use of memoize values, globally.
+ *
+ * @param {Boolean} enabled
+ * @return {Void}
+ */
+
+function __enable(enabled) {
+  ENABLED = enabled;
+}
+
+/**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = memoize;
-},{"immutable":93}],359:[function(require,module,exports){
+exports.__clear = __clear;
+exports.__enable = __enable;
+},{"../constants/is-dev":378,"es6-map":93}],415:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/**
+ * Noop.
+ *
+ * @return {Void}
+ */
+
+function noop() {}
+
+/**
+ * Export.
+ *
+ * @type {Function}
+ */
+
+exports.default = noop;
+},{}],416:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -71373,6 +72970,10 @@ var _text = require('../models/text');
 
 var _text2 = _interopRequireDefault(_text);
 
+var _warn = require('./warn');
+
+var _warn2 = _interopRequireDefault(_warn);
+
 var _typeOf = require('type-of');
 
 var _typeOf2 = _interopRequireDefault(_typeOf);
@@ -71382,7 +72983,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Normalize a block argument `value`.
  *
- * @param {Block || String || Object} value
+ * @param {Block|String|Object} value
  * @return {Block}
  */
 
@@ -71392,20 +72993,17 @@ function block(value) {
   switch ((0, _typeOf2.default)(value)) {
     case 'string':
     case 'object':
-      {
-        return _block2.default.create(nodeProperties(value));
-      }
+      return _block2.default.create(nodeProperties(value));
+
     default:
-      {
-        throw new Error('Invalid `block` argument! It must be a block, an object, or a string. You passed: "' + value + '".');
-      }
+      throw new Error('Invalid `block` argument! It must be a block, an object, or a string. You passed: "' + value + '".');
   }
 }
 
 /**
  * Normalize an inline argument `value`.
  *
- * @param {Inline || String || Object} value
+ * @param {Inline|String|Object} value
  * @return {Inline}
  */
 
@@ -71415,30 +73013,28 @@ function inline(value) {
   switch ((0, _typeOf2.default)(value)) {
     case 'string':
     case 'object':
-      {
-        return _inline2.default.create(nodeProperties(value));
-      }
+      return _inline2.default.create(nodeProperties(value));
+
     default:
-      {
-        throw new Error('Invalid `inline` argument! It must be an inline, an object, or a string. You passed: "' + value + '".');
-      }
+      throw new Error('Invalid `inline` argument! It must be an inline, an object, or a string. You passed: "' + value + '".');
   }
 }
 
 /**
  * Normalize a key argument `value`.
  *
- * @param {String || Node} value
+ * @param {String|Node} value
  * @return {String}
  */
 
 function key(value) {
+  if ((0, _typeOf2.default)(value) == 'string') return value;
+
+  (0, _warn2.default)('An object was passed to a Node method instead of a `key` string. This was previously supported, but is being deprecated because it can have a negative impact on performance. The object in question was:', value);
   if (value instanceof _block2.default) return value.key;
   if (value instanceof _document2.default) return value.key;
   if (value instanceof _inline2.default) return value.key;
   if (value instanceof _text2.default) return value.key;
-
-  if ((0, _typeOf2.default)(value) == 'string') return value;
 
   throw new Error('Invalid `key` argument! It must be either a block, an inline, a text, or a string. You passed: "' + value + '".');
 }
@@ -71446,7 +73042,7 @@ function key(value) {
 /**
  * Normalize a mark argument `value`.
  *
- * @param {Mark || String || Object} value
+ * @param {Mark|String|Object} value
  * @return {Mark}
  */
 
@@ -71456,20 +73052,17 @@ function mark(value) {
   switch ((0, _typeOf2.default)(value)) {
     case 'string':
     case 'object':
-      {
-        return _mark2.default.create(markProperties(value));
-      }
+      return _mark2.default.create(markProperties(value));
+
     default:
-      {
-        throw new Error('Invalid `mark` argument! It must be a mark, an object, or a string. You passed: "' + value + '".');
-      }
+      throw new Error('Invalid `mark` argument! It must be a mark, an object, or a string. You passed: "' + value + '".');
   }
 }
 
 /**
  * Normalize a mark properties argument `value`.
  *
- * @param {String || Object || Mark} value
+ * @param {String|Object|Mark} value
  * @return {Object}
  */
 
@@ -71480,25 +73073,21 @@ function markProperties() {
 
   switch ((0, _typeOf2.default)(value)) {
     case 'string':
-      {
-        ret.type = value;
-        break;
-      }
+      ret.type = value;
+      break;
+
     case 'object':
-      {
-        for (var k in value) {
-          if (k == 'data') {
-            if (value[k] !== undefined) ret[k] = _data2.default.create(value[k]);
-          } else {
-            ret[k] = value[k];
-          }
+      for (var k in value) {
+        if (k == 'data') {
+          if (value[k] !== undefined) ret[k] = _data2.default.create(value[k]);
+        } else {
+          ret[k] = value[k];
         }
-        break;
       }
+      break;
+
     default:
-      {
-        throw new Error('Invalid mark `properties` argument! It must be an object, a string or a mark. You passed: "' + value + '".');
-      }
+      throw new Error('Invalid mark `properties` argument! It must be an object, a string or a mark. You passed: "' + value + '".');
   }
 
   return ret;
@@ -71507,7 +73096,7 @@ function markProperties() {
 /**
  * Normalize a node properties argument `value`.
  *
- * @param {String || Object || Node} value
+ * @param {String|Object|Node} value
  * @return {Object}
  */
 
@@ -71518,26 +73107,22 @@ function nodeProperties() {
 
   switch ((0, _typeOf2.default)(value)) {
     case 'string':
-      {
-        ret.type = value;
-        break;
-      }
+      ret.type = value;
+      break;
+
     case 'object':
-      {
-        if (value.isVoid !== undefined) ret.isVoid = !!value.isVoid;
-        for (var k in value) {
-          if (k == 'data') {
-            if (value[k] !== undefined) ret[k] = _data2.default.create(value[k]);
-          } else {
-            ret[k] = value[k];
-          }
+      if (value.isVoid !== undefined) ret.isVoid = !!value.isVoid;
+      for (var k in value) {
+        if (k == 'data') {
+          if (value[k] !== undefined) ret[k] = _data2.default.create(value[k]);
+        } else {
+          ret[k] = value[k];
         }
-        break;
       }
+      break;
+
     default:
-      {
-        throw new Error('Invalid node `properties` argument! It must be an object, a string or a node. You passed: "' + value + '".');
-      }
+      throw new Error('Invalid node `properties` argument! It must be an object, a string or a node. You passed: "' + value + '".');
   }
 
   return ret;
@@ -71546,7 +73131,7 @@ function nodeProperties() {
 /**
  * Normalize a selection argument `value`.
  *
- * @param {Selection || Object} value
+ * @param {Selection|Object} value
  * @return {Selection}
  */
 
@@ -71555,20 +73140,17 @@ function selection(value) {
 
   switch ((0, _typeOf2.default)(value)) {
     case 'object':
-      {
-        return _selection2.default.create(value);
-      }
+      return _selection2.default.create(value);
+
     default:
-      {
-        throw new Error('Invalid `selection` argument! It must be a selection or an object. You passed: "' + value + '".');
-      }
+      throw new Error('Invalid `selection` argument! It must be a selection or an object. You passed: "' + value + '".');
   }
 }
 
 /**
  * Normalize a selection properties argument `value`.
  *
- * @param {Object || Selection} value
+ * @param {Object|Selection} value
  * @return {Object}
  */
 
@@ -71579,20 +73161,17 @@ function selectionProperties() {
 
   switch ((0, _typeOf2.default)(value)) {
     case 'object':
-      {
-        if (value.anchorKey !== undefined) ret.anchorKey = value.anchorKey;
-        if (value.anchorOffset !== undefined) ret.anchorOffset = value.anchorOffset;
-        if (value.focusKey !== undefined) ret.focusKey = value.focusKey;
-        if (value.focusOffset !== undefined) ret.focusOffset = value.focusOffset;
-        if (value.isBackward !== undefined) ret.isBackward = !!value.isBackward;
-        if (value.isFocused !== undefined) ret.isFocused = !!value.isFocused;
-        if (value.marks !== undefined) ret.marks = value.marks;
-        break;
-      }
+      if (value.anchorKey !== undefined) ret.anchorKey = value.anchorKey;
+      if (value.anchorOffset !== undefined) ret.anchorOffset = value.anchorOffset;
+      if (value.focusKey !== undefined) ret.focusKey = value.focusKey;
+      if (value.focusOffset !== undefined) ret.focusOffset = value.focusOffset;
+      if (value.isBackward !== undefined) ret.isBackward = !!value.isBackward;
+      if (value.isFocused !== undefined) ret.isFocused = !!value.isFocused;
+      if (value.marks !== undefined) ret.marks = value.marks;
+      break;
+
     default:
-      {
-        throw new Error('Invalid selection `properties` argument! It must be an object or a selection. You passed: "' + value + '".');
-      }
+      throw new Error('Invalid selection `properties` argument! It must be an object or a selection. You passed: "' + value + '".');
   }
 
   return ret;
@@ -71614,7 +73193,7 @@ exports.default = {
   selection: selection,
   selectionProperties: selectionProperties
 };
-},{"../models/block":327,"../models/data":329,"../models/document":330,"../models/inline":331,"../models/mark":332,"../models/selection":335,"../models/text":337,"type-of":368}],360:[function(require,module,exports){
+},{"../models/block":381,"../models/data":383,"../models/document":384,"../models/inline":385,"../models/mark":386,"../models/selection":390,"../models/text":392,"./warn":421,"type-of":427}],417:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -71625,22 +73204,33 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 /**
  * Offset key parser regex.
+ *
+ * @type {RegExp}
  */
 
 var PARSER = /^(\w+)(?:-(\d+))?$/;
 
 /**
  * Offset key attribute name.
+ *
+ * @type {String}
  */
 
 var ATTRIBUTE = 'data-offset-key';
+
+/**
+ * Offset key attribute selector.
+ *
+ * @type {String}
+ */
+
 var SELECTOR = '[' + ATTRIBUTE + ']';
 
 /**
  * Find the start and end bounds from an `offsetKey` and `ranges`.
  *
  * @param {Number} index
- * @param {List} ranges
+ * @param {List<Range>} ranges
  * @return {Object}
  */
 
@@ -71721,21 +73311,21 @@ function findKey(element, offset) {
  * Find the selection point from an `offsetKey` and `ranges`.
  *
  * @param {Object} offsetKey
- * @param {List} ranges
+ * @param {List<Range>} ranges
  * @return {Object}
  */
 
 function findPoint(offsetKey, ranges) {
-  var key = offsetKey.key;
-  var index = offsetKey.index;
-  var offset = offsetKey.offset;
+  var key = offsetKey.key,
+      index = offsetKey.index,
+      offset = offsetKey.offset;
 
-  var _findBounds = findBounds(index, ranges);
-
-  var start = _findBounds.start;
-  var end = _findBounds.end;
+  var _findBounds = findBounds(index, ranges),
+      start = _findBounds.start,
+      end = _findBounds.end;
 
   // Don't let the offset be outside of the start and end bounds.
+
 
   offset = start + offset;
   offset = Math.max(offset, start);
@@ -71761,11 +73351,11 @@ function parse(string) {
   var matches = PARSER.exec(string);
   if (!matches) throw new Error('Invalid offset key string "' + string + '".');
 
-  var _matches = _slicedToArray(matches, 3);
+  var _matches = _slicedToArray(matches, 3),
+      original = _matches[0],
+      key = _matches[1],
+      index = _matches[2]; // eslint-disable-line no-unused-vars
 
-  var original = _matches[0];
-  var key = _matches[1];
-  var index = _matches[2];
 
   return {
     key: key,
@@ -71788,6 +73378,8 @@ function stringify(object) {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = {
@@ -71797,7 +73389,7 @@ exports.default = {
   parse: parse,
   stringify: stringify
 };
-},{}],361:[function(require,module,exports){
+},{}],418:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -71873,7 +73465,7 @@ function scrollTo(element, options) {
 }
 
 exports.default = scrollTo;
-},{"get-window":82}],362:[function(require,module,exports){
+},{"get-window":133}],419:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -71931,7 +73523,7 @@ function isSurrogate(code) {
  * Is a character a word character? Needs the `remaining` characters too.
  *
  * @param {String} char
- * @param {String || Void} remaining
+ * @param {String|Void} remaining
  * @return {Boolean}
  */
 
@@ -72001,23 +73593,6 @@ function getCharOffsetForward(text, offset) {
 }
 
 /**
- * Get the length of a `string`.
- *
- * @param {String} string
- * @return {Number}
- */
-
-function getLength(string) {
-  var length = 0;
-
-  for (var i = 0, char = string.charAt(i); i < string.length; i += getCharLength(char)) {
-    length++;
-  }
-
-  return length;
-}
-
-/**
  * Get the offset to the end of the first word in `text`.
  *
  * @param {String} text
@@ -72078,6 +73653,8 @@ function getWordOffsetForward(text, offset) {
 
 /**
  * Export.
+ *
+ * @type {Object}
  */
 
 exports.default = {
@@ -72086,7 +73663,7 @@ exports.default = {
   getWordOffsetBackward: getWordOffsetBackward,
   getWordOffsetForward: getWordOffsetForward
 };
-},{"esrever":54}],363:[function(require,module,exports){
+},{"esrever":104}],420:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -72176,7 +73753,7 @@ var Transfer = function () {
     /**
      * Get the Files content of the data transfer.
      *
-     * @return {Array || Void}
+     * @return {Array|Void}
      */
 
   }, {
@@ -72226,10 +73803,10 @@ var Transfer = function () {
       if (!encoded && html && ~html.indexOf('<span data-slate-fragment="')) {
         var matches = FRAGMENT_MATCHER.exec(html);
 
-        var _matches = _slicedToArray(matches, 2);
+        var _matches = _slicedToArray(matches, 2),
+            full = _matches[0],
+            attribute = _matches[1]; // eslint-disable-line no-unused-vars
 
-        var full = _matches[0];
-        var attribute = _matches[1];
 
         encoded = attribute;
       }
@@ -72245,7 +73822,7 @@ var Transfer = function () {
     /**
      * Get the HTML content of the data transfer.
      *
-     * @return {String || Void}
+     * @return {String|Void}
      */
 
   }, {
@@ -72265,7 +73842,7 @@ var Transfer = function () {
     /**
      * Get the Slate node content of the data transfer.
      *
-     * @return {Node || Void}
+     * @return {Node|Void}
      */
 
   }, {
@@ -72285,9 +73862,29 @@ var Transfer = function () {
     }
 
     /**
+     * Get the rich text content of the data transfer.
+     *
+     * @return {String|Void}
+     */
+
+  }, {
+    key: 'getRichText',
+    value: function getRichText() {
+      if ('richtext' in this.cache) return this.cache.richtext;
+
+      var richtext = void 0;
+      var string = this.data.getData('text/rtf');
+
+      if (string != '') richtext = string;
+
+      this.cache.richtext = richtext;
+      return richtext;
+    }
+
+    /**
      * Get the text content of the data transfer.
      *
-     * @return {String || Void}
+     * @return {String|Void}
      */
 
   }, {
@@ -72315,6 +73912,14 @@ var Transfer = function () {
     value: function getType() {
       if (this.hasFragment()) return 'fragment';
       if (this.hasNode()) return 'node';
+
+      // COMPAT: Microsoft Word adds an image of the selected text to the data.
+      // Since files are preferred over HTML or text, this would cause the type to
+      // be considered `files`. But it also adds rich text data so we can check
+      // for that and properly set the type to `html` or `text`. (2016/11/21)
+      if (this.hasRichText() && this.hasHtml()) return 'html';
+      if (this.hasRichText() && this.hasText()) return 'text';
+
       if (this.hasFiles()) return 'files';
       if (this.hasHtml()) return 'html';
       if (this.hasText()) return 'text';
@@ -72343,6 +73948,18 @@ var Transfer = function () {
     key: 'hasHtml',
     value: function hasHtml() {
       return this.getHtml() != null;
+    }
+
+    /**
+     * Check whether the data transfer has rich text content.
+     *
+     * @return {Boolean}
+     */
+
+  }, {
+    key: 'hasRichText',
+    value: function hasRichText() {
+      return this.getRichText() != null;
     }
 
     /**
@@ -72387,78 +74004,598 @@ var Transfer = function () {
 
 /**
  * Export.
+ *
+ * @type {Transfer}
  */
 
 exports.default = Transfer;
-},{"../constants/types":325,"../serializers/base-64":341}],364:[function(require,module,exports){
+},{"../constants/types":379,"../serializers/base-64":396}],421:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _uid = require('uid');
+var _isDev = require('../constants/is-dev');
 
-var _uid2 = _interopRequireDefault(_uid);
+var _isDev2 = _interopRequireDefault(_isDev);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Create a unique identifier.
- *
- * @return {String} uid
- */
-
-function uid() {
-  return (0, _uid2.default)(4);
-}
-
-/**
- * Export.
- */
-
-exports.default = uid;
-},{"uid":370}],365:[function(require,module,exports){
-(function (process){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = warning;
-var __DEV__ = typeof process !== 'undefined' && process.env && process.env.NODE_ENV !== 'production';
-
-/**
  * Log a development warning.
+ *
  * @param {String} message
+ * @param {Any} ...args
  */
 
-function warning(message) {
-  if (!__DEV__) {
+function warn(message) {
+  if (!_isDev2.default) {
     return;
   }
 
   if (typeof console !== 'undefined') {
     var _console;
 
-    for (var _len = arguments.length, more = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      more[_key - 1] = arguments[_key];
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
     }
 
-    (_console = console).error.apply(_console, ['Warning: ' + message].concat(more)); // eslint-disable-line no-console
+    (_console = console).warn.apply(_console, ['Warning: ' + message].concat(args)); // eslint-disable-line no-console
   }
 
   try {
-    // --- Welcome to debugging Slate ---
+    // --- Welcome to debugging Slate! ---
     // This error was thrown as a convenience so that you can use this stack
     // to find the callsite that caused this warning to fire.
     throw new Error(message);
   } catch (x) {
-    // This error is only for debugging
+    // This error is only for debugging.
   }
 }
+
+/**
+ * Export.
+ *
+ * @type {Function}
+ */
+
+exports.default = warn;
+},{"../constants/is-dev":378}],422:[function(require,module,exports){
+(function (process){
+
+/**
+ * This is the web browser implementation of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = require('./debug');
+exports.log = log;
+exports.formatArgs = formatArgs;
+exports.save = save;
+exports.load = load;
+exports.useColors = useColors;
+exports.storage = 'undefined' != typeof chrome
+               && 'undefined' != typeof chrome.storage
+                  ? chrome.storage.local
+                  : localstorage();
+
+/**
+ * Colors.
+ */
+
+exports.colors = [
+  'lightseagreen',
+  'forestgreen',
+  'goldenrod',
+  'dodgerblue',
+  'darkorchid',
+  'crimson'
+];
+
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+
+function useColors() {
+  // is webkit? http://stackoverflow.com/a/16459606/376773
+  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+  return (typeof document !== 'undefined' && 'WebkitAppearance' in document.documentElement.style) ||
+    // is firebug? http://stackoverflow.com/a/398120/376773
+    (window.console && (console.firebug || (console.exception && console.table))) ||
+    // is firefox >= v31?
+    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
+}
+
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+exports.formatters.j = function(v) {
+  try {
+    return JSON.stringify(v);
+  } catch (err) {
+    return '[UnexpectedJSONParseError]: ' + err.message;
+  }
+};
+
+
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+function formatArgs() {
+  var args = arguments;
+  var useColors = this.useColors;
+
+  args[0] = (useColors ? '%c' : '')
+    + this.namespace
+    + (useColors ? ' %c' : ' ')
+    + args[0]
+    + (useColors ? '%c ' : ' ')
+    + '+' + exports.humanize(this.diff);
+
+  if (!useColors) return args;
+
+  var c = 'color: ' + this.color;
+  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+
+  // the final "%c" is somewhat tricky, because there could be other
+  // arguments passed either before or after the %c, so we need to
+  // figure out the correct index to insert the CSS into
+  var index = 0;
+  var lastC = 0;
+  args[0].replace(/%[a-z%]/g, function(match) {
+    if ('%%' === match) return;
+    index++;
+    if ('%c' === match) {
+      // we only are interested in the *last* %c
+      // (the user may have provided their own)
+      lastC = index;
+    }
+  });
+
+  args.splice(lastC, 0, c);
+  return args;
+}
+
+/**
+ * Invokes `console.log()` when available.
+ * No-op when `console.log` is not a "function".
+ *
+ * @api public
+ */
+
+function log() {
+  // this hackery is required for IE8/9, where
+  // the `console.log` function doesn't have 'apply'
+  return 'object' === typeof console
+    && console.log
+    && Function.prototype.apply.call(console.log, console, arguments);
+}
+
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+function save(namespaces) {
+  try {
+    if (null == namespaces) {
+      exports.storage.removeItem('debug');
+    } else {
+      exports.storage.debug = namespaces;
+    }
+  } catch(e) {}
+}
+
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+function load() {
+  var r;
+  try {
+    return exports.storage.debug;
+  } catch(e) {}
+
+  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+  if (typeof process !== 'undefined' && 'env' in process) {
+    return process.env.DEBUG;
+  }
+}
+
+/**
+ * Enable namespaces listed in `localStorage.debug` initially.
+ */
+
+exports.enable(load());
+
+/**
+ * Localstorage attempts to return the localstorage.
+ *
+ * This is necessary because safari throws
+ * when a user disables cookies/localstorage
+ * and you attempt to access it.
+ *
+ * @return {LocalStorage}
+ * @api private
+ */
+
+function localstorage(){
+  try {
+    return window.localStorage;
+  } catch (e) {}
+}
+
 }).call(this,require('_process'))
-},{"_process":158}],366:[function(require,module,exports){
+},{"./debug":423,"_process":211}],423:[function(require,module,exports){
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = debug.debug = debug;
+exports.coerce = coerce;
+exports.disable = disable;
+exports.enable = enable;
+exports.enabled = enabled;
+exports.humanize = require('ms');
+
+/**
+ * The currently active debug mode names, and names to skip.
+ */
+
+exports.names = [];
+exports.skips = [];
+
+/**
+ * Map of special "%n" handling functions, for the debug "format" argument.
+ *
+ * Valid key names are a single, lowercased letter, i.e. "n".
+ */
+
+exports.formatters = {};
+
+/**
+ * Previously assigned color.
+ */
+
+var prevColor = 0;
+
+/**
+ * Previous log timestamp.
+ */
+
+var prevTime;
+
+/**
+ * Select a color.
+ *
+ * @return {Number}
+ * @api private
+ */
+
+function selectColor() {
+  return exports.colors[prevColor++ % exports.colors.length];
+}
+
+/**
+ * Create a debugger with the given `namespace`.
+ *
+ * @param {String} namespace
+ * @return {Function}
+ * @api public
+ */
+
+function debug(namespace) {
+
+  // define the `disabled` version
+  function disabled() {
+  }
+  disabled.enabled = false;
+
+  // define the `enabled` version
+  function enabled() {
+
+    var self = enabled;
+
+    // set `diff` timestamp
+    var curr = +new Date();
+    var ms = curr - (prevTime || curr);
+    self.diff = ms;
+    self.prev = prevTime;
+    self.curr = curr;
+    prevTime = curr;
+
+    // add the `color` if not set
+    if (null == self.useColors) self.useColors = exports.useColors();
+    if (null == self.color && self.useColors) self.color = selectColor();
+
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+
+    args[0] = exports.coerce(args[0]);
+
+    if ('string' !== typeof args[0]) {
+      // anything else let's inspect with %o
+      args = ['%o'].concat(args);
+    }
+
+    // apply any `formatters` transformations
+    var index = 0;
+    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+      // if we encounter an escaped % then don't increase the array index
+      if (match === '%%') return match;
+      index++;
+      var formatter = exports.formatters[format];
+      if ('function' === typeof formatter) {
+        var val = args[index];
+        match = formatter.call(self, val);
+
+        // now we need to remove `args[index]` since it's inlined in the `format`
+        args.splice(index, 1);
+        index--;
+      }
+      return match;
+    });
+
+    // apply env-specific formatting
+    args = exports.formatArgs.apply(self, args);
+
+    var logFn = enabled.log || exports.log || console.log.bind(console);
+    logFn.apply(self, args);
+  }
+  enabled.enabled = true;
+
+  var fn = exports.enabled(namespace) ? enabled : disabled;
+
+  fn.namespace = namespace;
+
+  return fn;
+}
+
+/**
+ * Enables a debug mode by namespaces. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} namespaces
+ * @api public
+ */
+
+function enable(namespaces) {
+  exports.save(namespaces);
+
+  var split = (namespaces || '').split(/[\s,]+/);
+  var len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    if (!split[i]) continue; // ignore empty strings
+    namespaces = split[i].replace(/[\\^$+?.()|[\]{}]/g, '\\$&').replace(/\*/g, '.*?');
+    if (namespaces[0] === '-') {
+      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    } else {
+      exports.names.push(new RegExp('^' + namespaces + '$'));
+    }
+  }
+}
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+function disable() {
+  exports.enable('');
+}
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+function enabled(name) {
+  var i, len;
+  for (i = 0, len = exports.skips.length; i < len; i++) {
+    if (exports.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (i = 0, len = exports.names.length; i < len; i++) {
+    if (exports.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Coerce `val`.
+ *
+ * @param {Mixed} val
+ * @return {Mixed}
+ * @api private
+ */
+
+function coerce(val) {
+  if (val instanceof Error) return val.stack || val.message;
+  return val;
+}
+
+},{"ms":424}],424:[function(require,module,exports){
+/**
+ * Helpers.
+ */
+
+var s = 1000
+var m = s * 60
+var h = m * 60
+var d = h * 24
+var y = d * 365.25
+
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} options
+ * @throws {Error} throw an error if val is not a non-empty string or a number
+ * @return {String|Number}
+ * @api public
+ */
+
+module.exports = function (val, options) {
+  options = options || {}
+  var type = typeof val
+  if (type === 'string' && val.length > 0) {
+    return parse(val)
+  } else if (type === 'number' && isNaN(val) === false) {
+    return options.long ?
+			fmtLong(val) :
+			fmtShort(val)
+  }
+  throw new Error('val is not a non-empty string or a valid number. val=' + JSON.stringify(val))
+}
+
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+function parse(str) {
+  str = String(str)
+  if (str.length > 10000) {
+    return
+  }
+  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str)
+  if (!match) {
+    return
+  }
+  var n = parseFloat(match[1])
+  var type = (match[2] || 'ms').toLowerCase()
+  switch (type) {
+    case 'years':
+    case 'year':
+    case 'yrs':
+    case 'yr':
+    case 'y':
+      return n * y
+    case 'days':
+    case 'day':
+    case 'd':
+      return n * d
+    case 'hours':
+    case 'hour':
+    case 'hrs':
+    case 'hr':
+    case 'h':
+      return n * h
+    case 'minutes':
+    case 'minute':
+    case 'mins':
+    case 'min':
+    case 'm':
+      return n * m
+    case 'seconds':
+    case 'second':
+    case 'secs':
+    case 'sec':
+    case 's':
+      return n * s
+    case 'milliseconds':
+    case 'millisecond':
+    case 'msecs':
+    case 'msec':
+    case 'ms':
+      return n
+    default:
+      return undefined
+  }
+}
+
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtShort(ms) {
+  if (ms >= d) {
+    return Math.round(ms / d) + 'd'
+  }
+  if (ms >= h) {
+    return Math.round(ms / h) + 'h'
+  }
+  if (ms >= m) {
+    return Math.round(ms / m) + 'm'
+  }
+  if (ms >= s) {
+    return Math.round(ms / s) + 's'
+  }
+  return ms + 'ms'
+}
+
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtLong(ms) {
+  return plural(ms, d, 'day') ||
+    plural(ms, h, 'hour') ||
+    plural(ms, m, 'minute') ||
+    plural(ms, s, 'second') ||
+    ms + ' ms'
+}
+
+/**
+ * Pluralization helper.
+ */
+
+function plural(ms, n, name) {
+  if (ms < n) {
+    return
+  }
+  if (ms < n * 1.5) {
+    return Math.floor(ms / n) + ' ' + name
+  }
+  return Math.ceil(ms / n) + ' ' + name + 's'
+}
+
+},{}],425:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -72587,7 +74724,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":55,"inherits":94,"readable-stream/duplex.js":307,"readable-stream/passthrough.js":314,"readable-stream/readable.js":315,"readable-stream/transform.js":316,"readable-stream/writable.js":317}],367:[function(require,module,exports){
+},{"events":106,"inherits":145,"readable-stream/duplex.js":360,"readable-stream/passthrough.js":367,"readable-stream/readable.js":368,"readable-stream/transform.js":369,"readable-stream/writable.js":370}],426:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -72810,7 +74947,7 @@ function base64DetectIncompleteChar(buffer) {
   this.charLength = this.charReceived ? 3 : 0;
 }
 
-},{"buffer":7}],368:[function(require,module,exports){
+},{"buffer":7}],427:[function(require,module,exports){
 var toString = Object.prototype.toString
 
 module.exports = function(val){
@@ -72841,7 +74978,7 @@ module.exports = function(val){
   return typeof val
 }
 
-},{}],369:[function(require,module,exports){
+},{}],428:[function(require,module,exports){
 /**
  * UAParser.js v0.7.10
  * Lightweight JavaScript-based User-Agent string parser
@@ -73724,26 +75861,7 @@ module.exports = function(val){
 
 })(typeof window === 'object' ? window : this);
 
-},{}],370:[function(require,module,exports){
-/**
- * Export `uid`
- */
-
-module.exports = uid;
-
-/**
- * Create a `uid`
- *
- * @param {String} len
- * @return {String} uid
- */
-
-function uid(len) {
-  len = len || 7;
-  return Math.random().toString(35).substr(2, len);
-}
-
-},{}],371:[function(require,module,exports){
+},{}],429:[function(require,module,exports){
 (function (global){
 
 /**
@@ -73814,7 +75932,7 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],372:[function(require,module,exports){
+},{}],430:[function(require,module,exports){
 'use strict';
 
 var listNodesOfType = require('./listNodesOfType');
@@ -73830,10 +75948,10 @@ function getFootnotesCount(opts, state) {
 
 module.exports = getFootnotesCount;
 
-},{"./listNodesOfType":375}],373:[function(require,module,exports){
+},{"./listNodesOfType":433}],431:[function(require,module,exports){
 'use strict';
 
-var Slate = require('slate');
+var onKeyDown = require('./onKeyDown');
 var makeSchema = require('./makeSchema');
 var insertFootnote = require('./insertFootnote');
 var isSelectionInFootnote = require('./utils/isSelectionInFootnote');
@@ -73854,42 +75972,19 @@ function EditFootnote() {
     return {
         schema: schema,
 
+        onKeyDown: onKeyDown.bind(null, opts),
+
         isSelectionInFootnote: isSelectionInFootnote.bind(null, opts),
 
         transforms: {
             insertFootnote: insertFootnote.bind(null, opts)
-        },
-
-        // Prevent enter from doing anything in footnotes
-        onKeyDown: function onKeyDown(event, data, state) {
-            // Only handle key enter and events in footnotes
-            if (data.key === 'enter' && isSelectionInFootnote(opts, state)) {
-                event.stopPropagation();
-                event.preventDefault();
-
-                var document = state.document;
-
-                // Find first footnote index for a footnote in the document
-
-                var firstFootnoteIndex = document.nodes.findKey(function (node) {
-                    return node.type === opts.typeFootnote;
-                });
-
-                // Create an empty block of type defaultBlock
-                var block = Slate.Block.create({
-                    type: opts.defaultBlock,
-                    data: {}
-                });
-
-                return state.transform().insertNodeByKey(document.key, firstFootnoteIndex, block).moveToRangeOf(block).apply();
-            }
         }
     };
 }
 
 module.exports = EditFootnote;
 
-},{"./insertFootnote":374,"./makeSchema":376,"./utils/isSelectionInFootnote":377,"slate":326}],374:[function(require,module,exports){
+},{"./insertFootnote":432,"./makeSchema":434,"./onKeyDown":435,"./utils/isSelectionInFootnote":436}],432:[function(require,module,exports){
 'use strict';
 
 var Slate = require('slate');
@@ -73950,7 +76045,7 @@ function insertFootnote(opts, transform) {
 
 module.exports = insertFootnote;
 
-},{"./getFootnotesCount":372,"slate":326}],375:[function(require,module,exports){
+},{"./getFootnotesCount":430,"slate":380}],433:[function(require,module,exports){
 "use strict";
 
 /**
@@ -73970,7 +76065,7 @@ function listNodesOfType(state, type) {
 
 module.exports = listNodesOfType;
 
-},{}],376:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
 'use strict';
 
 /**
@@ -74061,7 +76156,49 @@ function footnotesAtTheEnd(opts) {
 
 module.exports = makeSchema;
 
-},{}],377:[function(require,module,exports){
+},{}],435:[function(require,module,exports){
+'use strict';
+
+var Slate = require('slate');
+var isSelectionInFootnote = require('./utils/isSelectionInFootnote');
+
+/**
+ * Prevent enter from splitting footnotes block and apply a transform to add a
+ * paragraph at the end of the document, right before the first foonote.
+ *
+ * @param {Object} opts  - options
+ * @param {Object} event - event object
+ * @param {Object} data  - slate data
+ * @param {Object} state - slate state
+ *
+ */
+module.exports = function onKeyDown(opts, event, data, state) {
+    if (!(data.key === 'enter' && isSelectionInFootnote(opts, state))) {
+        return;
+    }
+
+    // Only handle key enter and events in footnotes
+    event.stopPropagation();
+    event.preventDefault();
+
+    var document = state.document;
+
+    // Find first footnote index for a footnote in the document
+
+    var firstFootnoteIndex = document.nodes.findKey(function (node) {
+        return node.type === opts.typeFootnote;
+    });
+
+    // Create an empty block of type defaultBlock
+    var block = Slate.Block.create({
+        type: opts.defaultBlock,
+        data: {}
+    });
+
+    return state.transform().insertNodeByKey(document.key, firstFootnoteIndex, block).moveToRangeOf(block).apply();
+};
+
+},{"./utils/isSelectionInFootnote":436,"slate":380}],436:[function(require,module,exports){
 "use strict";
 
 /**
