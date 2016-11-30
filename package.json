@@ -9,10 +9,10 @@
     "immutable": "^3.8.1"
   },
   "peerDependencies": {
-    "slate": "^0.14.6"
+    "slate": "*"
   },
   "devDependencies": {
-    "slate": "GitbookIO/slate#26c6105c86994b2a19cf08dd6327a00d83bc497c",
+    "slate": "0.15.10",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
     "babel-preset-es2015": "^6.9.0",
