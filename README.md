@@ -5,6 +5,8 @@
 
 A Slate plugin to handle footnote edition.
 
+**Demo**: https://gitbookio.github.io/slate-edit-footnote/
+
 ### Install
 
 ```
