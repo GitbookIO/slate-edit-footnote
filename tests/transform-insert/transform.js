@@ -11,7 +11,7 @@ module.exports = function(plugin, state) {
 
     return plugin.transforms.insertFootnote(
         state.transform()
-        .moveTo(cursor)
+        .select(cursor)
     )
     .apply()
 };

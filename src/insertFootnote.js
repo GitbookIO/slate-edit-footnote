@@ -46,7 +46,7 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
         .moveToRangeOf(footnote)
         .insertText(defaultText)
         // set selection to footnote
-        .extendBackward(defaultText.length);
+        .extend(defaultText.length * -1);
 
     return transform;
 }

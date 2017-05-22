@@ -12,7 +12,7 @@
     "slate": "*"
   },
   "devDependencies": {
-    "slate": "0.15.10",
+    "slate": "0.20.1",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
     "babel-preset-es2015": "^6.9.0",
